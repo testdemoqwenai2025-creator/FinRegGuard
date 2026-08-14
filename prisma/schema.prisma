@@ -274,8 +274,65 @@ model ComplianceCase {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
+  /// v3 (Task 13) — fields migrated from cases.json so the DB is the
+  /// source of truth for the Case Management view. Previously these
+  /// lived only in public/data/cases.json and were read from disk on
+  /// every request.
+  /// Number of evidence artifacts attached to the case.
+  evidenceCount Int     @default(0)
+  /// SLA tracking status — `on_track`, `at_risk`, `breach_imminent`, `breached`.
+  slaStatus    String   @default("on_track")
+  /// JSON blob of the AI recommendation — { action, confidence, reasoning, reviewerAction }.
+  /// Stored as JSON string for SQLite; parse on read.
+  aiRecommendationJson String?
+
+  /// v3 (Task 13) — explicit case-citation links.
+  /// Replaces the regulator/jurisdiction-inference retrieval path with
+  /// a deterministic join: each case row has 0..N CaseCitation rows,
+  /// each pointing at a KnowledgeChunk. Populated by the migration
+  /// script (scripts/migrate-cases-to-db.ts) which runs retrieve() once
+  /// per case and persists the top-K results as CaseCitation rows.
+  citations    CaseCitation[]
+
   @@index([status])
   @@index([priority])
+}
+
+/// v3 (Task 13) — Explicit case-citation join table.
+/// Replaces the implicit regulator/jurisdiction-inference retrieval
+/// that the /api/cases/[id]/citations route used to do on every request.
+///
+/// Each row links one ComplianceCase to one KnowledgeChunk with a stored
+/// relevance score (cosine similarity at the time of insertion) and an
+/// optional `rank` to preserve retrieval ordering. The chunk snapshot
+/// fields (title, snippet, sourceType, jurisdiction, category, pluginSlug)
+/// are denormalised so the API can return Citation[] without a join back
+/// to KnowledgeChunk — but the `chunkId` foreign key is preserved so
+/// staleness can be detected (chunk deleted/updated since the link was
+/// created).
+model CaseCitation {
+  id            String   @id @default(cuid())
+  caseId        String
+  chunkId       String
+  /// Cosine similarity score at the time of insertion (0..1)
+  relevanceScore Float
+  /// 0-indexed retrieval rank (0 = most relevant)
+  rank          Int
+  /// Denormalised snapshot of the chunk at insertion time — lets the
+  /// API return Citation[] without joining back to KnowledgeChunk.
+  chunkTitle    String
+  chunkSnippet  String
+  chunkSourceType String
+  chunkJurisdiction String?
+  chunkCategory String?
+  chunkPluginSlug String?
+  createdAt     DateTime @default(now())
+
+  case          ComplianceCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@index([caseId])
+  @@index([chunkId])
+  @@index([rank])
 }
 
 /// Whistleblower intake reports

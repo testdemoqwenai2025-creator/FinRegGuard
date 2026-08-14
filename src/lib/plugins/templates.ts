@@ -269,6 +269,14 @@ async function persistTemplate(
  *  - sourceType === 'template' (no real web source)
  *  - sourceUrl doesn't start with http (e.g., inline data)
  *  - Static build (no network access)
+ *
+ * If defaultFieldsJson contains a `body_text` string field, the field is
+ * emitted as raw paragraphs at the end of the synthesized content. This
+ * lets catalog authors ship rich regulatory prose (multi-paragraph
+ * methodology text, article commentary, etc.) that the chunker then
+ * splits into 8-15 retrieval chunks per plugin — important for
+ * corpus balance so retrieval doesn't collapse onto a single dominant
+ * plugin (see Task 13 EU diversification).
  */
 async function synthesizeTemplate(
   plugin: { id: string; slug: string; name: string; defaultFieldsJson: string | null },
@@ -279,18 +287,27 @@ async function synthesizeTemplate(
     ? JSON.parse(plugin.defaultFieldsJson)
     : (catalogEntry?.defaultFieldsJson ?? {})
 
-  const rawContent = JSON.stringify(
-    {
-      plugin: plugin.slug,
-      name: plugin.name,
-      generatedAt: new Date().toISOString(),
-      source: 'synthesized-from-defaults',
-      defaultFields: defaults,
-      note: 'This template was synthesized from the plugin catalog defaults because the source is not a real web URL or the build is static.',
-    },
-    null,
-    2,
-  )
+  // Extract body_text so it can be emitted as raw paragraphs (preserving
+  // \n\n separators that the chunker needs to split on). The remaining
+  // defaults are kept as JSON metadata for the parsedFieldsJson column.
+  const bodyText = typeof defaults.body_text === 'string' ? defaults.body_text : ''
+  const metaDefaults = { ...defaults }
+  if (bodyText) delete metaDefaults.body_text
+
+  const rawContent = bodyText
+    ? `# ${plugin.name}\n\nPlugin: ${plugin.slug}\nSource: synthesized-from-defaults\nGenerated: ${new Date().toISOString()}\n\n---\n\n${bodyText}\n`
+    : JSON.stringify(
+        {
+          plugin: plugin.slug,
+          name: plugin.name,
+          generatedAt: new Date().toISOString(),
+          source: 'synthesized-from-defaults',
+          defaultFields: metaDefaults,
+          note: 'This template was synthesized from the plugin catalog defaults because the source is not a real web URL or the build is static.',
+        },
+        null,
+        2,
+      )
   const contentHash = createHash('sha256').update(rawContent).digest('hex')
 
   await db.pluginTemplate.upsert({
@@ -298,19 +315,19 @@ async function synthesizeTemplate(
     create: {
       pluginId: plugin.id,
       rawContent,
-      contentType: 'application/json',
+      contentType: bodyText ? 'text/plain' : 'application/json',
       contentHash,
       fetchStatus: 200,
       fetchError: null,
-      parsedFieldsJson: JSON.stringify(defaults),
+      parsedFieldsJson: JSON.stringify(metaDefaults),
     },
     update: {
       rawContent,
-      contentType: 'application/json',
+      contentType: bodyText ? 'text/plain' : 'application/json',
       contentHash,
       fetchStatus: 200,
       fetchError: null,
-      parsedFieldsJson: JSON.stringify(defaults),
+      parsedFieldsJson: JSON.stringify(metaDefaults),
       fetchedAt: new Date(),
     },
   })
@@ -325,20 +342,24 @@ async function synthesizeTemplate(
       pluginId: plugin.id,
       action: 'autofilled',
       actor,
-      notes: 'Synthesized from catalog defaults',
+      notes: bodyText
+        ? 'Synthesized from catalog defaults (rich body_text emitted as raw paragraphs)'
+        : 'Synthesized from catalog defaults',
     },
   })
 
   return {
     ok: true,
     status: 200,
-    contentType: 'application/json',
+    contentType: bodyText ? 'text/plain' : 'application/json',
     contentLength: rawContent.length,
     contentHash,
     fetchedAt: new Date(),
-    parsedFields: defaults,
+    parsedFields: metaDefaults,
     skipped: true,
-    skipReason: 'Synthesized from catalog defaults',
+    skipReason: bodyText
+      ? 'Synthesized from catalog defaults (body_text emitted as raw paragraphs)'
+      : 'Synthesized from catalog defaults',
   }
 }
 

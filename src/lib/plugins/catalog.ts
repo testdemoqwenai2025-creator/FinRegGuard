@@ -204,6 +204,103 @@ export const PLUGIN_CATALOG: PluginCatalogEntry[] = [
     tags: ['Basel', 'BIS', 'disclosure', 'capital', 'banking'],
     enabledByDefault: false,
   },
+  // ─── EU corpus diversification (Task 13) ───────────────────────────
+  // Three EBA/CRR plugins that balance the EU vector store so retrieval
+  // for EBA regulator cases no longer returns only gdpr-ropa chunks.
+  // Each plugin carries a multi-paragraph body_text in defaultFieldsJson
+  // so the synthesizer emits raw paragraphs that the chunker splits into
+  // 8-15 retrieval chunks per plugin.
+  {
+    slug: 'eba-stress-test-2026',
+    name: 'EBA Stress Test 2026 Methodology',
+    description: 'EU-wide stress test methodology published by the EBA — adverse scenario parameters, capital floor, and reporting templates (TR1-TR9) for the 2026 biennial exercise.',
+    category: 'form',
+    jurisdiction: 'EU',
+    regulator: 'EBA',
+    version: '2026.1',
+    sourceUrl: 'https://www.eba.europa.eu/regulation-and-policy/stress-testing/eu-wide-stress-testing',
+    sourceType: 'web',
+    schemaJson: {
+      type: 'object',
+      fields: [
+        { name: 'exercise_year', type: 'number', required: true },
+        { name: 'cet1_floor_pct', type: 'number', required: true },
+        { name: 'time_horizon_years', type: 'number' },
+        { name: 'sample_size_banks', type: 'number' },
+        { name: 'submission_deadline', type: 'string' },
+        { name: 'reporting_templates', type: 'array' },
+      ],
+    },
+    defaultFieldsJson: {
+      exercise_year: 2026,
+      cet1_floor_pct: 5.5,
+      time_horizon_years: 3,
+      sample_size_banks: 70,
+      submission_deadline: '2026-04-30',
+      reporting_templates: ['TR1_Capital_Positions', 'TR2_RWA_Floor', 'TR3_Credit_Risk', 'TR4_Market_Risk', 'TR5_Ops_Risk', 'TR6_IRB', 'TR7_Securitisation', 'TR8_Forced_Sale', 'TR9_Summary'],
+      body_text: 'EBA EU-Wide Stress Test 2026 Methodology\n\nThe European Banking Authority conducts a biennial EU-wide stress test on a sample of the largest banks across the European Union. The 2026 exercise covers approximately 70 banks representing over 70 percent of the EU banking sector by total assets. The objective is to assess the resilience of the EU banking system to an adverse macroeconomic scenario and to inform the Supervisory Review and Evaluation Process (SRE) conducted by the Single Supervisory Mechanism.\n\nThe 2026 adverse scenario is designed by the European Systemic Risk Board (ESRB) and comprises a severe global recession with GDP contracting by 3.5 percent cumulatively over the three-year horizon, unemployment rising by 8 percentage points, equity prices falling by 30 percent, and residential real estate prices declining by 25 percent. The scenario also includes a sovereign-stress leg with a 200 basis point increase in long-term interest rates and a widening of sovereign spreads for high-debt member states.\n\nThe Common Equity Tier 1 (CET1) capital floor applied in the 2026 exercise is set at 5.5 percent of risk-weighted assets. This floor is binding on a fully-loaded basis, meaning that banks must hold CET1 capital equal to or above 5.5 percent of RWA under the adverse scenario throughout the three-year projection horizon. Banks that breach the floor are expected to submit a capital replenishment plan to their supervisor within four weeks of the results publication.\n\nThe stress test employs a constrained bottom-up approach. Banks project their capital trajectories under the adverse scenario using their internal models subject to constraints and benchmarks imposed by the EBA. The EBA and national competent authorities challenge the projections through a series of quality assurance reviews before publishing the results. The quality assurance process typically takes between 10 and 12 weeks.\n\nReporting templates TR1 through TR9 must be submitted in XBRL format via the EBA Reporting Framework. Template TR1 captures the capital positions and RWAs at each year-end of the projection. Template TR2 documents the impact of the RWA floor. Templates TR3 through TR5 capture credit, market, and operational risk projections. Templates TR6 and TR7 cover IRB and securitisation detail. Template TR8 captures forced-sale gains and losses on sovereign bond portfolios. Template TR9 provides the summary results that the EBA publishes.\n\nThe submission deadline for the 2026 exercise is 30 April 2026. The EBA will publish the aggregated results in late October 2026 alongside bank-level results for each institution in the sample. The results will feed into the SREP cycle for 2027, informing Pillar 2 capital add-ons where the stress test reveals capital weakness.',
+    },
+    tags: ['EBA', 'stress-test', 'capital', 'CET1', 'EU', 'banking'],
+    enabledByDefault: true,
+  },
+  {
+    slug: 'crr-article-107',
+    name: 'CRR Article 107 — Capital Conservation Buffer',
+    description: 'Article 107 of the EU Capital Requirements Regulation (Regulation 575/2013) establishing the capital conservation buffer above the Pillar 1 minimum and the Maximum Distributable Amount (MDA) restriction mechanism.',
+    category: 'document',
+    jurisdiction: 'EU',
+    regulator: 'EBA',
+    version: '575/2013',
+    sourceUrl: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02013R0575-20240101',
+    sourceType: 'web',
+    schemaJson: {
+      type: 'object',
+      fields: [
+        { name: 'buffer_pct', type: 'number', required: true },
+        { name: 'capital_quality', type: 'enum', values: ['CET1'] },
+        { name: 'mda_quartiles', type: 'number' },
+        { name: 'restricted_distributions', type: 'array' },
+      ],
+    },
+    defaultFieldsJson: {
+      buffer_pct: 2.5,
+      capital_quality: 'CET1',
+      mda_quartiles: 4,
+      restricted_distributions: ['dividends', 'share_buybacks', 'variable_remuneration', 'AT1_coupon_payments'],
+      body_text: 'CRR Article 107 — Capital Conservation Buffer\n\nArticle 107 of Regulation (EU) No 575/2013 (the Capital Requirements Regulation, or CRR) requires institutions to maintain a capital conservation buffer of Common Equity Tier 1 (CET1) capital equal to 2.5 percent of their total risk-weighted assets, on top of the Pillar 1 minimum own funds requirements. The buffer is composed solely of CET1 capital; Additional Tier 1 and Tier 2 instruments do not qualify.\n\nThe purpose of the buffer is to ensure that institutions build up an additional layer of CET1 capital during normal periods that can be drawn down during periods of stress. Unlike the countercyclical buffer, the capital conservation buffer is a fixed percentage and is not varied over time. It is designed to be permeable: institutions are permitted to use the buffer to absorb losses during a stress, but they face restrictions on their ability to make distributions while the buffer is depleted.\n\nWhen an institution\'s CET1 capital falls within the combined buffer range (the sum of the capital conservation buffer, the countercyclical buffer, and the systemic risk buffer), it must restrict distributions to shareholders, employees, and holders of Additional Tier 1 instruments. The restriction mechanism is based on the Maximum Distributable Amount (MDA), which is the maximum amount that may be distributed in respect of a given financial year.\n\nThe MDA is calculated by dividing the institution\'s CET1 capital buffer shortfall into quartiles. The distribution restriction varies linearly with the quartile in which the institution\'s CET1 ratio falls. The first quartile (closest to the Pillar 1 minimum) imposes the most severe restriction, with a maximum distribution equal to zero percent of profits. The second quartile allows distributions up to 20 percent of profits. The third quartile allows distributions up to 40 percent. The fourth quartile (closest to the buffer top) allows distributions up to 60 percent. Profits are computed after tax and after deducting any discretionary distributions.\n\nRestricted distributions include dividends on common shares, share buybacks, variable remuneration to material risk-takers, and coupon payments on Additional Tier 1 instruments. Payments on legacy Tier 1 instruments that are eligible for grandfathering are also restricted. The restriction applies prospectively from the date the institution falls below the buffer threshold.\n\nInstitutions are required to notify their competent authority within five working days of identifying that their CET1 capital has fallen within the combined buffer range. The notification must include a capital conservation plan that describes the measures the institution intends to take to restore its CET1 capital, the expected timeframe for restoration, and an assessment of whether the institution will be able to continue to meet its Pillar 1 requirements during the restoration period.\n\nThe European Banking Authority has published Guidelines (EBA/GL/2014/09) on the calculation of the MDA, including worked examples for institutions with negative profits, institutions with intra-year capital distributions, and institutions subject to a systemic risk buffer that varies by exposure. The Guidelines also clarify the interaction between the MDA restriction and the remuneration provisions in the Capital Requirements Directive (CRD) Article 92, particularly with respect to the deferral and pro-cyclicality of variable remuneration.',
+    },
+    tags: ['CRR', 'EBA', 'capital', 'CET1', 'MDA', 'EU', 'banking'],
+    enabledByDefault: true,
+  },
+  {
+    slug: 'eba-pillar-3-rwa',
+    name: 'EBA Pillar 3 RWA Disclosure Template',
+    description: 'EBA implementing technical standards on Pillar 3 disclosure — risk-weighted assets breakdown templates KM1, OV1, and CC1 per CRR Articles 431-435, applicable to large institutions on a semi-annual basis.',
+    category: 'form',
+    jurisdiction: 'EU',
+    regulator: 'EBA',
+    version: '2024/856',
+    sourceUrl: 'https://www.eba.europa.eu/regulation-and-policy/supervisory-reporting/pillar-3-disclosures',
+    sourceType: 'web',
+    schemaJson: {
+      type: 'object',
+      fields: [
+        { name: 'reporting_frequency', type: 'enum', values: ['annual', 'semi-annual', 'quarterly'] },
+        { name: 'applicable_institutions', type: 'string' },
+        { name: 'templates', type: 'array' },
+        { name: 'publication_deadline_days', type: 'number' },
+      ],
+    },
+    defaultFieldsJson: {
+      reporting_frequency: 'semi-annual',
+      applicable_institutions: 'large_institutions_total_assets_gt_30bn',
+      templates: ['KM1_Key_Metrics', 'OV1_RWA_Overview', 'CC1_Capital_Composition', 'CC2_Capital_Changes'],
+      publication_deadline_days: 30,
+      body_text: 'EBA Pillar 3 Disclosure — Risk-Weighted Assets Templates\n\nThe EBA Implementing Technical Standards (ITS) on Pillar 3 disclosure, most recently consolidated under Regulation (EU) 2024/856, specify the templates and associated instructions that institutions must use to disclose their risk-weighted assets (RWA) and capital positions to the market. The disclosure requirements derive from Articles 431 through 435 of the Capital Requirements Regulation (CRR).\n\nLarge institutions, defined as those with total assets exceeding 30 billion euro, are required to publish Pillar 3 disclosures on a semi-annual basis. Smaller institutions may publish annually. The publication must occur within 30 calendar days of the reference date for the semi-annual template and within 60 calendar days for the annual templates. The disclosures must be made available on the institution\'s website in a machine-readable format (XBRL or CSV) and submitted to the EBA via the European Centralised Infrastructure for data collection (EuCIL).\n\nTemplate KM1 — Key Metrics presents a one-page summary of the institution\'s capital, RWA, leverage ratio, and liquidity ratios. It includes the CET1 capital ratio, the Tier 1 capital ratio, the total capital ratio, the leverage ratio, the liquidity coverage ratio (LCR), and the net stable funding ratio (NSFR). Each metric is presented for both the current and the previous reporting period, with a column for the change in percentage points.\n\nTemplate OV1 — Overview of RWA provides a breakdown of total RWA by risk type. The rows distinguish between credit risk RWA (further broken down into the standardised approach and the IRB approach), counterparty credit risk RWA, market risk RWA (standardised and internal models approaches), operational risk RWA, and RWA arising from the settlement risk. For credit risk under the IRB approach, the template further distinguishes between the IRB fallback position and the advanced IRB approach.\n\nTemplate CC1 — Composition of Regulatory Capital presents the reconciliation between the institution\'s accounting balance sheet equity and its regulatory CET1, Additional Tier 1, and Tier 2 capital. The template lists all regulatory adjustments (deductions and filters) applied to arrive at regulatory capital, including the deduction of intangible assets, deferred tax assets that rely on future profitability, and significant investments in unconsolidated financial sector entities.\n\nTemplate CC2 — Main Changes in Regulatory Capital During the Period explains the movements in regulatory capital during the reporting period. The template breaks down changes into (i) capital raised or redeemed, (ii) profit or loss net of distributable items, (iii) regulatory adjustments, (iv) foreign exchange translation effects, and (v) other changes. This allows users of the financial statements to understand the drivers of capital changes other than organic profit generation.\n\nInstitutions are also required to publish a qualitative annex describing the methodologies used to compute the disclosed RWA, the key assumptions underlying the IRB models, and any deviations from the EBA\'s published templates. The qualitative annex must be updated at least annually and is typically published alongside the H1 results.\n\nThe EBA conducts periodic benchmarking exercises to assess the consistency of RWA outcomes across institutions. The results of these exercises are published in the EBA\'s annual Report on the Monitoring of Additional Metrics for Capital Adequacy. Where the EBA identifies material inconsistencies between institutions, it may issue supervisory guidance or, in the case of model issues, refer the matter to the Single Supervisory Mechanism for follow-up under the Supervisory Review and Evaluation Process.',
+    },
+    tags: ['EBA', 'Pillar 3', 'disclosure', 'RWA', 'EU', 'transparency'],
+    enabledByDefault: true,
+  },
   {
     slug: 'sec-form-pf',
     name: 'SEC Form PF',

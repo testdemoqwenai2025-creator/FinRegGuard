@@ -22,10 +22,14 @@ type Case = {
 }
 
 // Live-fetch state for one case's citations.
+// `source` indicates whether the citations came from the DB join table
+// (deterministic, fast) or from live retrieve() (used by ?refresh=1
+// and for cases not yet migrated to ComplianceCase).
+type CitationSource = 'db' | 'live' | 'live+broadened'
 type CitationState =
   | { status: 'idle' }
   | { status: 'loading' }
-  | { status: 'ok'; citations: Citation[]; ragFilter: RagFilter | null; latencyMs: number; broadened?: boolean }
+  | { status: 'ok'; citations: Citation[]; ragFilter: RagFilter | null; latencyMs: number; broadened?: boolean; source?: CitationSource }
   | { status: 'error'; message: string }
 
 const priorityColor: Record<string, string> = {
@@ -65,14 +69,22 @@ export function CaseManagementView() {
 
   // Fetch live citations for the selected case. Skipped in static-build mode
   // (where /api is unavailable) — falls back to selected.citations from JSON.
-  const loadCitations = useCallback(async (caseId: string) => {
+  //
+  // v3 (Task 13): the API now returns `source` (db | live | live+broadened)
+  // so the UI can show whether citations are coming from the deterministic
+  // CaseCitation join table or from live retrieve().
+  //
+  // Pass `refresh=true` to force the API to re-run retrieve() and upsert
+  // fresh CaseCitation rows (used by the Refresh button).
+  const loadCitations = useCallback(async (caseId: string, opts?: { refresh?: boolean }) => {
     if (IS_STATIC_BUILD) return // static export: use embedded citations
     setCitationCache((cur) => ({
       ...cur,
       [caseId]: { status: 'loading' },
     }))
     try {
-      const res = await fetch(`/api/cases/${encodeURIComponent(caseId)}/citations?topK=8`)
+      const url = `/api/cases/${encodeURIComponent(caseId)}/citations?topK=8` + (opts?.refresh ? '&refresh=1' : '')
+      const res = await fetch(url)
       if (!res.ok) {
         const errBody = await res.json().catch(() => ({ error: `HTTP ${res.status}` }))
         throw new Error(errBody.error ?? `HTTP ${res.status}`)
@@ -81,6 +93,7 @@ export function CaseManagementView() {
         citations: Citation[]
         ragFilter: RagFilter & { broadened?: boolean }
         latencyMs: number
+        source?: CitationSource
       }
       setCitationCache((cur) => ({
         ...cur,
@@ -90,6 +103,7 @@ export function CaseManagementView() {
           ragFilter: data.ragFilter,
           latencyMs: data.latencyMs,
           broadened: data.ragFilter.broadened,
+          source: data.source,
         },
       }))
     } catch (err) {
@@ -225,6 +239,7 @@ export function CaseManagementView() {
                       isStatic={IS_STATIC_BUILD}
                       hasFallback={!!selected.citations && selected.citations.length > 0}
                       onRetry={() => loadCitations(selected.id)}
+                      onRefresh={() => loadCitations(selected.id, { refresh: true })}
                     />
                   </CardTitle>
                 </CardHeader>
@@ -255,11 +270,13 @@ function RagStatusChip({
   isStatic,
   hasFallback,
   onRetry,
+  onRefresh,
 }: {
   state: CitationState | undefined
   isStatic: boolean
   hasFallback: boolean
   onRetry: () => void
+  onRefresh: () => void
 }) {
   if (isStatic) {
     return (
@@ -292,10 +309,33 @@ function RagStatusChip({
     )
   }
   // status === 'ok'
+  // v3 (Task 13): show source (db | live) + latency + broadened flag.
+  // Include a Refresh button so the user can force re-retrieval when
+  // new plugins have been indexed or case data has changed.
+  const sourceLabel = state.source === 'db'
+    ? 'db'
+    : state.source === 'live'
+      ? 'live'
+      : state.source === 'live+broadened'
+        ? 'live·broad'
+        : ''
   return (
-    <span className="text-[9px] font-normal text-slate-500" title={`Retrieved in ${state.latencyMs}ms`}>
-      {state.latencyMs}ms{state.broadened ? ' · broadened' : ''}
-      {!hasFallback && ''}
+    <span className="flex items-center gap-1.5 text-[9px] font-normal text-slate-500" title={`Retrieved in ${state.latencyMs}ms from ${state.source ?? 'unknown'}`}>
+      {sourceLabel && (
+        <span className="rounded bg-emerald-50 px-1 py-0.5 text-[8px] font-medium text-emerald-700">
+          {sourceLabel}
+        </span>
+      )}
+      <span>{state.latencyMs}ms</span>
+      {state.broadened && <span className="text-amber-600">· broadened</span>}
+      <button
+        onClick={onRefresh}
+        className="flex items-center gap-0.5 hover:text-emerald-700"
+        title="Re-run retrieval and update the case-citation links"
+      >
+        <RefreshCw className="h-2.5 w-2.5" />
+        refresh
+      </button>
     </span>
   )
 }
