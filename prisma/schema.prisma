@@ -773,3 +773,345 @@ model PluginToggleHistory {
   @@index([createdAt])
   @@index([acknowledgedAt])
 }
+
+// ─────────────────────────────────────────────────────────────
+// FORM AUTO-FILL STACK (Phase 1 — Commit 1)
+//
+// Recruitment-ATS-style auto-population of regulatory forms from
+// live web connectors. Every field value carries provenance: which
+// connector, what timestamp, what raw payload hash, what parser
+// version, what confidence score.
+//
+// 7-layer stack:
+//   L1  Connector registry + engine (polls live feeds)
+//   L2  Parsers (per-response-format → canonical JSON)
+//   L3  Field ontology (field_name → source connector + fallback chain)
+//   L4  Form template registry (per-form field schemas)
+//   L5  Auto-fill orchestrator (form_slug + entity_id → filled form)
+//   L6  Audit trail (FormFieldProvenance per field write)
+//   L7  Human review queue (low-confidence fields routed to reviewer)
+// ─────────────────────────────────────────────────────────────
+
+/// L1 — Connector registry. Each row represents a live external
+/// data feed (LEI, Companies House, EDGAR, OFAC, OpenCorporates,
+/// ESMA, FCA, MAS, chainalysis, etc.). The ConnectorEngine polls
+/// each feed on a schedule and writes ConnectorRun records.
+model Connector {
+  id              String   @id @default(cuid())
+  /// Stable slug — e.g. "lei", "companies_house", "edgar", "ofac", "opencorporates"
+  slug            String   @unique
+  name            String
+  /// live_feed | registry | sanctions_list | filings_index | corporate_registry
+  kind            String   @default("registry")
+  /// Base endpoint URL (auth + query params appended by connector impl)
+  endpoint        String
+  /// none | api_key_header | api_key_query | oauth2_client_credentials | basic
+  authScheme      String   @default("none")
+  /// Encrypted JSON: { api_key_env, client_id_env, client_secret_env, token_url, scope }
+  /// Secrets are read from process.env at runtime — never stored in the DB.
+  authConfigJson  String   @default("{}")
+  /// Requests per minute (0 = unlimited)
+  rateLimitPerMin Int      @default(60)
+  /// closed | open | half_open
+  circuitBreakerState String @default("closed")
+  /// When the circuit last opened (for the 15-min cooldown)
+  circuitOpenedAt DateTime?
+  lastPollAt      DateTime?
+  lastSuccessAt   DateTime?
+  /// Rolling 24h error count — used by the UI to flag unhealthy feeds
+  errorCount24h   Int      @default(0)
+  /// Records successfully pulled across all time (lifetime counter)
+  recordsPulledLifetime Int @default(0)
+  /// Average response latency in ms (EWMA updated on each poll)
+  avgLatencyMs    Int      @default(0)
+  /// Is the connector enabled for the auto-fill orchestrator?
+  enabled         Boolean  @default(true)
+  /// Markdown description of what this connector provides
+  description     String   @default("")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  runs            ConnectorRun[]
+  fieldOntologies FieldOntology[]
+  fieldValueSources FormFieldValue[]
+
+  @@index([slug])
+  @@index([enabled])
+  @@index([circuitBreakerState])
+}
+
+/// L1 — One poll attempt against a connector. Records the raw payload
+/// hash so reviewers can trace any field value back to the exact API
+/// response that populated it. Used by the regulator examination PDF.
+model ConnectorRun {
+  id              String   @id @default(cuid())
+  connectorId     String
+  startedAt       DateTime @default(now())
+  finishedAt      DateTime?
+  /// success | partial | failure | circuit_open
+  status          String   @default("running")
+  /// HTTP status code (or 0 if request never completed)
+  httpStatus      Int      @default(0)
+  /// Number of records parsed from the response
+  recordsPulled   Int      @default(0)
+  /// SHA-256 hash of the raw response body — links FormFieldProvenance
+  rawPayloadHash  String?
+  /// First 500 chars of the response (for quick inspection in UI)
+  payloadSnippet  String?
+  /// Error message if status != success
+  errorMessage    String?
+  /// Endpoint actually called (with query params, secrets redacted)
+  endpointCalled  String?
+  /// Latency in ms (finishedAt - startedAt)
+  latencyMs       Int      @default(0)
+
+  connector       Connector @relation(fields: [connectorId], references: [id], onDelete: Cascade)
+
+  @@index([connectorId])
+  @@index([startedAt])
+  @@index([status])
+  @@index([rawPayloadHash])
+}
+
+/// L3 — Field ontology. Maps a canonical field name (e.g.,
+/// "beneficial_owners[].nationality") to the connector that is the
+/// source of truth for that field, the parser to use, and a fallback
+/// chain of alternative connectors if the primary source is unavailable
+/// or returns no data for the given entity.
+///
+/// `sourceOfTruthByJurisdiction` is a JSON map like:
+///   { "UK": "companies_house", "EU": "lei", "US": "edgar", "_default": "opencorporates" }
+///
+/// This allows the auto-fill orchestrator to pick the right connector
+/// based on the entity's jurisdiction.
+model FieldOntology {
+  id              String   @id @default(cuid())
+  /// Canonical field path — e.g. "legal_name", "beneficial_owners[].nationality",
+  /// "sanctions_screening_result", "source_of_funds_evidence"
+  fieldName       String   @unique
+  /// string | date | country_code_iso3166 | integer | decimal | boolean | json_array | json_object
+  canonicalType   String   @default("string")
+  /// Human-readable description of what this field represents
+  description     String   @default("")
+  /// JSON map: jurisdiction → connector slug (e.g., {"UK":"companies_house","_default":"opencorporates"})
+  sourceOfTruthByJurisdiction String @default("{}")
+  /// Parser slug — e.g. "companies_house_officers_json", "ofac_sd_xml", "lei_search_json"
+  parserSlug      String
+  /// JSON array of connector slugs tried in order if primary returns no data
+  /// e.g. ["lei", "opencorporates"]
+  fallbackChainJson String  @default("[]")
+  /// Minimum confidence threshold below which the field is routed to the review queue
+  /// high (0.9) | medium (0.7) | low (0.5)
+  confidenceThreshold String @default("medium")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  /// The primary connector (resolved from sourceOfTruthByJurisdiction._default)
+  /// — kept as a relation for convenience joins. For jurisdiction-specific
+  /// sources, the orchestrator looks up sourceOfTruthByJurisdiction at runtime.
+  primaryConnector Connector? @relation(fields: [primaryConnectorId], references: [id])
+  primaryConnectorId String?
+
+  @@index([fieldName])
+  @@index([parserSlug])
+}
+
+/// L4 — Form template registry. Each row is a fillable form schema
+/// (EDD, SAR, MiCA CASP application, Travel Rule message, etc.).
+/// The fieldSchemaJson describes every field: name, type, required,
+/// validation rules, and the autofill_strategy (which FieldOntology
+/// field to populate from).
+///
+/// Example fieldSchemaJson:
+///   {
+///     "fields": [
+///       { "name": "legal_name", "type": "string", "required": true,
+///         "autofill_field": "legal_name" },
+///       { "name": "beneficial_owners", "type": "json_array", "required": true,
+///         "autofill_field": "beneficial_owners" },
+///       { "name": "sanctions_screening_result", "type": "json_object", "required": true,
+///         "autofill_field": "sanctions_screening_result" }
+///     ]
+///   }
+model FormTemplate {
+  id              String   @id @default(cuid())
+  /// Stable slug matching the plugin catalog — e.g. "edd-form-framework",
+  /// "sar-next-gen-template", "form-mica-casp"
+  slug            String   @unique
+  name            String
+  /// JSON Schema describing the form's fields (see example above)
+  fieldSchemaJson String
+  /// EDD | SAR | MiCA_CASP | Travel_Rule | Climate_Scenario | GDPR_RoPA | custom
+  formType        String   @default("custom")
+  regulator       String   @default("INTERNAL")
+  jurisdiction    String   @default("GLOBAL")
+  /// Template version (semver) — bumped when field schema changes
+  version         String   @default("1.0.0")
+  /// Markdown description of the form's purpose and required evidence
+  description     String   @default("")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  instances       FormInstance[]
+
+  @@index([slug])
+  @@index([formType])
+  @@index([jurisdiction])
+}
+
+/// L5 — A filled (or partially filled) form instance. Created when
+/// a user opens a form template and triggers auto-fill. Each instance
+/// is tied to a specific entity (counterparty, customer, transaction).
+model FormInstance {
+  id              String   @id @default(cuid())
+  templateId      String
+  /// External entity identifier — e.g. "LEI:529900T8BM49AURQ",
+  /// "CRN:12345678", "TXN:0xabc123..."
+  entityId        String
+  /// Entity type — counterparty | customer | transaction | beneficial_owner
+  entityType      String   @default("counterparty")
+  /// Entity display name (denormalized for UI)
+  entityName      String   @default("")
+  /// draft | auto_filling | in_review | submitted | withdrawn | rejected
+  status          String   @default("draft")
+  /// Overall confidence score for the auto-filled form (0.0–1.0)
+  /// Computed as the weighted mean of FormFieldValue.confidence
+  overallConfidence Float  @default(0)
+  /// Number of fields that were auto-filled (vs. manually entered)
+  autoFilledFieldCount Int @default(0)
+  /// Number of fields routed to the review queue (low confidence)
+  reviewQueueCount Int     @default(0)
+  /// Who created the form instance (user email or "system")
+  createdBy       String   @default("system")
+  /// When the form was submitted (null until status=submitted)
+  submittedAt     DateTime?
+  /// Who submitted the form (reviewer email)
+  submittedBy     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  template        FormTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  fieldValues     FormFieldValue[]
+  reviewQueueItems ReviewQueueItem[]
+
+  @@index([templateId])
+  @@index([entityId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+/// L5 — A single field value in a form instance. Each value carries
+/// a confidence score (0.0–1.0) and a reference to the connector that
+/// populated it. If the field was manually entered by a reviewer,
+/// sourceConnectorId is null and sourceConnectorName is "manual".
+model FormFieldValue {
+  id              String   @id @default(cuid())
+  instanceId      String
+  /// Dotted field path matching FormTemplate.fieldSchemaJson — e.g.
+  /// "legal_name", "beneficial_owners[0].nationality", "sanctions_screening_result"
+  fieldPath       String
+  /// JSON-encoded value (string, number, array, object — depends on field type)
+  valueJson       String
+  /// Confidence score (0.0–1.0). high >= 0.9, medium >= 0.7, low < 0.7
+  confidence      Float    @default(0)
+  /// high | medium | low — derived from confidence
+  confidenceBand  String   @default("low")
+  /// Was this value auto-filled (true) or manually entered (false)?
+  autoFilled      Boolean  @default(true)
+  /// Field-ontology entry that resolved this field (null if manual)
+  ontologyFieldName String?
+
+  sourceConnector   Connector? @relation(fields: [sourceConnectorId], references: [id])
+  sourceConnectorId String?
+
+  provenance      FormFieldProvenance?
+  reviewQueueItem ReviewQueueItem?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  instance        FormInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@index([instanceId])
+  @@index([fieldPath])
+  @@index([confidenceBand])
+  @@index([autoFilled])
+  @@index([sourceConnectorId])
+}
+
+/// L6 — Provenance record for a single field write. Captures the
+/// exact API response that populated the field: which connector run,
+/// what timestamp, what raw payload hash, what parser version, what
+/// payload snippet. This is the artifact a regulator examiner wants
+/// to see — every field traceable to its source.
+model FormFieldProvenance {
+  id              String   @id @default(cuid())
+  fieldValueId    String   @unique
+  /// The ConnectorRun that produced the raw payload for this field
+  connectorRunId  String?
+  /// Connector slug (denormalized for fast queries without joins)
+  connectorSlug   String
+  /// When the connector was called
+  fetchedAt       DateTime @default(now())
+  /// SHA-256 hash of the raw response body — links to ConnectorRun.rawPayloadHash
+  rawPayloadHash  String?
+  /// Parser slug — e.g. "companies_house_officers_json"
+  parserSlug      String
+  /// Parser version (semver) — so we can re-parse old payloads if parser logic changes
+  parserVersion   String   @default("1.0.0")
+  /// First 500 chars of the raw payload (for the side-by-side reviewer UI)
+  payloadSnippet  String?
+  /// The exact JSON path within the raw payload that yielded this value
+  /// e.g. "/items/0/address/country"
+  payloadJsonPath String?
+  /// Confidence at the moment of capture (may differ from current
+  /// FormFieldValue.confidence if the reviewer later edited the value)
+  confidenceAtCapture Float @default(0)
+  createdAt       DateTime @default(now())
+
+  fieldValue      FormFieldValue @relation(fields: [fieldValueId], references: [id], onDelete: Cascade)
+
+  @@index([fieldValueId])
+  @@index([connectorSlug])
+  @@index([fetchedAt])
+  @@index([rawPayloadHash])
+}
+
+/// L7 — Human review queue. Auto-fill routes low-confidence field
+/// values here for reviewer sign-off. Reviewer sees the field value
+/// side-by-side with the raw connector payload, then approves / edits
+/// / rejects. Every action is audit-logged.
+model ReviewQueueItem {
+  id              String   @id @default(cuid())
+  /// The form field value that needs review
+  fieldValueId    String   @unique
+  /// The form instance (denormalized for fast "open items by form" queries)
+  instanceId      String
+  /// pending | assigned | approved | edited | rejected | escalated
+  status          String   @default("pending")
+  /// Why was this routed to review? (low_confidence | no_data | conflict |
+  /// sanctions_hit | manual_flag)
+  reason          String   @default("low_confidence")
+  /// Reviewer assigned (email). Null until an reviewer picks up the item.
+  reviewerId      String?
+  /// Team the item is routed to — KYC | MLRO | Licensing | Sanctions | DPO
+  assignedTeam    String   @default("KYC")
+  assignedAt      DateTime?
+  resolvedAt      DateTime?
+  /// approved | edited | rejected — set when reviewer acts
+  reviewerDecision String?
+  /// Free-text reviewer notes
+  reviewerNotes   String?
+  /// Original value at the moment of auto-fill (so reviewer can see the diff)
+  originalValueJson String?
+  createdAt       DateTime @default(now())
+
+  fieldValue      FormFieldValue @relation(fields: [fieldValueId], references: [id], onDelete: Cascade)
+  instance        FormInstance   @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@index([fieldValueId])
+  @@index([instanceId])
+  @@index([status])
+  @@index([assignedTeam])
+  @@index([reviewerId])
+}
