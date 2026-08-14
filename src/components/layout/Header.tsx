@@ -1,6 +1,7 @@
 'use client'
 
 import { Shield, Search, Bell, Settings, ChevronDown, LayoutDashboard } from 'lucide-react'
+import { ThemeToggle } from '@/components/layout/ThemeToggle'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,7 +20,7 @@ export function Header() {
   const goHome = useHome()
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="flex h-16 items-center gap-2 sm:gap-4 px-4 sm:px-6">
         {/* Brand — clicking the brand also returns home */}
         <button
@@ -33,8 +34,8 @@ export function Header() {
             <Shield className="h-5 w-5 text-white" aria-hidden="true" />
           </div>
           <div className="flex flex-col leading-tight text-left">
-            <span className="text-base font-bold text-slate-900">RegGuard AI</span>
-            <span className="text-[10px] uppercase tracking-wider text-emerald-600 font-semibold">
+            <span className="text-base font-bold text-foreground">RegGuard AI</span>
+            <span className="text-[10px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold">
               Compliance Automator
             </span>
           </div>
@@ -47,7 +48,7 @@ export function Header() {
             variant="outline"
             size="sm"
             onClick={() => goHome()}
-            className="ml-1 inline-flex gap-1.5 border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+            className="ml-1 inline-flex gap-1.5 border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground"
             aria-label="Back to Dashboard"
           >
             <LayoutDashboard className="h-4 w-4" />
@@ -61,7 +62,7 @@ export function Header() {
           <Input
             type="search"
             placeholder="Search regulations, policies, audit entries..."
-            className="h-9 pl-9 bg-slate-50 border-slate-200 text-sm"
+            className="h-9 pl-9 bg-muted border-border text-sm"
             aria-label="Global search"
           />
         </div>
@@ -69,19 +70,21 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 sm:gap-3">
           <Badge
             variant="outline"
-            className="hidden sm:inline-flex border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-50"
+            className="hidden sm:inline-flex border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-400 hover:bg-emerald-50"
           >
             <span className="mr-1 h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Live
           </Badge>
 
+          <ThemeToggle />
+
           <DropdownMenu>
             <DropdownMenuTrigger
-              className="relative inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors outline-none"
+              className="relative inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors outline-none"
               aria-label="Notifications"
             >
               <Bell className="h-5 w-5" />
-              <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white" />
+              <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-background" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-80">
               <DropdownMenuLabel className="flex items-center justify-between">
@@ -114,24 +117,24 @@ export function Header() {
           </DropdownMenu>
 
           <button
-            className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors"
+            className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
             aria-label="Settings"
           >
             <Settings className="h-5 w-5" />
           </button>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="inline-flex items-center gap-2 rounded-full p-1 pr-2 hover:bg-slate-100 transition-colors outline-none">
+            <DropdownMenuTrigger className="inline-flex items-center gap-2 rounded-full p-1 pr-2 hover:bg-muted transition-colors outline-none">
               <Avatar className="h-8 w-8">
                 <AvatarFallback className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white text-xs font-semibold">
                   SC
                 </AvatarFallback>
               </Avatar>
               <div className="hidden lg:flex flex-col items-start leading-tight">
-                <span className="text-xs font-semibold text-slate-900">Sarah Chen</span>
-                <span className="text-[10px] text-slate-500">Chief Compliance Officer</span>
+                <span className="text-xs font-semibold text-foreground">Sarah Chen</span>
+                <span className="text-[10px] text-muted-foreground">Chief Compliance Officer</span>
               </div>
-              <ChevronDown className="hidden lg:block h-4 w-4 text-slate-400" />
+              <ChevronDown className="hidden lg:block h-4 w-4 text-muted-foreground" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>

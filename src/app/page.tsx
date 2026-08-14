@@ -134,7 +134,7 @@ export default function Home() {
 
   return (
     <HomeContext.Provider value={goHome}>
-      <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
         <Header />
         <div className="flex flex-1 w-full flex-col lg:flex-row">
           <MobileNav current={view} onChange={setView} />
@@ -143,15 +143,15 @@ export default function Home() {
             {render()}
           </main>
         </div>
-        <footer className="mt-auto border-t border-slate-200 bg-white px-6 py-4 text-xs text-slate-500">
+        <footer className="mt-auto border-t border-border bg-background px-6 py-4 text-xs text-muted-foreground">
           <div className="mx-auto flex max-w-[1400px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2">
-              <Scale className="h-4 w-4 text-emerald-600" />
+              <Scale className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
               <span>
-                <strong className="text-slate-700">RegGuard AI</strong> · AI Regulatory Compliance
+                <strong className="text-foreground">RegGuard AI</strong> · AI Regulatory Compliance
                 Automator
               </span>
-              <span className="hidden sm:inline text-slate-400">·</span>
+              <span className="hidden sm:inline text-muted-foreground/60">·</span>
               <span className="hidden sm:inline">29 state machines · 6 zones · machine proposes, human confirms</span>
             </div>
             <div className="flex items-center gap-4">
@@ -160,7 +160,7 @@ export default function Home() {
                 href="https://github.com/testdemoqwenai2025-creator/FinRegGTP.BoT"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-slate-700 transition-colors"
+                className="hover:text-foreground transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="h-4 w-4" />
@@ -169,7 +169,7 @@ export default function Home() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-slate-700 transition-colors"
+                className="hover:text-foreground transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
