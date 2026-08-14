@@ -39,6 +39,7 @@ import { TimeMachineView } from '@/components/platform/TimeMachineView'
 import { RuleHarmonizerView } from '@/components/platform/RuleHarmonizerView'
 import { XccView } from '@/components/platform/XccView'
 import { PluginManagerView } from '@/components/platform/PluginManagerView'
+import { MarketplaceView } from '@/components/platform/MarketplaceView'
 import { Scale, Github, Linkedin } from 'lucide-react'
 
 export type ViewKey =
@@ -78,6 +79,7 @@ export type ViewKey =
   | 'rule-harmonizer'
   | 'xcc'
   | 'plugin-manager'
+  | 'marketplace'
 
 export default function Home() {
   const [view, setView] = useState<ViewKey>('dashboard')
@@ -130,6 +132,7 @@ export default function Home() {
       case 'rule-harmonizer': return <RuleHarmonizerView />
       case 'xcc': return <XccView />
       case 'plugin-manager': return <PluginManagerView />
+      case 'marketplace': return <MarketplaceView />
 
       default: return <DashboardView />
     }
@@ -157,7 +160,7 @@ export default function Home() {
               <span className="hidden sm:inline text-muted-foreground/60">·</span>
               <span className="hidden sm:inline">29 state machines · 6 zones · machine proposes, human confirms</span>
               <span className="hidden sm:inline text-muted-foreground/60">·</span>
-              <span className="hidden sm:inline">30 views · Plugin Registry live</span>
+              <span className="hidden sm:inline">31 views · Plugin Registry + Marketplace live</span>
             </div>
             <div className="flex items-center gap-4">
               <span>v2.1.0 · build {new Date().getFullYear()}.08</span>

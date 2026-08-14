@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { ragQuery } from '@/lib/ai/rag'
 import { generateTitle, type ChatMessage } from '@/lib/ai/llm'
+import { getEnabledPluginFilter } from '@/lib/plugins/rag-bridge'
 
 const SYSTEM_PROMPT = `You are an AI Regulatory Compliance Assistant for a global RegTech platform serving banks, insurers, pharmaceutical companies, and hospitals. You help compliance officers:
 
@@ -17,7 +18,14 @@ Style guidelines:
 - When the user asks about impact, quantify effort in person-days where reasonable.
 - Always recommend the next action the compliance officer should take.
 - If you do not know, say so; do not fabricate regulatory citations.
-- Keep responses under 300 words unless the user asks for depth.`
+- Keep responses under 300 words unless the user asks for depth.
+
+CONTEXT SCOPE:
+The user has enabled a set of regulatory plugins (forms, labels, features, document templates). The retrieved context is filtered to ONLY include chunks from:
+- Internal regulations, policies, risk items, audit logs (always available)
+- Plugin templates that the user has explicitly enabled
+
+If a plugin is mentioned by name in the retrieved sources, it means the user has enabled it. If a relevant regulation is not in the context, it may be because the corresponding plugin is not enabled. In that case, mention that enabling the relevant plugin would provide more detailed guidance.`
 
 /**
  * GET /api/chat
@@ -34,17 +42,19 @@ export async function GET() {
 /**
  * POST /api/chat
  *
- * RAG-augmented chat endpoint. Flow:
+ * Plugin-aware RAG chat endpoint. Flow:
  *   1. Persist the user's message
- *   2. Retrieve relevant chunks from the vector store
- *   3. Build augmented prompt (system + retrieved context + history + query)
- *   4. Call LLM via the ZAI SDK
- *   5. Persist the assistant reply
- *   6. Record in audit trail
- *   7. Return reply + source citations
+ *   2. Build RAG filter from currently-enabled plugins
+ *      (always includes baseline: regulation, policy, risk, audit)
+ *   3. Retrieve relevant chunks (filtered by enabled plugin scope)
+ *   4. Build augmented prompt (system + retrieved context + history + query)
+ *   5. Call LLM via the ZAI SDK
+ *   6. Persist the assistant reply
+ *   7. Record in audit trail (includes plugin filter metadata)
+ *   8. Return reply + source citations (with plugin provenance)
  *
- * If the vector store is empty (no chunks indexed), falls back gracefully
- * to a non-RAG completion with the same system prompt.
+ * If no plugins are enabled, retrieval falls back to baseline internal sources.
+ * If the vector store is empty, falls back to a non-RAG completion.
  */
 export async function POST(req: NextRequest) {
   try {
@@ -70,22 +80,28 @@ export async function POST(req: NextRequest) {
         content: m.content,
       }))
 
-    // Run RAG pipeline
-    const result = await ragQuery(message, conversationHistory, 5)
+    // Build RAG filter from enabled plugins
+    // (baseline source types always included; plugin jurisdictions/categories
+    // narrow the search to the user's currently-enabled regulatory scope)
+    const pluginFilter = await getEnabledPluginFilter()
+
+    // Run RAG pipeline with plugin-aware filter
+    const result = await ragQuery(message, conversationHistory, 5, pluginFilter)
 
     // Persist assistant reply
     await db.chatMessage.create({
       data: { role: 'assistant', content: result.reply },
     })
 
-    // Record in audit trail
+    // Record in audit trail — include the plugin filter so we can reconstruct
+    // exactly which regulatory scope was active when this query was answered
     await db.auditLog.create({
       data: {
         actor: 'sarah.chen@regco.io',
         action: 'chat.rag.query',
         targetType: 'report',
         targetId: 'ai-assistant',
-        description: `RAG query (${result.sources.length} sources retrieved, ${result.latencyMs}ms): ${message.slice(0, 80)}${message.length > 80 ? '...' : ''}`,
+        description: `RAG query (${result.sources.length} sources, ${result.latencyMs}ms, filter: types=[${pluginFilter.sourceTypes.join(',')}] jurisdictions=[${pluginFilter.jurisdictions.join(',')}] categories=[${pluginFilter.categories.join(',')}]): ${message.slice(0, 80)}${message.length > 80 ? '...' : ''}`,
         severity: 'info',
       },
     })
@@ -95,14 +111,20 @@ export async function POST(req: NextRequest) {
       sources: result.sources.map((s) => ({
         id: s.id,
         sourceType: s.sourceType,
+        sourceId: s.sourceId,
         title: s.title,
         jurisdiction: s.jurisdiction,
         category: s.category,
         score: Number(s.score.toFixed(4)),
         snippet: s.content.slice(0, 180) + (s.content.length > 180 ? '...' : ''),
+        // Surface plugin provenance — UI can render "[Plugin: SEC Form ADV]" badges
+        isPlugin: s.sourceType === 'plugin',
+        pluginSlug: s.sourceType === 'plugin' ? s.sourceId : null,
       })),
       latencyMs: result.latencyMs,
       systemPrompt: SYSTEM_PROMPT,
+      // Surface the active filter so the UI can show "Retrieved from: 4 enabled plugins"
+      ragFilter: pluginFilter,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error'

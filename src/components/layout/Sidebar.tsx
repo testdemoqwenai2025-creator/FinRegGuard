@@ -31,6 +31,7 @@ import {
   Scale,
   FileCheck2,
   Puzzle,
+  Store,
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -114,6 +115,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'rule-harmonizer', label: 'Rule Harmonizer', icon: Scale, description: 'Cross-jurisdiction diff' },
       { key: 'xcc', label: 'Compliance Cards', icon: FileCheck2, description: 'Explainable decisions (XCC)' },
       { key: 'plugin-manager', label: 'Plugin Manager', icon: Puzzle, description: 'Toggle forms, labels, features, docs' },
+      { key: 'marketplace', label: 'Marketplace', icon: Store, description: 'Install plugins from any URL' },
     ],
   },
 ]

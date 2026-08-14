@@ -73,7 +73,7 @@
       "enabled": true,
       "isDefault": true,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -134,7 +134,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -205,7 +205,7 @@
       "enabled": true,
       "isDefault": true,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -270,7 +270,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -485,7 +485,7 @@
       "enabled": true,
       "isDefault": true,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -524,7 +524,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -560,7 +560,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -605,7 +605,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -739,7 +739,7 @@
       "enabled": true,
       "isDefault": true,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -862,7 +862,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -974,7 +974,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -1094,7 +1094,7 @@
       "enabled": true,
       "isDefault": true,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -1163,7 +1163,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -1230,7 +1230,7 @@
       "enabled": true,
       "isDefault": false,
       "lastRefreshedAt": null,
-      "enabledAt": "2026-08-14T20:35:15.931Z",
+      "enabledAt": "2026-08-14T20:47:15.999Z",
       "hasTemplate": false,
       "templateFetchedAt": null
     },
@@ -1446,6 +1446,6 @@
     "defaultForCategory": 5
   },
   "total": 28,
-  "generatedAt": "2026-08-14T20:35:15.931Z",
+  "generatedAt": "2026-08-14T20:47:15.999Z",
   "source": "static-catalog-snapshot"
 }

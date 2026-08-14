@@ -29,6 +29,7 @@ import {
   serialiseCorpusStats,
 } from './tfidf'
 import { tokenize } from './tokenizer'
+import { chunkText } from './chunker'
 
 export type ChunkInput = {
   sourceType: string
@@ -340,4 +341,145 @@ export async function clear(): Promise<void> {
       avgDocLength: 0,
     },
   })
+}
+
+/**
+ * Delete all chunks belonging to a specific source (sourceType + sourceId).
+ * Recomputes corpus stats (DF table + doc count + avg length) by reading
+ * the remaining chunks and rebuilding the stats row from scratch.
+ *
+ * Used when:
+ *   - A plugin is disabled (de-index its template chunks)
+ *   - A plugin template is refreshed and needs re-indexing (delete + re-add)
+ *   - A user-added marketplace plugin is uninstalled
+ */
+export async function deleteChunksBySource(
+  sourceType: string,
+  sourceId: string,
+): Promise<{ deleted: number }> {
+  const result = await db.knowledgeChunk.deleteMany({
+    where: { sourceType, sourceId },
+  })
+
+  // Recompute corpus stats from remaining chunks.
+  // For a small corpus (< 10k chunks) this is fast enough — it's a single
+  // table scan + tokenization pass. For larger corpora, switch to an
+  // incremental DF decrement (subtract this doc's term set from the DF map).
+  await recomputeCorpusStats()
+
+  return { deleted: result.count ?? 0 }
+}
+
+/**
+ * Recompute the CorpusStats singleton by scanning all existing chunks.
+ *
+ * This is the safety-net recompute — called after deletions or bulk edits
+ * when incremental DF tracking would be error-prone. For ~10k chunks this
+ * takes < 500ms.
+ */
+export async function recomputeCorpusStats(): Promise<void> {
+  const allChunks = await db.knowledgeChunk.findMany({
+    select: { content: true, title: true, tokenCount: true },
+  })
+
+  if (allChunks.length === 0) {
+    await db.corpusStats.upsert({
+      where: { id: 'corpus' },
+      create: {
+        id: 'corpus',
+        documentCount: 0,
+        docFrequencies: '{}',
+        avgDocLength: 0,
+      },
+      update: {
+        documentCount: 0,
+        docFrequencies: '{}',
+        avgDocLength: 0,
+      },
+    })
+    return
+  }
+
+  const docFrequencies = new Map<string, number>()
+  let totalTokens = 0
+
+  for (const chunk of allChunks) {
+    const tokens = tokenize(`${chunk.title} ${chunk.content}`)
+    totalTokens += tokens.length
+    const unique = new Set(tokens)
+    for (const term of unique) {
+      docFrequencies.set(term, (docFrequencies.get(term) ?? 0) + 1)
+    }
+  }
+
+  const stats: VectorCorpusStats = {
+    documentCount: allChunks.length,
+    docFrequencies,
+    avgDocLength: totalTokens / allChunks.length,
+  }
+
+  await saveCorpusStats(stats)
+}
+
+/**
+ * Index a plugin's cached template into the vector store.
+ *
+ * Used by the plugin toggle/refresh flows to make a plugin's template
+ * content retrievable by the RAG pipeline. Chunks are tagged with:
+ *   - sourceType: 'plugin'
+ *   - sourceId:   the plugin's slug (stable across refreshes)
+ *   - jurisdiction + category: copied from the plugin row
+ *   - metadata: { pluginSlug, pluginName, regulator, version, contentHash }
+ *
+ * If the plugin has no cached template yet, returns { indexed: 0, skipped: 0 }.
+ */
+export async function indexPlugin(plugin: {
+  id: string
+  slug: string
+  name: string
+  jurisdiction: string
+  category: string
+  regulator?: string | null
+  version: string
+  template?: {
+    rawContent: string
+    contentHash: string
+    contentType: string | null
+    parsedFieldsJson: string | null
+  } | null
+}): Promise<{ indexed: number; skipped: number; chunks: number }> {
+  if (!plugin.template || !plugin.template.rawContent) {
+    return { indexed: 0, skipped: 0, chunks: 0 }
+  }
+
+  // Chunk the template content
+  const chunks = chunkText(plugin.template.rawContent, 500, 80)
+  if (chunks.length === 0) {
+    return { indexed: 0, skipped: 0, chunks: 0 }
+  }
+
+  // Build ChunkInput array — each chunk becomes a KnowledgeChunk row
+  const inputs: ChunkInput[] = chunks.map((c) => ({
+    sourceType: 'plugin',
+    sourceId: plugin.slug,
+    title: `${plugin.name} — chunk ${c.index + 1}`,
+    content: c.text,
+    jurisdiction: plugin.jurisdiction,
+    category: plugin.category,
+    metadata: {
+      pluginSlug: plugin.slug,
+      pluginName: plugin.name,
+      regulator: plugin.regulator ?? null,
+      version: plugin.version,
+      contentHash: plugin.template.contentHash,
+      contentType: plugin.template.contentType,
+      chunkIndex: c.index,
+      parsedFields: plugin.template.parsedFieldsJson
+        ? JSON.parse(plugin.template.parsedFieldsJson)
+        : null,
+    },
+  }))
+
+  const result = await indexChunks(inputs)
+  return { ...result, chunks: chunks.length }
 }
