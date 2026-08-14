@@ -608,3 +608,104 @@ model ChatMessageV2 {
   @@index([role])
   @@index([createdAt])
 }
+
+// ─────────────────────────────────────────────────────────────
+// PLUGIN REGISTRY — DeepSeek-style enable/disable system for
+// regulatory forms, labels, features, and document templates.
+// Plugins can be loaded from web sources and auto-filled with
+// templates from authoritative regulators (SEC, FINRA, ESMA, etc.)
+// ─────────────────────────────────────────────────────────────
+
+/// A registry plugin — represents a regulation form, label,
+/// feature flag, or document template that can be toggled on/off.
+/// When enabled, the plugin's data is exposed to dependent views.
+/// When marked isDefault, the plugin is the primary source for
+/// its category/jurisdiction pair.
+model Plugin {
+  id            String   @id @default(cuid())
+  /// Stable slug — e.g. "sec-form-adv", "label-high-risk", "feature-sanctions-live"
+  slug          String   @unique
+  name          String
+  description   String
+  /// form | label | feature | document
+  category      String
+  /// US | EU | UK | SG | HK | JP | CA | AU | GLOBAL
+  jurisdiction  String
+  /// SEC | FINRA | ESMA | FCA | MAS | SFC | FSA | OFAC | INTERNAL
+  regulator     String?
+  version       String   @default("1.0.0")
+  /// Source URL where the canonical template lives (regulator website, GitHub, etc.)
+  sourceUrl     String
+  /// web | template | api | github | rss
+  sourceType    String   @default("web")
+  /// JSON schema describing the form/label/feature/document fields
+  /// Used by the auto-fill engine to render preview + collect values
+  schemaJson    String?
+  /// Default field values used to auto-fill on first enable
+  defaultFieldsJson String?
+  /// Tags for filtering in the Plugin Manager UI
+  tagsJson      String   @default("[]")
+  enabled       Boolean  @default(false)
+  isDefault     Boolean  @default(false)
+  /// When was this plugin last refreshed from sourceUrl
+  lastRefreshedAt DateTime?
+  /// When was this plugin first enabled
+  enabledAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  template      PluginTemplate?
+  history       PluginToggleHistory[]
+
+  @@index([category])
+  @@index([jurisdiction])
+  @@index([enabled])
+  @@index([isDefault])
+}
+
+/// Cached template content fetched from sourceUrl.
+/// Avoids re-fetching on every page load; refreshed explicitly
+/// via the Plugin Manager UI or via scheduled refresh.
+model PluginTemplate {
+  id            String   @id @default(cuid())
+  pluginId      String   @unique
+  /// Raw content fetched from sourceUrl (HTML, JSON, MD, XML, etc.)
+  rawContent    String
+  /// Content-Type header from the source response
+  contentType   String?
+  /// SHA-256 hash of rawContent — used to detect drift between
+  /// the cached template and the live source
+  contentHash   String
+  /// HTTP status of the last fetch (200, 404, 403, etc.)
+  fetchStatus   Int      @default(200)
+  /// Optional error message if the fetch failed
+  fetchError    String?
+  /// Parsed/normalized fields extracted from rawContent
+  /// (e.g., for SEC Form ADV: { firm_name: "", crd_number: "", ... })
+  parsedFieldsJson String?
+  fetchedAt     DateTime @default(now())
+
+  plugin        Plugin   @relation(fields: [pluginId], references: [id], onDelete: Cascade)
+
+  @@index([fetchedAt])
+}
+
+/// Audit trail of every enable/disable/set-default action —
+/// supports the "machine proposes, human confirms" governance model.
+model PluginToggleHistory {
+  id            String   @id @default(cuid())
+  pluginId      String
+  /// enabled | disabled | set_default | unset_default | refreshed | autofilled
+  action        String
+  /// Who triggered the action (user email, "system", or "auto-refresh")
+  actor         String   @default("system")
+  /// Optional notes — e.g., "User auto-filled from SEC.gov template"
+  notes         String?
+  createdAt     DateTime @default(now())
+
+  plugin        Plugin   @relation(fields: [pluginId], references: [id], onDelete: Cascade)
+
+  @@index([pluginId])
+  @@index([action])
+  @@index([createdAt])
+}

@@ -30,6 +30,7 @@ import {
   History as TimeHistory,
   Scale,
   FileCheck2,
+  Puzzle,
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -112,6 +113,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'time-machine', label: 'Time Machine', icon: TimeHistory, description: 'Point-in-time queries' },
       { key: 'rule-harmonizer', label: 'Rule Harmonizer', icon: Scale, description: 'Cross-jurisdiction diff' },
       { key: 'xcc', label: 'Compliance Cards', icon: FileCheck2, description: 'Explainable decisions (XCC)' },
+      { key: 'plugin-manager', label: 'Plugin Manager', icon: Puzzle, description: 'Toggle forms, labels, features, docs' },
     ],
   },
 ]
