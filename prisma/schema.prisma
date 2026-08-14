@@ -696,16 +696,23 @@ model PluginToggleHistory {
   id            String   @id @default(cuid())
   pluginId      String
   /// enabled | disabled | set_default | unset_default | refreshed | autofilled
+  /// Drift scanner also writes: drift_reindex | drift_no_change | drift_failed
   action        String
   /// Who triggered the action (user email, "system", or "auto-refresh")
   actor         String   @default("system")
   /// Optional notes — e.g., "User auto-filled from SEC.gov template"
   notes         String?
   createdAt     DateTime @default(now())
+  /// Set when a user dismisses the event from the DriftBell UI.
+  /// Null = unacknowledged (still surfaces in the bell badge count).
+  acknowledgedAt DateTime?
+  /// Who dismissed the event (typically "user"). Null when unacknowledged.
+  acknowledgedBy String?
 
   plugin        Plugin   @relation(fields: [pluginId], references: [id], onDelete: Cascade)
 
   @@index([pluginId])
   @@index([action])
   @@index([createdAt])
+  @@index([acknowledgedAt])
 }

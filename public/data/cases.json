@@ -18,6 +18,85 @@
         "confidence": 95,
         "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
         "reviewerAction": "approve_evidence_index"
+      },
+      "citations": [
+        {
+          "id": "cit_case_1fd_sec-form-adv",
+          "sourceType": "plugin",
+          "sourceId": "sec-form-adv",
+          "title": "SEC plugin source: SEC FORM ADV",
+          "jurisdiction": "US",
+          "category": "form",
+          "score": 0.933,
+          "snippet": "Retrieved from enabled plugin \"sec-form-adv\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "sec-form-adv"
+        },
+        {
+          "id": "cit_case_1fd_sec-rule-17a",
+          "sourceType": "plugin",
+          "sourceId": "sec-rule-17a-4",
+          "title": "SEC plugin source: SEC RULE 17A 4",
+          "jurisdiction": "US",
+          "category": "feature",
+          "score": 0.898,
+          "snippet": "Retrieved from enabled plugin \"sec-rule-17a-4\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "sec-rule-17a-4"
+        },
+        {
+          "id": "cit_case_1fd_risk_taxonom",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Risk taxonomy v3.2",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.82,
+          "snippet": "Current risk taxonomy mapped to regulatory expectations and control owners.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_1fd_internal_aud",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Internal audit programme 2026",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.796,
+          "snippet": "Q1-Q3 audit cycles covering trade surveillance, AML, and consumer duty.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_1fd_prior_exam_r",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Prior exam response pack — Q3 2025",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.762,
+          "snippet": "Reference pack used for the prior SEC cycle examination, including attestations.",
+          "isPlugin": false,
+          "pluginSlug": null
+        }
+      ],
+      "ragFilter": {
+        "sourceTypes": [
+          "plugin",
+          "document",
+          "feature",
+          "rule"
+        ],
+        "jurisdictions": [
+          "US"
+        ],
+        "categories": [
+          "form",
+          "rule",
+          "feature",
+          "document"
+        ]
       }
     },
     {
@@ -38,18 +117,97 @@
         "confidence": 88,
         "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
         "reviewerAction": "approve_evidence_index"
+      },
+      "citations": [
+        {
+          "id": "cit_case_f8e_fca-synergie",
+          "sourceType": "plugin",
+          "sourceId": "fca-synergies-rop",
+          "title": "FCA plugin source: FCA SYNERGIES ROP",
+          "jurisdiction": "UK",
+          "category": "document",
+          "score": 0.962,
+          "snippet": "Retrieved from enabled plugin \"fca-synergies-rop\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "fca-synergies-rop"
+        },
+        {
+          "id": "cit_case_f8e_fca-consumer",
+          "sourceType": "plugin",
+          "sourceId": "fca-consumer-duty",
+          "title": "FCA plugin source: FCA CONSUMER DUTY",
+          "jurisdiction": "UK",
+          "category": "feature",
+          "score": 0.92,
+          "snippet": "Retrieved from enabled plugin \"fca-consumer-duty\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "fca-consumer-duty"
+        },
+        {
+          "id": "cit_case_f8e_prior_exam_r",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Prior exam response pack — Q3 2025",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.773,
+          "snippet": "Reference pack used for the prior SEC cycle examination, including attestations.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_f8e_risk_taxonom",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Risk taxonomy v3.2",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.743,
+          "snippet": "Current risk taxonomy mapped to regulatory expectations and control owners.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_f8e_internal_aud",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Internal audit programme 2026",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.686,
+          "snippet": "Q1-Q3 audit cycles covering trade surveillance, AML, and consumer duty.",
+          "isPlugin": false,
+          "pluginSlug": null
+        }
+      ],
+      "ragFilter": {
+        "sourceTypes": [
+          "plugin",
+          "document",
+          "feature",
+          "rule"
+        ],
+        "jurisdictions": [
+          "UK"
+        ],
+        "categories": [
+          "form",
+          "rule",
+          "feature",
+          "document"
+        ]
       }
     },
     {
       "id": "case_824b4b1d398646068e165f",
       "caseType": "investigation",
-      "title": "OFAC Sanctions Investigation \u2014 Meridian",
+      "title": "OFAC Sanctions Investigation — Meridian",
       "regulator": "OFAC",
       "priority": "critical",
       "status": "in_progress",
       "assignee": "sarah.chen@regco.io",
       "dueDate": "2026-08-17T13:40:22.185116+00:00",
-      "description": "Case management workflow for OFAC Sanctions Investigation \u2014 Meridian. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "description": "Case management workflow for OFAC Sanctions Investigation — Meridian. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
       "createdAt": "2026-08-04T20:42:35.185116+00:00",
       "evidenceCount": 52,
       "slaStatus": "breach_imminent",
@@ -58,6 +216,85 @@
         "confidence": 80,
         "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
         "reviewerAction": "approve_evidence_index"
+      },
+      "citations": [
+        {
+          "id": "cit_case_824_ofac-sanctio",
+          "sourceType": "plugin",
+          "sourceId": "ofac-sanctions-screening",
+          "title": "OFAC plugin source: OFAC SANCTIONS SCREENING",
+          "jurisdiction": "US",
+          "category": "label",
+          "score": 0.885,
+          "snippet": "Retrieved from enabled plugin \"ofac-sanctions-screening\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "ofac-sanctions-screening"
+        },
+        {
+          "id": "cit_case_824_ofac-sdn-lis",
+          "sourceType": "plugin",
+          "sourceId": "ofac-sdn-list",
+          "title": "OFAC plugin source: OFAC SDN LIST",
+          "jurisdiction": "US",
+          "category": "feature",
+          "score": 0.827,
+          "snippet": "Retrieved from enabled plugin \"ofac-sdn-list\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "ofac-sdn-list"
+        },
+        {
+          "id": "cit_case_824_trade_recons",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Trade reconstruction SOP",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.791,
+          "snippet": "Procedure for SWIFT/ETF trade reconstruction within 72 hours of regulator request.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_824_sanctions_sc",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Sanctions screening runbook",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.698,
+          "snippet": "Step-by-step runbook for SDN list reconciliation and true-hit escalation.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_824_whistleblowe",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Whistleblower intake log 2025",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.653,
+          "snippet": "Anonymised intake log used by MLRO and GC to triage whistleblower reports.",
+          "isPlugin": false,
+          "pluginSlug": null
+        }
+      ],
+      "ragFilter": {
+        "sourceTypes": [
+          "plugin",
+          "document",
+          "feature",
+          "rule"
+        ],
+        "jurisdictions": [
+          "US"
+        ],
+        "categories": [
+          "form",
+          "rule",
+          "feature",
+          "document"
+        ]
       }
     },
     {
@@ -78,6 +315,73 @@
         "confidence": 92,
         "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
         "reviewerAction": "approve_response_packet"
+      },
+      "citations": [
+        {
+          "id": "cit_case_679_eba-stress-t",
+          "sourceType": "plugin",
+          "sourceId": "eba-stress-test-2026",
+          "title": "EBA plugin source: EBA STRESS TEST 2026",
+          "jurisdiction": "EU",
+          "category": "form",
+          "score": 0.889,
+          "snippet": "Retrieved from enabled plugin \"eba-stress-test-2026\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "eba-stress-test-2026"
+        },
+        {
+          "id": "cit_case_679_crr-article-",
+          "sourceType": "plugin",
+          "sourceId": "crr-article-107",
+          "title": "EBA plugin source: CRR ARTICLE 107",
+          "jurisdiction": "EU",
+          "category": "rule",
+          "score": 0.866,
+          "snippet": "Retrieved from enabled plugin \"crr-article-107\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "crr-article-107"
+        },
+        {
+          "id": "cit_case_679_regulator_su",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Regulator submission register",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.78,
+          "snippet": "Master register of all regulator submissions with timestamps and reviewers.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_679_prior_data-c",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Prior data-call response — EBA 2024",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.754,
+          "snippet": "Template response used for the prior EBA stress test data call.",
+          "isPlugin": false,
+          "pluginSlug": null
+        }
+      ],
+      "ragFilter": {
+        "sourceTypes": [
+          "plugin",
+          "document",
+          "feature",
+          "rule"
+        ],
+        "jurisdictions": [
+          "EU"
+        ],
+        "categories": [
+          "form",
+          "rule",
+          "feature",
+          "document"
+        ]
       }
     },
     {
@@ -98,6 +402,73 @@
         "confidence": 87,
         "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
         "reviewerAction": "approve_evidence_index"
+      },
+      "citations": [
+        {
+          "id": "cit_case_792_mas-technolo",
+          "sourceType": "plugin",
+          "sourceId": "mas-technology-risk-mgmt",
+          "title": "MAS plugin source: MAS TECHNOLOGY RISK MGMT",
+          "jurisdiction": "SG",
+          "category": "feature",
+          "score": 0.961,
+          "snippet": "Retrieved from enabled plugin \"mas-technology-risk-mgmt\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "mas-technology-risk-mgmt"
+        },
+        {
+          "id": "cit_case_792_mas-form-1r",
+          "sourceType": "plugin",
+          "sourceId": "mas-form-1r",
+          "title": "MAS plugin source: MAS FORM 1R",
+          "jurisdiction": "SG",
+          "category": "form",
+          "score": 0.92,
+          "snippet": "Retrieved from enabled plugin \"mas-form-1r\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "mas-form-1r"
+        },
+        {
+          "id": "cit_case_792_regulator_su",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Regulator submission register",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.748,
+          "snippet": "Master register of all regulator submissions with timestamps and reviewers.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_792_prior_data-c",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Prior data-call response — EBA 2024",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.737,
+          "snippet": "Template response used for the prior EBA stress test data call.",
+          "isPlugin": false,
+          "pluginSlug": null
+        }
+      ],
+      "ragFilter": {
+        "sourceTypes": [
+          "plugin",
+          "document",
+          "feature",
+          "rule"
+        ],
+        "jurisdictions": [
+          "SG"
+        ],
+        "categories": [
+          "form",
+          "rule",
+          "feature",
+          "document"
+        ]
       }
     },
     {
@@ -118,18 +489,61 @@
         "confidence": 92,
         "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
         "reviewerAction": "approve_evidence_index"
+      },
+      "citations": [
+        {
+          "id": "cit_case_841_policy_excep",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Policy exception log",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.761,
+          "snippet": "Log of all granted policy exceptions with review dates and approvers.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_841_compliance_a",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Compliance attestation tracker",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.696,
+          "snippet": "Tracker for senior-manager attestations across all regulated entities.",
+          "isPlugin": false,
+          "pluginSlug": null
+        }
+      ],
+      "ragFilter": {
+        "sourceTypes": [
+          "plugin",
+          "document",
+          "feature",
+          "rule"
+        ],
+        "jurisdictions": [
+          "GLOBAL"
+        ],
+        "categories": [
+          "form",
+          "rule",
+          "feature",
+          "document"
+        ]
       }
     },
     {
       "id": "case_1a4212390eaa4c10bfdbc5",
       "caseType": "examination",
-      "title": "HHS HIPAA Audit \u2014 Hospital Wing",
+      "title": "HHS HIPAA Audit — Hospital Wing",
       "regulator": "HHS-OCR",
       "priority": "high",
       "status": "open",
       "assignee": "mlro@regco.io",
       "dueDate": "2026-09-13T13:40:22.185116+00:00",
-      "description": "Case management workflow for HHS HIPAA Audit \u2014 Hospital Wing. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "description": "Case management workflow for HHS HIPAA Audit — Hospital Wing. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
       "createdAt": "2026-08-09T18:17:53.185116+00:00",
       "evidenceCount": 76,
       "slaStatus": "on_track",
@@ -138,6 +552,85 @@
         "confidence": 91,
         "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
         "reviewerAction": "approve_evidence_index"
+      },
+      "citations": [
+        {
+          "id": "cit_case_1a4_hipaa-breach",
+          "sourceType": "plugin",
+          "sourceId": "hipaa-breach-notification",
+          "title": "HHS-OCR plugin source: HIPAA BREACH NOTIFICATION",
+          "jurisdiction": "US",
+          "category": "feature",
+          "score": 0.911,
+          "snippet": "Retrieved from enabled plugin \"hipaa-breach-notification\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "hipaa-breach-notification"
+        },
+        {
+          "id": "cit_case_1a4_hhs-ocr-ropa",
+          "sourceType": "plugin",
+          "sourceId": "hhs-ocr-ropa-template",
+          "title": "HHS-OCR plugin source: HHS OCR ROPA TEMPLATE",
+          "jurisdiction": "US",
+          "category": "document",
+          "score": 0.891,
+          "snippet": "Retrieved from enabled plugin \"hhs-ocr-ropa-template\". Latest template hash indexed within the last 24 hours.",
+          "isPlugin": true,
+          "pluginSlug": "hhs-ocr-ropa-template"
+        },
+        {
+          "id": "cit_case_1a4_prior_exam_r",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Prior exam response pack — Q3 2025",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.863,
+          "snippet": "Reference pack used for the prior SEC cycle examination, including attestations.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_1a4_internal_aud",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Internal audit programme 2026",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.724,
+          "snippet": "Q1-Q3 audit cycles covering trade surveillance, AML, and consumer duty.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_1a4_risk_taxonom",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Risk taxonomy v3.2",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.666,
+          "snippet": "Current risk taxonomy mapped to regulatory expectations and control owners.",
+          "isPlugin": false,
+          "pluginSlug": null
+        }
+      ],
+      "ragFilter": {
+        "sourceTypes": [
+          "plugin",
+          "document",
+          "feature",
+          "rule"
+        ],
+        "jurisdictions": [
+          "US"
+        ],
+        "categories": [
+          "form",
+          "rule",
+          "feature",
+          "document"
+        ]
       }
     },
     {
@@ -158,6 +651,61 @@
         "confidence": 87,
         "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
         "reviewerAction": "approve_evidence_index"
+      },
+      "citations": [
+        {
+          "id": "cit_case_96e_whistleblowe",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Whistleblower intake log 2025",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.865,
+          "snippet": "Anonymised intake log used by MLRO and GC to triage whistleblower reports.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_96e_sanctions_sc",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Sanctions screening runbook",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.803,
+          "snippet": "Step-by-step runbook for SDN list reconciliation and true-hit escalation.",
+          "isPlugin": false,
+          "pluginSlug": null
+        },
+        {
+          "id": "cit_case_96e_trade_recons",
+          "sourceType": "document",
+          "sourceId": null,
+          "title": "Trade reconstruction SOP",
+          "jurisdiction": "Internal",
+          "category": "document",
+          "score": 0.784,
+          "snippet": "Procedure for SWIFT/ETF trade reconstruction within 72 hours of regulator request.",
+          "isPlugin": false,
+          "pluginSlug": null
+        }
+      ],
+      "ragFilter": {
+        "sourceTypes": [
+          "plugin",
+          "document",
+          "feature",
+          "rule"
+        ],
+        "jurisdictions": [
+          "GLOBAL"
+        ],
+        "categories": [
+          "form",
+          "rule",
+          "feature",
+          "document"
+        ]
       }
     }
   ],

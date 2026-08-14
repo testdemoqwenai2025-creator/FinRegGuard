@@ -12,8 +12,12 @@ import { db } from '@/lib/db'
  *   - refreshed (manual refresh, may or may not have drifted)
  *
  * Query params:
- *   - since: ISO date string (default: 7 days ago)
- *   - limit: number of events (default: 50, max: 200)
+ *   - since:               ISO date string (default: 7 days ago)
+ *   - limit:               number of events (default: 50, max: 200)
+ *   - includeAcknowledged: "true" to include dismissed events (default: false)
+ *
+ * Events with a non-null `acknowledgedAt` are excluded by default so
+ * the bell badge only surfaces events the user has not yet dismissed.
  */
 export async function GET(req: Request) {
   try {
@@ -21,6 +25,7 @@ export async function GET(req: Request) {
     const sinceParam = url.searchParams.get('since')
     const limitParam = parseInt(url.searchParams.get('limit') ?? '50', 10)
     const limit = Math.min(Math.max(limitParam, 1), 200)
+    const includeAcknowledged = url.searchParams.get('includeAcknowledged') === 'true'
 
     const since = sinceParam
       ? new Date(sinceParam)
@@ -32,6 +37,7 @@ export async function GET(req: Request) {
           in: ['drift_reindex', 'drift_no_change', 'drift_failed', 'refreshed'],
         },
         createdAt: { gte: since },
+        ...(includeAcknowledged ? {} : { acknowledgedAt: null }),
       },
       include: {
         plugin: {
@@ -49,12 +55,17 @@ export async function GET(req: Request) {
       take: limit,
     })
 
-    // Summary counts for the bell badge
+    // Summary counts for the bell badge (always based on the un-acked set,
+    // regardless of includeAcknowledged, so the badge reflects "what's new").
+    const drifted = events.filter((e) => e.action === 'drift_reindex' && !e.acknowledgedAt).length
+    const failed = events.filter((e) => e.action === 'drift_failed' && !e.acknowledgedAt).length
+    const refreshed = events.filter((e) => e.action === 'refreshed' && !e.acknowledgedAt).length
+
     const summary = {
-      total: events.length,
-      drifted: events.filter((e) => e.action === 'drift_reindex').length,
-      failed: events.filter((e) => e.action === 'drift_failed').length,
-      refreshed: events.filter((e) => e.action === 'refreshed').length,
+      total: events.filter((e) => !e.acknowledgedAt).length,
+      drifted,
+      failed,
+      refreshed,
       since: since.toISOString(),
       latestAt: events[0]?.createdAt?.toISOString() ?? null,
     }
@@ -66,6 +77,8 @@ export async function GET(req: Request) {
         actor: e.actor,
         notes: e.notes,
         createdAt: e.createdAt.toISOString(),
+        acknowledgedAt: e.acknowledgedAt?.toISOString() ?? null,
+        acknowledgedBy: e.acknowledgedBy,
         plugin: e.plugin
           ? {
               id: e.plugin.id,

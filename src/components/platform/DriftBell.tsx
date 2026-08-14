@@ -11,9 +11,10 @@
  */
 
 import { useEffect, useState, useRef, useCallback } from 'react'
-import { Bell, AlertCircle, RefreshCw, CheckCircle2, XCircle } from 'lucide-react'
+import { Bell, AlertCircle, RefreshCw, CheckCircle2, XCircle, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { IS_STATIC_BUILD } from '@/lib/data'
 
@@ -23,6 +24,8 @@ type DriftEvent = {
   actor: string
   notes: string | null
   createdAt: string
+  acknowledgedAt: string | null
+  acknowledgedBy: string | null
   plugin: {
     id: string
     slug: string
@@ -120,6 +123,58 @@ export function DriftBell() {
   const failedCount = summary?.failed ?? 0
   const badgeCount = driftedCount + failedCount
 
+  // Dismiss a single event by id — optimistically removes it from the
+  // local list so the UI feels snappy, then persists via the ack route.
+  const handleAck = useCallback(
+    async (eventId: string) => {
+      const prev = events
+      setEvents((cur) => cur.filter((e) => e.id !== eventId))
+      setSummary((s) =>
+        s
+          ? {
+              ...s,
+              total: Math.max(0, s.total - 1),
+              drifted: Math.max(0, s.drifted - 1),
+              failed: Math.max(0, s.failed - 1),
+              refreshed: Math.max(0, s.refreshed - 1),
+            }
+          : s,
+      )
+      try {
+        const res = await fetch('/api/plugins/drift/events/ack', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ eventIds: [eventId], actor: 'user' }),
+        })
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      } catch {
+        // Rollback on failure
+        setEvents(prev)
+        load()
+      }
+    },
+    [events, load],
+  )
+
+  // Dismiss every un-acked event in the bell.
+  const handleAckAll = useCallback(async () => {
+    const prev = events
+    const prevSummary = summary
+    setEvents([])
+    setSummary((s) => (s ? { ...s, total: 0, drifted: 0, failed: 0, refreshed: 0 } : s))
+    try {
+      const res = await fetch('/api/plugins/drift/events/ack', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventIds: ['*'], actor: 'user' }),
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    } catch {
+      setEvents(prev)
+      setSummary(prevSummary)
+    }
+  }, [events, summary])
+
   if (IS_STATIC_BUILD) {
     return null // bell requires the dev backend
   }
@@ -154,13 +209,27 @@ export function DriftBell() {
                 <Bell className="h-3.5 w-3.5" />
                 Drift Notifications
               </p>
-              <button
-                onClick={load}
-                className="text-[10px] text-muted-foreground hover:text-foreground"
-                title="Refresh"
-              >
-                {loading ? 'Loading…' : 'Refresh'}
-              </button>
+              <div className="flex items-center gap-2">
+                {badgeCount > 0 && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 px-2 text-[10px]"
+                    onClick={handleAckAll}
+                    title="Dismiss all visible events"
+                  >
+                    <CheckCircle2 className="mr-1 h-3 w-3" />
+                    Dismiss all
+                  </Button>
+                )}
+                <button
+                  onClick={load}
+                  className="text-[10px] text-muted-foreground hover:text-foreground"
+                  title="Refresh"
+                >
+                  {loading ? 'Loading…' : 'Refresh'}
+                </button>
+              </div>
             </div>
             {summary && (
               <div className="mt-2 flex gap-3 text-[10px] text-muted-foreground">
@@ -171,7 +240,7 @@ export function DriftBell() {
                   <strong className="text-rose-600 dark:text-rose-400">{summary.failed}</strong> failed
                 </span>
                 <span>
-                  <strong className="text-foreground">{summary.total}</strong> total events
+                  <strong className="text-foreground">{summary.total}</strong> un-acked
                 </span>
                 {summary.latestAt && (
                   <span className="ml-auto">
@@ -201,7 +270,7 @@ export function DriftBell() {
                     return (
                       <div
                         key={e.id}
-                        className="flex items-start gap-2 rounded-md border border-border bg-background px-2 py-1.5 text-xs hover:bg-muted/40"
+                        className="group flex items-start gap-2 rounded-md border border-border bg-background px-2 py-1.5 text-xs hover:bg-muted/40"
                       >
                         <Icon className={cn('h-3.5 w-3.5 mt-0.5 shrink-0', meta.tint)} />
                         <div className="min-w-0 flex-1">
@@ -231,6 +300,15 @@ export function DriftBell() {
                             {new Date(e.createdAt).toLocaleString()} · by {e.actor}
                           </p>
                         </div>
+                        <button
+                          type="button"
+                          onClick={() => handleAck(e.id)}
+                          className="ml-1 mt-0.5 hidden h-5 w-5 shrink-0 items-center justify-center rounded text-muted-foreground hover:bg-rose-100 hover:text-rose-600 dark:hover:bg-rose-950/40 group-hover:flex"
+                          title="Dismiss this event"
+                          aria-label="Dismiss event"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
                       </div>
                     )
                   })}

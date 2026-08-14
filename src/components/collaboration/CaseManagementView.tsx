@@ -8,12 +8,15 @@ import { FolderKanban, Briefcase, Clock, AlertTriangle, FileText } from 'lucide-
 import { dataUrl } from '@/lib/data'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { CitationList, type Citation, type RagFilter } from '@/components/shared/CitationList'
 
 type Case = {
   id: string; caseType: string; title: string; regulator: string | null
   priority: string; status: string; assignee: string; dueDate: string
   description: string; createdAt: string; evidenceCount: number
   slaStatus: string; aiRecommendation: AIRec
+  citations?: Citation[]
+  ragFilter?: RagFilter | null
 }
 
 const priorityColor: Record<string, string> = {
@@ -136,6 +139,30 @@ export function CaseManagementView() {
                   <p className="pt-2 text-slate-600">{selected.description}</p>
                 </CardContent>
               </Card>
+
+              {/* RAG sources — what the copilot retrieved to draft this case's
+                  recommendation. Surfaces plugin provenance via CitationList. */}
+              {selected.citations && selected.citations.length > 0 && (
+                <Card className="border-emerald-200/60">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-xs flex items-center gap-1.5 text-emerald-800">
+                      <FileText className="h-3.5 w-3.5" />
+                      RAG Sources
+                      <span className="ml-1 text-[10px] font-normal text-muted-foreground">
+                        retrieved for case context
+                      </span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <CitationList
+                      sources={selected.citations}
+                      ragFilter={selected.ragFilter ?? null}
+                      defaultExpanded={false}
+                    />
+                  </CardContent>
+                </Card>
+              )}
+
               <BooleanActionCard rec={selected.aiRecommendation} />
             </>
           )}

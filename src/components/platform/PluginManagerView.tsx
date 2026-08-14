@@ -36,6 +36,8 @@ import {
   History,
   Globe,
   ShieldCheck,
+  AlertTriangle,
+  Activity,
 } from 'lucide-react'
 import { dataUrl, IS_STATIC_BUILD } from '@/lib/data'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
@@ -139,6 +141,52 @@ const JURISDICTION_COLORS: Record<string, string> = {
   GLOBAL: 'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-200',
 }
 
+// ─── Drift status lookup (built from /api/plugins/drift/events) ───
+// Keyed by plugin.id so PluginCard can render a colored status dot +
+// relative timestamp without re-fetching per card.
+type DriftAction = 'drift_reindex' | 'drift_no_change' | 'drift_failed' | 'refreshed'
+type DriftStatus = {
+  pluginId: string
+  latestAction: DriftAction
+  latestAt: string
+  driftedCount: number
+  failedCount: number
+}
+
+const DRIFT_DOT_META: Record<
+  DriftAction,
+  { color: string; label: string; pulse?: boolean }
+> = {
+  drift_reindex: {
+    color: 'bg-amber-500',
+    label: 'Drift detected — re-indexed',
+    pulse: true,
+  },
+  drift_failed: {
+    color: 'bg-rose-500',
+    label: 'Last refresh failed',
+    pulse: true,
+  },
+  drift_no_change: {
+    color: 'bg-emerald-500',
+    label: 'No drift on last scan',
+  },
+  refreshed: {
+    color: 'bg-slate-400',
+    label: 'Manually refreshed',
+  },
+}
+
+function relativeTime(iso: string | null): string {
+  if (!iso) return 'never'
+  const ms = Date.now() - new Date(iso).getTime()
+  if (ms < 60_000) return 'just now'
+  if (ms < 3_600_000) return `${Math.floor(ms / 60_000)}m ago`
+  if (ms < 86_400_000) return `${Math.floor(ms / 3_600_000)}h ago`
+  if (ms < 7 * 86_400_000) return `${Math.floor(ms / 86_400_000)}d ago`
+  return new Date(iso).toLocaleDateString()
+}
+
 export function PluginManagerView() {
   const [plugins, setPlugins] = useState<RegistryPlugin[]>([])
   const [stats, setStats] = useState<RegistryStats | null>(null)
@@ -146,7 +194,7 @@ export function PluginManagerView() {
   const [error, setError] = useState<string | null>(null)
 
   const [search, setSearch] = useState('')
-  const [category, setCategory] = useState<PluginCategory | 'all'>('all')
+  const [category, setCategory] = useState<PluginCategory | 'all' | 'drifted'>('all')
   const [jurisdiction, setJurisdiction] = useState<string>('all')
 
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
@@ -155,6 +203,10 @@ export function PluginManagerView() {
 
   const [actionInFlight, setActionInFlight] = useState<string | null>(null)
   const [toast, setToast] = useState<{ msg: string; kind: 'ok' | 'err' } | null>(null)
+
+  // Drift-status lookup — Map<pluginId, DriftStatus> rebuilt on mount
+  // and every 60s. Drives both the per-card dot + the 'drifted' filter tab.
+  const [driftByPlugin, setDriftByPlugin] = useState<Map<string, DriftStatus>>(new Map())
 
   // ─── Initial load ───
   const load = useCallback(async () => {
@@ -177,6 +229,61 @@ export function PluginManagerView() {
   useEffect(() => {
     load()
   }, [load])
+
+  // ─── Drift events fetch ───
+  // Polls /api/plugins/drift/events on the same cadence as DriftBell and
+  // collapses the event list into a per-plugin latest-status map.
+  const loadDrift = useCallback(async () => {
+    if (IS_STATIC_BUILD) return
+    try {
+      const res = await fetch('/api/plugins/drift/events?limit=200')
+      if (!res.ok) return
+      const data = (await res.json()) as {
+        events: Array<{
+          action: DriftAction
+          createdAt: string
+          plugin: { id: string } | null
+        }>
+      }
+      const next = new Map<string, DriftStatus>()
+      for (const e of data.events ?? []) {
+        if (!e.plugin) continue
+        const cur = next.get(e.plugin.id)
+        if (!cur) {
+          next.set(e.plugin.id, {
+            pluginId: e.plugin.id,
+            latestAction: e.action,
+            latestAt: e.createdAt,
+            driftedCount: e.action === 'drift_reindex' ? 1 : 0,
+            failedCount: e.action === 'drift_failed' ? 1 : 0,
+          })
+        } else {
+          // events come newest-first, so the first one we see wins as latestAction
+          cur.driftedCount += e.action === 'drift_reindex' ? 1 : 0
+          cur.failedCount += e.action === 'drift_failed' ? 1 : 0
+        }
+      }
+      setDriftByPlugin(next)
+    } catch {
+      // non-critical — cards just won't show drift dots
+    }
+  }, [])
+
+  useEffect(() => {
+    loadDrift()
+    const id = setInterval(loadDrift, 60_000)
+    return () => clearInterval(id)
+  }, [loadDrift])
+
+  // Number of distinct plugins with at least one drift_reindex event in the
+  // last 7 days — drives the 'Drifted (N)' tab badge.
+  const driftedPluginCount = useMemo(() => {
+    let n = 0
+    for (const s of driftByPlugin.values()) {
+      if (s.driftedCount > 0 || s.failedCount > 0) n += 1
+    }
+    return n
+  }, [driftByPlugin])
 
   // ─── Helpers ───
   const showToast = useCallback((msg: string, kind: 'ok' | 'err' = 'ok') => {
@@ -350,7 +457,12 @@ export function PluginManagerView() {
   // ─── Derived: filtered plugin list ───
   const filtered = useMemo(() => {
     return plugins.filter((p) => {
-      if (category !== 'all' && p.category !== category) return false
+      if (category === 'drifted') {
+        const d = driftByPlugin.get(p.id)
+        if (!d || (d.driftedCount === 0 && d.failedCount === 0)) return false
+      } else if (category !== 'all' && p.category !== category) {
+        return false
+      }
       if (jurisdiction !== 'all' && p.jurisdiction !== jurisdiction) return false
       if (search.trim()) {
         const q = search.trim().toLowerCase()
@@ -359,7 +471,7 @@ export function PluginManagerView() {
       }
       return true
     })
-  }, [plugins, category, jurisdiction, search])
+  }, [plugins, category, jurisdiction, search, driftByPlugin])
 
   // ─── Render ───
   if (loading) {
@@ -458,9 +570,13 @@ export function PluginManagerView() {
       <Card className="border-border bg-background">
         <CardContent className="p-4">
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <Tabs value={category} onValueChange={(v) => setCategory(v as PluginCategory | 'all')}>
+            <Tabs value={category} onValueChange={(v) => setCategory(v as PluginCategory | 'all' | 'drifted')}>
               <TabsList>
                 <TabsTrigger value="all">All ({stats?.total ?? 0})</TabsTrigger>
+                <TabsTrigger value="drifted" className="gap-1">
+                  <AlertTriangle className="h-3 w-3 text-amber-500" />
+                  Drifted ({driftedPluginCount})
+                </TabsTrigger>
                 <TabsTrigger value="form">
                   Forms ({stats?.byCategory?.form?.total ?? 0})
                 </TabsTrigger>
@@ -509,7 +625,9 @@ export function PluginManagerView() {
       {filtered.length === 0 ? (
         <Card>
           <CardContent className="p-12 text-center text-sm text-muted-foreground">
-            No plugins match the current filters.
+            {category === 'drifted'
+              ? 'No plugins with drift events in the last 7 days. Run a drift scan or wait for the next cron run.'
+              : 'No plugins match the current filters.'}
           </CardContent>
         </Card>
       ) : (
@@ -518,6 +636,7 @@ export function PluginManagerView() {
             <PluginCard
               key={p.id}
               plugin={p}
+              driftStatus={driftByPlugin.get(p.id)}
               onToggle={handleToggle}
               onDefault={handleDefault}
               onRefresh={handleRefresh}
@@ -722,6 +841,7 @@ export function PluginManagerView() {
 // ─── Plugin Card ───
 function PluginCard({
   plugin,
+  driftStatus,
   onToggle,
   onDefault,
   onRefresh,
@@ -729,6 +849,7 @@ function PluginCard({
   inFlight,
 }: {
   plugin: RegistryPlugin
+  driftStatus?: DriftStatus
   onToggle: (p: RegistryPlugin, next: boolean) => void
   onDefault: (p: RegistryPlugin, next: boolean) => void
   onRefresh: (p: RegistryPlugin) => void
@@ -738,6 +859,9 @@ function PluginCard({
   const meta = CATEGORY_META[plugin.category]
   const Icon = meta.icon
   const jurisdictionTint = JURISDICTION_COLORS[plugin.jurisdiction] ?? JURISDICTION_COLORS.GLOBAL
+
+  const driftDot = driftStatus ? DRIFT_DOT_META[driftStatus.latestAction] : null
+  const lastRefreshedIso = driftStatus?.latestAt ?? plugin.lastRefreshedAt ?? plugin.templateFetchedAt ?? null
 
   return (
     <Card
@@ -820,6 +944,41 @@ function PluginCard({
             <>
               <XCircle className="h-3 w-3 text-muted-foreground/60" />
               <span className="text-muted-foreground/80">No template yet</span>
+            </>
+          )}
+        </div>
+
+        {/* Drift status row — colored dot + relative timestamp */}
+        <div className="mt-1.5 flex items-center gap-1.5 text-[10px]">
+          {driftDot ? (
+            <>
+              <span
+                className={cn(
+                  'inline-block h-2 w-2 rounded-full',
+                  driftDot.color,
+                  driftDot.pulse && 'animate-pulse',
+                )}
+                title={driftDot.label}
+              />
+              <span className="text-muted-foreground">
+                {driftDot.label.split(' — ')[0]}
+              </span>
+              <span className="text-muted-foreground/70">· {relativeTime(driftStatus!.latestAt)}</span>
+              {(driftStatus!.driftedCount > 1 || driftStatus!.failedCount > 1) && (
+                <Badge
+                  variant="outline"
+                  className="ml-auto h-3.5 px-1 text-[9px] border-amber-200 bg-amber-50 text-amber-700"
+                >
+                  {driftStatus!.driftedCount + driftStatus!.failedCount} events
+                </Badge>
+              )}
+            </>
+          ) : (
+            <>
+              <Activity className="h-3 w-3 text-muted-foreground/40" />
+              <span className="text-muted-foreground/60">
+                No drift events · refreshed {relativeTime(lastRefreshedIso)}
+              </span>
             </>
           )}
         </div>
