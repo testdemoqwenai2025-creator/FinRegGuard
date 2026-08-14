@@ -55,6 +55,7 @@ server.log
 
 # Runtime / agent-only artifacts (not part of source code)
 /.gh-pages-deploy/
+/.finregguard-staging/
 /.zscripts/
 /upload/
 /tool-results/
