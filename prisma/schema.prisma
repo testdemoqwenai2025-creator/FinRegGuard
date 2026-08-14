@@ -522,3 +522,89 @@ model ComplianceCard {
 
   @@index([decision])
 }
+
+// ─────────────────────────────────────────────────────────────
+// AI INTELLIGENCE LAYER (Pillar 1) — Vector Store + RAG
+// ─────────────────────────────────────────────────────────────
+// Stores chunked regulatory/policy text + sparse TF-IDF vectors
+// as JSON (SQLite has no native vector type). Cosine similarity
+// is computed in JS at query time — fine for ~10k chunks.
+// Migration path to pgvector / Qdrant is provider-pluggable.
+
+/// A chunk of text from a regulation, policy, risk item, or external source
+/// that has been indexed into the vector store for RAG retrieval.
+model KnowledgeChunk {
+  id            String   @id @default(cuid())
+  sourceType    String   // regulation | policy | risk | audit | external | guidance
+  sourceId      String   // ID of the originating record (e.g. Regulation.id)
+  title         String   // Display title (e.g. "EU AI Act — Art. 6(2) High-Risk")
+  content       String   // The chunk text (typically 200-500 chars)
+  jurisdiction  String?  // e.g. "EU", "US", "UK", "Global"
+  category      String?  // e.g. "ai-governance", "aml", "privacy"
+  /// Sparse TF-IDF vector stored as JSON: { "term1": weight1, "term2": weight2, ... }
+  /// Computed by the active EmbeddingProvider. For sparse vectors, only non-zero
+  /// terms are stored. For dense vectors (future neural embeddings), the full
+  /// array is stored and `vectorType` is set to "dense".
+  vector        String   // JSON-serialised sparse vector map
+  vectorType    String   @default("sparse-tfidf")  // sparse-tfidf | dense-minilm | dense-openai
+  /// L2 norm of the vector — precomputed for fast cosine similarity
+  norm          Float    @default(0)
+  /// Number of tokens in the chunk (for BM25 length normalisation if needed)
+  tokenCount    Int      @default(0)
+  /// Free-form metadata blob (e.g. article number, effective date, source URL)
+  metadata      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([sourceType])
+  @@index([sourceId])
+  @@index([jurisdiction])
+  @@index([category])
+}
+
+/// Corpus-level statistics for TF-IDF computation.
+/// Singleton row (id = "corpus") — updated whenever chunks are upserted.
+model CorpusStats {
+  id            String   @id @default("corpus")
+  /// Total number of indexed chunks (N in IDF formula)
+  documentCount Int      @default(0)
+  /// Document frequency per term: { "term": doc_count, ... }
+  /// Used to compute IDF = log(N / (1 + df))
+  docFrequencies String  @default("{}")  // JSON map
+  /// Average chunk length in tokens (for BM25 normalisation)
+  avgDocLength  Float    @default(0)
+  updatedAt     DateTime @updatedAt
+}
+
+/// Conversation sessions for the AI Copilot — supports multi-turn context
+/// with retrieval history. Each session tracks the messages + the chunks
+/// that were retrieved for each assistant turn (for source citations).
+model ChatSession {
+  id        String   @id @default(cuid())
+  title     String?  // Optional human-readable title (auto-derived from first message)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages  ChatMessageV2[]
+}
+
+/// V2 chat messages — linked to a session, with retrieval provenance.
+/// Replaces the flat ChatMessage model for new conversations.
+model ChatMessageV2 {
+  id         String   @id @default(cuid())
+  sessionId  String
+  role       String   // user | assistant | system
+  content    String
+  /// JSON array of KnowledgeChunk IDs retrieved for this turn
+  /// (only populated for assistant messages)
+  sourceChunkIds String?
+  /// Latency in ms for the LLM call (assistant messages only)
+  latencyMs  Int?
+  createdAt  DateTime @default(now())
+
+  session    ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([role])
+  @@index([createdAt])
+}

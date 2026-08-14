@@ -27,6 +27,18 @@ type Msg = {
   role: 'user' | 'assistant'
   content: string
   createdAt?: string
+  sources?: SourceCitation[]
+  latencyMs?: number
+}
+
+type SourceCitation = {
+  id: string
+  sourceType: string
+  title: string
+  jurisdiction: string | null
+  category: string | null
+  score: number
+  snippet: string
 }
 
 const SUGGESTED = [
@@ -93,7 +105,8 @@ export function AssistantView() {
 
     try {
       if (IS_STATIC_BUILD) {
-        // Static GitHub Pages build — no server-side LLM. Provide a canned but contextual reply.
+        // Static GitHub Pages build — no server-side LLM or vector store.
+        // Provide a canned but contextual reply based on keyword matching.
         await new Promise((r) => setTimeout(r, 600))
         const aiMsg: Msg = {
           id: `a-${Date.now()}`,
@@ -117,6 +130,8 @@ export function AssistantView() {
         id: `a-${Date.now()}`,
         role: 'assistant',
         content: data.reply ?? 'Sorry, I could not generate a response.',
+        sources: data.sources ?? [],
+        latencyMs: data.latencyMs,
       }
       setMessages((prev) => [...prev, aiMsg])
     } catch (err) {
@@ -331,22 +346,85 @@ function MessageBubble({ msg }: { msg: Msg }) {
   return (
     <div className={`flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : ''}`}>
       <Avatar role={msg.role} />
-      <div
-        className={`max-w-[78%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-          isUser
-            ? 'rounded-tr-sm bg-slate-800 text-white'
-            : 'rounded-tl-sm bg-slate-100 text-slate-800'
-        }`}
-      >
-        <p className="whitespace-pre-wrap">{msg.content}</p>
-        {msg.createdAt && (
-          <p
-            className={`mt-1 text-[10px] ${isUser ? 'text-slate-300' : 'text-slate-400'}`}
-          >
-            {format(parseISO(msg.createdAt), 'MMM d, HH:mm')}
-          </p>
+      <div className="flex flex-col gap-1.5 max-w-[78%]">
+        <div
+          className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+            isUser
+              ? 'rounded-tr-sm bg-slate-800 text-white'
+              : 'rounded-tl-sm bg-slate-100 text-slate-800'
+          }`}
+        >
+          <p className="whitespace-pre-wrap">{msg.content}</p>
+          {msg.createdAt && (
+            <p
+              className={`mt-1 text-[10px] ${isUser ? 'text-slate-300' : 'text-slate-400'}`}
+            >
+              {format(parseISO(msg.createdAt), 'MMM d, HH:mm')}
+              {msg.latencyMs ? ` · ${msg.latencyMs}ms` : ''}
+            </p>
+          )}
+        </div>
+        {!isUser && msg.sources && msg.sources.length > 0 && (
+          <SourceList sources={msg.sources} />
         )}
       </div>
+    </div>
+  )
+}
+
+function SourceList({ sources }: { sources: SourceCitation[] }) {
+  const [expanded, setExpanded] = useState(false)
+  return (
+    <div className="rounded-lg border border-emerald-200/60 bg-emerald-50/40 px-3 py-2 text-[11px]">
+      <button
+        onClick={() => setExpanded((v) => !v)}
+        className="flex w-full items-center justify-between gap-2 text-emerald-800 hover:text-emerald-900"
+      >
+        <span className="flex items-center gap-1.5 font-medium">
+          <FileText className="h-3 w-3" />
+          {sources.length} source{sources.length === 1 ? '' : 's'} retrieved
+        </span>
+        <span className="text-[10px] text-emerald-600">
+          {expanded ? 'Hide' : 'Show'}
+        </span>
+      </button>
+      {expanded && (
+        <div className="mt-2 space-y-1.5">
+          {sources.map((s, i) => (
+            <div
+              key={s.id || i}
+              className="rounded-md border border-slate-200 bg-white px-2 py-1.5"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="font-medium text-slate-700 truncate">
+                  <span className="text-emerald-600">[{i + 1}]</span>{' '}
+                  {s.title}
+                </span>
+                <Badge
+                  variant="outline"
+                  className="text-[9px] shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700"
+                >
+                  {(s.score * 100).toFixed(0)}%
+                </Badge>
+              </div>
+              <p className="mt-0.5 text-[10px] text-slate-500 line-clamp-2">
+                {s.snippet}
+              </p>
+              <div className="mt-1 flex items-center gap-1.5 text-[9px] text-slate-400">
+                <Badge variant="outline" className="text-[9px] px-1 py-0 h-3.5">
+                  {s.sourceType}
+                </Badge>
+                {s.jurisdiction && (
+                  <span>· {s.jurisdiction}</span>
+                )}
+                {s.category && (
+                  <span>· {s.category}</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

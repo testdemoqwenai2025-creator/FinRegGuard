@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import ZAI from 'z-ai-web-dev-sdk'
 import { db } from '@/lib/db'
+import { ragQuery } from '@/lib/ai/rag'
+import { generateTitle, type ChatMessage } from '@/lib/ai/llm'
 
 const SYSTEM_PROMPT = `You are an AI Regulatory Compliance Assistant for a global RegTech platform serving banks, insurers, pharmaceutical companies, and hospitals. You help compliance officers:
 
@@ -16,10 +17,13 @@ Style guidelines:
 - When the user asks about impact, quantify effort in person-days where reasonable.
 - Always recommend the next action the compliance officer should take.
 - If you do not know, say so; do not fabricate regulatory citations.
-- Keep responses under 250 words unless the user asks for depth.`
+- Keep responses under 300 words unless the user asks for depth.`
 
+/**
+ * GET /api/chat
+ * Returns recent chat history (flat list, no sessions yet).
+ */
 export async function GET() {
-  // Return persisted chat history
   const messages = await db.chatMessage.findMany({
     orderBy: { createdAt: 'asc' },
     take: 50,
@@ -27,6 +31,21 @@ export async function GET() {
   return NextResponse.json({ messages })
 }
 
+/**
+ * POST /api/chat
+ *
+ * RAG-augmented chat endpoint. Flow:
+ *   1. Persist the user's message
+ *   2. Retrieve relevant chunks from the vector store
+ *   3. Build augmented prompt (system + retrieved context + history + query)
+ *   4. Call LLM via the ZAI SDK
+ *   5. Persist the assistant reply
+ *   6. Record in audit trail
+ *   7. Return reply + source citations
+ *
+ * If the vector store is empty (no chunks indexed), falls back gracefully
+ * to a non-RAG completion with the same system prompt.
+ */
 export async function POST(req: NextRequest) {
   try {
     const { message, history } = (await req.json()) as {
@@ -43,46 +62,48 @@ export async function POST(req: NextRequest) {
       data: { role: 'user', content: message },
     })
 
-    // Build conversation context
-    const conversationHistory = (history ?? []).slice(-8).map((m) => ({
-      role: m.role === 'assistant' ? 'assistant' : 'user',
-      content: m.content,
-    }))
+    // Build conversation history (last 8 turns)
+    const conversationHistory: ChatMessage[] = (history ?? [])
+      .slice(-8)
+      .map((m) => ({
+        role: m.role === 'assistant' ? 'assistant' : 'user',
+        content: m.content,
+      }))
 
-    const zai = await ZAI.create()
-    const completion = await zai.chat.completions.create({
-      messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
-        ...conversationHistory,
-        { role: 'user', content: message },
-      ],
-      thinking: { type: 'disabled' },
-      temperature: 0.4,
-      max_tokens: 700,
-    })
-
-    const reply =
-      completion?.choices?.[0]?.message?.content ??
-      'I apologise — I could not generate a response at this time. Please retry.'
+    // Run RAG pipeline
+    const result = await ragQuery(message, conversationHistory, 5)
 
     // Persist assistant reply
     await db.chatMessage.create({
-      data: { role: 'assistant', content: reply },
+      data: { role: 'assistant', content: result.reply },
     })
 
     // Record in audit trail
     await db.auditLog.create({
       data: {
         actor: 'sarah.chen@regco.io',
-        action: 'chat.session',
+        action: 'chat.rag.query',
         targetType: 'report',
         targetId: 'ai-assistant',
-        description: `AI Compliance Assistant consulted — question: ${message.slice(0, 80)}${message.length > 80 ? '...' : ''}`,
+        description: `RAG query (${result.sources.length} sources retrieved, ${result.latencyMs}ms): ${message.slice(0, 80)}${message.length > 80 ? '...' : ''}`,
         severity: 'info',
       },
     })
 
-    return NextResponse.json({ reply })
+    return NextResponse.json({
+      reply: result.reply,
+      sources: result.sources.map((s) => ({
+        id: s.id,
+        sourceType: s.sourceType,
+        title: s.title,
+        jurisdiction: s.jurisdiction,
+        category: s.category,
+        score: Number(s.score.toFixed(4)),
+        snippet: s.content.slice(0, 180) + (s.content.length > 180 ? '...' : ''),
+      })),
+      latencyMs: result.latencyMs,
+      systemPrompt: SYSTEM_PROMPT,
+    })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error'
     console.error('[/api/chat] error:', message)
