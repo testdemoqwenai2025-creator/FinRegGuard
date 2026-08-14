@@ -1,6 +1,6 @@
-// AI Regulatory Compliance Automator - Prisma Schema
-// Tracks regulations across jurisdictions, manages policies with version history,
-// maintains immutable audit trail, and quantifies compliance risk per business unit.
+// RegGuard AI — Expanded Prisma Schema
+// 29 state machines across 6 zones: Core, Surveillance, Quant, Intelligence, Collaboration, Platform
+// SQLite-backed prototype; production should migrate to PostgreSQL+pgvector+Neo4j.
 
 generator client {
   provider = "prisma-client-js"
@@ -11,18 +11,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// Tracked regulation changes across jurisdictions (US, EU, UK, APAC, etc.)
+// ─────────────────────────────────────────────────────────────
+// CORE COMPLIANCE ZONE
+// ─────────────────────────────────────────────────────────────
+
 model Regulation {
   id            String   @id @default(cuid())
   title         String
-  jurisdiction  String   // US, EU, UK, JP, SG, AU, CA, ...
-  regulator     String   // SEC, FINRA, FCA, ESMA, MAS, ...
-  category      String   // AML, KYC, MiFID II, GDPR, HIPAA, Basel III, ...
-  status        String   // monitoring, pending, effective, superseded
+  jurisdiction  String
+  regulator     String
+  category      String
+  status        String
   effectiveDate DateTime
   summary       String
-  impactLevel   String   // low, medium, high, critical
-  affectedUnits String   // comma-separated business units
+  impactLevel   String
+  affectedUnits String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -31,17 +34,16 @@ model Regulation {
   @@index([effectiveDate])
 }
 
-/// Internal policy documents with auto-update suggestions from AI
 model Policy {
   id            String   @id @default(cuid())
   title         String
   category      String
-  ownerUnit     String   // e.g., Compliance, Risk, Legal, Operations
-  version       String   // semantic version e.g. 2.4.1
-  status        String   // draft, review, approved, published, retired
+  ownerUnit     String
+  version       String
+  status        String
   reviewDate    DateTime
   content       String
-  aiSuggestion  String?  // AI-generated auto-update suggestion
+  aiSuggestion  String?
   lastUpdated   DateTime @updatedAt
   createdAt     DateTime @default(now())
 
@@ -49,16 +51,15 @@ model Policy {
   @@index([status])
 }
 
-/// Immutable audit trail entry for every compliance-relevant action
 model AuditLog {
   id          String   @id @default(cuid())
-  actor       String   // user email or system
-  action      String   // policy.update, regulation.review, risk.escalate, ...
-  targetType  String   // policy, regulation, risk, user, report
+  actor       String
+  action      String
+  targetType  String
   targetId    String
   description String
   ipAddress   String?
-  severity    String   // info, warning, critical
+  severity    String
   timestamp   DateTime @default(now())
 
   @@index([timestamp])
@@ -66,16 +67,15 @@ model AuditLog {
   @@index([targetType])
 }
 
-/// Risk scoring per business unit x regulation category
 model RiskItem {
   id              String   @id @default(cuid())
-  businessUnit    String   // Retail Banking, Insurance, Pharma R&D, Hospital Ops
-  regulationArea  String   // AML, Data Privacy, Clinical Trials, ...
-  likelihood      Int      // 1-5
-  impact          Int      // 1-5
-  inherentRisk    Int      // likelihood * impact
-  residualRisk    Int      // after controls
-  trend           String   // improving, stable, worsening
+  businessUnit    String
+  regulationArea  String
+  likelihood      Int
+  impact          Int
+  inherentRisk    Int
+  residualRisk    Int
+  trend           String
   owner           String
   mitigationPlan  String
   createdAt       DateTime @default(now())
@@ -84,27 +84,305 @@ model RiskItem {
   @@index([businessUnit])
 }
 
-/// Aggregate compliance metric snapshots for the dashboard
 model ComplianceMetric {
   id              String   @id @default(cuid())
   snapshotDate    DateTime
-  overallScore    Int      // 0-100
+  overallScore    Int
   openFindings    Int
   overdueTasks    Int
   policiesCurrent Int
-  trainingComplete Int     // percent
+  trainingComplete Int
   createdAt       DateTime @default(now())
 
   @@index([snapshotDate])
 }
 
-/// Persisted chat history for the AI Compliance Assistant
 model ChatMessage {
   id        String   @id @default(cuid())
-  role      String   // user, assistant, system
+  role      String
   content   String
-  context   String?  // optional context tag e.g. regulation:EU-MiFID
+  context   String?
   createdAt DateTime @default(now())
 
   @@index([createdAt])
+}
+
+// ─────────────────────────────────────────────────────────────
+// SURVEILLANCE ZONE
+// ─────────────────────────────────────────────────────────────
+
+/// Real-time transaction monitoring alerts (AML/CFT)
+model SurveillanceAlert {
+  id            String   @id @default(cuid())
+  alertType     String   // structuring, layering, integration, smurfing, rapid_movement
+  severity      String   // low, medium, high, critical
+  accountId     String
+  counterparty  String
+  amount        Float
+  currency      String
+  jurisdiction  String
+  channel       String   // SWIFT, SEPA, RTP, Wire, Crypto
+  riskScore     Int      // 0-100
+  status        String   // open, under_review, escalated, closed, false_positive
+  triggeredRule String
+  narrative     String
+  timestamp     DateTime @default(now())
+
+  @@index([severity])
+  @@index([status])
+  @@index([timestamp])
+}
+
+/// Sanctions screening hits
+model SanctionsHit {
+  id            String   @id @default(cuid())
+  listName      String   // OFAC, UN, EU, HMT, MAS, OFSI
+  matchType     String   // exact, fuzzy, partial, phonetic
+  matchedName   String
+  listedEntity  String
+  entityId      String
+  score         Int      // 0-100 confidence
+  status        String   // pending, true_positive, false_positive, escalated
+  reviewedBy    String?
+  action        String?
+  timestamp     DateTime @default(now())
+
+  @@index([listName])
+  @@index([status])
+}
+
+/// Communications surveillance events (voice/email/chat)
+model CommsEvent {
+  id           String   @id @default(cuid())
+  channel      String   // email, voice, teams, bloomberg_chat, mobile
+  participantA String
+  participantB String
+  desk         String   // Equities, FX, Rates, Credit, Macro
+  signalType   String   // insider_trading, market_abuse, collusion, swearing, off_channel
+  riskScore    Int
+  transcript   String
+  status       String
+  timestamp    DateTime @default(now())
+
+  @@index([signalType])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────────────────
+// QUANT & COMPUTATIONAL ZONE
+// ─────────────────────────────────────────────────────────────
+
+/// Quantitative risk scenarios (Monte Carlo, stress tests)
+model QuantScenario {
+  id            String   @id @default(cuid())
+  scenarioType  String   // CCAR, EBA, BoE_ACS, FRTB_IMA, NGFS, custom
+  description   String
+  timeHorizon   String   // 1d, 1w, 1m, 1q, 1y
+  p99Loss       Float
+  expectedLoss  Float
+  capitalImpact Float
+  status        String   // draft, running, complete, archived
+  createdAt     DateTime @default(now())
+
+  @@index([scenarioType])
+  @@index([status])
+}
+
+/// Climate & ESG risk metrics
+model ClimateMetric {
+  id                 String   @id @default(cuid())
+  scope1Emissions    Float    // tCO2e
+  scope2Emissions    Float
+  scope3Emissions    Float
+  financedEmissions  Float    // PCAF Methodology
+  taxonomyAlignment  Float    // % EU Taxonomy aligned
+  physicalRiskScore  Int      // 0-100
+  transitionRiskScore Int
+  reportingPeriod    String   // FY2024, H1_2025
+  createdAt          DateTime @default(now())
+}
+
+// ─────────────────────────────────────────────────────────────
+// INTELLIGENCE & AUTOMATION ZONE
+// ─────────────────────────────────────────────────────────────
+
+/// Multi-agent orchestration runs
+model AgentRun {
+  id           String   @id @default(cuid())
+  agentName    String   // regulatory_watcher, policy_drafter, control_tester, regulator_liaison
+  task         String
+  status       String   // queued, running, awaiting_approval, complete, failed
+  inputs       String
+  outputs      String
+  toolsUsed    String
+  approvedBy   String?
+  startedAt    DateTime @default(now())
+  completedAt  DateTime?
+
+  @@index([agentName])
+  @@index([status])
+}
+
+/// Regulatory change feed (parsed new rules)
+model RegulatoryChange {
+  id            String   @id @default(cuid())
+  source        String   // federal_register, ESMA, FCA, MAS, FSB
+  title         String
+  jurisdiction  String
+  publishedAt   DateTime
+  impactScore   Int      // 0-100
+  affectedPolicies String
+  status        String   // new, triaged, drafting, applied, dismissed
+  summary       String
+  createdAt     DateTime @default(now())
+
+  @@index([status])
+  @@index([publishedAt])
+}
+
+/// Red team adversarial test results
+model RedTeamTest {
+  id           String   @id @default(cuid())
+  testName     String
+  attackVector String   // structuring, smurfing, sanctions_evasion, market_abuse, prompt_injection
+  target       String
+  result       String   // blocked, detected, bypassed
+  severity     String
+  evidence     String
+  remediation  String?
+  timestamp    DateTime @default(now())
+
+  @@index([result])
+  @@index([severity])
+}
+
+// ─────────────────────────────────────────────────────────────
+// COLLABORATION & TRUST ZONE
+// ─────────────────────────────────────────────────────────────
+
+/// Case management for examinations & investigations
+model ComplianceCase {
+  id           String   @id @default(cuid())
+  caseType     String   // examination, investigation, regulatory_request, internal_review
+  title        String
+  regulator    String?
+  priority     String   // low, medium, high, critical
+  status       String   // open, in_progress, awaiting_response, closed
+  assignee     String
+  dueDate      DateTime
+  description  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([status])
+  @@index([priority])
+}
+
+/// Whistleblower intake reports
+model WhistleblowerReport {
+  id           String   @id @default(cuid())
+  category     String   // fraud, market_abuse, harassment, safety, other
+  severity     String
+  description  String   // sanitized, PII-stripped
+  anonymous    Boolean  @default(true)
+  status       String   // received, triaged, investigating, resolved
+  triageScore  Int?
+  assignedTo   String?
+  encryptedHash String
+  createdAt    DateTime @default(now())
+
+  @@index([status])
+  @@index([severity])
+}
+
+/// Blockchain-anchored audit evidence
+model ChainAnchor {
+  id            String   @id @default(cuid())
+  payloadHash   String
+  chain         String   // hyperledger_besu, ethereum_sepolia, polygon
+  txHash        String
+  blockNumber   Int
+  anchorType    String   // audit_log, evidence, decision, attestation
+  anchoredBy    String
+  verifiedAt    DateTime?
+  createdAt     DateTime @default(now())
+
+  @@index([chain])
+  @@index([anchorType])
+}
+
+/// Digital asset compliance events
+model DigitalAssetEvent {
+  id           String   @id @default(cuid())
+  asset        String   // BTC, ETH, USDT, CBDC
+  wallet       String
+  counterparty String
+  amount       Float
+  eventType    String   // travel_rule, sanctions_screen, mixer_detection, ofac_match
+  riskScore    Int
+  status       String
+  chain        String
+  timestamp    DateTime @default(now())
+
+  @@index([eventType])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────────────────
+// PLATFORM & GOVERNANCE ZONE
+// ─────────────────────────────────────────────────────────────
+
+/// Privacy-enhancing technology configurations
+model PetConfig {
+  id           String   @id @default(cuid())
+  dataset      String
+  technique    String   // federated_learning, homomorphic_encryption, differential_privacy, secure_enclave
+  enabled      Boolean  @default(false)
+  parameters   String
+  approvedBy   String?
+  updatedAt    DateTime @updatedAt
+  createdAt    DateTime @default(now())
+
+  @@index([technique])
+}
+
+/// API keys & webhook configs for Developer Hub
+model ApiKey {
+  id           String   @id @default(cuid())
+  name         String
+  keyPrefix    String
+  scopes       String
+  rateLimit    Int
+  status       String   // active, revoked, expired
+  lastUsedAt   DateTime?
+  createdAt    DateTime @default(now())
+
+  @@index([status])
+}
+
+/// Cross-jurisdictional rule comparison (Harmonizer)
+model RuleComparison {
+  id           String   @id @default(cuid())
+  topic        String   // e.g., "derivatives_reporting"
+  jurisdictions String  // e.g., "US,EU,UK"
+  differences  String
+  harmonizationPath String?
+  createdAt    DateTime @default(now())
+
+  @@index([topic])
+}
+
+/// Explainable Compliance Cards (per-decision audit)
+model ComplianceCard {
+  id           String   @id @default(cuid())
+  decisionId   String
+  decision     String   // approved, flagged, declined
+  regulation   String
+  policyRef    String
+  evidence     String
+  reasoning    String
+  confidence   Int      // 0-100
+  generatedAt  DateTime @default(now())
+
+  @@index([decision])
 }
