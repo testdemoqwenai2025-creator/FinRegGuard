@@ -1,0 +1,398 @@
+{
+  "categories": [
+    {
+      "code": "TM-001",
+      "name": "Structuring",
+      "category": "structuring",
+      "fatfRef": "FATF RE-2023 PL-01",
+      "detectionMethod": "rule",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 1247,
+      "falsePositivePct": 34,
+      "avgResolutionHours": 8.4,
+      "description": "Transactions broken into amounts just below the $10,000 CTR threshold",
+      "aiRecommendation": {
+        "action": "Tune threshold from $9,500 to $9,800",
+        "confidence": 84,
+        "reasoning": "FP rate 34% suggests threshold too aggressive. Adjusting to $9,800 should reduce FP by ~12% while maintaining detection of genuine structuring.",
+        "reviewerAction": "approve_threshold_tune"
+      }
+    },
+    {
+      "code": "TM-002",
+      "name": "Layering",
+      "category": "layering",
+      "fatfRef": "FATF RE-2023 PL-02",
+      "detectionMethod": "ml-model",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 412,
+      "falsePositivePct": 41,
+      "avgResolutionHours": 18.7,
+      "description": "Multi-hop transfers through correspondent banks to obscure audit trail",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 92,
+        "reasoning": "Layering detection via isolation-forest model performing within envelope. FP rate 41% is typical for anomaly-based detection.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-003",
+      "name": "Integration",
+      "category": "integration",
+      "fatfRef": "FATF RE-2023 PL-03",
+      "detectionMethod": "hybrid",
+      "riskSeverity": "medium",
+      "autoEscalate": false,
+      "alerts30d": 287,
+      "falsePositivePct": 52,
+      "avgResolutionHours": 24.1,
+      "description": "Funds re-entering legitimate economy via property, luxury goods, business investment",
+      "aiRecommendation": {
+        "action": "Schedule rule refresh",
+        "confidence": 78,
+        "reasoning": "FP rate 52% indicates rules are too broad. Refresh integration detection logic with property-registry data integration.",
+        "reviewerAction": "approve_rule_refresh"
+      }
+    },
+    {
+      "code": "TM-004",
+      "name": "Smurfing",
+      "category": "smurfing",
+      "fatfRef": "FATF RE-2023 PL-04",
+      "detectionMethod": "rule",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 156,
+      "falsePositivePct": 22,
+      "avgResolutionHours": 6.2,
+      "description": "Multiple low-value cash deposits by networks of individuals across branches",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 95,
+        "reasoning": "Smurfing detection healthy. FP rate 22% within expected range.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-005",
+      "name": "Rapid Movement",
+      "category": "rapid_movement",
+      "fatfRef": "FATF RE-2023 PL-05",
+      "detectionMethod": "rule",
+      "riskSeverity": "medium",
+      "autoEscalate": false,
+      "alerts30d": 598,
+      "falsePositivePct": 38,
+      "avgResolutionHours": 4.8,
+      "description": "Funds transferred in and out of account within 24 hours via real-time payment rails",
+      "aiRecommendation": {
+        "action": "Tune RTP threshold for Faster Payments",
+        "confidence": 86,
+        "reasoning": "FP rate 38% driven by legitimate business payments. Add business-account exemption for amounts below \u00a350k.",
+        "reviewerAction": "approve_exemption_rule"
+      }
+    },
+    {
+      "code": "TM-006",
+      "name": "Funnel Account",
+      "category": "funnel_account",
+      "fatfRef": "FATF RE-2023 PL-06",
+      "detectionMethod": "ml-model",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 89,
+      "falsePositivePct": 28,
+      "avgResolutionHours": 32.5,
+      "description": "One account receiving deposits from many geographically dispersed individuals, remitting to single beneficiary",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 93,
+        "reasoning": "Funnel account detection performing well. Network-graph model effective at identifying coordinated deposit patterns.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-007",
+      "name": "Trade-Based ML",
+      "category": "trade_based_ml",
+      "fatfRef": "FATF RE-2023 TB-01",
+      "detectionMethod": "hybrid",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 134,
+      "falsePositivePct": 45,
+      "avgResolutionHours": 48.2,
+      "description": "Over/under-invoicing, phantom shipments, multiple invoicing against single trade",
+      "aiRecommendation": {
+        "action": "Schedule model retraining",
+        "confidence": 82,
+        "reasoning": "FP rate 45% indicates model drift. Retrain with latest customs data and World Trade Organization reference prices.",
+        "reviewerAction": "approve_retraining"
+      }
+    },
+    {
+      "code": "TM-008",
+      "name": "Cyber Crime",
+      "category": "cyber_crime",
+      "fatfRef": "FATF RE-2023 CY-01",
+      "detectionMethod": "hybrid",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 723,
+      "falsePositivePct": 31,
+      "avgResolutionHours": 12.4,
+      "description": "Cyber-enabled fraud: account takeover, synthetic identity, card-not-present fraud",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 91,
+        "reasoning": "Cyber crime detection healthy. Hybrid rule+ML approach effective.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-009",
+      "name": "Ransomware",
+      "category": "ransomware",
+      "fatfRef": "FATF RE-2023 CY-02",
+      "detectionMethod": "rule",
+      "riskSeverity": "critical",
+      "autoEscalate": true,
+      "alerts30d": 18,
+      "falsePositivePct": 11,
+      "avgResolutionHours": 4.2,
+      "description": "Payments to ransomware-affiliated wallets, exact-amount payments to known RaaS infrastructure",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 97,
+        "reasoning": "Ransomware detection healthy. Auto-escalation working correctly. FP rate 11% reflects precision of wallet-cluster intelligence.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-010",
+      "name": "Business Email Compromise",
+      "category": "bec",
+      "fatfRef": "FATF RE-2023 CY-03",
+      "detectionMethod": "rule",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 89,
+      "falsePositivePct": 26,
+      "avgResolutionHours": 6.8,
+      "description": "Fraudulent payment instructions impersonating executives or suppliers, wires to mule accounts",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 94,
+        "reasoning": "BEC detection healthy. Rule-based detection effective given well-known mule-account patterns.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-011",
+      "name": "Sanctions Evasion",
+      "category": "sanctions_evasion",
+      "fatfRef": "FATF RE-2023 SE-01",
+      "detectionMethod": "hybrid",
+      "riskSeverity": "critical",
+      "autoEscalate": true,
+      "alerts30d": 42,
+      "falsePositivePct": 8,
+      "avgResolutionHours": 2.4,
+      "description": "Transactions involving sanctioned entities, indirect routing via enablers, front companies obscuring UBO",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 98,
+        "reasoning": "Sanctions detection performing with very low FP rate 8%. Auto-escalation ensuring 2.4h avg resolution.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-012",
+      "name": "PEP Corruption",
+      "category": "pep_corruption",
+      "fatfRef": "FATF RE-2023 CO-01",
+      "detectionMethod": "hybrid",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 67,
+      "falsePositivePct": 35,
+      "avgResolutionHours": 28.4,
+      "description": "Funds linked to PEPs from high-corruption-risk jurisdictions, state-owned enterprise embezzlement",
+      "aiRecommendation": {
+        "action": "Refresh PEP list with latest transparency international data",
+        "confidence": 88,
+        "reasoning": "FP rate 35% suggests some PEP designations are stale. Refresh list with latest TI Corruption Perceptions Index.",
+        "reviewerAction": "approve_list_refresh"
+      }
+    },
+    {
+      "code": "TM-013",
+      "name": "Terrorist Financing",
+      "category": "terrorist_financing",
+      "fatfRef": "FATF RE-2023 TF-01",
+      "detectionMethod": "hybrid",
+      "riskSeverity": "critical",
+      "autoEscalate": true,
+      "alerts30d": 12,
+      "falsePositivePct": 17,
+      "avgResolutionHours": 6.8,
+      "description": "Small-value transfers to known/suspected terrorist financiers, hawala, money service businesses",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 96,
+        "reasoning": "TF detection healthy. Low alert volume expected given targeted nature of detection.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-014",
+      "name": "Proliferation Financing",
+      "category": "proliferation_financing",
+      "fatfRef": "FATF RE-2023 PF-01",
+      "detectionMethod": "manual",
+      "riskSeverity": "critical",
+      "autoEscalate": true,
+      "alerts30d": 5,
+      "falsePositivePct": 0,
+      "avgResolutionHours": 96.0,
+      "description": "Procurement of dual-use goods for WMD programmes, third-country intermediaries, designated-entity exposure",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 92,
+        "reasoning": "PF detection manual-driven due to evolving procurement patterns. Zero false positives across 5 alerts reflects analyst precision.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-015",
+      "name": "DeFi Exploit",
+      "category": "defi_exploit",
+      "fatfRef": "FATF RE-2023 VA-01",
+      "detectionMethod": "rule",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 23,
+      "falsePositivePct": 13,
+      "avgResolutionHours": 16.5,
+      "description": "Funds derived from DeFi protocol exploits: flash loan attacks, oracle manipulation, bridge exploits",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 95,
+        "reasoning": "DeFi exploit detection healthy. Rules effective against known exploit signatures from Rekt News feed.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-016",
+      "name": "Mixer Exposure",
+      "category": "mixer_exposure",
+      "fatfRef": "FATF RE-2023 VA-02",
+      "detectionMethod": "rule",
+      "riskSeverity": "high",
+      "autoEscalate": true,
+      "alerts30d": 47,
+      "falsePositivePct": 19,
+      "avgResolutionHours": 12.3,
+      "description": "On-chain exposure to mixer services (Tornado Cash, Blender.io, ChipMixer)",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 96,
+        "reasoning": "Mixer detection healthy. Auto-escalation working. Chainalysis cluster intelligence current.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-017",
+      "name": "Privacy Coin",
+      "category": "privacy_coin",
+      "fatfRef": "FATF RE-2023 VA-03",
+      "detectionMethod": "rule",
+      "riskSeverity": "medium",
+      "autoEscalate": false,
+      "alerts30d": 31,
+      "falsePositivePct": 42,
+      "avgResolutionHours": 18.4,
+      "description": "Use of Monero, Zcash, or other privacy-preserving cryptocurrencies designed to defeat chain analysis",
+      "aiRecommendation": {
+        "action": "Schedule rule review",
+        "confidence": 80,
+        "reasoning": "FP rate 42% suggests legitimate privacy-coin users being flagged. Refine rule to exclude shielded-but-disclosed transactions.",
+        "reviewerAction": "approve_rule_review"
+      }
+    },
+    {
+      "code": "TM-018",
+      "name": "NFT Laundering",
+      "category": "nft_laundering",
+      "fatfRef": "FATF RE-2023 VA-04",
+      "detectionMethod": "ml-model",
+      "riskSeverity": "medium",
+      "autoEscalate": false,
+      "alerts30d": 19,
+      "falsePositivePct": 37,
+      "avgResolutionHours": 22.7,
+      "description": "Use of NFT marketplaces for wash trading and self-dealing to legitimise illicit cryptocurrency",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 89,
+        "reasoning": "NFT laundering detection healthy. ML model effective at identifying wash-trading patterns via gas-price clustering.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-019",
+      "name": "Cross-Border Funnel",
+      "category": "cross_border_funnel",
+      "fatfRef": "FATF RE-2023 VA-05",
+      "detectionMethod": "hybrid",
+      "riskSeverity": "high",
+      "autoEscalate": false,
+      "alerts30d": 38,
+      "falsePositivePct": 29,
+      "avgResolutionHours": 26.4,
+      "description": "Coordinated movement across multiple jurisdictions via crypto exchanges with weak KYC",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 92,
+        "reasoning": "Cross-border funnel detection healthy. Hybrid approach effective at correlating crypto+fiat movement.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "code": "TM-020",
+      "name": "Crypto-Fiat Ramp",
+      "category": "crypto_fiat_ramp",
+      "fatfRef": "FATF RE-2023 VA-06",
+      "detectionMethod": "hybrid",
+      "riskSeverity": "medium",
+      "autoEscalate": false,
+      "alerts30d": 84,
+      "falsePositivePct": 44,
+      "avgResolutionHours": 14.2,
+      "description": "Suspicious activity at crypto-to-fiat interface: structured ATM withdrawals, P2P trading, unexplained bank-to-exchange transfers",
+      "aiRecommendation": {
+        "action": "Tune ATM withdrawal threshold",
+        "confidence": 83,
+        "reasoning": "FP rate 44% driven by legitimate ATM users. Add threshold exemption for verified KYC Tier-3 customers.",
+        "reviewerAction": "approve_threshold_tune"
+      }
+    }
+  ],
+  "total": 20,
+  "summary": {
+    "totalCategories": 20,
+    "totalAlerts30d": 4121,
+    "avgFalsePositivePct": 28.6,
+    "autoEscalateCategories": 5,
+    "criticalSeverityCategories": 4,
+    "detectionMethods": {
+      "rule": 8,
+      "ml-model": 3,
+      "hybrid": 8,
+      "manual": 1
+    }
+  }
+}

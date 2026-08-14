@@ -19,6 +19,7 @@ import { CommsSurveillanceView } from '@/components/surveillance/CommsSurveillan
 import { SanctionsScreeningView } from '@/components/surveillance/SanctionsScreeningView'
 import { NetworkGraphExplorerView } from '@/components/surveillance/NetworkGraphExplorerView'
 import { AdaptiveThresholdsView } from '@/components/surveillance/AdaptiveThresholdsView'
+import { TmAlertTaxonomyView } from '@/components/surveillance/TmAlertTaxonomyView'
 // ─── Quant & Computational Zone ───
 import { QuantLabView } from '@/components/quant/QuantLabView'
 import { ClimateEsgView } from '@/components/quant/ClimateEsgView'
@@ -30,6 +31,8 @@ import { RegulatoryWatchView } from '@/components/intelligence/RegulatoryWatchVi
 import { RedTeamView } from '@/components/intelligence/RedTeamView'
 import { KnowledgeGraphView } from '@/components/intelligence/KnowledgeGraphView'
 import { FairnessTestingView } from '@/components/intelligence/FairnessTestingView'
+import { ReportingEvolutionView } from '@/components/intelligence/ReportingEvolutionView'
+import { AiModelRiskView } from '@/components/intelligence/AiModelRiskView'
 // ─── Collaboration & Trust Zone ───
 import { CaseManagementView } from '@/components/collaboration/CaseManagementView'
 import { RegulatorPortalView } from '@/components/collaboration/RegulatorPortalView'
@@ -47,6 +50,7 @@ import { PluginManagerView } from '@/components/platform/PluginManagerView'
 import { MarketplaceView } from '@/components/platform/MarketplaceView'
 import { LocalizationMatrixView } from '@/components/platform/LocalizationMatrixView'
 import { TiaView } from '@/components/platform/TiaView'
+import { DataSensitivityView } from '@/components/platform/DataSensitivityView'
 import { Scale, Github, Linkedin } from 'lucide-react'
 
 export type ViewKey =
@@ -77,6 +81,9 @@ export type ViewKey =
   | 'red-team'
   | 'knowledge-graph'
   | 'fairness-testing'
+  | 'reporting-evolution'
+  | 'ai-model-risk'
+  | 'tm-alert-taxonomy'
   // Collaboration & Trust Zone
   | 'case-management'
   | 'regulator-portal'
@@ -94,6 +101,7 @@ export type ViewKey =
   | 'marketplace'
   | 'localization-matrix'
   | 'tia'
+  | 'data-sensitivity'
 
 export default function Home() {
   const [view, setView] = useState<ViewKey>('dashboard')
@@ -122,6 +130,7 @@ export default function Home() {
       case 'sanctions-screening': return <SanctionsScreeningView />
       case 'network-graph': return <NetworkGraphExplorerView />
       case 'adaptive-thresholds': return <AdaptiveThresholdsView />
+      case 'tm-alert-taxonomy': return <TmAlertTaxonomyView />
 
       // ─── Quant & Computational ───
       case 'quant-lab': return <QuantLabView />
@@ -135,6 +144,8 @@ export default function Home() {
       case 'red-team': return <RedTeamView />
       case 'knowledge-graph': return <KnowledgeGraphView />
       case 'fairness-testing': return <FairnessTestingView />
+      case 'reporting-evolution': return <ReportingEvolutionView />
+      case 'ai-model-risk': return <AiModelRiskView />
 
       // ─── Collaboration & Trust ───
       case 'case-management': return <CaseManagementView />
@@ -154,6 +165,7 @@ export default function Home() {
       case 'marketplace': return <MarketplaceView />
       case 'localization-matrix': return <LocalizationMatrixView />
       case 'tia': return <TiaView />
+      case 'data-sensitivity': return <DataSensitivityView />
 
       default: return <DashboardView />
     }
@@ -179,9 +191,9 @@ export default function Home() {
                 Automator
               </span>
               <span className="hidden sm:inline text-muted-foreground/60">·</span>
-              <span className="hidden sm:inline">36 state machines · 6 zones · machine proposes, human confirms</span>
+              <span className="hidden sm:inline">40 state machines · 6 zones · machine proposes, human confirms</span>
               <span className="hidden sm:inline text-muted-foreground/60">·</span>
-              <span className="hidden sm:inline">38 views · Plugin Registry + Marketplace live</span>
+              <span className="hidden sm:inline">42 views · Plugin Registry + Marketplace live</span>
             </div>
             <div className="flex items-center gap-4">
               <span>v2.1.0 · build {new Date().getFullYear()}.08</span>

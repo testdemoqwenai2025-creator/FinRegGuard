@@ -77,6 +77,18 @@ export async function refreshTemplate(
   // Find the catalog entry (for defaultFieldsJson fallback)
   const catalogEntry = PLUGIN_CATALOG.find((p) => p.slug === plugin.slug)
 
+  // v3 (Task 14): if the catalog entry ships a `body_text` string field
+  // in defaultFieldsJson, prefer the synthesized template over a live
+  // fetch. The body_text is the authoritative content for RAG retrieval
+  // — it is curated, paragraph-structured regulatory prose. The live
+  // sourceUrl is kept as a provenance reference only. This prevents
+  // noisy real-world HTML (e.g. WP Rocket optimization scripts on
+  // gdpr-info.eu) from polluting the vector store with 200+ junk
+  // chunks when the catalog author has already provided rich content.
+  if (catalogEntry?.defaultFieldsJson?.body_text && typeof catalogEntry.defaultFieldsJson.body_text === 'string') {
+    return synthesizeTemplate(plugin, catalogEntry, actor)
+  }
+
   // For static builds or INTERNAL sourceType with no real web source,
   // synthesize a template from defaultFieldsJson
   if (plugin.sourceType === 'template' || !plugin.sourceUrl.startsWith('http')) {

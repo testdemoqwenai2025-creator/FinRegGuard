@@ -37,6 +37,9 @@ import {
   Globe2,
   HeartHandshake,
   Gauge,
+  Radar,
+  ShieldCheck,
+  Database,
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -80,6 +83,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'sanctions-screening', label: 'Sanctions Screening', icon: ShieldAlert, description: 'OFAC / UN / EU / HMT live' },
       { key: 'network-graph', label: 'Network Graph', icon: Network, description: 'Entity resolution graph' },
       { key: 'adaptive-thresholds', label: 'Adaptive Thresholds', icon: BrainCircuit, description: 'ML anomaly detection' },
+      { key: 'tm-alert-taxonomy', label: 'TM Alert Taxonomy', icon: Radar, description: '20-category FATF typology' },
     ],
   },
   {
@@ -101,6 +105,8 @@ const NAV_ZONES: NavZone[] = [
       { key: 'red-team', label: 'Red Team Engine', icon: Bug, description: 'Adversarial control testing' },
       { key: 'knowledge-graph', label: 'Knowledge Graph', icon: Share2, description: 'Vector-RAG graph store' },
       { key: 'fairness-testing', label: 'Fairness Testing', icon: Scale, description: 'Algorithmic discrimination' },
+      { key: 'reporting-evolution', label: 'Reporting Evolution', icon: TrendingUp, description: 'Paper to streaming (2010-2030)' },
+      { key: 'ai-model-risk', label: 'AI/ML Model Risk Tiers', icon: BrainCircuit, description: 'SR 11-7 tiered governance' },
     ],
   },
   {
@@ -128,6 +134,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'marketplace', label: 'Marketplace', icon: Store, description: 'Install plugins from any URL' },
       { key: 'localization-matrix', label: 'Localization Matrix', icon: Globe2, description: 'Cross-border data flows' },
       { key: 'tia', label: 'Transfer Impact (TIA)', icon: FileCheck2, description: 'Schrems II assessments' },
+      { key: 'data-sensitivity', label: 'Data Sensitivity', icon: ShieldCheck, description: 'GDPR/PIPL tier controls' },
     ],
   },
 ]
@@ -186,7 +193,7 @@ export function Sidebar({
             Coverage
           </div>
           <p className="mt-1 text-[11px] text-emerald-700/80 dark:text-emerald-400/70">
-            36 state machines · 8 jurisdictions · 16 data models
+            40 state machines · 8 jurisdictions · 16 data models
           </p>
         </div>
       </nav>
