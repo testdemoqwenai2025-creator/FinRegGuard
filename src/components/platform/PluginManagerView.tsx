@@ -39,6 +39,7 @@ import {
 } from 'lucide-react'
 import { dataUrl, IS_STATIC_BUILD } from '@/lib/data'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { DriftBell } from '@/components/platform/DriftBell'
 import { cn } from '@/lib/utils'
 
 // ─── Types (mirror of RegistryPlugin from src/lib/plugins/registry.ts) ───
@@ -402,13 +403,18 @@ export function PluginManagerView() {
 
   return (
     <div className="p-4 sm:p-6 space-y-6">
-      <PageHeader
-        zone="Platform & Governance"
-        title="Plugin Manager"
-        subtitle="DeepSeek-style registry of regulatory forms, labels, features, and document templates — load from web, toggle on/off, auto-fill from authoritative sources."
-        icon={Puzzle}
-        accent="from-slate-700 to-gray-800"
-      />
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1">
+          <PageHeader
+            zone="Platform & Governance"
+            title="Plugin Manager"
+            subtitle="DeepSeek-style registry of regulatory forms, labels, features, and document templates — load from web, toggle on/off, auto-fill from authoritative sources."
+            icon={Puzzle}
+            accent="from-slate-700 to-gray-800"
+          />
+        </div>
+        <DriftBell />
+      </div>
 
       {IS_STATIC_BUILD && (
         <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-200">

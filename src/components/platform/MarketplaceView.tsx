@@ -20,6 +20,7 @@ import {
   Globe,
   AlertCircle,
   Package,
+  Wifi,
 } from 'lucide-react'
 import { dataUrl, IS_STATIC_BUILD } from '@/lib/data'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
@@ -54,6 +55,26 @@ interface InstallResult {
   action: 'created' | 'updated' | 'noop'
   templateFetched: boolean
   contentLength?: number
+  error?: string
+}
+
+interface PreviewResult {
+  ok: boolean
+  url: string
+  httpStatus?: number
+  contentType?: string | null
+  contentLength?: number
+  contentHash?: string
+  title?: string | null
+  detected?: {
+    mode: 'manifest' | 'auto'
+    regulator: string | null
+    jurisdiction: string | null
+    category: string | null
+    sourceType: 'web' | 'pdf' | 'manifest'
+  }
+  manifest?: Record<string, unknown> | null
+  snippet?: string
   error?: string
 }
 
@@ -132,6 +153,10 @@ export function MarketplaceView() {
   const [installing, setInstalling] = useState(false)
   const [lastInstallResult, setLastInstallResult] = useState<InstallResult | null>(null)
 
+  // Preview state ("Test Connection" button)
+  const [previewing, setPreviewing] = useState(false)
+  const [lastPreviewResult, setLastPreviewResult] = useState<PreviewResult | null>(null)
+
   // Drift scan state
   const [scanning, setScanning] = useState(false)
   const [lastScanResult, setLastScanResult] = useState<DriftScanResult | null>(null)
@@ -169,6 +194,44 @@ export function MarketplaceView() {
   }, [loadInstalled])
 
   // ─── Actions ───
+  const handlePreview = useCallback(
+    async (url: string) => {
+      if (!url.trim()) {
+        showToast('Enter a URL first', 'err')
+        return
+      }
+      if (IS_STATIC_BUILD) {
+        showToast('Test connection not available in preview mode (requires dev backend)', 'err')
+        return
+      }
+      setPreviewing(true)
+      setLastPreviewResult(null)
+      try {
+        const res = await fetch('/api/plugins/marketplace/preview', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url }),
+        })
+        const data = (await res.json()) as PreviewResult
+        setLastPreviewResult(data)
+        if (data.ok) {
+          showToast(
+            'Connection OK — ' + (data.httpStatus ?? 0) + ' · ' + (data.contentLength ?? 0).toLocaleString() + ' bytes · ' + (data.detected?.regulator ?? 'unknown regulator'),
+            'ok',
+          )
+        } else {
+          showToast('Connection failed: ' + (data.error ?? 'unknown'), 'err')
+        }
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Unknown error'
+        showToast('Connection failed: ' + msg, 'err')
+      } finally {
+        setPreviewing(false)
+      }
+    },
+    [showToast],
+  )
+
   const handleInstall = useCallback(
     async (url: string) => {
       if (!url.trim()) {
@@ -373,26 +436,47 @@ export function MarketplaceView() {
               onChange={(e) => setUrlInput(e.target.value)}
               className="md:flex-1 font-mono text-xs"
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && !installing) handleInstall(urlInput)
+                if (e.key === 'Enter' && !installing && !previewing) handleInstall(urlInput)
               }}
             />
-            <Button
-              onClick={() => handleInstall(urlInput)}
-              disabled={installing || !urlInput.trim()}
-              className="gap-1.5 md:w-auto"
-            >
-              {installing ? (
-                <>
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  Installing…
-                </>
-              ) : (
-                <>
-                  <Download className="h-3.5 w-3.5" />
-                  Install
-                </>
-              )}
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                onClick={() => handlePreview(urlInput)}
+                disabled={previewing || installing || !urlInput.trim()}
+                className="gap-1.5"
+                title="Fetch the URL and preview what would be installed — does NOT persist anything"
+              >
+                {previewing ? (
+                  <>
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    Testing…
+                  </>
+                ) : (
+                  <>
+                    <Wifi className="h-3.5 w-3.5" />
+                    Test Connection
+                  </>
+                )}
+              </Button>
+              <Button
+                onClick={() => handleInstall(urlInput)}
+                disabled={installing || previewing || !urlInput.trim()}
+                className="gap-1.5"
+              >
+                {installing ? (
+                  <>
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    Installing…
+                  </>
+                ) : (
+                  <>
+                    <Download className="h-3.5 w-3.5" />
+                    Install
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
           <div className="flex items-center justify-between gap-3">
             <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer">
@@ -403,6 +487,11 @@ export function MarketplaceView() {
               Accepts regulator URLs (PDF/HTML) or RegGuard manifest JSON
             </span>
           </div>
+
+          {/* Last preview result */}
+          {lastPreviewResult && (
+            <PreviewCard result={lastPreviewResult} />
+          )}
 
           {/* Last install result */}
           {lastInstallResult && (
@@ -679,6 +768,115 @@ function InstalledPluginRow({
       >
         <Trash2 className="h-3.5 w-3.5" />
       </Button>
+    </div>
+  )
+}
+
+// ─── Preview Card (Test Connection result) ───
+function PreviewCard({ result }: { result: PreviewResult }) {
+  const ok = result.ok
+  const detected = result.detected
+  return (
+    <div
+      className={cn(
+        'rounded-md border px-3 py-2.5 text-xs space-y-2',
+        ok
+          ? 'border-blue-200 bg-blue-50/60 text-blue-900 dark:border-blue-900/40 dark:bg-blue-950/20 dark:text-blue-100'
+          : 'border-rose-200 bg-rose-50 text-rose-900 dark:border-rose-900/40 dark:bg-rose-950/20 dark:text-rose-100',
+      )}
+    >
+      <div className="flex items-center gap-2">
+        {ok ? (
+          <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+        ) : (
+          <XCircle className="h-3.5 w-3.5 shrink-0" />
+        )}
+        <span className="font-semibold">
+          {ok ? 'Connection successful' : 'Connection failed'}
+        </span>
+        {ok && result.httpStatus && (
+          <>
+            <span className="opacity-70">·</span>
+            <span className="font-mono opacity-80">HTTP {result.httpStatus}</span>
+          </>
+        )}
+      </div>
+
+      {ok && detected && (
+        <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-[10px]">
+          <div>
+            <span className="opacity-60">Mode:</span>{' '}
+            <span className="font-mono">
+              {detected.mode === 'manifest' ? 'Manifest JSON' : 'Auto-discovery'}
+            </span>
+          </div>
+          <div>
+            <span className="opacity-60">Source type:</span>{' '}
+            <span className="font-mono">{detected.sourceType}</span>
+          </div>
+          <div>
+            <span className="opacity-60">Regulator:</span>{' '}
+            <span className="font-semibold">{detected.regulator ?? '—'}</span>
+          </div>
+          <div>
+            <span className="opacity-60">Jurisdiction:</span>{' '}
+            <span className="font-semibold">{detected.jurisdiction ?? '—'}</span>
+          </div>
+          <div>
+            <span className="opacity-60">Category:</span>{' '}
+            <span className="font-semibold">{detected.category ?? '—'}</span>
+          </div>
+          <div>
+            <span className="opacity-60">Content-Type:</span>{' '}
+            <span className="font-mono">{result.contentType ?? '—'}</span>
+          </div>
+          <div>
+            <span className="opacity-60">Size:</span>{' '}
+            <span className="font-mono">{(result.contentLength ?? 0).toLocaleString()} bytes</span>
+          </div>
+          <div>
+            <span className="opacity-60">SHA-256:</span>{' '}
+            <span className="font-mono text-[9px] break-all">
+              {result.contentHash?.slice(0, 16)}…
+            </span>
+          </div>
+        </div>
+      )}
+
+      {ok && result.title && (
+        <p className="text-[11px]">
+          <span className="opacity-60">Title:</span>{' '}
+          <span className="font-semibold">{result.title}</span>
+        </p>
+      )}
+
+      {ok && result.snippet && (
+        <pre className="rounded bg-white/60 dark:bg-black/20 p-2 text-[10px] overflow-x-auto max-h-32 whitespace-pre-wrap break-words border border-border/50">
+          {result.snippet}
+          {result.snippet.length >= 300 ? '…' : ''}
+        </pre>
+      )}
+
+      {ok && result.manifest && (
+        <details className="mt-1">
+          <summary className="cursor-pointer text-[10px] opacity-70 hover:opacity-100">
+            Manifest JSON
+          </summary>
+          <pre className="mt-1 rounded bg-white/60 dark:bg-black/20 p-2 text-[10px] overflow-x-auto max-h-48 border border-border/50">
+            {JSON.stringify(result.manifest, null, 2)}
+          </pre>
+        </details>
+      )}
+
+      {!ok && result.error && (
+        <p className="mt-1 text-[11px]">{result.error}</p>
+      )}
+
+      {ok && (
+        <p className="text-[10px] opacity-60 italic">
+          No data persisted. Click <strong>Install</strong> to register this plugin.
+        </p>
+      )}
     </div>
   )
 }
