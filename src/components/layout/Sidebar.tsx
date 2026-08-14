@@ -32,6 +32,11 @@ import {
   FileCheck2,
   Puzzle,
   Store,
+  Radio,
+  BrainCircuit,
+  Globe2,
+  HeartHandshake,
+  Gauge,
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -62,6 +67,8 @@ const NAV_ZONES: NavZone[] = [
       { key: 'risk', label: 'Risk Matrix', icon: AlertTriangle, description: 'Heatmap by business unit' },
       { key: 'assistant', label: 'AI Assistant', icon: Bot, description: 'Compliance copilot' },
       { key: 'reports', label: 'Reports', icon: BarChart3, description: 'Trends & analytics' },
+      { key: 'control-monitor', label: 'Control Monitor', icon: Gauge, description: 'Continuous control testing' },
+      { key: 'consumer-duty', label: 'Consumer Duty & AI Rights', icon: HeartHandshake, description: 'Consumer Duty + ADM + disclosures' },
     ],
   },
   {
@@ -72,6 +79,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'comms-surveillance', label: 'Comms Surveillance', icon: MessageSquareWarning, description: 'Voice / chat / email NLP' },
       { key: 'sanctions-screening', label: 'Sanctions Screening', icon: ShieldAlert, description: 'OFAC / UN / EU / HMT live' },
       { key: 'network-graph', label: 'Network Graph', icon: Network, description: 'Entity resolution graph' },
+      { key: 'adaptive-thresholds', label: 'Adaptive Thresholds', icon: BrainCircuit, description: 'ML anomaly detection' },
     ],
   },
   {
@@ -92,6 +100,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'regulatory-watch', label: 'Regulatory Watch', icon: Newspaper, description: 'Auto rule change detection' },
       { key: 'red-team', label: 'Red Team Engine', icon: Bug, description: 'Adversarial control testing' },
       { key: 'knowledge-graph', label: 'Knowledge Graph', icon: Share2, description: 'Vector-RAG graph store' },
+      { key: 'fairness-testing', label: 'Fairness Testing', icon: Scale, description: 'Algorithmic discrimination' },
     ],
   },
   {
@@ -103,6 +112,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'whistleblower', label: 'Whistleblower', icon: MailWarning, description: 'Encrypted anonymous intake' },
       { key: 'chain-evidence', label: 'Chain Evidence', icon: Link2, description: 'Blockchain-anchored audit' },
       { key: 'digital-assets', label: 'Digital Assets', icon: Wallet, description: 'Travel Rule & on-chain' },
+      { key: 'regtech-feeds', label: 'RegTech Feeds', icon: Radio, description: 'FCA / MAS / ESMA APIs' },
     ],
   },
   {
@@ -116,6 +126,8 @@ const NAV_ZONES: NavZone[] = [
       { key: 'xcc', label: 'Compliance Cards', icon: FileCheck2, description: 'Explainable decisions (XCC)' },
       { key: 'plugin-manager', label: 'Plugin Manager', icon: Puzzle, description: 'Toggle forms, labels, features, docs' },
       { key: 'marketplace', label: 'Marketplace', icon: Store, description: 'Install plugins from any URL' },
+      { key: 'localization-matrix', label: 'Localization Matrix', icon: Globe2, description: 'Cross-border data flows' },
+      { key: 'tia', label: 'Transfer Impact (TIA)', icon: FileCheck2, description: 'Schrems II assessments' },
     ],
   },
 ]
@@ -174,7 +186,7 @@ export function Sidebar({
             Coverage
           </div>
           <p className="mt-1 text-[11px] text-emerald-700/80 dark:text-emerald-400/70">
-            29 state machines · 8 jurisdictions · 16 data models
+            36 state machines · 8 jurisdictions · 16 data models
           </p>
         </div>
       </nav>

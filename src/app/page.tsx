@@ -11,11 +11,14 @@ import { AuditView } from '@/components/audit/AuditView'
 import { RiskView } from '@/components/risk/RiskView'
 import { AssistantView } from '@/components/assistant/AssistantView'
 import { ReportsView } from '@/components/reports/ReportsView'
+import { ControlMonitorView } from '@/components/compliance/ControlMonitorView'
+import { ConsumerDutyView } from '@/components/consumer-duty/ConsumerDutyView'
 // ─── Surveillance Zone ───
 import { TransactionSurveillanceView } from '@/components/surveillance/TransactionSurveillanceView'
 import { CommsSurveillanceView } from '@/components/surveillance/CommsSurveillanceView'
 import { SanctionsScreeningView } from '@/components/surveillance/SanctionsScreeningView'
 import { NetworkGraphExplorerView } from '@/components/surveillance/NetworkGraphExplorerView'
+import { AdaptiveThresholdsView } from '@/components/surveillance/AdaptiveThresholdsView'
 // ─── Quant & Computational Zone ───
 import { QuantLabView } from '@/components/quant/QuantLabView'
 import { ClimateEsgView } from '@/components/quant/ClimateEsgView'
@@ -26,12 +29,14 @@ import { AgentConsoleView } from '@/components/intelligence/AgentConsoleView'
 import { RegulatoryWatchView } from '@/components/intelligence/RegulatoryWatchView'
 import { RedTeamView } from '@/components/intelligence/RedTeamView'
 import { KnowledgeGraphView } from '@/components/intelligence/KnowledgeGraphView'
+import { FairnessTestingView } from '@/components/intelligence/FairnessTestingView'
 // ─── Collaboration & Trust Zone ───
 import { CaseManagementView } from '@/components/collaboration/CaseManagementView'
 import { RegulatorPortalView } from '@/components/collaboration/RegulatorPortalView'
 import { WhistleblowerView } from '@/components/collaboration/WhistleblowerView'
 import { ChainEvidenceView } from '@/components/collaboration/ChainEvidenceView'
 import { DigitalAssetsView } from '@/components/collaboration/DigitalAssetsView'
+import { RegtechFeedsView } from '@/components/collaboration/RegtechFeedsView'
 // ─── Platform & Governance Zone ───
 import { PrivacyPetsView } from '@/components/platform/PrivacyPetsView'
 import { DeveloperHubView } from '@/components/platform/DeveloperHubView'
@@ -40,6 +45,8 @@ import { RuleHarmonizerView } from '@/components/platform/RuleHarmonizerView'
 import { XccView } from '@/components/platform/XccView'
 import { PluginManagerView } from '@/components/platform/PluginManagerView'
 import { MarketplaceView } from '@/components/platform/MarketplaceView'
+import { LocalizationMatrixView } from '@/components/platform/LocalizationMatrixView'
+import { TiaView } from '@/components/platform/TiaView'
 import { Scale, Github, Linkedin } from 'lucide-react'
 
 export type ViewKey =
@@ -51,11 +58,14 @@ export type ViewKey =
   | 'risk'
   | 'assistant'
   | 'reports'
+  | 'control-monitor'
+  | 'consumer-duty'
   // Surveillance Zone
   | 'transaction-surveillance'
   | 'comms-surveillance'
   | 'sanctions-screening'
   | 'network-graph'
+  | 'adaptive-thresholds'
   // Quant & Computational Zone
   | 'quant-lab'
   | 'climate-esg'
@@ -66,12 +76,14 @@ export type ViewKey =
   | 'regulatory-watch'
   | 'red-team'
   | 'knowledge-graph'
+  | 'fairness-testing'
   // Collaboration & Trust Zone
   | 'case-management'
   | 'regulator-portal'
   | 'whistleblower'
   | 'chain-evidence'
   | 'digital-assets'
+  | 'regtech-feeds'
   // Platform & Governance Zone
   | 'privacy-pets'
   | 'developer-hub'
@@ -80,6 +92,8 @@ export type ViewKey =
   | 'xcc'
   | 'plugin-manager'
   | 'marketplace'
+  | 'localization-matrix'
+  | 'tia'
 
 export default function Home() {
   const [view, setView] = useState<ViewKey>('dashboard')
@@ -99,12 +113,15 @@ export default function Home() {
       case 'risk': return <RiskView />
       case 'assistant': return <AssistantView />
       case 'reports': return <ReportsView />
+      case 'control-monitor': return <ControlMonitorView />
+      case 'consumer-duty': return <ConsumerDutyView />
 
       // ─── Surveillance ───
       case 'transaction-surveillance': return <TransactionSurveillanceView />
       case 'comms-surveillance': return <CommsSurveillanceView />
       case 'sanctions-screening': return <SanctionsScreeningView />
       case 'network-graph': return <NetworkGraphExplorerView />
+      case 'adaptive-thresholds': return <AdaptiveThresholdsView />
 
       // ─── Quant & Computational ───
       case 'quant-lab': return <QuantLabView />
@@ -117,6 +134,7 @@ export default function Home() {
       case 'regulatory-watch': return <RegulatoryWatchView />
       case 'red-team': return <RedTeamView />
       case 'knowledge-graph': return <KnowledgeGraphView />
+      case 'fairness-testing': return <FairnessTestingView />
 
       // ─── Collaboration & Trust ───
       case 'case-management': return <CaseManagementView />
@@ -124,6 +142,7 @@ export default function Home() {
       case 'whistleblower': return <WhistleblowerView />
       case 'chain-evidence': return <ChainEvidenceView />
       case 'digital-assets': return <DigitalAssetsView />
+      case 'regtech-feeds': return <RegtechFeedsView />
 
       // ─── Platform & Governance ───
       case 'privacy-pets': return <PrivacyPetsView />
@@ -133,6 +152,8 @@ export default function Home() {
       case 'xcc': return <XccView />
       case 'plugin-manager': return <PluginManagerView />
       case 'marketplace': return <MarketplaceView />
+      case 'localization-matrix': return <LocalizationMatrixView />
+      case 'tia': return <TiaView />
 
       default: return <DashboardView />
     }
@@ -158,9 +179,9 @@ export default function Home() {
                 Automator
               </span>
               <span className="hidden sm:inline text-muted-foreground/60">·</span>
-              <span className="hidden sm:inline">29 state machines · 6 zones · machine proposes, human confirms</span>
+              <span className="hidden sm:inline">36 state machines · 6 zones · machine proposes, human confirms</span>
               <span className="hidden sm:inline text-muted-foreground/60">·</span>
-              <span className="hidden sm:inline">31 views · Plugin Registry + Marketplace live</span>
+              <span className="hidden sm:inline">38 views · Plugin Registry + Marketplace live</span>
             </div>
             <div className="flex items-center gap-4">
               <span>v2.1.0 · build {new Date().getFullYear()}.08</span>
