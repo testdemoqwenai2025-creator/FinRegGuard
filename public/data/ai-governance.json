@@ -1,0 +1,595 @@
+{
+  "lifecyclePhases": [
+    {
+      "id": "lp_001",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "phase": "problem_definition",
+      "phaseIndex": 1,
+      "approver": "Model Risk Committee",
+      "approverRole": "model_risk_committee",
+      "enteredAt": "2025-06-20T22:32:00Z",
+      "exitedAt": "2025-06-30T22:32:00Z",
+      "artifacts": [
+        "Model Charter v1.0",
+        "Preliminary Risk Assessment",
+        "Materiality Tier Classification: Critical"
+      ],
+      "exitCriteriaMet": true,
+      "notes": "Charter signed by CRO + Head of Retail Lending. Protected classes implicated: race, sex, age, national origin (ECOA scope).",
+      "aiRecommendation": {
+        "action": "Phase 1 complete — proceed to data acquisition",
+        "confidence": 96,
+        "reasoning": "All Phase 1 exit criteria met 410 days ago. Charter signed by both required approvers. No open findings.",
+        "reviewerAction": "acknowledge_phase_completion"
+      }
+    },
+    {
+      "id": "lp_002",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "phase": "data_acquisition",
+      "phaseIndex": 2,
+      "approver": "Data Protection Officer",
+      "approverRole": "dpo",
+      "enteredAt": "2025-06-30T22:32:00Z",
+      "exitedAt": "2025-07-30T22:32:00Z",
+      "artifacts": [
+        "Data Sheet v1.0",
+        "DPIA Article 35 — completed",
+        "Data Lineage Graph",
+        "Consent Basis Attestation"
+      ],
+      "exitCriteriaMet": true,
+      "notes": "DPIA triggered by use of credit bureau data (special category under GDPR Art.9(2)(b)). Synthetic data supplement approved (15% blend ratio).",
+      "aiRecommendation": {
+        "action": "Phase 2 complete — proceed to model development",
+        "confidence": 94,
+        "reasoning": "Data Sheet signed by DPO. DPIA cleared with no Required Remediation items. Lineage graph covers all 47 source fields.",
+        "reviewerAction": "acknowledge_phase_completion"
+      }
+    },
+    {
+      "id": "lp_003",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "phase": "model_development",
+      "phaseIndex": 3,
+      "approver": "Model Owner (peer reviewed)",
+      "approverRole": "team_lead",
+      "enteredAt": "2025-07-30T22:32:00Z",
+      "exitedAt": "2025-10-28T22:32:00Z",
+      "artifacts": [
+        "Model Card v1.0",
+        "Versioned artifact v1.0.0 (hash 0xa3f1...)",
+        "Fairness Metric Report v1.0",
+        "Peer Review Sign-off"
+      ],
+      "exitCriteriaMet": true,
+      "notes": "Peer review by Senior Data Scientist (independent of development team). Fairness metrics computed across 7 protected classes. Reproducibility tolerance 1e-6 met.",
+      "aiRecommendation": {
+        "action": "Phase 3 complete — proceed to validation",
+        "confidence": 92,
+        "reasoning": "All Phase 3 artifacts produced. Reproducibility tolerance met. Fairness metric report shows DIR 0.87 (pass).",
+        "reviewerAction": "acknowledge_phase_completion"
+      }
+    },
+    {
+      "id": "lp_004",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "phase": "pre_deployment_validation",
+      "phaseIndex": 4,
+      "approver": "Head of Model Validation",
+      "approverRole": "senior_compliance",
+      "enteredAt": "2025-10-28T22:32:00Z",
+      "exitedAt": "2026-01-16T22:32:00Z",
+      "artifacts": [
+        "Validation Report v1.0",
+        "Challenger Model Comparison (logistic regression baseline)",
+        "Stress Test Results — 12 scenarios"
+      ],
+      "exitCriteriaMet": true,
+      "notes": "Challenger model (logistic regression) achieved AUC 0.84 vs proposed XGBoost AUC 0.89 — gap >5%, complex model preferred. Two Required Remediation items cleared (feature drift threshold, calibration).",
+      "aiRecommendation": {
+        "action": "Phase 4 complete — proceed to deployment",
+        "confidence": 91,
+        "reasoning": "Independent validation cleared. Challenger model gap exceeds 5% threshold so complex model justified. Both remediation items closed.",
+        "reviewerAction": "acknowledge_phase_completion"
+      }
+    },
+    {
+      "id": "lp_005",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "phase": "deployment",
+      "phaseIndex": 5,
+      "approver": "Change Advisory Board + Board",
+      "approverRole": "board",
+      "enteredAt": "2026-01-16T22:32:00Z",
+      "exitedAt": "2026-02-15T22:32:00Z",
+      "artifacts": [
+        "Decision Rights Matrix v1.0",
+        "Pre-Mortem Document",
+        "Deployment Runbook v1.0",
+        "Staged Rollout Sign-off (5%→25%→100%)"
+      ],
+      "exitCriteriaMet": true,
+      "notes": "Canary phase (5%) held 72h — no anomalies. Ramp phase (25%) held 72h — override rate 7.8% within expected range. Full rollout approved by Board.",
+      "aiRecommendation": {
+        "action": "Phase 5 complete — in production monitoring",
+        "confidence": 95,
+        "reasoning": "Staged rollout completed without incidents. Override rate within 5-15% expected envelope. Board sign-off recorded.",
+        "reviewerAction": "acknowledge_phase_completion"
+      }
+    },
+    {
+      "id": "lp_006",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "phase": "production_monitoring",
+      "phaseIndex": 6,
+      "approver": "Model Risk Committee (annual review)",
+      "approverRole": "model_risk_committee",
+      "enteredAt": "2026-02-15T22:32:00Z",
+      "exitedAt": null,
+      "artifacts": [
+        "Live monitoring dashboards (PSI, prediction drift, AUC, DIR)",
+        "Drift Breach Runbook v1.0"
+      ],
+      "exitCriteriaMet": false,
+      "notes": "Currently in Phase 6. Next annual re-validation due in 122 days. Last weekly review: PSI 0.08 (within tolerance), AUC 0.88 (within tolerance), DIR 0.87 (within tolerance).",
+      "aiRecommendation": {
+        "action": "Schedule annual re-validation + quarterly bias refresh",
+        "confidence": 88,
+        "reasoning": "Critical-tier model in Phase 6 monitoring. All drift metrics within tolerance. Annual re-validation window opens in 122 days; bias test refresh due in 76 days.",
+        "reviewerAction": "approve_revalidation_schedule"
+      }
+    },
+    {
+      "id": "lp_007",
+      "modelId": "MODEL-AML-TM-002",
+      "modelName": "Real-time AML Transaction Monitoring (auto-block)",
+      "tier": "critical",
+      "phase": "pre_deployment_validation",
+      "phaseIndex": 4,
+      "approver": "Head of Model Validation",
+      "approverRole": "senior_compliance",
+      "enteredAt": "2026-06-30T22:32:00Z",
+      "exitedAt": null,
+      "artifacts": [
+        "Validation Report v0.9 (draft)",
+        "Challenger Model Comparison (rule-based baseline)",
+        "Stress Test Results — 8 of 12 scenarios complete"
+      ],
+      "exitCriteriaMet": false,
+      "notes": "Validation in progress. 2 Required Remediation items open: (1) counterfactual generation failing actionability constraint on transaction_amount feature, (2) Layer 2 LIME triangulation inconsistent with SHAP top-3 for 12% of sampled decisions.",
+      "aiRecommendation": {
+        "action": "Hold for remediation — 2 Required Remediation items open",
+        "confidence": 78,
+        "reasoning": "Phase 4 validation cannot complete until counterfactual actionability bug fixed and LIME/SHAP triangulation rate >95%. Estimated 14 days to clear.",
+        "reviewerAction": "approve_remediation_hold"
+      }
+    },
+    {
+      "id": "lp_008",
+      "modelId": "MODEL-MKTG-SEG-007",
+      "modelName": "Customer Marketing Segmentation",
+      "tier": "medium",
+      "phase": "deployment",
+      "phaseIndex": 5,
+      "approver": "Change Advisory Board",
+      "approverRole": "cRO",
+      "enteredAt": "2026-07-30T22:32:00Z",
+      "exitedAt": null,
+      "artifacts": [
+        "Decision Rights Matrix v1.0",
+        "Pre-Mortem Document",
+        "Deployment Runbook v1.0"
+      ],
+      "exitCriteriaMet": false,
+      "notes": "Canary phase (5%) in progress. Override rate 2.1% (low, expected for Medium-tier). Awaiting 72-hour hold completion before ramp to 25%.",
+      "aiRecommendation": {
+        "action": "Approve ramp to 25% traffic",
+        "confidence": 89,
+        "reasoning": "Canary phase 5% has run for 48 hours with no anomalies. Override rate 2.1% within Medium-tier expected range (1-5%). Approve ramp to 25%.",
+        "reviewerAction": "approve_ramp_25pct"
+      }
+    }
+  ],
+  "explainabilityLayers": [
+    {
+      "id": "xl_001",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "layer": "global",
+      "layerIndex": 1,
+      "methods": [
+        "shap_summary",
+        "feature_importance",
+        "permutation_importance",
+        "partial_dependence",
+        "ice"
+      ],
+      "lastComputedAt": "2026-07-31T22:32:00Z",
+      "nextRefreshAt": "2026-10-29T22:32:00Z",
+      "audience": "Model Risk Committee, internal audit, external regulators",
+      "topFeatures": [
+        {
+          "feature": "credit_utilisation_ratio",
+          "meanAbsShap": 0.234,
+          "rank": 1
+        },
+        {
+          "feature": "debt_to_income_ratio",
+          "meanAbsShap": 0.187,
+          "rank": 2
+        },
+        {
+          "feature": "credit_history_length_months",
+          "meanAbsShap": 0.142,
+          "rank": 3
+        },
+        {
+          "feature": "recent_inquiries_6m",
+          "meanAbsShap": 0.098,
+          "rank": 4
+        },
+        {
+          "feature": "annual_income",
+          "meanAbsShap": 0.076,
+          "rank": 5
+        }
+      ],
+      "consistencyCheck": "PASS — SHAP rank order matches permutation importance rank order for top 5 features",
+      "aiRecommendation": {
+        "action": "Continue quarterly refresh cadence",
+        "confidence": 95,
+        "reasoning": "Layer 1 global explanations last computed 14 days ago. Top features stable year-over-year. Next refresh in 76 days (quarterly cadence).",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "xl_002",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "layer": "local",
+      "layerIndex": 2,
+      "methods": [
+        "shap_waterfall",
+        "counterfactual",
+        "lime"
+      ],
+      "lastComputedAt": "2026-08-14T20:32:00Z",
+      "nextRefreshAt": null,
+      "audience": "Model risk team, compliance officer reviewing decision, customer-facing colleague",
+      "onDemandComputed30d": 1247,
+      "counterfactualCount": 3,
+      "triangulationPassRate": 0.973,
+      "triangulationThreshold": 0.95,
+      "consistencyCheck": "PASS — LIME-extracted features are subset of SHAP top-5 for 97.3% of sampled decisions (threshold 95%)",
+      "aiRecommendation": {
+        "action": "Continue on-demand local explanation generation",
+        "confidence": 96,
+        "reasoning": "Layer 2 local explanations generated for 1,247 adverse decisions in last 30 days. Triangulation pass rate 97.3% exceeds 95% threshold. All counterfactuals meet actionability constraints.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "xl_003",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "layer": "decision_context",
+      "layerIndex": 3,
+      "methods": [
+        "reason_codes",
+        "plain_language_summary",
+        "anchor",
+        "recourse_path"
+      ],
+      "lastComputedAt": "2026-08-14T20:32:00Z",
+      "nextRefreshAt": null,
+      "audience": "Affected customer, customer-facing colleague, customer advocacy team",
+      "reasonCodeCount": 3,
+      "plainLanguageRequired": true,
+      "reasonCodeDictionaryVersion": "v2.3 (2026-04-15)",
+      "recentReasonCodes": [
+        {
+          "code": "RC-CU-HIGH",
+          "shapFeature": "credit_utilisation_ratio",
+          "plainLanguage": "Your current credit accounts are close to their maximum limits"
+        },
+        {
+          "code": "RC-DTI-HIGH",
+          "shapFeature": "debt_to_income_ratio",
+          "plainLanguage": "Your debt payments are high relative to your income"
+        },
+        {
+          "code": "RC-HIST-SHORT",
+          "shapFeature": "credit_history_length_months",
+          "plainLanguage": "Your credit history is relatively short"
+        }
+      ],
+      "consistencyCheck": "PASS — Layer 3 reason codes match Layer 1 SHAP top-3 for 98.1% of decisions (threshold 95%)",
+      "aiRecommendation": {
+        "action": "Continue delivering decision-context explanations",
+        "confidence": 94,
+        "reasoning": "Layer 3 decision-context explanations delivered for all 1,247 adverse decisions in last 30 days. Reason Code Dictionary v2.3 in use. Recourse path included in 100% of communications.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "xl_004",
+      "modelId": "MODEL-AML-TM-002",
+      "modelName": "Real-time AML Transaction Monitoring (auto-block)",
+      "tier": "critical",
+      "layer": "local",
+      "layerIndex": 2,
+      "methods": [
+        "shap_waterfall",
+        "counterfactual",
+        "lime"
+      ],
+      "lastComputedAt": "2026-08-14T16:32:00Z",
+      "nextRefreshAt": null,
+      "audience": "Model risk team, compliance officer, MLRO",
+      "onDemandComputed30d": 0,
+      "counterfactualCount": 3,
+      "triangulationPassRate": 0.882,
+      "triangulationThreshold": 0.95,
+      "consistencyCheck": "FAIL — LIME/SHAP triangulation pass rate 88.2% below 95% threshold. Counterfactual actionability constraint failing on transaction_amount feature.",
+      "aiRecommendation": {
+        "action": "REMEDIATION REQUIRED — fix counterfactual actionability + improve LIME/SHAP triangulation",
+        "confidence": 82,
+        "reasoning": "Layer 2 failing on two counts: (1) DiCE counterfactual generator producing non-actionable counterfactuals (transaction_amount cannot be reduced below minimum threshold), (2) LIME/SHAP triangulation 88.2% below 95% threshold. Model in Phase 4 validation hold.",
+        "reviewerAction": "approve_remediation_hold"
+      }
+    },
+    {
+      "id": "xl_005",
+      "modelId": "MODEL-MKTG-SEG-007",
+      "modelName": "Customer Marketing Segmentation",
+      "tier": "medium",
+      "layer": "global",
+      "layerIndex": 1,
+      "methods": [
+        "feature_importance",
+        "permutation_importance"
+      ],
+      "lastComputedAt": "2026-07-25T22:32:00Z",
+      "nextRefreshAt": "2026-10-23T22:32:00Z",
+      "audience": "Marketing analytics team, Senior Compliance Officer",
+      "topFeatures": [
+        {
+          "feature": "transaction_count_30d",
+          "importance": 0.31,
+          "rank": 1
+        },
+        {
+          "feature": "avg_basket_value",
+          "importance": 0.24,
+          "rank": 2
+        },
+        {
+          "feature": "channel_engagement_score",
+          "importance": 0.18,
+          "rank": 3
+        }
+      ],
+      "consistencyCheck": "PASS — feature importance rank matches permutation importance rank for top 3 features",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 92,
+        "reasoning": "Medium-tier model requires only Layer 1 (global). Feature importance sufficient (SHAP not required). Last computed 20 days ago, next refresh in 70 days.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "xl_006",
+      "modelId": "MODEL-MKTG-SEG-007",
+      "modelName": "Customer Marketing Segmentation",
+      "tier": "medium",
+      "layer": "decision_context",
+      "layerIndex": 3,
+      "methods": [
+        "reason_codes",
+        "plain_language_summary"
+      ],
+      "lastComputedAt": "2026-08-14T10:32:00Z",
+      "nextRefreshAt": null,
+      "audience": "Marketing team, customer (on request under GDPR Art.22)",
+      "reasonCodeCount": 2,
+      "plainLanguageRequired": true,
+      "reasonCodeDictionaryVersion": "v1.4 (2026-03-10)",
+      "recentReasonCodes": [
+        {
+          "code": "RC-SEG-OFFER",
+          "feature": "transaction_count_30d",
+          "plainLanguage": "You received this offer based on your recent purchase frequency"
+        },
+        {
+          "code": "RC-SEG-CHANNEL",
+          "feature": "channel_engagement_score",
+          "plainLanguage": "You received this offer on this channel based on your engagement preferences"
+        }
+      ],
+      "consistencyCheck": "PASS — Layer 3 reason codes drawn from Layer 1 top-3 features",
+      "aiRecommendation": {
+        "action": "Continue on-demand decision-context explanations",
+        "confidence": 90,
+        "reasoning": "Medium-tier model must produce Layer 3 explanations on customer request. 12 requests in last 30 days. Reason Code Dictionary v1.4 in use.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    }
+  ],
+  "fairnessMetrics": [
+    {
+      "id": "fm_001",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "metric": "demographic_parity",
+      "metricIndex": 1,
+      "formula": "|P(Y_hat=1 | A=a) - P(Y_hat=1 | A=b)| < delta",
+      "threshold": "delta = 0.05 (Critical-tier)",
+      "applicableTier": [
+        "critical",
+        "high"
+      ],
+      "protectedClass": "sex (male vs female)",
+      "currentValue": 0.031,
+      "thresholdValue": 0.05,
+      "status": "pass",
+      "interventionTrigger": "none",
+      "lastComputedAt": "2026-07-31T22:32:00Z",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 95,
+        "reasoning": "Demographic parity delta 0.031 (sex) below 0.05 threshold. Approve rate male 28.4% vs female 25.3%. No intervention required.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "fm_002",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "metric": "equalized_odds",
+      "metricIndex": 2,
+      "formula": "|TPR_a - TPR_b| < delta_TPR AND |FPR_a - FPR_b| < delta_FPR",
+      "threshold": "delta_TPR = 0.05, delta_FPR = 0.05 (Critical-tier)",
+      "applicableTier": [
+        "critical",
+        "high"
+      ],
+      "protectedClass": "race (white vs Black)",
+      "currentTprDelta": 0.042,
+      "currentFprDelta": 0.038,
+      "thresholdValue": 0.05,
+      "status": "pass",
+      "interventionTrigger": "none",
+      "lastComputedAt": "2026-07-31T22:32:00Z",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 93,
+        "reasoning": "Equalized odds: TPR delta 0.042, FPR delta 0.038. Both below 0.05 threshold. Recommended primary metric for credit decisioning (per framework).",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "fm_003",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "metric": "predictive_parity",
+      "metricIndex": 3,
+      "formula": "|P(Y=1 | Y_hat=1, A=a) - P(Y=1 | Y_hat=1, A=b)| < delta",
+      "threshold": "delta = 0.05 (Critical-tier)",
+      "applicableTier": [
+        "critical",
+        "high"
+      ],
+      "protectedClass": "age (under 40 vs 40+)",
+      "currentValue": 0.062,
+      "thresholdValue": 0.05,
+      "status": "warn",
+      "interventionTrigger": "investigate",
+      "lastComputedAt": "2026-07-31T22:32:00Z",
+      "aiRecommendation": {
+        "action": "INVESTIGATE — predictive parity delta 0.062 above 0.05 threshold for age class",
+        "confidence": 84,
+        "reasoning": "PPV gap of 6.2pp between under-40 and 40+ applicants exceeds threshold. Root cause analysis due within 30 days. Note: Chouldechova impossibility — equalized odds passing while predictive parity failing indicates base rate difference across age groups.",
+        "reviewerAction": "approve_investigation"
+      }
+    },
+    {
+      "id": "fm_004",
+      "modelId": "MODEL-CREDIT-RETAIL-001",
+      "modelName": "Retail Mortgage Credit Decisioning",
+      "tier": "critical",
+      "metric": "individual_fairness",
+      "metricIndex": 4,
+      "formula": "Consistency Score = 1 - mean(|f(x_i) - f(x_j)| for k nearest neighbours)",
+      "threshold": "Consistency >= 0.90 (Critical-tier)",
+      "applicableTier": [
+        "critical"
+      ],
+      "protectedClass": "all (distance function excludes protected attributes)",
+      "currentValue": 0.923,
+      "thresholdValue": 0.9,
+      "status": "pass",
+      "interventionTrigger": "none",
+      "lastComputedAt": "2026-07-31T22:32:00Z",
+      "aiRecommendation": {
+        "action": "Continue routine monitoring",
+        "confidence": 91,
+        "reasoning": "Individual fairness Consistency Score 0.923 above 0.90 threshold. k=10 nearest neighbours using weighted Euclidean distance on income, DTI, credit history length, credit utilisation.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "fm_005",
+      "modelId": "MODEL-AML-TM-002",
+      "modelName": "Real-time AML Transaction Monitoring (auto-block)",
+      "tier": "critical",
+      "metric": "equalized_odds",
+      "metricIndex": 2,
+      "formula": "|TPR_a - TPR_b| < delta_TPR AND |FPR_a - FPR_b| < delta_FPR",
+      "threshold": "delta_TPR = 0.05, delta_FPR = 0.05 (Critical-tier)",
+      "applicableTier": [
+        "critical",
+        "high"
+      ],
+      "protectedClass": "national_origin (domestic vs cross-border)",
+      "currentTprDelta": 0.084,
+      "currentFprDelta": 0.156,
+      "thresholdValue": 0.05,
+      "status": "fail",
+      "interventionTrigger": "mandatory_remediation",
+      "lastComputedAt": "2026-08-07T22:32:00Z",
+      "aiRecommendation": {
+        "action": "MANDATORY REMEDIATION — FPR delta 0.156 exceeds 2x threshold (0.10) for national_origin",
+        "confidence": 86,
+        "reasoning": "FPR for cross-border transactions 15.6pp higher than domestic — indicates model over-flagging cross-border activity. Quarantine threshold (3x = 0.15) breached. Remediation due within 90 days. Interim mitigation: raise cross-border FPR threshold by 8% within 7 days.",
+        "reviewerAction": "approve_mandatory_remediation"
+      }
+    }
+  ],
+  "summary": {
+    "totalLifecycleRecords": 8,
+    "totalExplainabilityRecords": 6,
+    "totalFairnessRecords": 5,
+    "criticalModelsTracked": 3,
+    "modelsInPhase4Validation": 1,
+    "modelsWithFailingFairness": 1,
+    "modelsWithExplainabilityIssues": 1,
+    "phaseLabels": [
+      "problem_definition",
+      "data_acquisition",
+      "model_development",
+      "pre_deployment_validation",
+      "deployment",
+      "production_monitoring"
+    ],
+    "layerLabels": [
+      "global",
+      "local",
+      "decision_context"
+    ],
+    "metricLabels": [
+      "demographic_parity",
+      "equalized_odds",
+      "predictive_parity",
+      "individual_fairness"
+    ]
+  }
+}

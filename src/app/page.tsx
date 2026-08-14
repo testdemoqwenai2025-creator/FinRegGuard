@@ -25,6 +25,7 @@ import { QuantLabView } from '@/components/quant/QuantLabView'
 import { ClimateEsgView } from '@/components/quant/ClimateEsgView'
 import { CounterfactualView } from '@/components/quant/CounterfactualView'
 import { SystemicRiskView } from '@/components/quant/SystemicRiskView'
+import { EsgReportingView } from '@/components/quant/EsgReportingView'
 // ─── Intelligence & Automation Zone ───
 import { AgentConsoleView } from '@/components/intelligence/AgentConsoleView'
 import { RegulatoryWatchView } from '@/components/intelligence/RegulatoryWatchView'
@@ -33,6 +34,7 @@ import { KnowledgeGraphView } from '@/components/intelligence/KnowledgeGraphView
 import { FairnessTestingView } from '@/components/intelligence/FairnessTestingView'
 import { ReportingEvolutionView } from '@/components/intelligence/ReportingEvolutionView'
 import { AiModelRiskView } from '@/components/intelligence/AiModelRiskView'
+import { AiGovernanceView } from '@/components/intelligence/AiGovernanceView'
 // ─── Collaboration & Trust Zone ───
 import { CaseManagementView } from '@/components/collaboration/CaseManagementView'
 import { RegulatorPortalView } from '@/components/collaboration/RegulatorPortalView'
@@ -40,6 +42,7 @@ import { WhistleblowerView } from '@/components/collaboration/WhistleblowerView'
 import { ChainEvidenceView } from '@/components/collaboration/ChainEvidenceView'
 import { DigitalAssetsView } from '@/components/collaboration/DigitalAssetsView'
 import { RegtechFeedsView } from '@/components/collaboration/RegtechFeedsView'
+import { CryptoRegulationView } from '@/components/collaboration/CryptoRegulationView'
 // ─── Platform & Governance Zone ───
 import { PrivacyPetsView } from '@/components/platform/PrivacyPetsView'
 import { DeveloperHubView } from '@/components/platform/DeveloperHubView'
@@ -75,6 +78,7 @@ export type ViewKey =
   | 'climate-esg'
   | 'counterfactual'
   | 'systemic-risk'
+  | 'esg-reporting'
   // Intelligence & Automation Zone
   | 'agent-console'
   | 'regulatory-watch'
@@ -83,6 +87,7 @@ export type ViewKey =
   | 'fairness-testing'
   | 'reporting-evolution'
   | 'ai-model-risk'
+  | 'ai-governance'
   | 'tm-alert-taxonomy'
   // Collaboration & Trust Zone
   | 'case-management'
@@ -91,6 +96,7 @@ export type ViewKey =
   | 'chain-evidence'
   | 'digital-assets'
   | 'regtech-feeds'
+  | 'crypto-regulation'
   // Platform & Governance Zone
   | 'privacy-pets'
   | 'developer-hub'
@@ -137,6 +143,7 @@ export default function Home() {
       case 'climate-esg': return <ClimateEsgView />
       case 'counterfactual': return <CounterfactualView />
       case 'systemic-risk': return <SystemicRiskView />
+      case 'esg-reporting': return <EsgReportingView />
 
       // ─── Intelligence & Automation ───
       case 'agent-console': return <AgentConsoleView />
@@ -146,6 +153,7 @@ export default function Home() {
       case 'fairness-testing': return <FairnessTestingView />
       case 'reporting-evolution': return <ReportingEvolutionView />
       case 'ai-model-risk': return <AiModelRiskView />
+      case 'ai-governance': return <AiGovernanceView />
 
       // ─── Collaboration & Trust ───
       case 'case-management': return <CaseManagementView />
@@ -154,6 +162,7 @@ export default function Home() {
       case 'chain-evidence': return <ChainEvidenceView />
       case 'digital-assets': return <DigitalAssetsView />
       case 'regtech-feeds': return <RegtechFeedsView />
+      case 'crypto-regulation': return <CryptoRegulationView />
 
       // ─── Platform & Governance ───
       case 'privacy-pets': return <PrivacyPetsView />
@@ -191,9 +200,9 @@ export default function Home() {
                 Automator
               </span>
               <span className="hidden sm:inline text-muted-foreground/60">·</span>
-              <span className="hidden sm:inline">40 state machines · 6 zones · machine proposes, human confirms</span>
+              <span className="hidden sm:inline">43 state machines · 6 zones · machine proposes, human confirms</span>
               <span className="hidden sm:inline text-muted-foreground/60">·</span>
-              <span className="hidden sm:inline">42 views · Plugin Registry + Marketplace live</span>
+              <span className="hidden sm:inline">45 views · Plugin Registry + Marketplace live</span>
             </div>
             <div className="flex items-center gap-4">
               <span>v2.1.0 · build {new Date().getFullYear()}.08</span>

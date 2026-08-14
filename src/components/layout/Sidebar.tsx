@@ -40,6 +40,7 @@ import {
   Radar,
   ShieldCheck,
   Database,
+  Layers,
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -94,6 +95,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'climate-esg', label: 'Climate & ESG', icon: Leaf, description: 'PCAF / NGFS / Taxonomy' },
       { key: 'counterfactual', label: 'Counterfactual Simulator', icon: FlaskConical, description: 'What-if scenario engine' },
       { key: 'systemic-risk', label: 'Systemic Risk', icon: GitFork, description: 'Contagion & DebtRank' },
+      { key: 'esg-reporting', label: 'ESG Reporting', icon: Leaf, description: 'ISSB / ESRS / SEC + NGFS scenarios' },
     ],
   },
   {
@@ -107,6 +109,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'fairness-testing', label: 'Fairness Testing', icon: Scale, description: 'Algorithmic discrimination' },
       { key: 'reporting-evolution', label: 'Reporting Evolution', icon: TrendingUp, description: 'Paper to streaming (2010-2030)' },
       { key: 'ai-model-risk', label: 'AI/ML Model Risk Tiers', icon: BrainCircuit, description: 'SR 11-7 tiered governance' },
+      { key: 'ai-governance', label: 'AI/ML Governance', icon: Layers, description: 'Lifecycle + XAI + fairness matrix' },
     ],
   },
   {
@@ -119,6 +122,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'chain-evidence', label: 'Chain Evidence', icon: Link2, description: 'Blockchain-anchored audit' },
       { key: 'digital-assets', label: 'Digital Assets', icon: Wallet, description: 'Travel Rule & on-chain' },
       { key: 'regtech-feeds', label: 'RegTech Feeds', icon: Radio, description: 'FCA / MAS / ESMA APIs' },
+      { key: 'crypto-regulation', label: 'Crypto Regulation', icon: Landmark, description: 'MiCA + Travel Rule + DeFi' },
     ],
   },
   {
@@ -193,7 +197,7 @@ export function Sidebar({
             Coverage
           </div>
           <p className="mt-1 text-[11px] text-emerald-700/80 dark:text-emerald-400/70">
-            40 state machines · 8 jurisdictions · 16 data models
+            43 state machines · 8 jurisdictions · 16 data models
           </p>
         </div>
       </nav>

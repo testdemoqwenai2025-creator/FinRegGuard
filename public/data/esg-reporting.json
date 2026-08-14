@@ -1,0 +1,380 @@
+{
+  "frameworks": [
+    {
+      "id": "ef_001",
+      "framework": "issb_s1_s2",
+      "frameworkName": "ISSB IFRS S1/S2",
+      "jurisdiction": "Global (IFRS adopting jurisdictions)",
+      "materialityBasis": "financial",
+      "scope": "All entities required to apply IFRS Accounting Standards",
+      "scope3Required": true,
+      "scope3Deferral": "1 year",
+      "assuranceLevel": "none (jurisdiction-dependent)",
+      "effectiveDate": "Annual periods beginning on or after 1 Jan 2024",
+      "digitalTaxonomy": "IFRS Sustainability Disclosure Taxonomy (XBRL) — draft Feb 2024, final Q4 2024",
+      "scenarioAnalysisRequired": true,
+      "scenarioApproach": "Range of scenarios including 1.5C-aligned",
+      "regulator": "ISSB",
+      "applicableToInstitution": true,
+      "aiRecommendation": {
+        "action": "Continue ISSB-aligned disclosure",
+        "confidence": 94,
+        "reasoning": "ISSB S1/S2 effective for FY 2024. Scope 3 with 1-year deferral — first Scope 3 disclosure due FY 2025. Adopting XBRL taxonomy once finalised. Aligned with TCFD recommendations.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "ef_002",
+      "framework": "esrs",
+      "frameworkName": "ESRS (EU CSRD)",
+      "jurisdiction": "EU (large companies + non-EU companies with EUR 150M+ EU turnover)",
+      "materialityBasis": "double",
+      "scope": "Large EU companies (250+ employees, EUR 50M turnover) + listed SMEs + non-EU companies (CSRD wave 3, 2028)",
+      "scope3Required": true,
+      "scope3Deferral": "none (from year 1)",
+      "assuranceLevel": "limited (from 2028); reasonable (Commission decision, no earlier than 2028)",
+      "effectiveDate": "FY 2024 (NFRD companies); FY 2025 (other large EU); FY 2026 (listed SMEs); FY 2028 (non-EU wave 3)",
+      "digitalTaxonomy": "ESRS XBRL Taxonomy (EFRAG, Aug 2024) — mandatory from 2028",
+      "scenarioAnalysisRequired": true,
+      "scenarioApproach": "IEA scenarios including NZE, STEPS, AP",
+      "regulator": "EC (European Commission)",
+      "applicableToInstitution": true,
+      "aiRecommendation": {
+        "action": "ESRS is most demanding — use as long-form, extract ISSB+SEC via crosswalk",
+        "confidence": 91,
+        "reasoning": "Double materiality basis captures most info. No Scope 3 deferral. Limited assurance from 2028. Recommend preparing ESRS-compliant report as primary, with ISSB and SEC disclosures extracted via mapping crosswalk.",
+        "reviewerAction": "approve_esrs_primary_strategy"
+      }
+    },
+    {
+      "id": "ef_003",
+      "framework": "sec_climate",
+      "frameworkName": "SEC Climate Rule",
+      "jurisdiction": "US (SEC registrants — domestic + foreign private issuers)",
+      "materialityBasis": "financial",
+      "scope": "All SEC registrants (phased by filer status: LAF, AF, SRC, EGC)",
+      "scope3Required": true,
+      "scope3Deferral": "n/a — only required if entity has Scope 3 target (10% safe harbour for 3 years)",
+      "assuranceLevel": "limited (LAF+AF Scope 1+2 from 2029-2031); reasonable (from 2033)",
+      "effectiveDate": "FY 2024 (LAF — qualitative); FY 2025 (AF); FY 2026/2027 (SRC/EGC)",
+      "digitalTaxonomy": "inline XBRL for Scope 1+2 (from FY 2026) — no climate-specific taxonomy yet",
+      "scenarioAnalysisRequired": true,
+      "scenarioApproach": "Single most-likely scenario (reasonable likelihood threshold)",
+      "regulator": "SEC",
+      "applicableToInstitution": true,
+      "aiRecommendation": {
+        "action": "Continue SEC Climate Rule compliance — extract from ESRS long-form",
+        "confidence": 87,
+        "reasoning": "SEC Climate Rule in effect for LAF from FY 2024. Scope 1+2 with assurance from FY 2029. Scope 3 only if target set (we have not set Scope 3 target — not required). Single-scenario approach less demanding than ESRS/ISSB. Extract from ESRS report via crosswalk.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    }
+  ],
+  "climateScenarios": [
+    {
+      "id": "cs_001",
+      "scenario": "orderly_below_2C",
+      "scenarioName": "Orderly — Below 2C",
+      "temperatureOutcome2100": "1.7C above pre-industrial",
+      "transitionRiskLevel": "medium",
+      "physicalRiskLevel": "medium",
+      "policyStringency": "high but predictable",
+      "carbonPrice2030Usd": 130,
+      "carbonPrice2050Usd": 250,
+      "cumulativeGdpImpactPct": -4.0,
+      "ngfsReleaseVersion": "V4.2 (November 2023)",
+      "keyCharacteristics": "Early, gradual policy tightening; transition costs offset by avoided damages",
+      "supervisoryUse": "Used as 'policy ambition' benchmark by ECB and Bank of England",
+      "portfolioImpactUsd": -185000000,
+      "aiRecommendation": {
+        "action": "Continue using Orderly as ambition benchmark",
+        "confidence": 92,
+        "reasoning": "Orderly scenario projects USD 185M portfolio impact (mostly transition risk in fossil fuel exposures). Used as ECB climate stress test ambition benchmark. Recommend continuing as primary 'transition ambition' scenario.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "cs_002",
+      "scenario": "disorderly_delayed_transition",
+      "scenarioName": "Disorderly — Delayed Transition",
+      "temperatureOutcome2100": "1.8C above pre-industrial",
+      "transitionRiskLevel": "high",
+      "physicalRiskLevel": "medium",
+      "policyStringency": "low initially, then extremely high",
+      "carbonPrice2030Usd": 30,
+      "carbonPrice2040Usd": 300,
+      "carbonPrice2050Usd": 350,
+      "cumulativeGdpImpactPct": -8.0,
+      "ngfsReleaseVersion": "V4.2 (November 2023)",
+      "keyCharacteristics": "Late policy tightening; abrupt carbon price spike; stranded assets",
+      "supervisoryUse": "Adverse scenario for short-term stress testing (e.g. Bank of England CBES 2022)",
+      "portfolioImpactUsd": -412000000,
+      "aiRecommendation": {
+        "action": "Use as adverse scenario for short-term stress testing",
+        "confidence": 89,
+        "reasoning": "Disorderly scenario projects USD 412M portfolio impact, driven by stranded fossil fuel assets in oil & gas sector. Carbon price spike USD 30→300 between 2030-2040. Recommend as primary 'transition shock' adverse scenario.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "cs_003",
+      "scenario": "hot_house_current_policies",
+      "scenarioName": "Hot House World — Current Policies",
+      "temperatureOutcome2100": "3.0C above pre-industrial (regional variation 4-5C)",
+      "transitionRiskLevel": "low",
+      "physicalRiskLevel": "extreme",
+      "policyStringency": "low (current policies maintained)",
+      "carbonPrice2030Usd": 30,
+      "carbonPrice2050Usd": 30,
+      "cumulativeGdpImpactPct": -10.0,
+      "cumulativeGdpImpact2100Pct": -22.0,
+      "ngfsReleaseVersion": "V4.2 (November 2023)",
+      "keyCharacteristics": "No policy tightening; severe physical risk; sea level rise, extreme heat, crop failure",
+      "supervisoryUse": "Physical risk resilience testing; real estate & agriculture exposure stress",
+      "portfolioImpactUsd": -678000000,
+      "aiRecommendation": {
+        "action": "Use as physical risk adverse scenario — review real estate exposure",
+        "confidence": 86,
+        "reasoning": "Hot House scenario projects USD 678M portfolio impact, dominated by physical risk in real estate (Miami, Houston coastal properties) and agricultural loans (California Central Valley). 3C warming with regional 4-5C variation. Recommend immediate review of physical risk exposure concentrations.",
+        "reviewerAction": "approve_physical_risk_review"
+      }
+    },
+    {
+      "id": "cs_004",
+      "scenario": "net_zero_2050",
+      "scenarioName": "Net Zero 2050",
+      "temperatureOutcome2100": "1.5C above pre-industrial (Paris aspirational goal)",
+      "transitionRiskLevel": "high (short-term)",
+      "physicalRiskLevel": "medium (locked-in warming)",
+      "policyStringency": "extremely high",
+      "carbonPrice2030Usd": 130,
+      "carbonPrice2050Usd": 700,
+      "cumulativeGdpImpactPct": -2.0,
+      "ngfsReleaseVersion": "V4.2 (November 2023)",
+      "keyCharacteristics": "Rapid coordinated transition; 45% emissions cut by 2030 vs 2010; net zero by 2050",
+      "supervisoryUse": "Ambition benchmark for ISSB S2 1.5C-aligned scenario requirement",
+      "portfolioImpactUsd": -98000000,
+      "aiRecommendation": {
+        "action": "Continue using Net Zero as ISSB S2 1.5C-aligned scenario",
+        "confidence": 93,
+        "reasoning": "Net Zero 2050 projects USD 98M portfolio impact (lowest of any scenario). Satisfies ISSB S2 requirement for at least one 1.5C-aligned scenario. Carbon price reaches USD 700/tonne by 2050. Recommend as primary 'Paris-aligned ambition' scenario.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    }
+  ],
+  "socialMetrics": [
+    {
+      "id": "sm_001",
+      "category": "algorithmic_fairness",
+      "categoryIndex": 1,
+      "metricName": "Critical-tier models with bias testing completed",
+      "frameworkRefs": [
+        "ESRS S1 para 60",
+        "ISSB S1 (recommended)",
+        "FCA Consumer Duty"
+      ],
+      "quantitativeThreshold": "100% of Critical-tier models tested annually",
+      "currentValue": 4,
+      "targetValue": 4,
+      "disclosureRequired": true,
+      "dataSource": "Model Inventory",
+      "aiRecommendation": {
+        "action": "Continue annual bias testing cadence",
+        "confidence": 95,
+        "reasoning": "All 4 Critical-tier models completed bias testing in reporting period. DIR results: 0.87, 0.91, 0.84, 0.78. One model (MODEL-INS-UNDER-004) below 0.80 EEOC threshold — under mandatory remediation.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "sm_002",
+      "category": "algorithmic_fairness",
+      "categoryIndex": 1,
+      "metricName": "Models failing DIR threshold (EEOC 4/5ths rule, 0.80)",
+      "frameworkRefs": [
+        "ESRS S1 para 60",
+        "EEOC 4/5ths Rule"
+      ],
+      "quantitativeThreshold": "0 (zero models failing)",
+      "currentValue": 1,
+      "targetValue": 0,
+      "disclosureRequired": true,
+      "dataSource": "Fairness Testing Register",
+      "aiRecommendation": {
+        "action": "REMEDIATION — 1 model failing DIR threshold",
+        "confidence": 78,
+        "reasoning": "MODEL-INS-UNDER-004 (Insurance Underwriting) DIR 0.78 — below 0.80 threshold. Mandatory remediation due within 90 days. Interim mitigation: manual review of all underwriting decisions for protected class applicants.",
+        "reviewerAction": "approve_remediation"
+      }
+    },
+    {
+      "id": "sm_003",
+      "category": "customer_outcome_fairness",
+      "categoryIndex": 2,
+      "metricName": "Products subject to Consumer Duty outcome monitoring",
+      "frameworkRefs": [
+        "ESRS S1 para 50-55",
+        "FCA Consumer Duty (in force 31 Jul 2023)"
+      ],
+      "quantitativeThreshold": "100% of retail products",
+      "currentValue": 47,
+      "targetValue": 47,
+      "disclosureRequired": true,
+      "dataSource": "Consumer Duty Monitoring Register",
+      "aiRecommendation": {
+        "action": "Continue Consumer Duty monitoring across 47 products",
+        "confidence": 93,
+        "reasoning": "All 47 retail products subject to FCA Consumer Duty Outcome monitoring. Fair value assessments completed for all 47 in reporting period. 3 product modifications made following outcome monitoring.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "sm_004",
+      "category": "customer_outcome_fairness",
+      "categoryIndex": 2,
+      "metricName": "Vulnerable customers identified (per FCA FG21/1)",
+      "frameworkRefs": [
+        "ESRS S1 para 55",
+        "FCA FG21/1"
+      ],
+      "quantitativeThreshold": "Disclosure of % of customer base",
+      "currentValue": 184723,
+      "totalCustomerBase": 2840000,
+      "currentPct": 6.5,
+      "disclosureRequired": true,
+      "dataSource": "Consumer Duty Monitoring Register",
+      "aiRecommendation": {
+        "action": "Continue vulnerable customer identification + enhanced support",
+        "confidence": 91,
+        "reasoning": "184,723 vulnerable customers identified (6.5% of customer base). Within FCA expected range (5-8%). Enhanced support arrangements in place: dedicated phone line, extended processing times, simplified communications.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "sm_005",
+      "category": "workforce_diversity",
+      "categoryIndex": 3,
+      "metricName": "Gender split — Board / ExCo / Senior Mgmt / Overall",
+      "frameworkRefs": [
+        "ESRS S1 para 19-25",
+        "UK Gender Pay Gap Regulations 2017"
+      ],
+      "quantitativeThreshold": "Disclosure of % at each seniority band",
+      "currentValue": {
+        "board": 44,
+        "exec_committee": 38,
+        "senior_management": 35,
+        "middle_management": 42,
+        "junior": 48,
+        "overall": 45
+      },
+      "disclosureRequired": true,
+      "dataSource": "HR Information System",
+      "aiRecommendation": {
+        "action": "Continue trajectory toward gender parity at ExCo level",
+        "confidence": 88,
+        "reasoning": "Board at 44% female (above 40% target). ExCo at 38% (below 40% target). Overall workforce 45% female. Gender pay gap 7.2% (median), down from 8.4% prior year.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "sm_006",
+      "category": "workforce_diversity",
+      "categoryIndex": 3,
+      "metricName": "Ethnic minority representation (UK + US workforce)",
+      "frameworkRefs": [
+        "ESRS S1 para 19-25",
+        "Parker Review (UK FTSE 350)"
+      ],
+      "quantitativeThreshold": "Disclosure of % at each seniority band",
+      "currentValue": {
+        "board": 22,
+        "exec_committee": 17,
+        "senior_management": 19,
+        "middle_management": 28,
+        "junior": 34,
+        "overall": 29
+      },
+      "disclosureRequired": true,
+      "dataSource": "HR Information System",
+      "aiRecommendation": {
+        "action": "Continue trajectory toward ExCo ethnic minority representation target",
+        "confidence": 84,
+        "reasoning": "Board at 22% ethnic minority (above Parker Review 20% target for FTSE 350). ExCo at 17% (below 20% target). Pay equity audit completed; 12 pay adjustments made.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "sm_007",
+      "category": "community_investment",
+      "categoryIndex": 4,
+      "metricName": "Total community investment spend",
+      "frameworkRefs": [
+        "ESRS S1 para 70-75"
+      ],
+      "quantitativeThreshold": "Disclosure of total spend + breakdown",
+      "currentValue": 18500000,
+      "currentBreakdown": {
+        "philanthropy": 4500000,
+        "financial_inclusion": 7200000,
+        "infrastructure": 3800000,
+        "education": 2000000,
+        "environment": 1000000
+      },
+      "disclosureRequired": true,
+      "dataSource": "Community Investment Register",
+      "aiRecommendation": {
+        "action": "Continue community investment at current trajectory",
+        "confidence": 90,
+        "reasoning": "USD 18.5M total community investment in reporting period. Financial inclusion is largest category (USD 7.2M) — supports 14 basic bank account products and 8 microfinance partnerships. 1,247 bank branches in low-income/underserved areas.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "sm_008",
+      "category": "community_investment",
+      "categoryIndex": 4,
+      "metricName": "Bank branches in low-income / underserved areas",
+      "frameworkRefs": [
+        "ESRS S1 para 70-75",
+        "US Community Reinvestment Act"
+      ],
+      "quantitativeThreshold": "Disclosure of count + year-on-year change",
+      "currentValue": 1247,
+      "priorYearValue": 1258,
+      "yearOnYearChange": -11,
+      "disclosureRequired": true,
+      "dataSource": "Community Investment Register",
+      "aiRecommendation": {
+        "action": "INVESTIGATE — branch closures in underserved areas exceeding replacement rate",
+        "confidence": 76,
+        "reasoning": "11 net branch closures in low-income/underserved areas year-on-year. Replacement rate via digital banking services at 78% (below 90% target). 'Banking desert' risk identified in 3 rural census tracts. Recommend review of branch closure methodology.",
+        "reviewerAction": "approve_branch_review"
+      }
+    }
+  ],
+  "summary": {
+    "totalFrameworks": 3,
+    "totalScenarios": 4,
+    "totalSocialMetrics": 8,
+    "frameworksApplicable": 3,
+    "scenariosWithPhysicalRisk": 1,
+    "socialMetricsRequiringRemediation": 2,
+    "frameworkLabels": [
+      "issb_s1_s2",
+      "esrs",
+      "sec_climate"
+    ],
+    "scenarioLabels": [
+      "orderly_below_2C",
+      "disorderly_delayed_transition",
+      "hot_house_current_policies",
+      "net_zero_2050"
+    ],
+    "socialCategoryLabels": [
+      "algorithmic_fairness",
+      "customer_outcome_fairness",
+      "workforce_diversity",
+      "community_investment"
+    ]
+  }
+}
