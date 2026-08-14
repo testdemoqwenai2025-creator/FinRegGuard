@@ -1,0 +1,101 @@
+{
+  "comparisons": [
+    {
+      "id": "har_9f66c17d5ec3415092af25",
+      "topic": "Derivatives Reporting",
+      "jurisdictions": "US (CFTC Part 45), EU (EMIR RTS), UK (EMIR Refit), SG (MAS SFA)",
+      "differences": "UTI format, collateral fields, reporting T+1 vs T",
+      "harmonizationPath": "Adopt most stringent (EU) baseline; document local variations in Rule Mapping v3",
+      "impactScore": 68,
+      "affectedPolicies": 7,
+      "createdAt": "2026-08-02T09:41:12.754465+00:00",
+      "aiRecommendation": {
+        "action": "Apply EU-baseline harmonization (auto-draft policy delta)",
+        "confidence": 82,
+        "reasoning": "EU is most stringent on Derivatives Reporting. Adopting EU baseline closes 87% of jurisdictional gaps in one pass.",
+        "reviewerAction": "approve_harmonize_eu_baseline"
+      }
+    },
+    {
+      "id": "har_7981bc1497de4a2bb01cc4",
+      "topic": "Climate Disclosure",
+      "jurisdictions": "US (SEC), EU (CSRD), UK (TCFD-aligned), JP (SSBJ)",
+      "differences": "Scope 3 mandatory in EU/UK, voluntary in US; assurance differing levels",
+      "harmonizationPath": "Adopt most stringent (EU) baseline; document local variations in Rule Mapping v3",
+      "impactScore": 68,
+      "affectedPolicies": 8,
+      "createdAt": "2026-08-09T17:22:49.754465+00:00",
+      "aiRecommendation": {
+        "action": "Apply EU-baseline harmonization (auto-draft policy delta)",
+        "confidence": 89,
+        "reasoning": "EU is most stringent on Climate Disclosure. Adopting EU baseline closes 87% of jurisdictional gaps in one pass.",
+        "reviewerAction": "approve_harmonize_eu_baseline"
+      }
+    },
+    {
+      "id": "har_dbbc96721dd34a42975c62",
+      "topic": "AI Governance",
+      "jurisdictions": "US (state laws), EU (AI Act), UK (principles-based), SG (MAS Guidelines)",
+      "differences": "EU bans social scoring; US state-by-state; risk classification differs",
+      "harmonizationPath": "Adopt most stringent (EU) baseline; document local variations in Rule Mapping v3",
+      "impactScore": 79,
+      "affectedPolicies": 2,
+      "createdAt": "2026-08-03T04:12:04.754465+00:00",
+      "aiRecommendation": {
+        "action": "Apply EU-baseline harmonization (auto-draft policy delta)",
+        "confidence": 85,
+        "reasoning": "EU is most stringent on AI Governance. Adopting EU baseline closes 87% of jurisdictional gaps in one pass.",
+        "reviewerAction": "approve_harmonize_eu_baseline"
+      }
+    },
+    {
+      "id": "har_68a2585dac374cfb9d0012",
+      "topic": "Crypto Travel Rule",
+      "jurisdictions": "US (FinCEN), EU (TFR), UK (MLR 2017), SG (MAS PSN02)",
+      "differences": "Threshold: $3k US, \u20ac1k EU, \u00a31k UK, SGD 1.5k SG",
+      "harmonizationPath": "Adopt most stringent (EU) baseline; document local variations in Rule Mapping v3",
+      "impactScore": 87,
+      "affectedPolicies": 3,
+      "createdAt": "2026-08-06T05:33:47.754465+00:00",
+      "aiRecommendation": {
+        "action": "Apply EU-baseline harmonization (auto-draft policy delta)",
+        "confidence": 84,
+        "reasoning": "EU is most stringent on Crypto Travel Rule. Adopting EU baseline closes 87% of jurisdictional gaps in one pass.",
+        "reviewerAction": "approve_harmonize_eu_baseline"
+      }
+    },
+    {
+      "id": "har_33165e6a71ea438abf7252",
+      "topic": "Operational Resilience",
+      "jurisdictions": "US (SR 20-24), EU (DORA), UK (PS21/3), SG (MAS TRM)",
+      "differences": "DORA covers ICT third-party; US covers BCP; UK covers impact tolerance",
+      "harmonizationPath": "Adopt most stringent (EU) baseline; document local variations in Rule Mapping v3",
+      "impactScore": 92,
+      "affectedPolicies": 4,
+      "createdAt": "2026-08-11T07:02:16.754465+00:00",
+      "aiRecommendation": {
+        "action": "Apply EU-baseline harmonization (auto-draft policy delta)",
+        "confidence": 92,
+        "reasoning": "EU is most stringent on Operational Resilience. Adopting EU baseline closes 87% of jurisdictional gaps in one pass.",
+        "reviewerAction": "approve_harmonize_eu_baseline"
+      }
+    },
+    {
+      "id": "har_1787e866a3064ecb947f30",
+      "topic": "Beneficial Ownership",
+      "jurisdictions": "US (CTA), EU (AMLD6), UK (PSC Register), SG (ACRA)",
+      "differences": "Threshold: 25% US/EU, 25% UK, 25% SG; access rules vary",
+      "harmonizationPath": "Adopt most stringent (EU) baseline; document local variations in Rule Mapping v3",
+      "impactScore": 76,
+      "affectedPolicies": 4,
+      "createdAt": "2026-08-11T13:23:56.754465+00:00",
+      "aiRecommendation": {
+        "action": "Apply EU-baseline harmonization (auto-draft policy delta)",
+        "confidence": 87,
+        "reasoning": "EU is most stringent on Beneficial Ownership. Adopting EU baseline closes 87% of jurisdictional gaps in one pass.",
+        "reviewerAction": "approve_harmonize_eu_baseline"
+      }
+    }
+  ],
+  "total": 6
+}

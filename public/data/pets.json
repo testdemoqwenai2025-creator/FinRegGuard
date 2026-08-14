@@ -1,0 +1,110 @@
+{
+  "configs": [
+    {
+      "id": "pet_e3be719fb7cb411da945e4",
+      "dataset": "Customer PII",
+      "technique": "secure_enclave",
+      "enabled": false,
+      "parameters": "{\"epsilon\": 1.94, \"delta\": 1e-05, \"key_rotation_days\": 90, \"enclave\": \"aws_nitro\"}",
+      "approvedBy": null,
+      "updatedAt": "2026-07-17T14:53:32.754465+00:00",
+      "aiRecommendation": {
+        "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
+        "confidence": 85,
+        "reasoning": "Dataset contains PII. Differential privacy with \u03b5=1.2 preserves 96% analytical utility while bounding re-identification risk.",
+        "reviewerAction": "approve_enable_dp"
+      }
+    },
+    {
+      "id": "pet_cc60693b64b04e61b9a6ef",
+      "dataset": "Transaction History",
+      "technique": "secure_enclave",
+      "enabled": false,
+      "parameters": "{\"epsilon\": 0.64, \"delta\": 1e-05, \"key_rotation_days\": 60, \"enclave\": \"aws_nitro\"}",
+      "approvedBy": "dpo@regco.io",
+      "updatedAt": "2026-08-13T02:14:49.754465+00:00",
+      "aiRecommendation": {
+        "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
+        "confidence": 95,
+        "reasoning": "Dataset contains PII. Differential privacy with \u03b5=1.2 preserves 96% analytical utility while bounding re-identification risk.",
+        "reviewerAction": "approve_enable_dp"
+      }
+    },
+    {
+      "id": "pet_843281f4845447729aa0cf",
+      "dataset": "Health Records (PHI)",
+      "technique": "homomorphic_encryption",
+      "enabled": false,
+      "parameters": "{\"epsilon\": 1.21, \"delta\": 1e-05, \"key_rotation_days\": 90, \"enclave\": \"aws_nitro\"}",
+      "approvedBy": "dpo@regco.io",
+      "updatedAt": "2026-07-24T16:44:11.754465+00:00",
+      "aiRecommendation": {
+        "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
+        "confidence": 95,
+        "reasoning": "Dataset contains PII. Differential privacy with \u03b5=1.2 preserves 96% analytical utility while bounding re-identification risk.",
+        "reviewerAction": "approve_enable_dp"
+      }
+    },
+    {
+      "id": "pet_326f0602df524a009cd925",
+      "dataset": "Credit Scores",
+      "technique": "secure_enclave",
+      "enabled": true,
+      "parameters": "{\"epsilon\": 1.39, \"delta\": 1e-05, \"key_rotation_days\": 30, \"enclave\": \"sgx\"}",
+      "approvedBy": null,
+      "updatedAt": "2026-08-02T20:28:37.754465+00:00",
+      "aiRecommendation": {
+        "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
+        "confidence": 89,
+        "reasoning": "Dataset contains PII. Differential privacy with \u03b5=1.2 preserves 96% analytical utility while bounding re-identification risk.",
+        "reviewerAction": "approve_enable_dp"
+      }
+    },
+    {
+      "id": "pet_5b924f5dd76e475a9a70cf",
+      "dataset": "Biometric Voiceprints",
+      "technique": "federated_learning",
+      "enabled": false,
+      "parameters": "{\"epsilon\": 1.66, \"delta\": 1e-05, \"key_rotation_days\": 30, \"enclave\": \"aws_nitro\"}",
+      "approvedBy": "ciso@regco.io",
+      "updatedAt": "2026-07-20T12:19:50.754465+00:00",
+      "aiRecommendation": {
+        "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
+        "confidence": 83,
+        "reasoning": "Dataset contains PII. Differential privacy with \u03b5=1.2 preserves 96% analytical utility while bounding re-identification risk.",
+        "reviewerAction": "approve_enable_dp"
+      }
+    },
+    {
+      "id": "pet_abe6d60b006246328a8f2f",
+      "dataset": "Trading Communications",
+      "technique": "federated_learning",
+      "enabled": false,
+      "parameters": "{\"epsilon\": 1.68, \"delta\": 1e-05, \"key_rotation_days\": 60, \"enclave\": \"aws_nitro\"}",
+      "approvedBy": null,
+      "updatedAt": "2026-07-23T03:10:59.754465+00:00",
+      "aiRecommendation": {
+        "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
+        "confidence": 86,
+        "reasoning": "Dataset contains PII. Differential privacy with \u03b5=1.2 preserves 96% analytical utility while bounding re-identification risk.",
+        "reviewerAction": "approve_enable_dp"
+      }
+    },
+    {
+      "id": "pet_4686bd8343194ad58ab645",
+      "dataset": "Employee HR Data",
+      "technique": "secure_enclave",
+      "enabled": false,
+      "parameters": "{\"epsilon\": 2.51, \"delta\": 1e-05, \"key_rotation_days\": 30, \"enclave\": \"sgx\"}",
+      "approvedBy": null,
+      "updatedAt": "2026-07-22T17:26:10.754465+00:00",
+      "aiRecommendation": {
+        "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
+        "confidence": 88,
+        "reasoning": "Dataset contains PII. Differential privacy with \u03b5=1.2 preserves 96% analytical utility while bounding re-identification risk.",
+        "reviewerAction": "approve_enable_dp"
+      }
+    }
+  ],
+  "total": 7
+}

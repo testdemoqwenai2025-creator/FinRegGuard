@@ -1,0 +1,183 @@
+{
+  "metrics": [
+    {
+      "id": "clim_d8f6cb5cdb63482e8a48d0",
+      "sector": "Oil & Gas",
+      "scope1Emissions": 215873.0,
+      "scope2Emissions": 199022.0,
+      "scope3Emissions": 706761.0,
+      "financedEmissions": 53138.0,
+      "taxonomyAlignment": 23.2,
+      "physicalRiskScore": 57,
+      "transitionRiskScore": 66,
+      "reportingPeriod": "FY2025",
+      "pcafMethod": "PCAF Asset Class #1",
+      "aiRecommendation": {
+        "action": "Engage \u2014 set interim 2027 target",
+        "confidence": 80,
+        "reasoning": "Sector Oil & Gas financed emissions $0.1Mt exceeds portfolio weighted average by 40%.",
+        "reviewerAction": "approve_engagement"
+      }
+    },
+    {
+      "id": "clim_7276cbbedc3a491b9d3dc7",
+      "sector": "Utilities",
+      "scope1Emissions": 301708.0,
+      "scope2Emissions": 85510.0,
+      "scope3Emissions": 5304308.0,
+      "financedEmissions": 317433.0,
+      "taxonomyAlignment": 65.9,
+      "physicalRiskScore": 64,
+      "transitionRiskScore": 82,
+      "reportingPeriod": "FY2025",
+      "pcafMethod": "PCAF Asset Class #1",
+      "aiRecommendation": {
+        "action": "Engage \u2014 set interim 2027 target",
+        "confidence": 89,
+        "reasoning": "Sector Utilities financed emissions $0.3Mt exceeds portfolio weighted average by 59%.",
+        "reviewerAction": "approve_engagement"
+      }
+    },
+    {
+      "id": "clim_b480a828f92c494ea0ea9b",
+      "sector": "Real Estate",
+      "scope1Emissions": 490034.0,
+      "scope2Emissions": 189607.0,
+      "scope3Emissions": 7985297.0,
+      "financedEmissions": 444719.0,
+      "taxonomyAlignment": 14.3,
+      "physicalRiskScore": 71,
+      "transitionRiskScore": 71,
+      "reportingPeriod": "FY2025",
+      "pcafMethod": "PCAF Asset Class #5",
+      "aiRecommendation": {
+        "action": "Engage \u2014 set interim 2027 target",
+        "confidence": 83,
+        "reasoning": "Sector Real Estate financed emissions $0.4Mt exceeds portfolio weighted average by 80%.",
+        "reviewerAction": "approve_engagement"
+      }
+    },
+    {
+      "id": "clim_792a32fe96e94567bac8f6",
+      "sector": "Agriculture",
+      "scope1Emissions": 339366.0,
+      "scope2Emissions": 87915.0,
+      "scope3Emissions": 297568.0,
+      "financedEmissions": 38781.0,
+      "taxonomyAlignment": 18.6,
+      "physicalRiskScore": 50,
+      "transitionRiskScore": 71,
+      "reportingPeriod": "FY2025",
+      "pcafMethod": "PCAF Asset Class #3",
+      "aiRecommendation": {
+        "action": "Engage \u2014 set interim 2027 target",
+        "confidence": 90,
+        "reasoning": "Sector Agriculture financed emissions $0.0Mt exceeds portfolio weighted average by 80%.",
+        "reviewerAction": "approve_engagement"
+      }
+    },
+    {
+      "id": "clim_c8a61a8261f141a88547c0",
+      "sector": "Transport",
+      "scope1Emissions": 339852.0,
+      "scope2Emissions": 189790.0,
+      "scope3Emissions": 4559595.0,
+      "financedEmissions": 449860.0,
+      "taxonomyAlignment": 39.2,
+      "physicalRiskScore": 29,
+      "transitionRiskScore": 42,
+      "reportingPeriod": "FY2025",
+      "pcafMethod": "PCAF Asset Class #5",
+      "aiRecommendation": {
+        "action": "Engage \u2014 set interim 2027 target",
+        "confidence": 89,
+        "reasoning": "Sector Transport financed emissions $0.4Mt exceeds portfolio weighted average by 45%.",
+        "reviewerAction": "approve_engagement"
+      }
+    },
+    {
+      "id": "clim_a13dd397d3da4431a05871",
+      "sector": "Manufacturing",
+      "scope1Emissions": 480300.0,
+      "scope2Emissions": 5670.0,
+      "scope3Emissions": 2549364.0,
+      "financedEmissions": 143350.0,
+      "taxonomyAlignment": 23.6,
+      "physicalRiskScore": 69,
+      "transitionRiskScore": 40,
+      "reportingPeriod": "FY2025",
+      "pcafMethod": "PCAF Asset Class #3",
+      "aiRecommendation": {
+        "action": "Engage \u2014 set interim 2027 target",
+        "confidence": 86,
+        "reasoning": "Sector Manufacturing financed emissions $0.1Mt exceeds portfolio weighted average by 65%.",
+        "reviewerAction": "approve_engagement"
+      }
+    },
+    {
+      "id": "clim_7d88a36ab27847a78d8914",
+      "sector": "Tech",
+      "scope1Emissions": 143503.0,
+      "scope2Emissions": 183338.0,
+      "scope3Emissions": 3597871.0,
+      "financedEmissions": 537981.0,
+      "taxonomyAlignment": 49.3,
+      "physicalRiskScore": 35,
+      "transitionRiskScore": 42,
+      "reportingPeriod": "FY2025",
+      "pcafMethod": "PCAF Asset Class #1",
+      "aiRecommendation": {
+        "action": "Set 2030 financed-emissions target -45%",
+        "confidence": 92,
+        "reasoning": "Sector Tech financed emissions $0.5Mt exceeds portfolio weighted average by 31%.",
+        "reviewerAction": "approve_target_setting"
+      }
+    },
+    {
+      "id": "clim_bffb4143b2d642ecb3abde",
+      "sector": "Financial Services",
+      "scope1Emissions": 44808.0,
+      "scope2Emissions": 136545.0,
+      "scope3Emissions": 7194498.0,
+      "financedEmissions": 560196.0,
+      "taxonomyAlignment": 79.0,
+      "physicalRiskScore": 60,
+      "transitionRiskScore": 69,
+      "reportingPeriod": "FY2025",
+      "pcafMethod": "PCAF Asset Class #6",
+      "aiRecommendation": {
+        "action": "Set 2030 financed-emissions target -45%",
+        "confidence": 80,
+        "reasoning": "Sector Financial Services financed emissions $0.6Mt exceeds portfolio weighted average by 55%.",
+        "reviewerAction": "approve_target_setting"
+      }
+    }
+  ],
+  "ngfsScenarios": [
+    {
+      "name": "Net Zero 2050",
+      "warming": "1.5\u00b0C",
+      "policy": "Orderly",
+      "cumLoss": 42.3
+    },
+    {
+      "name": "Below 2\u00b0C",
+      "warming": "1.7\u00b0C",
+      "policy": "Orderly",
+      "cumLoss": 68.1
+    },
+    {
+      "name": "Delayed Transition",
+      "warming": "1.8\u00b0C",
+      "policy": "Disorderly",
+      "cumLoss": 124.6
+    },
+    {
+      "name": "Current Policies",
+      "warming": "3.0\u00b0C+",
+      "policy": "Hot House",
+      "cumLoss": 287.4
+    }
+  ],
+  "total": 8
+}

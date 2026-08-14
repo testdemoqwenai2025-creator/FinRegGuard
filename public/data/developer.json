@@ -1,0 +1,151 @@
+{
+  "keys": [
+    {
+      "id": "key_553f41c049254842b8ded2",
+      "name": "Production \u2014 Risk Engine",
+      "keyPrefix": "rg_live_de64dc10",
+      "scopes": "write:cases,read:risk",
+      "rateLimit": 5000,
+      "status": "active",
+      "lastUsedAt": "2026-08-14T10:13:43.754465+00:00",
+      "createdAt": "2026-02-18T00:59:03.754465+00:00",
+      "expiresAt": "2025-09-01",
+      "calls30d": 984825,
+      "aiRecommendation": {
+        "action": "Rotate key (90-day policy)",
+        "confidence": 88,
+        "reasoning": "Key is 87 days old. Rotation policy mandates 90-day cycle.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "key_d913d6e7d07b480ab470f7",
+      "name": "Sandbox \u2014 QA Team",
+      "keyPrefix": "rg_test_2b02262c",
+      "scopes": "write:cases,read:risk",
+      "rateLimit": 500,
+      "status": "active",
+      "lastUsedAt": "2026-08-13T15:10:36.754465+00:00",
+      "createdAt": "2025-12-04T19:33:45.754465+00:00",
+      "expiresAt": "2025-08-15",
+      "calls30d": 3591845,
+      "aiRecommendation": {
+        "action": "OK \u2014 no action",
+        "confidence": 87,
+        "reasoning": "Key is 87 days old. Rotation policy mandates 90-day cycle.",
+        "reviewerAction": "approve_rotate"
+      }
+    },
+    {
+      "id": "key_bd882a2e95f14306aef990",
+      "name": "Regulatory Watch Webhook",
+      "keyPrefix": "rg_wh_654b13ae",
+      "scopes": "read:*,write:audit",
+      "rateLimit": 1000,
+      "status": "active",
+      "lastUsedAt": "2026-08-14T11:14:04.754465+00:00",
+      "createdAt": "2025-12-29T03:56:04.754465+00:00",
+      "expiresAt": "2025-09-10",
+      "calls30d": 2942973,
+      "aiRecommendation": {
+        "action": "Rotate key (90-day policy)",
+        "confidence": 94,
+        "reasoning": "Key is 87 days old. Rotation policy mandates 90-day cycle.",
+        "reviewerAction": "approve_rotate"
+      }
+    },
+    {
+      "id": "key_0c9c4ed555494d03a61a90",
+      "name": "BI Dashboard \u2014 Read-only",
+      "keyPrefix": "rg_ro_144fbd66",
+      "scopes": "write:cases,read:risk",
+      "rateLimit": 2000,
+      "status": "active",
+      "lastUsedAt": "2026-08-14T02:44:28.754465+00:00",
+      "createdAt": "2026-04-17T04:37:52.754465+00:00",
+      "expiresAt": "2025-07-22",
+      "calls30d": 2242756,
+      "aiRecommendation": {
+        "action": "Rotate key (90-day policy)",
+        "confidence": 93,
+        "reasoning": "Key is 87 days old. Rotation policy mandates 90-day cycle.",
+        "reviewerAction": "approve_rotate"
+      }
+    },
+    {
+      "id": "key_df8ad894f04045ec8ee337",
+      "name": "Partner \u2014 Regulator API",
+      "keyPrefix": "rg_ext_8d49b212",
+      "scopes": "read:regulations,read:policies",
+      "rateLimit": 500,
+      "status": "active",
+      "lastUsedAt": "2026-08-14T08:27:33.754465+00:00",
+      "createdAt": "2025-10-20T06:01:42.754465+00:00",
+      "expiresAt": "2025-10-01",
+      "calls30d": 3452839,
+      "aiRecommendation": {
+        "action": "Rotate key (90-day policy)",
+        "confidence": 89,
+        "reasoning": "Key is 87 days old. Rotation policy mandates 90-day cycle.",
+        "reviewerAction": "approve_rotate"
+      }
+    },
+    {
+      "id": "key_449dff4047d34e39bbf136",
+      "name": "Legacy Mobile App",
+      "keyPrefix": "rg_mob_79290975",
+      "scopes": "read:*,write:audit",
+      "rateLimit": 100,
+      "status": "revoked",
+      "lastUsedAt": null,
+      "createdAt": "2025-11-08T03:38:36.754465+00:00",
+      "expiresAt": "2025-06-30",
+      "calls30d": 0,
+      "aiRecommendation": {
+        "action": "OK \u2014 no action",
+        "confidence": 87,
+        "reasoning": "Key is 87 days old. Rotation policy mandates 90-day cycle.",
+        "reviewerAction": "acknowledge"
+      }
+    }
+  ],
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/v1/regulations",
+      "auth": "API Key",
+      "rateLimit": 100
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/audit/anchor",
+      "auth": "API Key + mTLS",
+      "rateLimit": 10
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/cases/{id}",
+      "auth": "OAuth2",
+      "rateLimit": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/whistleblower",
+      "auth": "Public (encrypted)",
+      "rateLimit": 5
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/sanctions/screen",
+      "auth": "API Key",
+      "rateLimit": 500
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/agents/run",
+      "auth": "API Key + RBAC",
+      "rateLimit": 20
+    }
+  ],
+  "total": 6
+}

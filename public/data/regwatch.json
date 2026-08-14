@@ -1,0 +1,260 @@
+{
+  "changes": [
+    {
+      "id": "rw_1c1b33b307384823b57fc0",
+      "source": "Federal Register",
+      "title": "SEC Climate Disclosure Rule",
+      "jurisdiction": "US",
+      "publishedAt": "2026-07-30T07:49:54.754465+00:00",
+      "impactScore": 87,
+      "affectedPolicies": 6,
+      "status": "new",
+      "summary": "Effective Q1 2026 \u2014 Scope 1, 2, 3 disclosure for public companies",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 93,
+        "reasoning": "Impact score 87/100. Affects 5 business units. Identified 3 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    },
+    {
+      "id": "rw_18b472db153643bdb9f04a",
+      "source": "ESMA",
+      "title": "MiFID III \u2014 Retail Investor Protection",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-08-13T17:30:53.754465+00:00",
+      "impactScore": 92,
+      "affectedPolicies": 4,
+      "status": "applied",
+      "summary": "Ban on inducements, value-for-money assessments, more disclosures",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 93,
+        "reasoning": "Impact score 92/100. Affects 11 business units. Identified 7 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    },
+    {
+      "id": "rw_41a4b47c9ffe4d56b5fea8",
+      "source": "FCA",
+      "title": "Consumer Duty \u2014 Implementation Review",
+      "jurisdiction": "UK",
+      "publishedAt": "2026-07-31T04:29:18.754465+00:00",
+      "impactScore": 78,
+      "affectedPolicies": 2,
+      "status": "new",
+      "summary": "FCA finds 23% of firms still not meeting outcomes monitoring requirements",
+      "aiRecommendation": {
+        "action": "Queue for weekly review",
+        "confidence": 85,
+        "reasoning": "Impact score 78/100. Affects 5 business units. Identified 7 policy clauses to update.",
+        "reviewerAction": "approve_queue"
+      }
+    },
+    {
+      "id": "rw_8dfe9ca6d2cd43d4b4d7e1",
+      "source": "MAS",
+      "title": "MAS Guidelines on AI Risk Management",
+      "jurisdiction": "SG",
+      "publishedAt": "2026-07-17T20:33:34.754465+00:00",
+      "impactScore": 81,
+      "affectedPolicies": 13,
+      "status": "new",
+      "summary": "Updated model governance for banks using AI in credit decisions",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 90,
+        "reasoning": "Impact score 81/100. Affects 10 business units. Identified 6 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    },
+    {
+      "id": "rw_f7582135a93147dc9088ca",
+      "source": "FSB",
+      "title": "FSB G20 Roadmap on Cross-Border Payments",
+      "jurisdiction": "Global",
+      "publishedAt": "2026-08-02T00:36:18.754465+00:00",
+      "impactScore": 65,
+      "affectedPolicies": 12,
+      "status": "drafting",
+      "summary": "Phase 3 \u2014 PXN access, LVPS alignment, supervisory college",
+      "aiRecommendation": {
+        "action": "Queue for weekly review",
+        "confidence": 95,
+        "reasoning": "Impact score 65/100. Affects 9 business units. Identified 8 policy clauses to update.",
+        "reviewerAction": "approve_queue"
+      }
+    },
+    {
+      "id": "rw_c95cb6998917412b99d973",
+      "source": "Basel Committee",
+      "title": "Basel III Final \u2014 Output Floor",
+      "jurisdiction": "Global",
+      "publishedAt": "2026-08-06T08:24:21.754465+00:00",
+      "impactScore": 94,
+      "affectedPolicies": 11,
+      "status": "triaged",
+      "summary": "72.5% output floor effective Jan 2028 \u2014 capital +8% for large EU banks",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 80,
+        "reasoning": "Impact score 94/100. Affects 4 business units. Identified 8 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    },
+    {
+      "id": "rw_58f140fe9e16448481bff6",
+      "source": "EBA",
+      "title": "EBA Guidelines on ML/TF Risk Factors",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-08-05T13:58:52.754465+00:00",
+      "impactScore": 76,
+      "affectedPolicies": 14,
+      "status": "applied",
+      "summary": "Updated sectoral guidance for crypto-asset service providers",
+      "aiRecommendation": {
+        "action": "Queue for weekly review",
+        "confidence": 95,
+        "reasoning": "Impact score 76/100. Affects 2 business units. Identified 1 policy clauses to update.",
+        "reviewerAction": "approve_queue"
+      }
+    },
+    {
+      "id": "rw_294d3803dc1344539cf4a3",
+      "source": "IOSCO",
+      "title": "IOSCO \u2014 AI in Market Surveillance",
+      "jurisdiction": "Global",
+      "publishedAt": "2026-08-10T21:48:40.754465+00:00",
+      "impactScore": 71,
+      "affectedPolicies": 13,
+      "status": "dismissed",
+      "summary": "New standards for AI-driven market-abuse detection",
+      "aiRecommendation": {
+        "action": "Queue for weekly review",
+        "confidence": 76,
+        "reasoning": "Impact score 71/100. Affects 2 business units. Identified 7 policy clauses to update.",
+        "reviewerAction": "approve_queue"
+      }
+    },
+    {
+      "id": "rw_7028313210d7471e8cc82e",
+      "source": "FinCEN",
+      "title": "FinCEN \u2014 Beneficial Ownership Access Rule",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-07T20:13:23.754465+00:00",
+      "impactScore": 88,
+      "affectedPolicies": 13,
+      "status": "dismissed",
+      "summary": "Beneficial ownership registry access for law enforcement",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 82,
+        "reasoning": "Impact score 88/100. Affects 3 business units. Identified 3 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    },
+    {
+      "id": "rw_97b841d3938146b6b35f46",
+      "source": "OFAC",
+      "title": "OFAC \u2014 Secondary Sanctions on Russia",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T01:45:42.754465+00:00",
+      "impactScore": 95,
+      "affectedPolicies": 3,
+      "status": "applied",
+      "summary": "Secondary sanctions on 3rd-country financial institutions supporting Russia",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 89,
+        "reasoning": "Impact score 95/100. Affects 7 business units. Identified 1 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    },
+    {
+      "id": "rw_7ea136646edb4fa3aa9491",
+      "source": "ESMA",
+      "title": "EU AI Act \u2014 Implementing Acts",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-07-15T14:06:55.754465+00:00",
+      "impactScore": 90,
+      "affectedPolicies": 14,
+      "status": "drafting",
+      "summary": "Draft implementing acts on high-risk AI conformity assessments",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 96,
+        "reasoning": "Impact score 90/100. Affects 9 business units. Identified 1 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    },
+    {
+      "id": "rw_2b1ddbdfbb9b4af99ccc5a",
+      "source": "FCA",
+      "title": "FCA \u2014 Cryptoasset Registration",
+      "jurisdiction": "UK",
+      "publishedAt": "2026-08-14T04:42:30.754465+00:00",
+      "impactScore": 82,
+      "affectedPolicies": 8,
+      "status": "applied",
+      "summary": "Tightened ML/TF controls for crypto-asset firms",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 88,
+        "reasoning": "Impact score 82/100. Affects 2 business units. Identified 1 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    },
+    {
+      "id": "rw_a852bfba132d46b08470e9",
+      "source": "MAS",
+      "title": "MAS \u2014 Digital Asset Tokenization",
+      "jurisdiction": "SG",
+      "publishedAt": "2026-07-19T19:35:46.754465+00:00",
+      "impactScore": 74,
+      "affectedPolicies": 11,
+      "status": "triaged",
+      "summary": "Project Guardian \u2014 tokenized deposits regulatory framework",
+      "aiRecommendation": {
+        "action": "Queue for weekly review",
+        "confidence": 92,
+        "reasoning": "Impact score 74/100. Affects 6 business units. Identified 1 policy clauses to update.",
+        "reviewerAction": "approve_queue"
+      }
+    },
+    {
+      "id": "rw_58e52a09d81c4b39b187f3",
+      "source": "EBA",
+      "title": "EBA \u2014 Internal Governance",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-07-21T03:17:18.754465+00:00",
+      "impactScore": 68,
+      "affectedPolicies": 13,
+      "status": "dismissed",
+      "summary": "Updated guidelines on internal governance under DORA",
+      "aiRecommendation": {
+        "action": "Queue for weekly review",
+        "confidence": 96,
+        "reasoning": "Impact score 68/100. Affects 8 business units. Identified 3 policy clauses to update.",
+        "reviewerAction": "approve_queue"
+      }
+    },
+    {
+      "id": "rw_1c00da9aaad2491887e405",
+      "source": "Federal Register",
+      "title": "SEC \u2014 Predictive Data Analytics",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-09T07:43:45.754465+00:00",
+      "impactScore": 85,
+      "affectedPolicies": 14,
+      "status": "new",
+      "summary": "Conflict-of-interest rules for AI-driven investor interactions",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 91,
+        "reasoning": "Impact score 85/100. Affects 4 business units. Identified 4 policy clauses to update.",
+        "reviewerAction": "approve_auto_draft"
+      }
+    }
+  ],
+  "total": 15
+}

@@ -1,0 +1,293 @@
+{
+  "events": [
+    {
+      "id": "comms_4ac85553c8f04b12b0509a",
+      "channel": "voice",
+      "participantA": "k.larson@desk.io",
+      "participantB": "external.broker@broker.com",
+      "desk": "Credit",
+      "signalType": "insider_trading",
+      "riskScore": 68,
+      "transcript": "[Wed 14:32] Listen, the announcement is Tuesday after close. We should be positioned before then.",
+      "status": "escalated",
+      "timestamp": "2026-08-07T15:12:34.754465+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Compliance + capture recording",
+        "confidence": 81,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "comms_22dc5b5250394a5eb87251",
+      "channel": "voice",
+      "participantA": "j.chen@desk.io",
+      "participantB": "counterparty.pe@pe.com",
+      "desk": "FX",
+      "signalType": "market_abuse",
+      "riskScore": 96,
+      "transcript": "[Mon 14:32] Yeah let's both go in at 9:31 \u2014 they won't see us coming.",
+      "status": "closed",
+      "timestamp": "2026-08-01T09:31:39.754465+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Compliance + capture recording",
+        "confidence": 69,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "comms_e7778594c64741dfb6fcaa",
+      "channel": "email",
+      "participantA": "t.murphy@desk.io",
+      "participantB": "sales.contact@sellside.com",
+      "desk": "Macro",
+      "signalType": "collusion",
+      "riskScore": 85,
+      "transcript": "[Fri 14:32] What if we just\u2026 keep it at 4.25 for the next hour?",
+      "status": "open",
+      "timestamp": "2026-08-13T04:14:39.754465+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Compliance + capture recording",
+        "confidence": 84,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "comms_38884f0ade21441d952cae",
+      "channel": "refinitiv",
+      "participantA": "j.chen@desk.io",
+      "participantB": "external.broker@broker.com",
+      "desk": "Macro",
+      "signalType": "off_channel",
+      "riskScore": 45,
+      "transcript": "[Mon 14:32] Ping me on WhatsApp +44 7xxx \u2014 easier than this.",
+      "status": "open",
+      "timestamp": "2026-08-04T18:09:46.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 71,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_7a49649ebb7a41f1ad8359",
+      "channel": "mobile",
+      "participantA": "a.patel@desk.io",
+      "participantB": "external.broker@broker.com",
+      "desk": "Macro",
+      "signalType": "swearing",
+      "riskScore": 55,
+      "transcript": "[Mon 14:32] This f***ing market is impossible today.",
+      "status": "escalated",
+      "timestamp": "2026-07-31T20:06:38.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 84,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_fae460c0b255446b9289f9",
+      "channel": "teams",
+      "participantA": "j.chen@desk.io",
+      "participantB": "counterparty.pe@pe.com",
+      "desk": "FX",
+      "signalType": "front_running",
+      "riskScore": 60,
+      "transcript": "[Wed 14:32] Big block coming at 3pm. You know what to do.",
+      "status": "escalated",
+      "timestamp": "2026-08-11T09:08:13.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 89,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_ea9c7f0cbd6d4e9abc85bd",
+      "channel": "bloomberg_chat",
+      "participantA": "r.singh@desk.io",
+      "participantB": "external.broker@broker.com",
+      "desk": "Equities",
+      "signalType": "wash_trade",
+      "riskScore": 59,
+      "transcript": "[Thu 14:32] I'll take your side, you take mine. Net zero, looks real.",
+      "status": "closed",
+      "timestamp": "2026-07-31T21:24:41.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 71,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_ff0354ce146c4a369aa974",
+      "channel": "mobile",
+      "participantA": "j.chen@desk.io",
+      "participantB": "counterparty.pe@pe.com",
+      "desk": "FX",
+      "signalType": "spoofing",
+      "riskScore": 44,
+      "transcript": "[Wed 14:32] Put in 5 levels deep then pull before they fill.",
+      "status": "open",
+      "timestamp": "2026-08-08T15:04:23.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 79,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_ad26823cdb904fdf987dd9",
+      "channel": "voice",
+      "participantA": "k.larson@desk.io",
+      "participantB": "counterparty.pe@pe.com",
+      "desk": "Macro",
+      "signalType": "insider_trading",
+      "riskScore": 83,
+      "transcript": "[Fri 14:32] Listen, the announcement is Tuesday after close. We should be positioned before then.",
+      "status": "open",
+      "timestamp": "2026-08-01T02:17:59.754465+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Compliance + capture recording",
+        "confidence": 77,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "comms_8a767652d18044369cf6f2",
+      "channel": "voice",
+      "participantA": "r.singh@desk.io",
+      "participantB": "external.broker@broker.com",
+      "desk": "Equities",
+      "signalType": "market_abuse",
+      "riskScore": 71,
+      "transcript": "[Fri 14:32] Yeah let's both go in at 9:31 \u2014 they won't see us coming.",
+      "status": "open",
+      "timestamp": "2026-08-07T22:43:29.754465+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Compliance + capture recording",
+        "confidence": 77,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "comms_1883c191954148728470f0",
+      "channel": "slack",
+      "participantA": "r.singh@desk.io",
+      "participantB": "client.hedgefund@fund.com",
+      "desk": "Commodities",
+      "signalType": "collusion",
+      "riskScore": 78,
+      "transcript": "[Wed 14:32] What if we just\u2026 keep it at 4.25 for the next hour?",
+      "status": "closed",
+      "timestamp": "2026-08-02T16:47:19.754465+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Compliance + capture recording",
+        "confidence": 76,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "comms_6b15d5cf2fbd4b26a7e893",
+      "channel": "email",
+      "participantA": "m.dubois@desk.io",
+      "participantB": "sales.contact@sellside.com",
+      "desk": "Prime Brokerage",
+      "signalType": "off_channel",
+      "riskScore": 43,
+      "transcript": "[Wed 14:32] Ping me on WhatsApp +44 7xxx \u2014 easier than this.",
+      "status": "open",
+      "timestamp": "2026-08-14T11:18:49.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 78,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_90919531ccb6455d9a1610",
+      "channel": "slack",
+      "participantA": "r.singh@desk.io",
+      "participantB": "client.hedgefund@fund.com",
+      "desk": "Commodities",
+      "signalType": "swearing",
+      "riskScore": 48,
+      "transcript": "[Thu 14:32] This f***ing market is impossible today.",
+      "status": "closed",
+      "timestamp": "2026-08-04T04:14:00.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 85,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_6ce40b44f91f456e831c2e",
+      "channel": "email",
+      "participantA": "t.murphy@desk.io",
+      "participantB": "client.hedgefund@fund.com",
+      "desk": "Macro",
+      "signalType": "front_running",
+      "riskScore": 40,
+      "transcript": "[Mon 14:32] Big block coming at 3pm. You know what to do.",
+      "status": "review",
+      "timestamp": "2026-08-01T03:30:35.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 72,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_058d05a52b3b4c78a68e41",
+      "channel": "voice",
+      "participantA": "t.murphy@desk.io",
+      "participantB": "counterparty.pe@pe.com",
+      "desk": "Rates",
+      "signalType": "wash_trade",
+      "riskScore": 67,
+      "transcript": "[Mon 14:32] I'll take your side, you take mine. Net zero, looks real.",
+      "status": "review",
+      "timestamp": "2026-08-09T11:00:02.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 89,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    },
+    {
+      "id": "comms_84b6fcd491c74a4983e306",
+      "channel": "slack",
+      "participantA": "t.murphy@desk.io",
+      "participantB": "counterparty.pe@pe.com",
+      "desk": "Prime Brokerage",
+      "signalType": "spoofing",
+      "riskScore": 55,
+      "transcript": "[Fri 14:32] Put in 5 levels deep then pull before they fill.",
+      "status": "escalated",
+      "timestamp": "2026-08-10T19:20:43.754465+00:00",
+      "aiRecommendation": {
+        "action": "Request context from desk head",
+        "confidence": 75,
+        "reasoning": "NLP model v4.2 detected intent with 91% precision on this signal class.",
+        "reviewerAction": "approve_request_context"
+      }
+    }
+  ],
+  "total": 16
+}

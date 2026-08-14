@@ -1,0 +1,156 @@
+{
+  "nodes": [
+    {
+      "id": "r1",
+      "type": "regulation",
+      "label": "MiFID II Article 16(7)",
+      "jurisdiction": "EU"
+    },
+    {
+      "id": "r2",
+      "type": "regulation",
+      "label": "HIPAA Security Rule \u00a7164.312",
+      "jurisdiction": "US"
+    },
+    {
+      "id": "r3",
+      "type": "regulation",
+      "label": "MAS TRM Guidelines 6.4",
+      "jurisdiction": "SG"
+    },
+    {
+      "id": "r4",
+      "type": "regulation",
+      "label": "EU AI Act Art. 10 (Data Governance)",
+      "jurisdiction": "EU"
+    },
+    {
+      "id": "p1",
+      "type": "policy",
+      "label": "Best Execution Policy v2.4"
+    },
+    {
+      "id": "p2",
+      "type": "policy",
+      "label": "ePHI Encryption Policy v3.1"
+    },
+    {
+      "id": "p3",
+      "type": "policy",
+      "label": "AI Model Governance Policy v1.2"
+    },
+    {
+      "id": "p4",
+      "type": "policy",
+      "label": "Cloud Risk Policy v2.0"
+    },
+    {
+      "id": "c1",
+      "type": "control",
+      "label": "Order routing venue analysis"
+    },
+    {
+      "id": "c2",
+      "type": "control",
+      "label": "AES-256 encryption at rest"
+    },
+    {
+      "id": "c3",
+      "type": "control",
+      "label": "Model validation gate"
+    },
+    {
+      "id": "c4",
+      "type": "control",
+      "label": "Cloud provider SOC 2 review"
+    },
+    {
+      "id": "e1",
+      "type": "evidence",
+      "label": "Q3 venue analysis report"
+    },
+    {
+      "id": "e2",
+      "type": "evidence",
+      "label": "KMS rotation log Aug 2025"
+    },
+    {
+      "id": "e3",
+      "type": "evidence",
+      "label": "Model card v1.2 \u2014 credit scorer"
+    },
+    {
+      "id": "e4",
+      "type": "evidence",
+      "label": "AWS SOC 2 Type II 2024"
+    }
+  ],
+  "edges": [
+    {
+      "source": "r1",
+      "target": "p1",
+      "type": "implements"
+    },
+    {
+      "source": "r2",
+      "target": "p2",
+      "type": "implements"
+    },
+    {
+      "source": "r4",
+      "target": "p3",
+      "type": "implements"
+    },
+    {
+      "source": "r3",
+      "target": "p4",
+      "type": "implements"
+    },
+    {
+      "source": "p1",
+      "target": "c1",
+      "type": "enforced_by"
+    },
+    {
+      "source": "p2",
+      "target": "c2",
+      "type": "enforced_by"
+    },
+    {
+      "source": "p3",
+      "target": "c3",
+      "type": "enforced_by"
+    },
+    {
+      "source": "p4",
+      "target": "c4",
+      "type": "enforced_by"
+    },
+    {
+      "source": "c1",
+      "target": "e1",
+      "type": "evidenced_by"
+    },
+    {
+      "source": "c2",
+      "target": "e2",
+      "type": "evidenced_by"
+    },
+    {
+      "source": "c3",
+      "target": "e3",
+      "type": "evidenced_by"
+    },
+    {
+      "source": "c4",
+      "target": "e4",
+      "type": "evidenced_by"
+    }
+  ],
+  "aiRecommendation": {
+    "action": "Auto-link 5 new regulations to existing policies (90% confidence)",
+    "confidence": 90,
+    "reasoning": "Vector RAG retrieved 5 high-similarity regulation\u2192policy pairs not yet linked in the graph.",
+    "reviewerAction": "approve_auto_link"
+  }
+}

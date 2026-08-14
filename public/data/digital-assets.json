@@ -1,0 +1,290 @@
+{
+  "events": [
+    {
+      "id": "da_b3358c0bb8cf42688c9f31",
+      "asset": "BTC",
+      "wallet": "0x4a23...b3f1",
+      "counterparty": "0x91ab...c2d4",
+      "amount": 12.5,
+      "eventType": "travel_rule",
+      "riskScore": 27,
+      "status": "pending",
+      "chain": "BTC",
+      "timestamp": "2026-08-09T02:26:51.754465+00:00",
+      "narrative": "Travel Rule applies \u2014 originator/ beneficiary data required",
+      "aiRecommendation": {
+        "action": "Collect Travel Rule data",
+        "confidence": 95,
+        "reasoning": "Travel Rule applies \u2014 originator/ beneficiary data required",
+        "reviewerAction": "approve_collect_data"
+      }
+    },
+    {
+      "id": "da_7a18f0db146844f5bc8e10",
+      "asset": "ETH",
+      "wallet": "0x32af...11ed",
+      "counterparty": "Tornado Cash",
+      "amount": 450,
+      "eventType": "sanctions_screen",
+      "riskScore": 84,
+      "status": "blocked",
+      "chain": "ETH",
+      "timestamp": "2026-08-14T12:05:58.754465+00:00",
+      "narrative": "OFAC sanctioned address match",
+      "aiRecommendation": {
+        "action": "Block + file SAR + freeze wallet",
+        "confidence": 88,
+        "reasoning": "OFAC sanctioned address match",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "da_eafe68284c52438db1518a",
+      "asset": "ETH",
+      "wallet": "0x91ab...c2d4",
+      "counterparty": "Tornado Cash",
+      "amount": 230,
+      "eventType": "mixer_detection",
+      "riskScore": 61,
+      "status": "escalated",
+      "chain": "ETH",
+      "timestamp": "2026-08-11T04:19:19.754465+00:00",
+      "narrative": "Funds routed through OFAC-sanctioned mixer",
+      "aiRecommendation": {
+        "action": "Approve",
+        "confidence": 84,
+        "reasoning": "Funds routed through OFAC-sanctioned mixer",
+        "reviewerAction": "approve"
+      }
+    },
+    {
+      "id": "da_27620cc4867348c5a04cfd",
+      "asset": "USDT",
+      "wallet": "0xab12...cd34",
+      "counterparty": "SDN-listed entity",
+      "amount": 50000,
+      "eventType": "ofac_match",
+      "riskScore": 48,
+      "status": "blocked",
+      "chain": "ETH",
+      "timestamp": "2026-08-08T01:00:56.754465+00:00",
+      "narrative": "Direct match to SDN list",
+      "aiRecommendation": {
+        "action": "Block + file SAR + freeze wallet",
+        "confidence": 87,
+        "reasoning": "Direct match to SDN list",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "da_64ba4f5b489549cd8a7b18",
+      "asset": "USDC",
+      "wallet": "0xff42...98a1",
+      "counterparty": "0x77cd...01ef",
+      "amount": 2.3,
+      "eventType": "travel_rule",
+      "riskScore": 38,
+      "status": "auto_clear",
+      "chain": "ETH",
+      "timestamp": "2026-08-10T14:26:45.754465+00:00",
+      "narrative": "Below $3k threshold \u2014 Travel Rule not triggered",
+      "aiRecommendation": {
+        "action": "Approve",
+        "confidence": 88,
+        "reasoning": "Below $3k threshold \u2014 Travel Rule not triggered",
+        "reviewerAction": "approve"
+      }
+    },
+    {
+      "id": "da_778becfea39f488ba2ae63",
+      "asset": "BTC",
+      "wallet": "0x55de...22ab",
+      "counterparty": "Garantex",
+      "amount": 8.9,
+      "eventType": "sanctions_screen",
+      "riskScore": 93,
+      "status": "blocked",
+      "chain": "BTC",
+      "timestamp": "2026-08-13T04:12:14.754465+00:00",
+      "narrative": "OFAC-sanctioned exchange",
+      "aiRecommendation": {
+        "action": "Block + file SAR + freeze wallet",
+        "confidence": 90,
+        "reasoning": "OFAC-sanctioned exchange",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "da_d2e0594b777344ab95d724",
+      "asset": "BTC",
+      "wallet": "0x88aa...11bb",
+      "counterparty": "Blender.io",
+      "amount": 4.2,
+      "eventType": "mixer_detection",
+      "riskScore": 97,
+      "status": "escalated",
+      "chain": "BTC",
+      "timestamp": "2026-08-08T03:41:15.754465+00:00",
+      "narrative": "OFAC-sanctioned mixer",
+      "aiRecommendation": {
+        "action": "Approve",
+        "confidence": 92,
+        "reasoning": "OFAC-sanctioned mixer",
+        "reviewerAction": "approve"
+      }
+    },
+    {
+      "id": "da_f12e189c9501432ab87e1d",
+      "asset": "CBDC",
+      "wallet": "digital-pound:test-001",
+      "counterparty": "digital-pound:test-099",
+      "amount": 1500,
+      "eventType": "travel_rule",
+      "riskScore": 39,
+      "status": "compliant",
+      "chain": "CBDC",
+      "timestamp": "2026-08-09T19:03:32.754465+00:00",
+      "narrative": "Travel Rule applies \u2014 CBDC rails comply",
+      "aiRecommendation": {
+        "action": "Approve",
+        "confidence": 85,
+        "reasoning": "Travel Rule applies \u2014 CBDC rails comply",
+        "reviewerAction": "approve"
+      }
+    },
+    {
+      "id": "da_007215c8b67e40ffb03ee0",
+      "asset": "USDT",
+      "wallet": "0x22ab...34cd",
+      "counterparty": "OFAC 50% Rule entity",
+      "amount": 25000,
+      "eventType": "ofac_match",
+      "riskScore": 79,
+      "status": "blocked",
+      "chain": "ETH",
+      "timestamp": "2026-08-10T06:52:22.754465+00:00",
+      "narrative": "50% Rule \u2014 beneficial owner is SDN",
+      "aiRecommendation": {
+        "action": "Block + file SAR + freeze wallet",
+        "confidence": 96,
+        "reasoning": "50% Rule \u2014 beneficial owner is SDN",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "da_3d0cdec0ce724299a67521",
+      "asset": "ETH",
+      "wallet": "0x66dd...77ee",
+      "counterparty": "CoinJoin variant",
+      "amount": 12,
+      "eventType": "mixer_detection",
+      "riskScore": 57,
+      "status": "escalated",
+      "chain": "ETH",
+      "timestamp": "2026-08-10T22:45:31.754465+00:00",
+      "narrative": "Novel mixer pattern \u2014 ML model 0.87 confidence",
+      "aiRecommendation": {
+        "action": "Approve",
+        "confidence": 84,
+        "reasoning": "Novel mixer pattern \u2014 ML model 0.87 confidence",
+        "reviewerAction": "approve"
+      }
+    },
+    {
+      "id": "da_9ac8154133ef48e4b811cf",
+      "asset": "BTC",
+      "wallet": "0x99ff...00aa",
+      "counterparty": "Bitzlato",
+      "amount": 1.8,
+      "eventType": "sanctions_screen",
+      "riskScore": 52,
+      "status": "blocked",
+      "chain": "BTC",
+      "timestamp": "2026-08-10T18:10:25.754465+00:00",
+      "narrative": "OFAC-sanctioned exchange",
+      "aiRecommendation": {
+        "action": "Block + file SAR + freeze wallet",
+        "confidence": 85,
+        "reasoning": "OFAC-sanctioned exchange",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "da_77c102a5930a4e9f9054e9",
+      "asset": "ETH",
+      "wallet": "0x11bb...22cc",
+      "counterparty": "0x33dd...44ee",
+      "amount": 8.0,
+      "eventType": "travel_rule",
+      "riskScore": 30,
+      "status": "compliant",
+      "chain": "ETH",
+      "timestamp": "2026-08-10T20:26:50.754465+00:00",
+      "narrative": "Travel Rule applies",
+      "aiRecommendation": {
+        "action": "Approve",
+        "confidence": 85,
+        "reasoning": "Travel Rule applies",
+        "reviewerAction": "approve"
+      }
+    },
+    {
+      "id": "da_4c6be7ba66c543f7902f84",
+      "asset": "USDT",
+      "wallet": "0x55ff...66aa",
+      "counterparty": "Russian bank under sanctions",
+      "amount": 80000,
+      "eventType": "ofac_match",
+      "riskScore": 58,
+      "status": "blocked",
+      "chain": "ETH",
+      "timestamp": "2026-08-10T00:39:45.754465+00:00",
+      "narrative": "Sectoral sanctions",
+      "aiRecommendation": {
+        "action": "Block + file SAR + freeze wallet",
+        "confidence": 86,
+        "reasoning": "Sectoral sanctions",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "da_607f4404d0be4c179ab8ef",
+      "asset": "BTC",
+      "wallet": "0x77aa...88bb",
+      "counterparty": "Wasabi CoinJoin",
+      "amount": 3.5,
+      "eventType": "mixer_detection",
+      "riskScore": 47,
+      "status": "monitor",
+      "chain": "BTC",
+      "timestamp": "2026-08-09T20:14:51.754465+00:00",
+      "narrative": "Privacy-preserving \u2014 flag for monitoring",
+      "aiRecommendation": {
+        "action": "Approve",
+        "confidence": 95,
+        "reasoning": "Privacy-preserving \u2014 flag for monitoring",
+        "reviewerAction": "approve"
+      }
+    },
+    {
+      "id": "da_1c189a9ee7354280bad730",
+      "asset": "USDC",
+      "wallet": "0x99cc...00dd",
+      "counterparty": "0x11ee...22ff",
+      "amount": 4.7,
+      "eventType": "travel_rule",
+      "riskScore": 23,
+      "status": "pending",
+      "chain": "ETH",
+      "timestamp": "2026-08-07T13:58:17.754465+00:00",
+      "narrative": "Travel Rule applies",
+      "aiRecommendation": {
+        "action": "Collect Travel Rule data",
+        "confidence": 94,
+        "reasoning": "Travel Rule applies",
+        "reviewerAction": "approve_collect_data"
+      }
+    }
+  ],
+  "total": 15
+}

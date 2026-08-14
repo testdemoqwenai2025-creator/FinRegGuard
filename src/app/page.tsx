@@ -10,7 +10,33 @@ import { AuditView } from '@/components/audit/AuditView'
 import { RiskView } from '@/components/risk/RiskView'
 import { AssistantView } from '@/components/assistant/AssistantView'
 import { ReportsView } from '@/components/reports/ReportsView'
-import { ViewShell } from '@/components/shared/ViewShell'
+// ─── Surveillance Zone ───
+import { TransactionSurveillanceView } from '@/components/surveillance/TransactionSurveillanceView'
+import { CommsSurveillanceView } from '@/components/surveillance/CommsSurveillanceView'
+import { SanctionsScreeningView } from '@/components/surveillance/SanctionsScreeningView'
+import { NetworkGraphExplorerView } from '@/components/surveillance/NetworkGraphExplorerView'
+// ─── Quant & Computational Zone ───
+import { QuantLabView } from '@/components/quant/QuantLabView'
+import { ClimateEsgView } from '@/components/quant/ClimateEsgView'
+import { CounterfactualView } from '@/components/quant/CounterfactualView'
+import { SystemicRiskView } from '@/components/quant/SystemicRiskView'
+// ─── Intelligence & Automation Zone ───
+import { AgentConsoleView } from '@/components/intelligence/AgentConsoleView'
+import { RegulatoryWatchView } from '@/components/intelligence/RegulatoryWatchView'
+import { RedTeamView } from '@/components/intelligence/RedTeamView'
+import { KnowledgeGraphView } from '@/components/intelligence/KnowledgeGraphView'
+// ─── Collaboration & Trust Zone ───
+import { CaseManagementView } from '@/components/collaboration/CaseManagementView'
+import { RegulatorPortalView } from '@/components/collaboration/RegulatorPortalView'
+import { WhistleblowerView } from '@/components/collaboration/WhistleblowerView'
+import { ChainEvidenceView } from '@/components/collaboration/ChainEvidenceView'
+import { DigitalAssetsView } from '@/components/collaboration/DigitalAssetsView'
+// ─── Platform & Governance Zone ───
+import { PrivacyPetsView } from '@/components/platform/PrivacyPetsView'
+import { DeveloperHubView } from '@/components/platform/DeveloperHubView'
+import { TimeMachineView } from '@/components/platform/TimeMachineView'
+import { RuleHarmonizerView } from '@/components/platform/RuleHarmonizerView'
+import { XccView } from '@/components/platform/XccView'
 import { Scale, Github, Linkedin } from 'lucide-react'
 
 export type ViewKey =
@@ -64,58 +90,36 @@ export default function Home() {
       case 'reports': return <ReportsView />
 
       // ─── Surveillance ───
-      case 'transaction-surveillance':
-        return <ViewShell zone="Surveillance" title="Transaction Surveillance" subtitle="Real-time AML/CFT alert monitoring with sub-second decisioning on SWIFT, SEPA, RTP and crypto rails." viewKey={view} />
-      case 'comms-surveillance':
-        return <ViewShell zone="Surveillance" title="Communications Surveillance" subtitle="NLP-driven surveillance of voice, email, Bloomberg chat and mobile — detecting market abuse, collusion and off-channel activity per MiFID II Article 16." viewKey={view} />
-      case 'sanctions-screening':
-        return <ViewShell zone="Surveillance" title="Sanctions Screening" subtitle="Real-time OFAC, UN, EU, HMT, MAS list screening with fuzzy / phonetic / exact match scoring." viewKey={view} />
-      case 'network-graph':
-        return <ViewShell zone="Surveillance" title="Entity Network Explorer" subtitle="Force-directed graph of counterparties, beneficial owners and fund flows — turning money laundering from a row problem into a graph problem." viewKey={view} />
+      case 'transaction-surveillance': return <TransactionSurveillanceView />
+      case 'comms-surveillance': return <CommsSurveillanceView />
+      case 'sanctions-screening': return <SanctionsScreeningView />
+      case 'network-graph': return <NetworkGraphExplorerView />
 
       // ─── Quant & Computational ───
-      case 'quant-lab':
-        return <ViewShell zone="Quant & Computational" title="Quant Lab" subtitle="Monte Carlo capital adequacy, FRTB IMA, CCAR/EBA/BoE stress testing with 10,000+ scenario paths." viewKey={view} />
-      case 'climate-esg':
-        return <ViewShell zone="Quant & Computational" title="Climate & ESG Risk" subtitle="PCAF financed emissions, EU Taxonomy alignment, NGFS scenarios and TNFD nature-related financial risk." viewKey={view} />
-      case 'counterfactual':
-        return <ViewShell zone="Quant & Computational" title="Counterfactual Simulator" subtitle="What-if engine: regress the entire compliance + risk posture against hypothetical futures (rate hikes, MiFID III passage, sovereign default)." viewKey={view} />
-      case 'systemic-risk':
-        return <ViewShell zone="Quant & Computational" title="Systemic Risk & Contagion" subtitle="DebtRank and interbank exposure graphs — model cascading failures and central-clearing chokepoints." viewKey={view} />
+      case 'quant-lab': return <QuantLabView />
+      case 'climate-esg': return <ClimateEsgView />
+      case 'counterfactual': return <CounterfactualView />
+      case 'systemic-risk': return <SystemicRiskView />
 
       // ─── Intelligence & Automation ───
-      case 'agent-console':
-        return <ViewShell zone="Intelligence & Automation" title="Multi-Agent Console" subtitle="Orchestration of regulatory watcher, policy drafter, control tester and regulator liaison agents — with human-in-the-loop approval gates." viewKey={view} />
-      case 'regulatory-watch':
-        return <ViewShell zone="Intelligence & Automation" title="Regulatory Watch" subtitle="Automated parsing of Federal Register, ESMA, FCA, MAS, FSB publications — classified, scored, and triaged by AI." viewKey={view} />
-      case 'red-team':
-        return <ViewShell zone="Intelligence & Automation" title="Red Team Engine" subtitle="Adversarial agent that continuously attacks your own controls — simulating structuring, sanctions evasion, prompt injection and insider trading." viewKey={view} />
-      case 'knowledge-graph':
-        return <ViewShell zone="Intelligence & Automation" title="Regulatory Knowledge Graph" subtitle="Regulation → policy → control → evidence as a navigable semantic graph with vector RAG retrieval." viewKey={view} />
+      case 'agent-console': return <AgentConsoleView />
+      case 'regulatory-watch': return <RegulatoryWatchView />
+      case 'red-team': return <RedTeamView />
+      case 'knowledge-graph': return <KnowledgeGraphView />
 
       // ─── Collaboration & Trust ───
-      case 'case-management':
-        return <ViewShell zone="Collaboration & Trust" title="Case Management" subtitle="Examination, investigation and regulator-request workflows with SLA tracking and evidence packaging." viewKey={view} />
-      case 'regulator-portal':
-        return <ViewShell zone="Collaboration & Trust" title="Regulator Portal" subtitle="Read-only, scoped examiner view — they see what they're entitled to, every query they make is itself logged." viewKey={view} />
-      case 'whistleblower':
-        return <ViewShell zone="Collaboration & Trust" title="Whistleblower Channel" subtitle="End-to-end encrypted anonymous intake with LLM triage. Catches problems before regulators do." viewKey={view} />
-      case 'chain-evidence':
-        return <ViewShell zone="Collaboration & Trust" title="Chain Evidence" subtitle="Every audit log entry hashed and anchored to Hyperledger Besu / Ethereum Sepia — cryptographic tamper detection." viewKey={view} />
-      case 'digital-assets':
-        return <ViewShell zone="Collaboration & Trust" title="Digital Asset Compliance" subtitle="FATF Travel Rule, on-chain sanctions screening, mixer detection and CBDC compliance for crypto flows." viewKey={view} />
+      case 'case-management': return <CaseManagementView />
+      case 'regulator-portal': return <RegulatorPortalView />
+      case 'whistleblower': return <WhistleblowerView />
+      case 'chain-evidence': return <ChainEvidenceView />
+      case 'digital-assets': return <DigitalAssetsView />
 
       // ─── Platform & Governance ───
-      case 'privacy-pets':
-        return <ViewShell zone="Platform & Governance" title="Privacy & PETs Console" subtitle="Federated learning, homomorphic encryption, differential privacy and secure enclaves — toggle per dataset." viewKey={view} />
-      case 'developer-hub':
-        return <ViewShell zone="Platform & Governance" title="Developer Hub" subtitle="REST + GraphQL API keys, webhooks, SDK docs and sandbox — embed compliance into business apps." viewKey={view} />
-      case 'time-machine':
-        return <ViewShell zone="Platform & Governance" title="Regulatory Time Machine" subtitle="Point-in-time queries: 'What was our compliance posture on 14 Aug 2024 at 3:47pm?' — instantly defensible for examinations." viewKey={view} />
-      case 'rule-harmonizer':
-        return <ViewShell zone="Platform & Governance" title="Cross-Jurisdiction Rule Harmonizer" subtitle="Visual diff engine across US / EU / UK / APAC rules — operate one global program with local variations." viewKey={view} />
-      case 'xcc':
-        return <ViewShell zone="Platform & Governance" title="Explainable Compliance Cards" subtitle="Every approve / flag / decline decision ships with a one-page cited explanation — defensible in court, mandated by EU AI Act Art 13." viewKey={view} />
+      case 'privacy-pets': return <PrivacyPetsView />
+      case 'developer-hub': return <DeveloperHubView />
+      case 'time-machine': return <TimeMachineView />
+      case 'rule-harmonizer': return <RuleHarmonizerView />
+      case 'xcc': return <XccView />
 
       default: return <DashboardView />
     }
@@ -140,12 +144,12 @@ export default function Home() {
               Automator
             </span>
             <span className="hidden sm:inline text-slate-400">·</span>
-            <span className="hidden sm:inline">29 state machines · 6 zones · TAM $55B regtech by 2027</span>
+            <span className="hidden sm:inline">29 state machines · 6 zones · machine proposes, human confirms</span>
           </div>
           <div className="flex items-center gap-4">
-            <span>v2.0.0 · build {new Date().getFullYear()}.08</span>
+            <span>v2.1.0 · build {new Date().getFullYear()}.08</span>
             <a
-              href="https://github.com"
+              href="https://github.com/testdemoqwenai2025-creator/FinRegGTP.BoT"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-slate-700 transition-colors"

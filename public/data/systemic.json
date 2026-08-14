@@ -1,0 +1,580 @@
+{
+  "nodes": [
+    {
+      "id": "b0",
+      "name": "JPMorgan",
+      "assetSize": 2304.4100744612538,
+      "debtRank": 0.367,
+      "systemicScore": 0.63,
+      "tier1Capital": 9.2,
+      "country": "FR",
+      "isSystemic": false
+    },
+    {
+      "id": "b1",
+      "name": "Bank of America",
+      "assetSize": 2813.816722916765,
+      "debtRank": 0.145,
+      "systemicScore": 0.62,
+      "tier1Capital": 11.6,
+      "country": "JP",
+      "isSystemic": false
+    },
+    {
+      "id": "b2",
+      "name": "Citigroup",
+      "assetSize": 1417.4068461540285,
+      "debtRank": 0.371,
+      "systemicScore": 0.66,
+      "tier1Capital": 14.1,
+      "country": "UK",
+      "isSystemic": false
+    },
+    {
+      "id": "b3",
+      "name": "Goldman Sachs",
+      "assetSize": 416.96874738230804,
+      "debtRank": 0.209,
+      "systemicScore": 0.77,
+      "tier1Capital": 12.8,
+      "country": "IT",
+      "isSystemic": true
+    },
+    {
+      "id": "b4",
+      "name": "Morgan Stanley",
+      "assetSize": 2738.2430162365035,
+      "debtRank": 0.379,
+      "systemicScore": 0.35,
+      "tier1Capital": 17.7,
+      "country": "UK",
+      "isSystemic": false
+    },
+    {
+      "id": "b5",
+      "name": "Wells Fargo",
+      "assetSize": 1684.915835687887,
+      "debtRank": 0.322,
+      "systemicScore": 0.52,
+      "tier1Capital": 16.8,
+      "country": "SG",
+      "isSystemic": false
+    },
+    {
+      "id": "b6",
+      "name": "HSBC",
+      "assetSize": 2311.319966909988,
+      "debtRank": 0.123,
+      "systemicScore": 0.93,
+      "tier1Capital": 12.3,
+      "country": "US",
+      "isSystemic": true
+    },
+    {
+      "id": "b7",
+      "name": "Barclays",
+      "assetSize": 2943.5896613428868,
+      "debtRank": 0.257,
+      "systemicScore": 0.5,
+      "tier1Capital": 9.6,
+      "country": "FR",
+      "isSystemic": false
+    },
+    {
+      "id": "b8",
+      "name": "Deutsche Bank",
+      "assetSize": 1341.8761717281811,
+      "debtRank": 0.426,
+      "systemicScore": 0.88,
+      "tier1Capital": 16.5,
+      "country": "CH",
+      "isSystemic": true
+    },
+    {
+      "id": "b9",
+      "name": "BNP Paribas",
+      "assetSize": 847.796334294143,
+      "debtRank": 0.433,
+      "systemicScore": 0.48,
+      "tier1Capital": 14.3,
+      "country": "JP",
+      "isSystemic": false
+    },
+    {
+      "id": "b10",
+      "name": "UBS",
+      "assetSize": 1960.4774982356557,
+      "debtRank": 0.251,
+      "systemicScore": 0.41,
+      "tier1Capital": 17.4,
+      "country": "DE",
+      "isSystemic": false
+    },
+    {
+      "id": "b11",
+      "name": "Credit Suisse Successor",
+      "assetSize": 764.9620560841146,
+      "debtRank": 0.3,
+      "systemicScore": 0.89,
+      "tier1Capital": 11.4,
+      "country": "JP",
+      "isSystemic": true
+    },
+    {
+      "id": "b12",
+      "name": "Santander",
+      "assetSize": 335.94120162188756,
+      "debtRank": 0.396,
+      "systemicScore": 0.35,
+      "tier1Capital": 17.5,
+      "country": "JP",
+      "isSystemic": false
+    },
+    {
+      "id": "b13",
+      "name": "UniCredit",
+      "assetSize": 1073.36449584908,
+      "debtRank": 0.134,
+      "systemicScore": 0.67,
+      "tier1Capital": 14.2,
+      "country": "US",
+      "isSystemic": false
+    },
+    {
+      "id": "b14",
+      "name": "ING",
+      "assetSize": 1843.525598449183,
+      "debtRank": 0.301,
+      "systemicScore": 0.49,
+      "tier1Capital": 17.6,
+      "country": "NL",
+      "isSystemic": false
+    },
+    {
+      "id": "b15",
+      "name": "Standard Chartered",
+      "assetSize": 1008.0971051415121,
+      "debtRank": 0.373,
+      "systemicScore": 0.56,
+      "tier1Capital": 12.5,
+      "country": "US",
+      "isSystemic": false
+    },
+    {
+      "id": "b16",
+      "name": "Mizuho",
+      "assetSize": 721.6654751501837,
+      "debtRank": 0.216,
+      "systemicScore": 0.6,
+      "tier1Capital": 11.4,
+      "country": "DE",
+      "isSystemic": false
+    },
+    {
+      "id": "b17",
+      "name": "MUFG",
+      "assetSize": 1231.5222475148792,
+      "debtRank": 0.337,
+      "systemicScore": 0.78,
+      "tier1Capital": 16.6,
+      "country": "IT",
+      "isSystemic": true
+    },
+    {
+      "id": "b18",
+      "name": "SMBC",
+      "assetSize": 631.5283001228754,
+      "debtRank": 0.198,
+      "systemicScore": 0.67,
+      "tier1Capital": 11.2,
+      "country": "NL",
+      "isSystemic": false
+    },
+    {
+      "id": "b19",
+      "name": "DBS",
+      "assetSize": 604.322299977068,
+      "debtRank": 0.23,
+      "systemicScore": 0.39,
+      "tier1Capital": 8.5,
+      "country": "IT",
+      "isSystemic": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "b19",
+      "target": "b13",
+      "exposure": 20.2,
+      "type": "derivatives"
+    },
+    {
+      "source": "b10",
+      "target": "b18",
+      "exposure": 57.8,
+      "type": "derivatives"
+    },
+    {
+      "source": "b5",
+      "target": "b15",
+      "exposure": 79.7,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b15",
+      "target": "b9",
+      "exposure": 40.0,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b12",
+      "target": "b16",
+      "exposure": 36.8,
+      "type": "derivatives"
+    },
+    {
+      "source": "b6",
+      "target": "b18",
+      "exposure": 28.6,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b9",
+      "target": "b15",
+      "exposure": 48.0,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b9",
+      "target": "b17",
+      "exposure": 1.2,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b13",
+      "target": "b4",
+      "exposure": 70.7,
+      "type": "repo"
+    },
+    {
+      "source": "b12",
+      "target": "b11",
+      "exposure": 4.1,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b18",
+      "target": "b17",
+      "exposure": 16.0,
+      "type": "repo"
+    },
+    {
+      "source": "b2",
+      "target": "b12",
+      "exposure": 40.6,
+      "type": "repo"
+    },
+    {
+      "source": "b3",
+      "target": "b4",
+      "exposure": 78.0,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b11",
+      "target": "b10",
+      "exposure": 44.8,
+      "type": "repo"
+    },
+    {
+      "source": "b4",
+      "target": "b6",
+      "exposure": 48.4,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b16",
+      "target": "b1",
+      "exposure": 4.1,
+      "type": "derivatives"
+    },
+    {
+      "source": "b10",
+      "target": "b15",
+      "exposure": 41.8,
+      "type": "derivatives"
+    },
+    {
+      "source": "b19",
+      "target": "b16",
+      "exposure": 11.6,
+      "type": "repo"
+    },
+    {
+      "source": "b5",
+      "target": "b12",
+      "exposure": 79.3,
+      "type": "repo"
+    },
+    {
+      "source": "b18",
+      "target": "b10",
+      "exposure": 40.8,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b18",
+      "target": "b9",
+      "exposure": 38.3,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b11",
+      "target": "b10",
+      "exposure": 54.1,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b18",
+      "target": "b9",
+      "exposure": 63.8,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b19",
+      "target": "b15",
+      "exposure": 21.6,
+      "type": "derivatives"
+    },
+    {
+      "source": "b1",
+      "target": "b18",
+      "exposure": 38.7,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b4",
+      "target": "b7",
+      "exposure": 3.0,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b6",
+      "target": "b0",
+      "exposure": 35.6,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b4",
+      "target": "b13",
+      "exposure": 55.4,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b16",
+      "target": "b19",
+      "exposure": 73.7,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b4",
+      "target": "b16",
+      "exposure": 17.0,
+      "type": "repo"
+    },
+    {
+      "source": "b15",
+      "target": "b16",
+      "exposure": 30.5,
+      "type": "derivatives"
+    },
+    {
+      "source": "b14",
+      "target": "b17",
+      "exposure": 27.7,
+      "type": "repo"
+    },
+    {
+      "source": "b8",
+      "target": "b19",
+      "exposure": 39.0,
+      "type": "derivatives"
+    },
+    {
+      "source": "b8",
+      "target": "b17",
+      "exposure": 24.2,
+      "type": "repo"
+    },
+    {
+      "source": "b9",
+      "target": "b6",
+      "exposure": 55.4,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b10",
+      "target": "b15",
+      "exposure": 28.2,
+      "type": "repo"
+    },
+    {
+      "source": "b9",
+      "target": "b3",
+      "exposure": 46.1,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b12",
+      "target": "b11",
+      "exposure": 76.4,
+      "type": "derivatives"
+    },
+    {
+      "source": "b9",
+      "target": "b1",
+      "exposure": 23.4,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b11",
+      "target": "b14",
+      "exposure": 52.6,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b17",
+      "target": "b8",
+      "exposure": 74.7,
+      "type": "repo"
+    },
+    {
+      "source": "b4",
+      "target": "b3",
+      "exposure": 49.4,
+      "type": "derivatives"
+    },
+    {
+      "source": "b7",
+      "target": "b1",
+      "exposure": 53.8,
+      "type": "derivatives"
+    },
+    {
+      "source": "b7",
+      "target": "b1",
+      "exposure": 8.5,
+      "type": "repo"
+    },
+    {
+      "source": "b15",
+      "target": "b3",
+      "exposure": 54.7,
+      "type": "derivatives"
+    },
+    {
+      "source": "b0",
+      "target": "b17",
+      "exposure": 78.2,
+      "type": "derivatives"
+    },
+    {
+      "source": "b13",
+      "target": "b15",
+      "exposure": 38.5,
+      "type": "derivatives"
+    },
+    {
+      "source": "b9",
+      "target": "b10",
+      "exposure": 23.2,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b2",
+      "target": "b18",
+      "exposure": 19.0,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b5",
+      "target": "b13",
+      "exposure": 70.6,
+      "type": "derivatives"
+    },
+    {
+      "source": "b1",
+      "target": "b12",
+      "exposure": 63.1,
+      "type": "derivatives"
+    },
+    {
+      "source": "b9",
+      "target": "b1",
+      "exposure": 1.2,
+      "type": "interbank_loan"
+    },
+    {
+      "source": "b10",
+      "target": "b9",
+      "exposure": 36.6,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b4",
+      "target": "b16",
+      "exposure": 37.7,
+      "type": "derivatives"
+    },
+    {
+      "source": "b3",
+      "target": "b10",
+      "exposure": 13.4,
+      "type": "cross_holdings"
+    },
+    {
+      "source": "b8",
+      "target": "b5",
+      "exposure": 1.6,
+      "type": "repo"
+    },
+    {
+      "source": "b9",
+      "target": "b18",
+      "exposure": 54.1,
+      "type": "derivatives"
+    },
+    {
+      "source": "b5",
+      "target": "b19",
+      "exposure": 68.6,
+      "type": "cross_holdings"
+    }
+  ],
+  "cascades": [
+    {
+      "trigger": "Bank 7 (Barclays) fails",
+      "banksAffected": 12,
+      "cumulativeLoss": 285.4,
+      "duration": "11 days"
+    },
+    {
+      "trigger": "Bank 9 (Deutsche Bank) fails",
+      "banksAffected": 15,
+      "cumulativeLoss": 412.7,
+      "duration": "17 days"
+    },
+    {
+      "trigger": "Bank 11 (UBS) stress",
+      "banksAffected": 6,
+      "cumulativeLoss": 94.2,
+      "duration": "5 days"
+    }
+  ],
+  "aiRecommendation": {
+    "action": "Increase bilateral exposure limit haircuts for banks 7, 9, 11",
+    "confidence": 84,
+    "reasoning": "DebtRank simulation: banks 7, 9, 11 are top-3 systemic nodes. Failure of any one triggers >10% cascade.",
+    "reviewerAction": "approve_haircuts"
+  }
+}

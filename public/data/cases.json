@@ -1,0 +1,165 @@
+{
+  "cases": [
+    {
+      "id": "case_65db1e134521450c93f33d",
+      "caseType": "examination",
+      "title": "SEC Cycle Examination Q4 2025",
+      "regulator": "SEC",
+      "priority": "critical",
+      "status": "in_progress",
+      "assignee": "sarah.chen@regco.io",
+      "dueDate": "2026-08-21T13:24:44.754465+00:00",
+      "description": "Case management workflow for SEC Cycle Examination Q4 2025. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "createdAt": "2026-08-02T09:42:54.754465+00:00",
+      "evidenceCount": 39,
+      "slaStatus": "at_risk",
+      "aiRecommendation": {
+        "action": "Auto-compile evidence index",
+        "confidence": 95,
+        "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
+        "reviewerAction": "approve_evidence_index"
+      }
+    },
+    {
+      "id": "case_8d6b42882b2141baae2ffc",
+      "caseType": "examination",
+      "title": "FCA Consumer Duty Review",
+      "regulator": "FCA",
+      "priority": "high",
+      "status": "open",
+      "assignee": "cRO@regco.io",
+      "dueDate": "2026-08-28T13:24:44.754465+00:00",
+      "description": "Case management workflow for FCA Consumer Duty Review. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "createdAt": "2026-08-11T07:09:49.754465+00:00",
+      "evidenceCount": 21,
+      "slaStatus": "on_track",
+      "aiRecommendation": {
+        "action": "Auto-compile evidence index",
+        "confidence": 88,
+        "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
+        "reviewerAction": "approve_evidence_index"
+      }
+    },
+    {
+      "id": "case_3d30882b290d42d5978274",
+      "caseType": "investigation",
+      "title": "OFAC Sanctions Investigation \u2014 Meridian",
+      "regulator": "OFAC",
+      "priority": "critical",
+      "status": "in_progress",
+      "assignee": "sarah.chen@regco.io",
+      "dueDate": "2026-08-17T13:24:44.754465+00:00",
+      "description": "Case management workflow for OFAC Sanctions Investigation \u2014 Meridian. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "createdAt": "2026-08-04T20:26:57.754465+00:00",
+      "evidenceCount": 52,
+      "slaStatus": "breach_imminent",
+      "aiRecommendation": {
+        "action": "Auto-compile evidence index",
+        "confidence": 80,
+        "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
+        "reviewerAction": "approve_evidence_index"
+      }
+    },
+    {
+      "id": "case_4d4361ab5c2a4839b86187",
+      "caseType": "regulatory_request",
+      "title": "EBA Stress Test Data Call",
+      "regulator": "EBA",
+      "priority": "high",
+      "status": "awaiting_response",
+      "assignee": "mlro@regco.io",
+      "dueDate": "2026-08-19T13:24:44.754465+00:00",
+      "description": "Case management workflow for EBA Stress Test Data Call. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "createdAt": "2026-07-16T01:27:57.754465+00:00",
+      "evidenceCount": 30,
+      "slaStatus": "breach_imminent",
+      "aiRecommendation": {
+        "action": "Auto-prepare response packet + schedule pre-exam briefing",
+        "confidence": 92,
+        "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
+        "reviewerAction": "approve_response_packet"
+      }
+    },
+    {
+      "id": "case_3250b2c37a9740ca98570b",
+      "caseType": "regulatory_request",
+      "title": "MAS TRM Self-Assessment",
+      "regulator": "MAS",
+      "priority": "medium",
+      "status": "open",
+      "assignee": "sarah.chen@regco.io",
+      "dueDate": "2026-09-04T13:24:44.754465+00:00",
+      "description": "Case management workflow for MAS TRM Self-Assessment. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "createdAt": "2026-07-30T00:43:46.754465+00:00",
+      "evidenceCount": 32,
+      "slaStatus": "on_track",
+      "aiRecommendation": {
+        "action": "Auto-compile evidence index",
+        "confidence": 87,
+        "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
+        "reviewerAction": "approve_evidence_index"
+      }
+    },
+    {
+      "id": "case_717a88cfbbfa49c18fe36a",
+      "caseType": "internal_review",
+      "title": "Q3 AML Effectiveness Review",
+      "regulator": null,
+      "priority": "medium",
+      "status": "in_progress",
+      "assignee": "james.okafor@regco.io",
+      "dueDate": "2026-08-28T13:24:44.754465+00:00",
+      "description": "Case management workflow for Q3 AML Effectiveness Review. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "createdAt": "2026-07-18T07:36:41.754465+00:00",
+      "evidenceCount": 54,
+      "slaStatus": "on_track",
+      "aiRecommendation": {
+        "action": "Auto-compile evidence index",
+        "confidence": 92,
+        "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
+        "reviewerAction": "approve_evidence_index"
+      }
+    },
+    {
+      "id": "case_6cab386a4f8241e89e2cac",
+      "caseType": "examination",
+      "title": "HHS HIPAA Audit \u2014 Hospital Wing",
+      "regulator": "HHS-OCR",
+      "priority": "high",
+      "status": "open",
+      "assignee": "mlro@regco.io",
+      "dueDate": "2026-09-13T13:24:44.754465+00:00",
+      "description": "Case management workflow for HHS HIPAA Audit \u2014 Hospital Wing. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "createdAt": "2026-08-09T18:02:15.754465+00:00",
+      "evidenceCount": 76,
+      "slaStatus": "on_track",
+      "aiRecommendation": {
+        "action": "Auto-compile evidence index",
+        "confidence": 91,
+        "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
+        "reviewerAction": "approve_evidence_index"
+      }
+    },
+    {
+      "id": "case_10e4cc2926ed440691b1af",
+      "caseType": "investigation",
+      "title": "Whistleblower Report #2025-08-14",
+      "regulator": null,
+      "priority": "high",
+      "status": "open",
+      "assignee": "sarah.chen@regco.io",
+      "dueDate": "2026-08-21T13:24:44.754465+00:00",
+      "description": "Case management workflow for Whistleblower Report #2025-08-14. Auto-assembled evidence pack: 47 documents, 12 witness statements, 8 control attestations.",
+      "createdAt": "2026-08-08T19:36:01.754465+00:00",
+      "evidenceCount": 67,
+      "slaStatus": "at_risk",
+      "aiRecommendation": {
+        "action": "Auto-compile evidence index",
+        "confidence": 87,
+        "reasoning": "All required artifacts identified. 0 gaps vs regulator template. Precedent: similar case closed in 12 days.",
+        "reviewerAction": "approve_evidence_index"
+      }
+    }
+  ],
+  "total": 8
+}

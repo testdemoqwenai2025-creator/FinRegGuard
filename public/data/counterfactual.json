@@ -1,0 +1,96 @@
+{
+  "scenarios": [
+    {
+      "trigger": "Fed raises rates +75bps",
+      "probability": 35,
+      "complianceImpact": "Basel III LCR -4pts",
+      "riskImpact": "+8% credit risk",
+      "costImpact": "$12M hedging",
+      "aiRecommendation": {
+        "action": "Monitor \u2014 no action yet",
+        "confidence": 87,
+        "reasoning": "Probability 35% within 18 months. Expected cost impact $12M hedging.",
+        "reviewerAction": "approve_monitor"
+      }
+    },
+    {
+      "trigger": "MiFID III passes Q1 2027",
+      "probability": 68,
+      "complianceImpact": "12 policies need update",
+      "riskImpact": "Conduct risk +12pts",
+      "costImpact": "$3M implementation",
+      "aiRecommendation": {
+        "action": "Pre-emptively draft MiFID III policy updates",
+        "confidence": 79,
+        "reasoning": "Probability 68% within 18 months. Expected cost impact $3M implementation.",
+        "reviewerAction": "approve_drafting"
+      }
+    },
+    {
+      "trigger": "Italy sovereign default",
+      "probability": 8,
+      "complianceImpact": "CRR Article 47b trigger",
+      "riskImpact": "+$340M credit loss",
+      "costImpact": "Capital raise $800M",
+      "aiRecommendation": {
+        "action": "Monitor \u2014 no action yet",
+        "confidence": 79,
+        "reasoning": "Probability 8% within 18 months. Expected cost impact Capital raise $800M.",
+        "reviewerAction": "approve_monitor"
+      }
+    },
+    {
+      "trigger": "OFAC sanctions UAE",
+      "probability": 5,
+      "complianceImpact": "Block 340 counterparties",
+      "riskImpact": "-$45M revenue",
+      "costImpact": "$2M exit costs",
+      "aiRecommendation": {
+        "action": "Monitor \u2014 no action yet",
+        "confidence": 75,
+        "reasoning": "Probability 5% within 18 months. Expected cost impact $2M exit costs.",
+        "reviewerAction": "approve_monitor"
+      }
+    },
+    {
+      "trigger": "EU AI Act enforcement begins",
+      "probability": 95,
+      "complianceImpact": "Conformity assessments \u00d74 models",
+      "riskImpact": "Model risk +15pts",
+      "costImpact": "$1.8M assessments",
+      "aiRecommendation": {
+        "action": "Pre-emptively draft MiFID III policy updates",
+        "confidence": 92,
+        "reasoning": "Probability 95% within 18 months. Expected cost impact $1.8M assessments.",
+        "reviewerAction": "approve_drafting"
+      }
+    },
+    {
+      "trigger": "Stablecoin de-peg (USDT)",
+      "probability": 22,
+      "complianceImpact": "Travel Rule non-compliance cascade",
+      "riskImpact": "+$18M crypto exposure",
+      "costImpact": "$0.5M contingency",
+      "aiRecommendation": {
+        "action": "Monitor \u2014 no action yet",
+        "confidence": 92,
+        "reasoning": "Probability 22% within 18 months. Expected cost impact $0.5M contingency.",
+        "reviewerAction": "approve_monitor"
+      }
+    },
+    {
+      "trigger": "Republican sweep 2028",
+      "probability": 45,
+      "complianceImpact": "CFPB restructuring",
+      "riskImpact": "Conduct oversight -20%",
+      "costImpact": "Reg savings $4M/yr",
+      "aiRecommendation": {
+        "action": "Monitor \u2014 no action yet",
+        "confidence": 92,
+        "reasoning": "Probability 45% within 18 months. Expected cost impact Reg savings $4M/yr.",
+        "reviewerAction": "approve_monitor"
+      }
+    }
+  ],
+  "total": 7
+}
