@@ -81,6 +81,11 @@ export function DriftBell() {
   const [summary, setSummary] = useState<DriftEventsResponse['summary'] | null>(null)
   const [loading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
+  // "Active" shows un-acked events (default). "Acknowledged" shows events the
+  // user has already dismissed, fetched lazily on first view switch.
+  const [view, setView] = useState<'active' | 'acked'>('active')
+  const [ackedEvents, setAckedEvents] = useState<DriftEvent[] | null>(null)
+  const [ackedLoading, setAckedLoading] = useState(false)
   const popoverRef = useRef<HTMLDivElement>(null)
 
   const load = useCallback(async () => {
@@ -101,11 +106,37 @@ export function DriftBell() {
     }
   }, [])
 
+  // Lazy-load acknowledged events. Fetches the full set with
+  // includeAcknowledged=true and filters client-side so we don't need a
+  // new API route just for the acked view.
+  const loadAcked = useCallback(async () => {
+    setAckedLoading(true)
+    try {
+      const res = await fetch('/api/plugins/drift/events?limit=50&includeAcknowledged=true')
+      if (!res.ok) return
+      const data = (await res.json()) as DriftEventsResponse
+      setAckedEvents((data.events ?? []).filter((e) => e.acknowledgedAt))
+    } catch {
+      // ignore
+    } finally {
+      setAckedLoading(false)
+    }
+  }, [])
+
   useEffect(() => {
     load()
     const id = setInterval(load, POLL_INTERVAL_MS)
     return () => clearInterval(id)
   }, [load])
+
+  // When the user first switches to the acked tab, load it. Also reload if
+  // it was previously loaded (covers the case where they dismissed an event
+  // from the active view and then switched over to verify).
+  useEffect(() => {
+    if (open && view === 'acked') {
+      loadAcked()
+    }
+  }, [open, view, loadAcked])
 
   // Close popover when clicking outside
   useEffect(() => {
@@ -147,6 +178,9 @@ export function DriftBell() {
           body: JSON.stringify({ eventIds: [eventId], actor: 'user' }),
         })
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        // Invalidate the acked view so it reloads with the newly-acked event
+        // next time the user opens that tab.
+        setAckedEvents(null)
       } catch {
         // Rollback on failure
         setEvents(prev)
@@ -169,6 +203,7 @@ export function DriftBell() {
         body: JSON.stringify({ eventIds: ['*'], actor: 'user' }),
       })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      setAckedEvents(null)
     } catch {
       setEvents(prev)
       setSummary(prevSummary)
@@ -210,7 +245,7 @@ export function DriftBell() {
                 Drift Notifications
               </p>
               <div className="flex items-center gap-2">
-                {badgeCount > 0 && (
+                {badgeCount > 0 && view === 'active' && (
                   <Button
                     variant="ghost"
                     size="sm"
@@ -223,11 +258,11 @@ export function DriftBell() {
                   </Button>
                 )}
                 <button
-                  onClick={load}
+                  onClick={view === 'active' ? load : loadAcked}
                   className="text-[10px] text-muted-foreground hover:text-foreground"
                   title="Refresh"
                 >
-                  {loading ? 'Loading…' : 'Refresh'}
+                  {(view === 'active' ? loading : ackedLoading) ? 'Loading…' : 'Refresh'}
                 </button>
               </div>
             </div>
@@ -251,9 +286,38 @@ export function DriftBell() {
             )}
           </div>
 
+          {/* Active / Acknowledged tab toggle */}
+          <div className="flex border-b border-border px-3">
+            <button
+              type="button"
+              onClick={() => setView('active')}
+              className={cn(
+                'px-2.5 py-1.5 text-[11px] font-medium border-b-2 -mb-px transition-colors',
+                view === 'active'
+                  ? 'border-foreground text-foreground'
+                  : 'border-transparent text-muted-foreground hover:text-foreground',
+              )}
+            >
+              Active{badgeCount > 0 && ` (${badgeCount})`}
+            </button>
+            <button
+              type="button"
+              onClick={() => setView('acked')}
+              className={cn(
+                'px-2.5 py-1.5 text-[11px] font-medium border-b-2 -mb-px transition-colors',
+                view === 'acked'
+                  ? 'border-foreground text-foreground'
+                  : 'border-transparent text-muted-foreground hover:text-foreground',
+              )}
+            >
+              Acknowledged
+              {ackedEvents && ackedEvents.length > 0 && ` (${ackedEvents.length})`}
+            </button>
+          </div>
+
           <ScrollArea className="max-h-80">
             <div className="p-2">
-              {events.length === 0 ? (
+              {view === 'active' && events.length === 0 ? (
                 <div className="px-3 py-8 text-center text-xs text-muted-foreground">
                   <CheckCircle2 className="mx-auto mb-2 h-6 w-6 text-emerald-500" />
                   No drift events in the last 7 days.
@@ -262,7 +326,7 @@ export function DriftBell() {
                     Run a drift scan or wait for the next cron run.
                   </span>
                 </div>
-              ) : (
+              ) : view === 'active' ? (
                 <div className="space-y-1">
                   {events.map((e) => {
                     const meta = ACTION_META[e.action]
@@ -309,6 +373,67 @@ export function DriftBell() {
                         >
                           <X className="h-3 w-3" />
                         </button>
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : ackedLoading && !ackedEvents ? (
+                <div className="px-3 py-8 text-center text-xs text-muted-foreground">
+                  Loading acknowledged events…
+                </div>
+              ) : !ackedEvents || ackedEvents.length === 0 ? (
+                <div className="px-3 py-8 text-center text-xs text-muted-foreground">
+                  <CheckCircle2 className="mx-auto mb-2 h-6 w-6 text-slate-400" />
+                  No dismissed events.
+                  <br />
+                  <span className="text-[10px]">
+                    Events you dismiss will appear here.
+                  </span>
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  {ackedEvents.map((e) => {
+                    const meta = ACTION_META[e.action]
+                    const Icon = meta.icon
+                    return (
+                      <div
+                        key={e.id}
+                        className="flex items-start gap-2 rounded-md border border-border bg-muted/30 px-2 py-1.5 text-xs opacity-80"
+                      >
+                        <Icon className={cn('h-3.5 w-3.5 mt-0.5 shrink-0', meta.tint)} />
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-semibold truncate">{meta.label}</span>
+                            {e.plugin && (
+                              <Badge
+                                variant="outline"
+                                className="text-[9px] py-0 px-1 shrink-0"
+                              >
+                                {e.plugin.slug}
+                              </Badge>
+                            )}
+                          </div>
+                          {e.plugin && (
+                            <p className="text-[10px] text-muted-foreground truncate">
+                              {e.plugin.name}
+                              {e.plugin.enabled ? '' : ' (disabled)'}
+                            </p>
+                          )}
+                          {e.notes && (
+                            <p className="text-[10px] text-muted-foreground mt-0.5 line-clamp-2">
+                              {e.notes}
+                            </p>
+                          )}
+                          <p className="text-[9px] text-muted-foreground/70 mt-0.5">
+                            {new Date(e.createdAt).toLocaleString()} · by {e.actor}
+                          </p>
+                          {e.acknowledgedAt && (
+                            <p className="text-[9px] text-emerald-600 dark:text-emerald-400 mt-0.5">
+                              Dismissed {new Date(e.acknowledgedAt).toLocaleString()}
+                              {e.acknowledgedBy ? ` · by ${e.acknowledgedBy}` : ''}
+                            </p>
+                          )}
+                        </div>
                       </div>
                     )
                   })}
