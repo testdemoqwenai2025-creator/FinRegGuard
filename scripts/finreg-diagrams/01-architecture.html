@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FinRegGPT.Bot System Architecture</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --text: #0F2E2D;
+    --text-sub: #4B5563;
+    --text-muted: #6B7280;
+    --bg: #FFFFFF;
+    --surface: #F8FAFC;
+    --surface-2: #F1F5F9;
+    --border: #E2E8F0;
+    --accent: #10B981;
+    --accent-2: #0D9488;
+    --amber: #D97706;
+    --slate: #475569;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  #root {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 48px 56px;
+  }
+  .diagram-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .diagram-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .layer {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+  }
+  .layer-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .layer-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--text);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .layer-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .layer-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+    font-style: italic;
+  }
+  .layer-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .layer-row.three { grid-template-columns: repeat(3, 1fr); }
+  .layer-row.two { grid-template-columns: repeat(2, 1fr); }
+  .node {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .node-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .node-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .node.accent {
+    border-color: var(--accent);
+    background: #F0FDF4;
+  }
+  .node.accent .node-title { color: var(--accent-2); }
+  .node.amber {
+    border-color: var(--amber);
+    background: #FFF7ED;
+  }
+  .arrow-down {
+    text-align: center;
+    color: var(--accent);
+    font-size: 22px;
+    margin: 4px 0;
+    line-height: 1;
+  }
+  .legend {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid; }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="diagram-title">FinRegGPT.Bot — System Architecture</div>
+  <div class="diagram-subtitle">5-layer architecture: presentation, API gateway, domain services, data persistence, AI / external integrations</div>
+
+  <div class="layer">
+    <div class="layer-header">
+      <span class="layer-tag">L1</span>
+      <span class="layer-title">Presentation Layer — Next.js 16 App Router</span>
+      <span class="layer-desc">Single-page app, 7 views, responsive, ARIA-accessible</span>
+    </div>
+    <div class="layer-row">
+      <div class="node"><div class="node-title">Dashboard</div><div class="node-sub">KPIs, score gauge, trend charts</div></div>
+      <div class="node"><div class="node-title">Regulations</div><div class="node-sub">Multi-jurisdiction tracker</div></div>
+      <div class="node"><div class="node-title">Policies</div><div class="node-sub">Versioned + AI suggestions</div></div>
+      <div class="node"><div class="node-title">Audit Trail</div><div class="node-sub">Immutable log, CSV export</div></div>
+      <div class="node"><div class="node-title">Risk Matrix</div><div class="node-sub">5x5 heatmap + register</div></div>
+      <div class="node"><div class="node-title">AI Assistant</div><div class="node-sub">Chat copilot (LLM)</div></div>
+      <div class="node"><div class="node-title">Reports</div><div class="node-sub">Trends, ROI, jurisdiction breakdown</div></div>
+      <div class="node accent"><div class="node-title">AML/KYC Engine</div><div class="node-sub">Transaction monitor, sanctions, CDD</div></div>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <div class="layer">
+    <div class="layer-header">
+      <span class="layer-tag">L2</span>
+      <span class="layer-title">API Gateway — Next.js Route Handlers</span>
+      <span class="layer-desc">RESTful, server-side, audit-logged</span>
+    </div>
+    <div class="layer-row">
+      <div class="node"><div class="node-title">/api/regulations</div><div class="node-sub">Filter by jurisdiction, status, category</div></div>
+      <div class="node"><div class="node-title">/api/policies</div><div class="node-sub">CRUD + PATCH version + audit</div></div>
+      <div class="node"><div class="node-title">/api/audit</div><div class="node-sub">Query by severity, action, target</div></div>
+      <div class="node"><div class="node-title">/api/risk</div><div class="node-sub">Risk items + unit aggregates</div></div>
+      <div class="node"><div class="node-title">/api/metrics</div><div class="node-sub">KPI roll-up + 6-month history</div></div>
+      <div class="node accent"><div class="node-title">/api/chat</div><div class="node-sub">LLM proxy + history persistence</div></div>
+      <div class="node amber"><div class="node-title">/api/aml/screen</div><div class="node-sub">Real-time sanctions + transaction</div></div>
+      <div class="node amber"><div class="node-title">/api/aml/cdd</div><div class="node-sub">CDD/EDD workflow + risk rating</div></div>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <div class="layer">
+    <div class="layer-header">
+      <span class="layer-tag">L3</span>
+      <span class="layer-title">Domain Services — Business Logic (Server-Only)</span>
+      <span class="layer-desc">TypeScript modules, no client exposure</span>
+    </div>
+    <div class="layer-row three">
+      <div class="node"><div class="node-title">Regulation Ingestion</div><div class="node-sub">RSS + scraper + AI classifier</div></div>
+      <div class="node"><div class="node-title">Policy Auto-Update</div><div class="node-sub">Diff engine + AI draft generator</div></div>
+      <div class="node"><div class="node-title">Audit Trail Integrity</div><div class="node-sub">SHA-256 hash chaining + append-only</div></div>
+      <div class="node"><div class="node-title">Risk Scoring</div><div class="node-sub">Likelihood × Impact + residual calc</div></div>
+      <div class="node accent"><div class="node-title">LLM Compliance Copilot</div><div class="node-sub">z-ai-web-dev-sdk + system prompt</div></div>
+      <div class="node amber"><div class="node-title">AML Typology Detector</div><div class="node-sub">Rule + ML hybrid scoring</div></div>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <div class="layer">
+    <div class="layer-header">
+      <span class="layer-tag">L4</span>
+      <span class="layer-title">Data Persistence — Prisma ORM + SQLite (dev) / Postgres (prod)</span>
+      <span class="layer-desc">6 models, indexed, foreign-key constrained</span>
+    </div>
+    <div class="layer-row">
+      <div class="node"><div class="node-title">Regulation</div><div class="node-sub">12 rows · 7 jurisdictions</div></div>
+      <div class="node"><div class="node-title">Policy</div><div class="node-sub">6 rows · 5 statuses</div></div>
+      <div class="node"><div class="node-title">AuditLog</div><div class="node-sub">Append-only · hash-chained</div></div>
+      <div class="node"><div class="node-title">RiskItem</div><div class="node-sub">12 rows · 8 business units</div></div>
+      <div class="node"><div class="node-title">ComplianceMetric</div><div class="node-sub">Monthly snapshots · 6mo history</div></div>
+      <div class="node"><div class="node-title">ChatMessage</div><div class="node-sub">Persisted LLM history</div></div>
+      <div class="node amber"><div class="node-title">Transaction</div><div class="node-sub">AML event store</div></div>
+      <div class="node amber"><div class="node-title">CustomerRisk</div><div class="node-sub">CDD/EDD ratings</div></div>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <div class="layer">
+    <div class="layer-header">
+      <span class="layer-tag">L5</span>
+      <span class="layer-title">External Integrations</span>
+      <span class="layer-desc">Outbound only · API-key auth · rate-limited</span>
+    </div>
+    <div class="layer-row">
+      <div class="node"><div class="node-title">Z.ai LLM API</div><div class="node-sub">Chat completions, system-prompted</div></div>
+      <div class="node"><div class="node-title">Regulator RSS Feeds</div><div class="node-sub">SEC, ESMA, FCA, MAS, PMDA, APRA...</div></div>
+      <div class="node amber"><div class="node-title">OFAC / EU / UN / HMT Lists</div><div class="node-sub">Daily sanctions list sync</div></div>
+      <div class="node amber"><div class="node-title">Core Banking / EHR Systems</div><div class="node-sub">Transaction + customer feeds</div></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch" style="border-color:#10B981; background:#F0FDF4;"></span> AI-native module</div>
+    <div class="legend-item"><span class="legend-swatch" style="border-color:#D97706; background:#FFF7ED;"></span> AML / financial-sector module</div>
+    <div class="legend-item"><span class="legend-swatch" style="border-color:#E2E8F0; background:white;"></span> Standard module</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FinRegGPT.Bot AML/KYC Engine Flow</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --text: #0F2E2D;
+    --text-sub: #475569;
+    --text-muted: #6B7280;
+    --bg: #FFFFFF;
+    --surface: #F8FAFC;
+    --border: #E2E8F0;
+    --accent: #10B981;
+    --amber: #D97706;
+    --rose: #BE123C;
+    --connector: #94A3B8;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { width: 1280px; margin: 0 auto; padding: 48px 56px; }
+  .diagram-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .diagram-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .lane {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    margin-bottom: 14px;
+    align-items: stretch;
+  }
+  .lane-label {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 18px 16px;
+    text-align: left;
+  }
+  .lane-label.amber { border-left-color: var(--amber); }
+  .lane-label.rose { border-left-color: var(--rose); }
+  .lane-label-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .lane-label-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .lane-content {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .node {
+    flex: 1;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: left;
+    position: relative;
+  }
+  .node-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .node-body {
+    font-size: 11.5px;
+    color: var(--text-sub);
+    line-height: 1.5;
+  }
+  .node-tag {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .node-tag.green { background: #DCFCE7; color: #166534; }
+  .node-tag.amber { background: #FEF3C7; color: #92400E; }
+  .node-tag.rose { background: #FFE4E6; color: #9F1239; }
+  .node-tag.blue { background: #DBEAFE; color: #1E3A8A; }
+  .arrow-right {
+    display: flex;
+    align-items: center;
+    color: var(--connector);
+    font-size: 22px;
+    padding: 0 2px;
+    flex-shrink: 0;
+  }
+  .arrow-down {
+    text-align: center;
+    color: var(--connector);
+    font-size: 22px;
+    margin: 4px 0 8px 220px;
+    line-height: 1;
+  }
+  .typologies {
+    margin-top: 28px;
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+  }
+  .typologies-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .typologies-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .typology {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .typology-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rose);
+    margin-bottom: 4px;
+  }
+  .typology-desc {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .sla-bar {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .sla-tile {
+    background: #FFFBEB;
+    border: 1px solid #FCD34D;
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .sla-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #92400E;
+  }
+  .sla-label {
+    font-size: 10.5px;
+    color: #92400E;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="diagram-title">AML / KYC Engine — Real-Time Detection &amp; Response Flow</div>
+  <div class="diagram-subtitle">Hybrid rule + ML scoring across sanctions, transactions, and customer risk. Three swimlanes: screening, monitoring, response.</div>
+
+  <!-- Lane 1: Sanctions Screening -->
+  <div class="lane">
+    <div class="lane-label">
+      <div class="lane-label-title">Lane 1<br>Sanctions Screening</div>
+      <div class="lane-label-sub">Real-time, name + fuzzy match</div>
+    </div>
+    <div class="lane-content">
+      <div class="node">
+        <div class="node-title">Inbound event</div>
+        <div class="node-body">Customer onboarding, payment instruction, trade ticket, wire transfer — any party referenced is screened.</div>
+        <span class="node-tag blue">Trigger</span>
+      </div>
+      <div class="arrow-right">→</div>
+      <div class="node">
+        <div class="node-title">Fuzzy name match</div>
+        <div class="node-body">OFAC SDN, EU consolidated, UN Security Council, HMT UK lists. Levenshtein + phonetic + transliteration variants.</div>
+        <span class="node-tag amber">Match engine</span>
+      </div>
+      <div class="arrow-right">→</div>
+      <div class="node">
+        <div class="node-title">Risk-tier decision</div>
+        <div class="node-body">No hit → proceed. Possible hit → analyst queue. Confirmed hit → block + SAR draft + regulator notification.</div>
+        <span class="node-tag rose">Decision</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <!-- Lane 2: Transaction Monitoring -->
+  <div class="lane">
+    <div class="lane-label amber">
+      <div class="lane-label-title">Lane 2<br>Transaction Monitor</div>
+      <div class="lane-label-sub">Batch + streaming, typology rules</div>
+    </div>
+    <div class="lane-content">
+      <div class="node">
+        <div class="node-title">Transaction ingest</div>
+        <div class="node-body">Kafka / SQS stream from core banking. Enriched with customer segment, geography, historical patterns.</div>
+        <span class="node-tag blue">Ingest</span>
+      </div>
+      <div class="arrow-right">→</div>
+      <div class="node">
+        <div class="node-title">Hybrid scoring</div>
+        <div class="node-body">Rule engine (structuring, round-tripping, velocity) + ML model (graph anomaly, behavior baseline). Weighted score 0-100.</div>
+        <span class="node-tag amber">Score</span>
+      </div>
+      <div class="arrow-right">→</div>
+      <div class="node">
+        <div class="node-title">Threshold route</div>
+        <div class="node-body">Score &lt; 40 → log. 40-75 → L1 investigator queue. &gt; 75 → L2 + auto-SAR draft + asset freeze recommendation.</div>
+        <span class="node-tag rose">Route</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+
+  <!-- Lane 3: CDD/EDD Workflow -->
+  <div class="lane">
+    <div class="lane-label rose">
+      <div class="lane-label-title">Lane 3<br>CDD / EDD</div>
+      <div class="lane-label-sub">Customer risk rating + review</div>
+    </div>
+    <div class="lane-content">
+      <div class="node">
+        <div class="node-title">Customer onboard / refresh</div>
+        <div class="node-body">New customer or periodic refresh (high-risk: 12mo, medium: 24mo, low: 36mo). PEP, adverse media, beneficial owner checks.</div>
+        <span class="node-tag blue">Trigger</span>
+      </div>
+      <div class="arrow-right">→</div>
+      <div class="node">
+        <div class="node-title">Risk rating</div>
+        <div class="node-body">Score: geography, occupation, product, channel, customer type. Output: Low / Medium / High / Prohibited.</div>
+        <span class="node-tag amber">Rate</span>
+      </div>
+      <div class="arrow-right">→</div>
+      <div class="node">
+        <div class="node-title">EDD + approval</div>
+        <div class="node-body">High-risk → EDD pack (source of funds, purpose, expected activity). CCO approval required before activation.</div>
+        <span class="node-tag rose">Approve</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="typologies">
+    <div class="typologies-title">Typologies Detected (rule + ML hybrid)</div>
+    <div class="typologies-grid">
+      <div class="typology"><div class="typology-name">Structuring</div><div class="typology-desc">Sub-threshold cash deposits to evade CTR</div></div>
+      <div class="typology"><div class="typology-name">Layering</div><div class="typology-desc">Rapid fund transfers across accounts/jurisdictions</div></div>
+      <div class="typology"><div class="typology-name">Smurfing</div><div class="typology-desc">Multiple low-value deposits by associates</div></div>
+      <div class="typology"><div class="typology-name">Round-tripping</div><div class="typology-desc">A → B → A cycle to disguise origin</div></div>
+      <div class="typology"><div class="typology-name">Terrorist financing</div><div class="typology-desc">Small flows to high-risk jurisdictions</div></div>
+    </div>
+  </div>
+
+  <div class="sla-bar">
+    <div class="sla-tile"><div class="sla-value">&lt; 200ms</div><div class="sla-label">Sanctions screen latency</div></div>
+    <div class="sla-tile"><div class="sla-value">24h</div><div class="sla-label">L1 alert investigation SLA</div></div>
+    <div class="sla-tile"><div class="sla-value">4h</div><div class="sla-label">L2 critical alert SLA</div></div>
+    <div class="sla-tile"><div class="sla-value">48h</div><div class="sla-label">SAR filing window post-decision</div></div>
+  </div>
+</div>
+</body>
+</html>

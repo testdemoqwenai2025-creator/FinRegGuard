@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FinRegGPT.Bot Whitepaper Cover</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @page { size: 794px 1123px; margin: 0; }
+    :root {
+      --c-bg: #0F2E2D;
+      --c-accent: #10B981;
+      --c-accent-2: #F59E0B;
+      --c-text: #FFFFFF;
+      --c-muted: #94B8B6;
+      --c-faint: #5A8583;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      width: 794px; height: 1123px;
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-family: 'Inter', sans-serif;
+    }
+    @media screen {
+      html { height: auto; display: flex; justify-content: center; min-height: 100vh; background: var(--c-bg); }
+      body { transform-origin: top center; scale: min(1, calc(100vw / 794), calc(100vh / 1123)); margin: 0 auto; box-shadow: 0 0 60px rgba(0,0,0,0.3); }
+    }
+
+    .cover {
+      width: 794px; height: 1123px;
+      position: relative; box-sizing: border-box;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 100px 114px;
+    }
+
+    .label {
+      font-size: 9pt;
+      color: var(--c-accent);
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 56px;
+      letter-spacing: -0.01em;
+    }
+    .brand .dot { color: var(--c-accent); }
+
+    .title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 30pt;
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--c-text);
+      margin-bottom: 40px;
+      max-width: 500px;
+      text-align: center;
+      letter-spacing: -0.02em;
+    }
+
+    .title-accent-bar {
+      width: 60px;
+      height: 3px;
+      background: var(--c-accent);
+      margin: 0 auto 40px;
+      border-radius: 2px;
+    }
+
+    .subtitle {
+      font-size: 12pt;
+      color: var(--c-muted);
+      margin-bottom: 56px;
+      max-width: 460px;
+      line-height: 1.6;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .summary-block {
+      display: flex;
+      gap: 56px;
+      margin-bottom: 52px;
+      align-items: center;
+    }
+    .stat {
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 110px;
+    }
+    .stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--c-accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 8.5pt;
+      color: var(--c-muted);
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+    .stat-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--c-faint);
+      opacity: 0.4;
+    }
+
+    .tags {
+      display: flex; gap: 8px; margin-bottom: 56px;
+      justify-content: center; flex-wrap: wrap;
+      max-width: 540px;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      color: var(--c-accent);
+      padding: 5px 11px;
+      border: 1px solid var(--c-accent);
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      background: rgba(16, 185, 129, 0.08);
+    }
+    .tag.amber {
+      color: var(--c-accent-2);
+      border-color: var(--c-accent-2);
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    .authors {
+      font-size: 11pt;
+      color: var(--c-text);
+      margin-bottom: 6px;
+      font-weight: 500;
+      text-align: center;
+    }
+    .institution {
+      font-size: 10pt;
+      color: var(--c-muted);
+      line-height: 1.4;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 60px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 8.5pt;
+      color: var(--c-faint);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <div class="label">Whitepaper · v1.0 · August 2026</div>
+    <div class="brand">FinRegGPT<span class="dot">.</span>Bot</div>
+
+    <div class="title">
+      AI Regulatory Compliance Automator for Financial Services
+    </div>
+    <div class="title-accent-bar"></div>
+
+    <div class="subtitle">
+      Tracking regulation changes across 8 jurisdictions, auto-updating policies, sealing immutable audit trails, and detecting financial crime in real time.
+    </div>
+
+    <div class="summary-block">
+      <div class="stat">
+        <div class="stat-value">$55B</div>
+        <div class="stat-label">TAM by 2027</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-value">8</div>
+        <div class="stat-label">Jurisdictions</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-value">94%</div>
+        <div class="stat-label">Net Retention</div>
+      </div>
+    </div>
+
+    <div class="tags">
+      <span class="tag">RegTech</span>
+      <span class="tag">AML / KYC</span>
+      <span class="tag">MiFID II</span>
+      <span class="tag amber">Basel III</span>
+      <span class="tag amber">HIPAA</span>
+      <span class="tag">GDPR</span>
+      <span class="tag amber">EU AI Act</span>
+    </div>
+
+    <div class="authors">Prepared by the FinRegGPT.Bot Team</div>
+    <div class="institution">Banks · Insurers · Pharmaceutical · Hospitals</div>
+
+    <div class="footer">FINREGGPT.BOT / WP-2026-01 · FOR DISCLOSURE TO INVESTORS &amp; REVIEWERS</div>
+  </div>
+</body>
+</html>

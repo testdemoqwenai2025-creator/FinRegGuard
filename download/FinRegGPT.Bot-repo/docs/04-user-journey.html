@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FinRegGPT.Bot User Journey</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --text: #0F2E2D;
+    --text-sub: #475569;
+    --text-muted: #6B7280;
+    --bg: #FFFFFF;
+    --surface: #F8FAFC;
+    --border: #E2E8F0;
+    --accent: #10B981;
+    --amber: #D97706;
+    --connector: #94A3B8;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { width: 1280px; margin: 0 auto; padding: 48px 56px; }
+  .diagram-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .diagram-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .persona-bar {
+    background: linear-gradient(90deg, #0F2E2D 0%, #134E4A 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 18px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .persona-name {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .persona-meta {
+    font-size: 12px;
+    opacity: 0.85;
+  }
+  .persona-badge {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .stage-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .stage {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 16px 14px;
+    position: relative;
+  }
+  .stage-num {
+    position: absolute;
+    top: -10px;
+    left: 14px;
+    background: var(--accent);
+    color: white;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .stage-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    margin-top: 4px;
+  }
+  .stage-action {
+    font-size: 11.5px;
+    color: var(--text-sub);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .stage-feeling {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    font-style: italic;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+  }
+  .stage-feeling::before {
+    content: "Feeling: ";
+    font-weight: 600;
+    color: var(--text-sub);
+    font-style: normal;
+  }
+  .arrow-row {
+    text-align: center;
+    color: var(--connector);
+    font-size: 20px;
+    margin: 4px 0 14px;
+    line-height: 1;
+  }
+  .outcome-bar {
+    margin-top: 24px;
+    background: #F0FDF4;
+    border: 1.5px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .outcome-block h4 {
+    font-size: 11px;
+    color: #166534;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .outcome-block p {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="diagram-title">User Journey — Sarah Chen, Chief Compliance Officer</div>
+  <div class="diagram-subtitle">A typical workday across the FinRegGPT.Bot platform, from morning briefing to quarterly audit sign-off.</div>
+
+  <div class="persona-bar">
+    <div>
+      <div class="persona-name">Sarah Chen</div>
+      <div class="persona-meta">Chief Compliance Officer · Multi-jurisdiction bank · 8 years in regtech</div>
+    </div>
+    <div class="persona-badge">PRIMARY PERSONA</div>
+  </div>
+
+  <div class="stage-row">
+    <div class="stage">
+      <div class="stage-num">1</div>
+      <div class="stage-title">Morning Briefing</div>
+      <div class="stage-action">Opens Dashboard. Reviews overnight alerts, compliance score delta, top critical items.</div>
+      <div class="stage-feeling">Confident — I see what matters in 30 seconds.</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">2</div>
+      <div class="stage-title">Triage Alert</div>
+      <div class="stage-action">SEC Rule 15c2-11 flagged as effective in 38 days. Opens regulation detail, sees affected units.</div>
+      <div class="stage-feeling">Relieved — the AI already drafted the impact summary.</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">3</div>
+      <div class="stage-title">Consult AI</div>
+      <div class="stage-action">Asks Assistant: "What's the impact of MAS SFA04-N02 on Singapore retail?" Gets cited answer with effort estimate.</div>
+      <div class="stage-feeling">Impressed — it cited the exact clause and gave me a person-day number.</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">4</div>
+      <div class="stage-title">Review Policy</div>
+      <div class="stage-action">Opens AML Policy v4.2.0. AI suggestion panel proposes tightening false-positive SLA from 5 to 2 days. Accepts.</div>
+      <div class="stage-feeling">Productive — 80% of the rewrite is already drafted.</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">5</div>
+      <div class="stage-title">Route for Approval</div>
+      <div class="stage-action">Submits draft v4.3.0 to Risk Committee. Status flips to <code>review</code>. Audit trail records the action.</div>
+      <div class="stage-feeling">In control — every action is logged and hash-chained.</div>
+    </div>
+  </div>
+
+  <div class="arrow-row">↓ afternoon ↓</div>
+
+  <div class="stage-row">
+    <div class="stage">
+      <div class="stage-num">6</div>
+      <div class="stage-title">Risk Review</div>
+      <div class="stage-action">Opens Risk Matrix. Spots Hospital Ops data-privacy risk worsening. Drills into mitigation plan.</div>
+      <div class="stage-feeling">Concerned — but the next step is clearly laid out.</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">7</div>
+      <div class="stage-title">AML Exception</div>
+      <div class="stage-action">AML engine flagged a structuring pattern. Reviews L2 alert, ML score 82. Approves SAR auto-draft.</div>
+      <div class="stage-feeling">Alert — the typology is real and the SAR is half-written.</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">8</div>
+      <div class="stage-title">Audit Export</div>
+      <div class="stage-action">Prepares Q3 audit trail export. CSV with 4,318 entries. Hash integrity verified. Sends to Internal Audit.</div>
+      <div class="stage-feeling">Ready — the regulator can ask any time.</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">9</div>
+      <div class="stage-title">Reports to Board</div>
+      <div class="stage-action">Generates quarterly compliance pack from Reports view. Fines avoided $5.2M this quarter. ROI 7.2x.</div>
+      <div class="stage-feeling">Proud — clear narrative for the board.</div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">10</div>
+      <div class="stage-title">End of Day</div>
+      <div class="stage-action">Logs off. The platform continues monitoring regulator feeds overnight and will brief her tomorrow.</div>
+      <div class="stage-feeling">Trusted — the system works while I sleep.</div>
+    </div>
+  </div>
+
+  <div class="outcome-bar">
+    <div class="outcome-block">
+      <h4>Time Saved</h4>
+      <p><strong>12,840 manual hours</strong> avoided YTD across the compliance team — equivalent to 6.5 FTE redirected to higher-value work.</p>
+    </div>
+    <div class="outcome-block">
+      <h4>Stickiness Driver</h4>
+      <p>Sarah logs in <strong>4-6 times every working day</strong>. After 90 days, switching to another tool would mean losing 6 months of audit context.</p>
+    </div>
+    <div class="outcome-block">
+      <h4>Outcome</h4>
+      <p><strong>94% net retention</strong> — once FinRegGPT.Bot is the system of record, removing it is more expensive than keeping it.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

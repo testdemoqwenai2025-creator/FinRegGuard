@@ -1,0 +1,34 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Build artifacts
+*.log
+*.tmp
+.cache/
+
+# Dependencies (not used in this docs-only repo, but ignore if added later)
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.db-journal
+*.sqlite
+*.sqlite-journal
+
+# Generated PDFs (the whitepaper is committed; intermediate builds are not)
+/FinRegGPT.Bot-Whitepaper.pdf.tmp
+/FinRegGPT.Bot-Whitepaper.pdf.bak

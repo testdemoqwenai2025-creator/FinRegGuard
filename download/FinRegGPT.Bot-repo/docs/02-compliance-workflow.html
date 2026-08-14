@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FinRegGPT.Bot Compliance Automation Workflow</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --text: #0F2E2D;
+    --text-sub: #475569;
+    --text-muted: #6B7280;
+    --bg: #FFFFFF;
+    --surface: #F8FAFC;
+    --border: #E2E8F0;
+    --accent: #10B981;
+    --connector: #94A3B8;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { width: 1100px; margin: 0 auto; padding: 48px 56px; }
+  .diagram-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .diagram-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .phase-group {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
+  }
+  .phase-title {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .phase-title .sla {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .phase-steps { display: flex; flex-direction: column; gap: 8px; padding-left: 4px; }
+  .phase-step {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-sub);
+    padding: 10px 16px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .phase-step .step-num {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .phase-step .step-text {
+    flex: 1;
+    line-height: 1.5;
+  }
+  .phase-step .step-text strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .phase-step .step-actor {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-left: 8px;
+  }
+  /* Scheme A: same-hue family (teal/green progression for FinRegGPT.Bot brand) */
+  .phase-1 .phase-title { background: #F0FDF4; color: #166534; border-left: 4px solid #10B981; }
+  .phase-1 .step-num { background: #DCFCE7; color: #166534; }
+  .phase-2 .phase-title { background: #E6F7F4; color: #115E59; border-left: 4px solid #0D9488; }
+  .phase-2 .step-num { background: #CCFBF1; color: #115E59; }
+  .phase-3 .phase-title { background: #E0F2FE; color: #075985; border-left: 4px solid #0284C7; }
+  .phase-3 .step-num { background: #DBEAFE; color: #075985; }
+  .phase-4 .phase-title { background: #FEF3C7; color: #92400E; border-left: 4px solid #D97706; }
+  .phase-4 .step-num { background: #FED7AA; color: #92400E; }
+  .phase-5 .phase-title { background: #F0FDF4; color: #166534; border-left: 4px solid #16A34A; }
+  .phase-5 .step-num { background: #DCFCE7; color: #166534; }
+  .arrow {
+    text-align: center;
+    color: var(--connector);
+    font-size: 22px;
+    margin: 6px 0;
+    line-height: 1;
+  }
+  .legend {
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: #FFFBEB;
+    border: 1px solid #FCD34D;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #92400E;
+    line-height: 1.6;
+  }
+  .legend strong { color: #78350F; }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="diagram-title">Compliance Automation Workflow</div>
+  <div class="diagram-subtitle">End-to-end flow: regulator publishes change → AI ingests → officer reviews → audit trail sealed. SLA per phase shown.</div>
+
+  <div class="phase-group phase-1">
+    <div class="phase-title">
+      <span>Phase 1 — Detection &amp; Ingestion</span>
+      <span class="sla">SLA: 24 hours</span>
+    </div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">1</span><span class="step-text"><strong>Regulator publishes a rule change.</strong> Source: SEC, ESMA, FCA, MAS, PMDA, APRA, OSFI, or EDPB RSS feed. <span class="step-actor">— Regulator</span></span></div>
+      <div class="phase-step"><span class="step-num">2</span><span class="step-text"><strong>Ingestion worker fetches and parses the change.</strong> Diff against previous version stored. <span class="step-actor">— FinRegGPT.Bot ingestion worker</span></span></div>
+      <div class="phase-step"><span class="step-num">3</span><span class="step-text"><strong>AI classifier tags the change.</strong> Jurisdiction, regulator, category (AML, MiFID II, Basel III, GDPR, HIPAA, AI Act...), impact level, affected business units. <span class="step-actor">— LLM (Z.ai)</span></span></div>
+      <div class="phase-step"><span class="step-num">4</span><span class="step-text"><strong>New Regulation row created</strong> with status = <code>monitoring</code> or <code>pending</code>. Audit log entry written. <span class="step-actor">— Domain service</span></span></div>
+    </div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="phase-group phase-2">
+    <div class="phase-title">
+      <span>Phase 2 — Impact Assessment</span>
+      <span class="sla">SLA: 5 business days</span>
+    </div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">5</span><span class="step-text"><strong>Compliance officer opens the regulation.</strong> AI presents a draft impact summary across affected business units. <span class="step-actor">— Sarah Chen (CCO)</span></span></div>
+      <div class="phase-step"><span class="step-num">6</span><span class="step-text"><strong>AI suggests which policies need updating.</strong> Cross-references the regulation's category with the policy inventory and recent versions. <span class="step-actor">— LLM (Z.ai)</span></span></div>
+      <div class="phase-step"><span class="step-num">7</span><span class="step-text"><strong>Risk items re-scored.</strong> Likelihood × impact recalculated; residual risk may shift. Worsening items trigger an alert. <span class="step-actor">— Risk service</span></span></div>
+    </div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="phase-group phase-3">
+    <div class="phase-title">
+      <span>Phase 3 — Policy Auto-Update &amp; Review</span>
+      <span class="sla">SLA: 15 business days</span>
+    </div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">8</span><span class="step-text"><strong>AI generates a policy diff.</strong> Each affected policy receives an <em>aiSuggestion</em> field with proposed language, citation, and justification. <span class="step-actor">— LLM (Z.ai)</span></span></div>
+      <div class="phase-step"><span class="step-num">9</span><span class="step-text"><strong>Owner reviews the suggestion.</strong> Accept, request changes, or dismiss. Accepted suggestions become a new draft version (e.g. v4.2.0 → v4.3.0). <span class="step-actor">— Policy owner</span></span></div>
+      <div class="phase-step"><span class="step-num">10</span><span class="step-text"><strong>Draft routes to Risk Committee.</strong> Status = <code>review</code> → <code>approved</code>. All transitions logged with actor + timestamp. <span class="step-actor">— Risk Committee</span></span></div>
+    </div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="phase-group phase-4">
+    <div class="phase-title">
+      <span>Phase 4 — Publication &amp; Training</span>
+      <span class="sla">SLA: 5 business days post-approval</span>
+    </div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">11</span><span class="step-text"><strong>Policy published.</strong> Status = <code>published</code>, version bumped, intranet updated. <span class="step-actor">— Compliance ops</span></span></div>
+      <div class="phase-step"><span class="step-num">12</span><span class="step-text"><strong>Training refresh queued.</strong> Affected workforce segments enrolled in updated module; completion deadline set. <span class="step-actor">— L&amp;D system</span></span></div>
+    </div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="phase-group phase-5">
+    <div class="phase-title">
+      <span>Phase 5 — Audit Trail Sealing</span>
+      <span class="sla">SLA: Continuous (real-time)</span>
+    </div>
+    <div class="phase-steps">
+      <div class="phase-step"><span class="step-num">13</span><span class="step-text"><strong>Every action appended to AuditLog</strong> with actor, action, target, severity, timestamp. Hash-chained to the previous entry. <span class="step-actor">— Audit service</span></span></div>
+      <div class="phase-step"><span class="step-num">14</span><span class="step-text"><strong>Integrity check runs nightly.</strong> Hash mismatches (if any) trigger a critical alert to the CCO and Internal Audit. <span class="step-actor">— Integrity checker</span></span></div>
+      <div class="phase-step"><span class="step-num">15</span><span class="step-text"><strong>Quarterly export signed by Internal Audit.</strong> CSV / PDF bundle archived for regulator inspection. <span class="step-actor">— Internal Audit</span></span></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>Total cycle time: 25-30 business days</strong> from regulator publication to sealed audit trail. Manual touchpoints: steps 5, 9, 10, 11. Everything else is automated. AI is involved in 4 of 5 phases but never makes a publish decision — humans always review and sign off.
+  </div>
+</div>
+</body>
+</html>
