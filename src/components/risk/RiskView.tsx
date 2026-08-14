@@ -19,6 +19,7 @@ import {
   Users,
 } from 'lucide-react'
 import type { RiskItem, RiskUnitSummary } from '@/lib/types'
+import { dataUrl } from '@/lib/data'
 
 // 5x5 risk matrix: likelihood (rows) x impact (cols)
 // Cell color intensity based on inherent risk score (likelihood * impact)
@@ -42,7 +43,7 @@ export function RiskView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/risk')
+    fetch(dataUrl('risk'))
       .then((r) => r.json())
       .then((d) => {
         setRisks(d.risks ?? [])

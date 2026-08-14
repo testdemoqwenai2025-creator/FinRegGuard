@@ -27,6 +27,7 @@ import {
 import { Download, TrendingUp, Globe2, Building2, DollarSign } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
 import type { DashboardData, Regulation, RiskItem } from '@/lib/types'
+import { dataUrl } from '@/lib/data'
 
 const JURISDICTION_COLORS: Record<string, string> = {
   US: '#0ea5e9',
@@ -48,9 +49,9 @@ export function ReportsView() {
 
   useEffect(() => {
     Promise.all([
-      fetch('/api/metrics').then((r) => r.json()),
-      fetch('/api/regulations').then((r) => r.json()),
-      fetch('/api/risk').then((r) => r.json()),
+      fetch(dataUrl('metrics')).then((r) => r.json()),
+      fetch(dataUrl('regulations')).then((r) => r.json()),
+      fetch(dataUrl('risk')).then((r) => r.json()),
     ])
       .then(([m, reg, r]) => {
         setMetrics(m)

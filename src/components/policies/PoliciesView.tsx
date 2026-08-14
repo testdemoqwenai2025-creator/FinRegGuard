@@ -33,6 +33,7 @@ import {
 } from 'lucide-react'
 import { format, parseISO, isBefore, formatDistanceToNow } from 'date-fns'
 import type { Policy } from '@/lib/types'
+import { dataUrl } from '@/lib/data'
 
 const statusColor: Record<string, string> = {
   draft: 'bg-slate-100 text-slate-700 border-slate-200',
@@ -60,7 +61,7 @@ export function PoliciesView() {
   const [regenerating, setRegenerating] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch('/api/policies')
+    fetch(dataUrl('policies'))
       .then((r) => r.json())
       .then((d) => setItems(d.policies ?? []))
       .finally(() => setLoading(false))

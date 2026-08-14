@@ -31,6 +31,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Search, Filter, Gavel, MapPin, Calendar, Building2, Sparkles } from 'lucide-react'
 import { format, parseISO, formatDistanceToNow, isAfter } from 'date-fns'
 import type { Regulation } from '@/lib/types'
+import { dataUrl } from '@/lib/data'
 
 const JURISDICTIONS = ['ALL', 'US', 'EU', 'UK', 'JP', 'SG', 'AU', 'CA']
 const STATUSES = ['ALL', 'monitoring', 'pending', 'effective', 'superseded']
@@ -70,7 +71,7 @@ export function RegulationsView() {
   const [selected, setSelected] = useState<Regulation | null>(null)
 
   useEffect(() => {
-    fetch('/api/regulations')
+    fetch(dataUrl('regulations'))
       .then((r) => r.json())
       .then((d) => setItems(d.regulations ?? []))
       .finally(() => setLoading(false))

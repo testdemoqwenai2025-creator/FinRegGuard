@@ -32,6 +32,7 @@ import {
 } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
 import type { DashboardData, AuditLog } from '@/lib/types'
+import { dataUrl } from '@/lib/data'
 
 const fmtMonth = (s: string) => {
   try {
@@ -48,12 +49,12 @@ export function DashboardView() {
 
   useEffect(() => {
     Promise.all([
-      fetch('/api/metrics').then((r) => r.json()),
-      fetch('/api/audit?limit=8').then((r) => r.json()),
+      fetch(dataUrl('metrics')).then((r) => r.json()),
+      fetch(dataUrl('audit')).then((r) => r.json()),
     ])
       .then(([d, l]) => {
         setData(d)
-        setLogs(l.logs ?? [])
+        setLogs((l.logs ?? []).slice(0, 8))
       })
       .finally(() => setLoading(false))
   }, [])

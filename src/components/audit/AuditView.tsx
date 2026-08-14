@@ -24,6 +24,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Search, Download, Shield, Filter, Hash } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
 import type { AuditLog } from '@/lib/types'
+import { dataUrl } from '@/lib/data'
 
 const SEVERITIES = ['ALL', 'info', 'warning', 'critical']
 const ACTIONS = [
@@ -67,7 +68,7 @@ export function AuditView() {
   const [action, setAction] = useState('ALL')
 
   useEffect(() => {
-    fetch('/api/audit?limit=200')
+    fetch(dataUrl('audit'))
       .then((r) => r.json())
       .then((d) => setLogs(d.logs ?? []))
       .finally(() => setLoading(false))

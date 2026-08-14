@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
 import type { ChatMessage } from '@/lib/types'
+import { dataUrl, IS_STATIC_BUILD } from '@/lib/data'
 
 type Msg = {
   id: string
@@ -59,7 +60,7 @@ export function AssistantView() {
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
-    fetch('/api/chat')
+    fetch(dataUrl('chat'))
       .then((r) => r.json())
       .then((d) => {
         const persisted: Msg[] = (d.messages ?? [])
@@ -90,6 +91,17 @@ export function AssistantView() {
     setSending(true)
 
     try {
+      if (IS_STATIC_BUILD) {
+        // Static GitHub Pages build — no server-side LLM. Provide a canned but contextual reply.
+        await new Promise((r) => setTimeout(r, 600))
+        const aiMsg: Msg = {
+          id: `a-${Date.now()}`,
+          role: 'assistant',
+          content: staticReply(trimmed),
+        }
+        setMessages((prev) => [...prev, aiMsg])
+        return
+      }
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -333,4 +345,25 @@ function MessageBubble({ msg }: { msg: Msg }) {
       </div>
     </div>
   )
+}
+
+/**
+ * Canned reply generator for the static GitHub Pages build (no live LLM available).
+ * Picks a relevant pre-written compliance answer based on keyword matching.
+ */
+function staticReply(question: string): string {
+  const q = question.toLowerCase()
+  if (q.includes('ai act') || q.includes('eu ai')) {
+    return `EU AI Act — key impact points for your insurance underwriting models:\n\n1. Annex III classifies insurance risk-pricing & creditworthiness assessment as HIGH-RISK (Art. 6(2)).\n2. You must complete a conformity assessment (Art. 43), register in the EU database (Art. 49), and appoint an authorised representative if established outside the EU.\n3. Transparency obligations under Art. 13: every automated decision ships with an Explainable Compliance Card (see the XCC module in this platform).\n4. Human oversight (Art. 14) — a qualified compliance officer must be able to override the model.\n5. Post-market monitoring (Art. 72) — track model drift and adverse incidents.\n\nRecommended next action: open the Rule Harmonizer, diff your existing AI Governance policy against the AI Act's Annex III requirements, and schedule a conformity assessment within 90 days.`
+  }
+  if (q.includes('aml') || q.includes('sanctions') || q.includes('cft')) {
+    return `AML/CFT — policy draft skeleton for sanctions screening:\n\n1. Scope: all customer onboarding, transaction monitoring, and counterparty screening across SWIFT, SEPA, RTP and crypto channels.\n2. Lists covered: OFAC SDN, UN Consolidated, EU FSF, HMT OFSI, MAS, plus real-time additions via Refinitiv World-Check.\n3. Match scoring: exact (100), fuzzy (≥85 → review), partial (60-84 → escalate), phonetic (track separately).\n4. SLA: true-positive escalation within 2 hours, SAR filing within 24 hours, OFAC blocking immediately on confirmed match.\n5. Tuning governance: monthly false-positive review, quarterly threshold recalibration, annual independent assurance.\n\nNext action: route this draft through Policy Management → version 1.0 → Compliance review → Legal sign-off → Published.`
+  }
+  if (q.includes('risk') || q.includes('remediation') || q.includes('worsen')) {
+    return `Risk trends this quarter — 3 items have worsened:\n\n1. Capital Markets — Market Integrity (SEC Rule 15c2-11): residual risk 18 ↑ from 12. Owner: James Okafor. Mitigation: complete impact assessment within 30 days.\n2. Retail Banking — AML Structuring: residual risk 16 ↑ from 11. Owner: Priya Nair. Mitigation: deploy enhanced transaction monitoring rules and retrain front-line staff.\n3. Wealth Management — Consumer Duty: residual risk 14 ↑ from 9. Owner: Marcus Webb. Mitigation: outcomes monitoring dashboard + quarterly Consumer Duty board report.\n\nPrioritise Capital Markets — it breaches the Board's risk appetite threshold of 15.`
+  }
+  if (q.includes('hipaa') || q.includes('encryption') || q.includes('hhs')) {
+    return `HIPAA encryption posture vs HHS NPRM (proposed Feb 2027):\n\n• At-rest encryption: ✅ AES-256 across all ePHI datastores (EHR, PACS, claims).\n• In-transit: ✅ TLS 1.3 mandated; legacy TLS 1.2 deprecated Q3 2025.\n• MFA coverage: ⚠️ 87% of workforce — gap is non-clinical contractors.\n• Key management: ✅ AWS KMS with HSM-backed CMKs, 90-day rotation.\n• Gap: HHS NPRM §164.312(a)(2)(iv) requires MFA for ALL workforce — close contractor gap by end of Q4.\n\nNext action: open Case Management → create remediation case → assign to IAM team with 30-day SLA.`
+  }
+  return `That's a great compliance question. In this live static preview (hosted on GitHub Pages), I respond with canned illustrative answers — the full LLM-backed RegGuard Copilot is available when the application runs with its server (Next.js standalone) and the z-ai-web-dev-sdk connected.\n\nTry asking about: "EU AI Act", "AML sanctions policy", "worsening risks", or "HIPAA encryption" to see how the assistant would structure a cited, action-oriented compliance answer.`
 }
