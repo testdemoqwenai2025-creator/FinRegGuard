@@ -1,7 +1,7 @@
 {
   "hits": [
     {
-      "id": "sanc_ab47522121f34bfabecb51",
+      "id": "sanc_329d263d6de94a71851a02",
       "listName": "HMT OFSI",
       "matchType": "fuzzy",
       "matchedName": "Nord Stream Trading LLC",
@@ -11,7 +11,7 @@
       "status": "true_positive",
       "reviewedBy": "k.larson@regco.io",
       "action": "File SAR",
-      "timestamp": "2026-08-11T13:06:42.754465+00:00",
+      "timestamp": "2026-08-11T13:22:20.185116+00:00",
       "aiRecommendation": {
         "action": "Block + freeze + SAR",
         "confidence": 88,
@@ -20,7 +20,7 @@
       }
     },
     {
-      "id": "sanc_0a2b5ca6aec84f6fbb0736",
+      "id": "sanc_cf3f6ebb6bd84a28abb49f",
       "listName": "OFAC 50% Rule",
       "matchType": "exact",
       "matchedName": "Al-Rashid Exchange",
@@ -30,7 +30,7 @@
       "status": "escalated",
       "reviewedBy": "auto-triage-v3",
       "action": "Block transaction",
-      "timestamp": "2026-08-08T23:19:22.754465+00:00",
+      "timestamp": "2026-08-08T23:35:00.185116+00:00",
       "aiRecommendation": {
         "action": "Manual review by MLRO",
         "confidence": 91,
@@ -39,7 +39,7 @@
       }
     },
     {
-      "id": "sanc_902a12fecc824bb1826c7b",
+      "id": "sanc_8225aba6e60a45269166f0",
       "listName": "OFAC SDN",
       "matchType": "fuzzy",
       "matchedName": "Silk Road Holdings",
@@ -49,7 +49,7 @@
       "status": "true_positive",
       "reviewedBy": "mlro@regco.io",
       "action": "Freeze account",
-      "timestamp": "2026-08-11T04:14:48.754465+00:00",
+      "timestamp": "2026-08-11T04:30:26.185116+00:00",
       "aiRecommendation": {
         "action": "Manual review by MLRO",
         "confidence": 82,
@@ -58,7 +58,7 @@
       }
     },
     {
-      "id": "sanc_452b22ec79794c20b2199d",
+      "id": "sanc_f3a869cc01bd42ba81e1a0",
       "listName": "OFSI Russia",
       "matchType": "partial",
       "matchedName": "Meridian Petroleum",
@@ -68,7 +68,7 @@
       "status": "escalated",
       "reviewedBy": "k.larson@regco.io",
       "action": null,
-      "timestamp": "2026-08-13T03:48:00.754465+00:00",
+      "timestamp": "2026-08-13T04:03:38.185116+00:00",
       "aiRecommendation": {
         "action": "Block + freeze + SAR",
         "confidence": 88,
@@ -77,7 +77,7 @@
       }
     },
     {
-      "id": "sanc_6e7a7250c184447e8dbc7a",
+      "id": "sanc_00dd7b774365490981cfc9",
       "listName": "OFAC SDN",
       "matchType": "partial",
       "matchedName": "Blue Ocean Shipping",
@@ -87,7 +87,7 @@
       "status": "escalated",
       "reviewedBy": "k.larson@regco.io",
       "action": "Freeze account",
-      "timestamp": "2026-08-09T06:17:12.754465+00:00",
+      "timestamp": "2026-08-09T06:32:50.185116+00:00",
       "aiRecommendation": {
         "action": "Manual review by MLRO",
         "confidence": 99,
@@ -96,7 +96,7 @@
       }
     },
     {
-      "id": "sanc_b036319301c74a8a9582d8",
+      "id": "sanc_0d0fe601a227441a881d80",
       "listName": "MAS",
       "matchType": "exact",
       "matchedName": "Pyongyang Tech Corp",
@@ -106,7 +106,7 @@
       "status": "false_positive",
       "reviewedBy": null,
       "action": "File SAR",
-      "timestamp": "2026-08-14T12:54:11.754465+00:00",
+      "timestamp": "2026-08-14T13:09:49.185116+00:00",
       "aiRecommendation": {
         "action": "Block + freeze + SAR",
         "confidence": 96,
@@ -115,7 +115,7 @@
       }
     },
     {
-      "id": "sanc_58033b96dc0e4a959445c1",
+      "id": "sanc_5d24dab8a0844fb8bc59a2",
       "listName": "HMT OFSI",
       "matchType": "fuzzy",
       "matchedName": "Caracas Capital SA",
@@ -125,7 +125,7 @@
       "status": "pending",
       "reviewedBy": "k.larson@regco.io",
       "action": "Continue monitoring",
-      "timestamp": "2026-08-10T17:57:40.754465+00:00",
+      "timestamp": "2026-08-10T18:13:18.185116+00:00",
       "aiRecommendation": {
         "action": "Manual review by MLRO",
         "confidence": 83,
@@ -134,7 +134,7 @@
       }
     },
     {
-      "id": "sanc_0f1d5c8989f04a2bb2594b",
+      "id": "sanc_bf5bdf8c74dc4fb1b06b84",
       "listName": "EU FSF",
       "matchType": "partial",
       "matchedName": "Minsk Industrial Group",
@@ -144,7 +144,7 @@
       "status": "escalated",
       "reviewedBy": "k.larson@regco.io",
       "action": "File SAR",
-      "timestamp": "2026-08-10T23:16:48.754465+00:00",
+      "timestamp": "2026-08-10T23:32:26.185116+00:00",
       "aiRecommendation": {
         "action": "Manual review by MLRO",
         "confidence": 97,
@@ -153,7 +153,7 @@
       }
     },
     {
-      "id": "sanc_90717907d63b46a6abcd98",
+      "id": "sanc_515a5112061c46e58a677c",
       "listName": "OFSI Russia",
       "matchType": "fuzzy",
       "matchedName": "Nord Stream Trading LLC",
@@ -163,7 +163,7 @@
       "status": "pending",
       "reviewedBy": "auto-triage-v3",
       "action": "Continue monitoring",
-      "timestamp": "2026-08-07T15:37:54.754465+00:00",
+      "timestamp": "2026-08-07T15:53:32.185116+00:00",
       "aiRecommendation": {
         "action": "Block + freeze + SAR",
         "confidence": 89,
@@ -172,7 +172,7 @@
       }
     },
     {
-      "id": "sanc_b0bee2b0c5144ef1996464",
+      "id": "sanc_2bd82a30a1d04e9f9abcae",
       "listName": "EU FSF",
       "matchType": "exact",
       "matchedName": "Al-Rashid Exchange",
@@ -182,7 +182,7 @@
       "status": "escalated",
       "reviewedBy": "k.larson@regco.io",
       "action": "File SAR",
-      "timestamp": "2026-08-09T04:42:58.754465+00:00",
+      "timestamp": "2026-08-09T04:58:36.185116+00:00",
       "aiRecommendation": {
         "action": "Manual review by MLRO",
         "confidence": 94,
@@ -191,7 +191,7 @@
       }
     },
     {
-      "id": "sanc_0117e771dfd44a06a2752c",
+      "id": "sanc_11dcfe0c6ad04bd4b465da",
       "listName": "HMT OFSI",
       "matchType": "fuzzy",
       "matchedName": "Silk Road Holdings",
@@ -201,7 +201,7 @@
       "status": "pending",
       "reviewedBy": null,
       "action": "Freeze account",
-      "timestamp": "2026-08-08T07:15:34.754465+00:00",
+      "timestamp": "2026-08-08T07:31:12.185116+00:00",
       "aiRecommendation": {
         "action": "Block + freeze + SAR",
         "confidence": 99,
@@ -210,7 +210,7 @@
       }
     },
     {
-      "id": "sanc_464768971c13471282d142",
+      "id": "sanc_50df879fc49a456f8a70f7",
       "listName": "OFSI Russia",
       "matchType": "exact",
       "matchedName": "Meridian Petroleum",
@@ -220,7 +220,7 @@
       "status": "true_positive",
       "reviewedBy": "auto-triage-v3",
       "action": "Block transaction",
-      "timestamp": "2026-08-14T06:16:53.754465+00:00",
+      "timestamp": "2026-08-14T06:32:31.185116+00:00",
       "aiRecommendation": {
         "action": "Block + freeze + SAR",
         "confidence": 81,
@@ -229,7 +229,7 @@
       }
     },
     {
-      "id": "sanc_963889a35cf44c0cbfb5a5",
+      "id": "sanc_8be3c4e8037d40b681c738",
       "listName": "OFAC 50% Rule",
       "matchType": "phonetic",
       "matchedName": "Blue Ocean Shipping",
@@ -239,7 +239,7 @@
       "status": "escalated",
       "reviewedBy": "mlro@regco.io",
       "action": "Continue monitoring",
-      "timestamp": "2026-08-12T04:45:44.754465+00:00",
+      "timestamp": "2026-08-12T05:01:22.185116+00:00",
       "aiRecommendation": {
         "action": "Block + freeze + SAR",
         "confidence": 92,
@@ -248,7 +248,7 @@
       }
     },
     {
-      "id": "sanc_216f0ba695864a519ceb11",
+      "id": "sanc_cad1f7642da5490e9e15e9",
       "listName": "UN Consolidated",
       "matchType": "phonetic",
       "matchedName": "Pyongyang Tech Corp",
@@ -258,7 +258,7 @@
       "status": "pending",
       "reviewedBy": null,
       "action": null,
-      "timestamp": "2026-08-09T09:33:46.754465+00:00",
+      "timestamp": "2026-08-09T09:49:24.185116+00:00",
       "aiRecommendation": {
         "action": "Block + freeze + SAR",
         "confidence": 87,
@@ -267,7 +267,7 @@
       }
     },
     {
-      "id": "sanc_a4a214d5c472490bbc24b5",
+      "id": "sanc_1901f9fb13a34b51b4335e",
       "listName": "MAS",
       "matchType": "phonetic",
       "matchedName": "Caracas Capital SA",
@@ -277,7 +277,7 @@
       "status": "pending",
       "reviewedBy": "mlro@regco.io",
       "action": "Block transaction",
-      "timestamp": "2026-08-08T22:03:31.754465+00:00",
+      "timestamp": "2026-08-08T22:19:09.185116+00:00",
       "aiRecommendation": {
         "action": "Manual review by MLRO",
         "confidence": 96,
@@ -286,7 +286,7 @@
       }
     },
     {
-      "id": "sanc_6e43bebfb4f247f1b6f80a",
+      "id": "sanc_a94bf37363b04083b25b72",
       "listName": "MAS",
       "matchType": "partial",
       "matchedName": "Minsk Industrial Group",
@@ -296,7 +296,7 @@
       "status": "escalated",
       "reviewedBy": "mlro@regco.io",
       "action": "Block transaction",
-      "timestamp": "2026-08-08T19:08:12.754465+00:00",
+      "timestamp": "2026-08-08T19:23:50.185116+00:00",
       "aiRecommendation": {
         "action": "Manual review by MLRO",
         "confidence": 94,

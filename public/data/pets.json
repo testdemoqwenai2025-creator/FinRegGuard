@@ -1,13 +1,13 @@
 {
   "configs": [
     {
-      "id": "pet_e3be719fb7cb411da945e4",
+      "id": "pet_d1b566f3dba943f4af6173",
       "dataset": "Customer PII",
       "technique": "secure_enclave",
       "enabled": false,
       "parameters": "{\"epsilon\": 1.94, \"delta\": 1e-05, \"key_rotation_days\": 90, \"enclave\": \"aws_nitro\"}",
       "approvedBy": null,
-      "updatedAt": "2026-07-17T14:53:32.754465+00:00",
+      "updatedAt": "2026-07-17T15:09:10.185116+00:00",
       "aiRecommendation": {
         "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
         "confidence": 85,
@@ -16,13 +16,13 @@
       }
     },
     {
-      "id": "pet_cc60693b64b04e61b9a6ef",
+      "id": "pet_a40006ff8682443a9ff6f1",
       "dataset": "Transaction History",
       "technique": "secure_enclave",
       "enabled": false,
       "parameters": "{\"epsilon\": 0.64, \"delta\": 1e-05, \"key_rotation_days\": 60, \"enclave\": \"aws_nitro\"}",
       "approvedBy": "dpo@regco.io",
-      "updatedAt": "2026-08-13T02:14:49.754465+00:00",
+      "updatedAt": "2026-08-13T02:30:27.185116+00:00",
       "aiRecommendation": {
         "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
         "confidence": 95,
@@ -31,13 +31,13 @@
       }
     },
     {
-      "id": "pet_843281f4845447729aa0cf",
+      "id": "pet_8b8705dc2c844f27b20581",
       "dataset": "Health Records (PHI)",
       "technique": "homomorphic_encryption",
       "enabled": false,
       "parameters": "{\"epsilon\": 1.21, \"delta\": 1e-05, \"key_rotation_days\": 90, \"enclave\": \"aws_nitro\"}",
       "approvedBy": "dpo@regco.io",
-      "updatedAt": "2026-07-24T16:44:11.754465+00:00",
+      "updatedAt": "2026-07-24T16:59:49.185116+00:00",
       "aiRecommendation": {
         "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
         "confidence": 95,
@@ -46,13 +46,13 @@
       }
     },
     {
-      "id": "pet_326f0602df524a009cd925",
+      "id": "pet_7b761ceb13ba433ebc8094",
       "dataset": "Credit Scores",
       "technique": "secure_enclave",
       "enabled": true,
       "parameters": "{\"epsilon\": 1.39, \"delta\": 1e-05, \"key_rotation_days\": 30, \"enclave\": \"sgx\"}",
       "approvedBy": null,
-      "updatedAt": "2026-08-02T20:28:37.754465+00:00",
+      "updatedAt": "2026-08-02T20:44:15.185116+00:00",
       "aiRecommendation": {
         "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
         "confidence": 89,
@@ -61,13 +61,13 @@
       }
     },
     {
-      "id": "pet_5b924f5dd76e475a9a70cf",
+      "id": "pet_7f263c982b9a44d7937268",
       "dataset": "Biometric Voiceprints",
       "technique": "federated_learning",
       "enabled": false,
       "parameters": "{\"epsilon\": 1.66, \"delta\": 1e-05, \"key_rotation_days\": 30, \"enclave\": \"aws_nitro\"}",
       "approvedBy": "ciso@regco.io",
-      "updatedAt": "2026-07-20T12:19:50.754465+00:00",
+      "updatedAt": "2026-07-20T12:35:28.185116+00:00",
       "aiRecommendation": {
         "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
         "confidence": 83,
@@ -76,13 +76,13 @@
       }
     },
     {
-      "id": "pet_abe6d60b006246328a8f2f",
+      "id": "pet_d869e6ac7e854e64912926",
       "dataset": "Trading Communications",
       "technique": "federated_learning",
       "enabled": false,
       "parameters": "{\"epsilon\": 1.68, \"delta\": 1e-05, \"key_rotation_days\": 60, \"enclave\": \"aws_nitro\"}",
       "approvedBy": null,
-      "updatedAt": "2026-07-23T03:10:59.754465+00:00",
+      "updatedAt": "2026-07-23T03:26:37.185116+00:00",
       "aiRecommendation": {
         "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
         "confidence": 86,
@@ -91,13 +91,13 @@
       }
     },
     {
-      "id": "pet_4686bd8343194ad58ab645",
+      "id": "pet_c152399da7224975ba2900",
       "dataset": "Employee HR Data",
       "technique": "secure_enclave",
       "enabled": false,
       "parameters": "{\"epsilon\": 2.51, \"delta\": 1e-05, \"key_rotation_days\": 30, \"enclave\": \"sgx\"}",
       "approvedBy": null,
-      "updatedAt": "2026-07-22T17:26:10.754465+00:00",
+      "updatedAt": "2026-07-22T17:41:48.185116+00:00",
       "aiRecommendation": {
         "action": "Enable DP with \u03b5=1.2 (recommended privacy budget)",
         "confidence": 88,

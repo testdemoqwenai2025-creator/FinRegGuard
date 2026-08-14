@@ -1,15 +1,15 @@
 {
   "cards": [
     {
-      "id": "xcc_e0f73d6c19174f28b9e2e3",
+      "id": "xcc_3d9b98a8a98445a49efa64",
       "decisionId": "Loan Application L-2025-08-4471",
       "decision": "approved",
       "regulation": "Basel III IRB",
       "policyRef": "credit_risk_policy_v2.3",
-      "evidence": "Anchor 0xad639c6047534aac \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0xad6db39a22f748b9 \u2014 8 artifacts, 23 audit events",
       "reasoning": "PD 1.8% \u00d7 LGD 42% \u00d7 EAD $450k = EL $3.4k; within appetite",
       "confidence": 94,
-      "generatedAt": "2026-08-13T13:46:10.754465+00:00",
+      "generatedAt": "2026-08-13T14:01:48.185116+00:00",
       "aiRecommendation": {
         "action": "Publish XCC to decision registry (immutable)",
         "confidence": 94,
@@ -18,15 +18,15 @@
       }
     },
     {
-      "id": "xcc_8fbf806d35a74d89b7ffaf",
+      "id": "xcc_c42605e14220418ba65cff",
       "decisionId": "Transaction T-2025-08-88912",
       "decision": "declined",
       "regulation": "OFAC Sanctions",
       "policyRef": "sanctions_policy_v4.1",
-      "evidence": "Anchor 0xceb93290b9f8497d \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0x26ddab6b38be46bc \u2014 8 artifacts, 23 audit events",
       "reasoning": "Counterparty matches SDN list entry OFAC-12345; 50% Rule analysis: 65% owned by blocked party",
       "confidence": 99,
-      "generatedAt": "2026-08-14T07:22:09.754465+00:00",
+      "generatedAt": "2026-08-14T07:37:47.185116+00:00",
       "aiRecommendation": {
         "action": "Publish XCC to decision registry (immutable)",
         "confidence": 99,
@@ -35,15 +35,15 @@
       }
     },
     {
-      "id": "xcc_7b82531cff1e4a4483f60c",
+      "id": "xcc_2c9a085e42cc45dd9f9491",
       "decisionId": "Trade Order O-2025-08-55204",
       "decision": "flagged",
       "regulation": "MiFID II Best Ex",
       "policyRef": "best_execution_policy_v2.4",
-      "evidence": "Anchor 0x43fe6d2f173a47e2 \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0xe48eef03b0ec4779 \u2014 8 artifacts, 23 audit events",
       "reasoning": "Venue offered 3bps better price but worse fill ratio; trade-through detected",
       "confidence": 88,
-      "generatedAt": "2026-08-14T11:30:37.754465+00:00",
+      "generatedAt": "2026-08-14T11:46:15.185116+00:00",
       "aiRecommendation": {
         "action": "Human review before publish",
         "confidence": 88,
@@ -52,15 +52,15 @@
       }
     },
     {
-      "id": "xcc_0f3e308e9e574fc4bb0f8a",
+      "id": "xcc_611ac74bb76f42148276de",
       "decisionId": "Policy Update P-2025-08-12",
       "decision": "approved",
       "regulation": "EU AI Act Art 13",
       "policyRef": "ai_governance_policy_v1.2",
-      "evidence": "Anchor 0xd66cda78f889419e \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0x15cfd667cdc34700 \u2014 8 artifacts, 23 audit events",
       "reasoning": "Model card complete; human oversight documented; post-market monitoring plan attached",
       "confidence": 91,
-      "generatedAt": "2026-08-13T22:57:55.754465+00:00",
+      "generatedAt": "2026-08-13T23:13:33.185116+00:00",
       "aiRecommendation": {
         "action": "Publish XCC to decision registry (immutable)",
         "confidence": 91,
@@ -69,15 +69,15 @@
       }
     },
     {
-      "id": "xcc_f70e324721604c0d8c6498",
+      "id": "xcc_1adbad69fa18410ab28e8f",
       "decisionId": "Customer Onboarding C-2025-08-9921",
       "decision": "declined",
       "regulation": "AML/CFT KYC",
       "policyRef": "kyc_policy_v3.1",
-      "evidence": "Anchor 0x596075909e624d14 \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0x43186746fa0f4d0c \u2014 8 artifacts, 23 audit events",
       "reasoning": "PEP status confirmed; source of wealth unverifiable from 3 independent sources",
       "confidence": 95,
-      "generatedAt": "2026-08-13T14:37:05.754465+00:00",
+      "generatedAt": "2026-08-13T14:52:43.185116+00:00",
       "aiRecommendation": {
         "action": "Publish XCC to decision registry (immutable)",
         "confidence": 95,
@@ -86,15 +86,15 @@
       }
     },
     {
-      "id": "xcc_e13122e0803c4253978d1c",
+      "id": "xcc_9b1b0b0403f34eb3842e82",
       "decisionId": "Crypto Deposit D-2025-08-447",
       "decision": "flagged",
       "regulation": "FATF Travel Rule",
       "policyRef": "digital_asset_policy_v1.0",
-      "evidence": "Anchor 0x36043b5e811e4c29 \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0x67f94dbe934b45fb \u2014 8 artifacts, 23 audit events",
       "reasoning": "Deposit >$3k from non-compliant VASP; Travel Rule data missing",
       "confidence": 92,
-      "generatedAt": "2026-08-14T02:16:21.754465+00:00",
+      "generatedAt": "2026-08-14T02:31:59.185116+00:00",
       "aiRecommendation": {
         "action": "Publish XCC to decision registry (immutable)",
         "confidence": 92,
@@ -103,15 +103,15 @@
       }
     },
     {
-      "id": "xcc_61cf23c9ec454c298b4fcb",
+      "id": "xcc_af057a6ae57b4161ab1f6f",
       "decisionId": "Cross-Border Wire W-2025-08-6634",
       "decision": "approved",
       "regulation": "Fx Settlement",
       "policyRef": "fx_risk_policy_v2.0",
-      "evidence": "Anchor 0x26fd5b419f59456c \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0x097d389ff43443b5 \u2014 8 artifacts, 23 audit events",
       "reasoning": "Within CLS eligible currencies; PvP settlement; counterparty limit OK",
       "confidence": 96,
-      "generatedAt": "2026-08-14T04:52:15.754465+00:00",
+      "generatedAt": "2026-08-14T05:07:53.185116+00:00",
       "aiRecommendation": {
         "action": "Publish XCC to decision registry (immutable)",
         "confidence": 96,
@@ -120,15 +120,15 @@
       }
     },
     {
-      "id": "xcc_1b28d2ea3d09464cbf1f3b",
+      "id": "xcc_27e3398f09a74e04812e48",
       "decisionId": "AI Model Deployment M-2025-08-3",
       "decision": "declined",
       "regulation": "EU AI Act Annex III",
       "policyRef": "ai_governance_policy_v1.2",
-      "evidence": "Anchor 0x5395bde5d8da4932 \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0x7feb4ebc60a24088 \u2014 8 artifacts, 23 audit events",
       "reasoning": "High-risk system without conformity assessment; CE marking absent",
       "confidence": 97,
-      "generatedAt": "2026-08-13T21:46:04.754465+00:00",
+      "generatedAt": "2026-08-13T22:01:42.185116+00:00",
       "aiRecommendation": {
         "action": "Publish XCC to decision registry (immutable)",
         "confidence": 97,
@@ -137,15 +137,15 @@
       }
     },
     {
-      "id": "xcc_ec2e6cb2c797481f89700b",
+      "id": "xcc_95fcda19caf94467a72c39",
       "decisionId": "Vendor Onboarding V-2025-08-22",
       "decision": "flagged",
       "regulation": "DORA ICT Risk",
       "policyRef": "vendor_risk_policy_v2.1",
-      "evidence": "Anchor 0xa98c325c14f1414b \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0x61bec3a215fd4427 \u2014 8 artifacts, 23 audit events",
       "reasoning": "Critical ICT provider; missing SOC 2 Type II report; concentration risk",
       "confidence": 89,
-      "generatedAt": "2026-08-13T13:31:49.754465+00:00",
+      "generatedAt": "2026-08-13T13:47:27.185116+00:00",
       "aiRecommendation": {
         "action": "Human review before publish",
         "confidence": 89,
@@ -154,15 +154,15 @@
       }
     },
     {
-      "id": "xcc_0d90fce0c6014043a9709e",
+      "id": "xcc_f3198916d3844aa980132d",
       "decisionId": "Insurance Underwriting U-2025-08-71",
       "decision": "approved",
       "regulation": "EU AI Act Art 6",
       "policyRef": "ai_underwriting_policy_v1.0",
-      "evidence": "Anchor 0x7bebb00d90b349e7 \u2014 8 artifacts, 23 audit events",
+      "evidence": "Anchor 0x81ad3e1021c64853 \u2014 8 artifacts, 23 audit events",
       "reasoning": "Model validated; bias testing passed; explainability via SHAP; conformity assessment complete",
       "confidence": 93,
-      "generatedAt": "2026-08-14T10:04:31.754465+00:00",
+      "generatedAt": "2026-08-14T10:20:09.185116+00:00",
       "aiRecommendation": {
         "action": "Publish XCC to decision registry (immutable)",
         "confidence": 93,

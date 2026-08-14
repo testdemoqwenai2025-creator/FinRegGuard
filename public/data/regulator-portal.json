@@ -16,28 +16,28 @@
     {
       "id": "q1",
       "query": "Show all Consumer Duty breaches Q1 2025",
-      "timestamp": "2026-08-14T12:24:44.754465+00:00",
+      "timestamp": "2026-08-14T12:40:22.185116+00:00",
       "recordsReturned": 23,
       "logged": true
     },
     {
       "id": "q2",
       "query": "List all SAR filings >$10k Mar-May 2025",
-      "timestamp": "2026-08-14T11:24:44.754465+00:00",
+      "timestamp": "2026-08-14T11:40:22.185116+00:00",
       "recordsReturned": 47,
       "logged": true
     },
     {
       "id": "q3",
       "query": "Best execution venue analysis Aug 2025",
-      "timestamp": "2026-08-13T13:24:44.754465+00:00",
+      "timestamp": "2026-08-13T13:40:22.185116+00:00",
       "recordsReturned": 12,
       "logged": true
     },
     {
       "id": "q4",
       "query": "Risk matrix for Wealth Management",
-      "timestamp": "2026-08-12T13:24:44.754465+00:00",
+      "timestamp": "2026-08-12T13:40:22.185116+00:00",
       "recordsReturned": 8,
       "logged": true
     }

@@ -1,7 +1,7 @@
 {
   "alerts": [
     {
-      "id": "alert_e3e01b731a1047db9c1185",
+      "id": "alert_167d589d96914fa590803e",
       "alertType": "structuring",
       "severity": "high",
       "accountId": "ACC-877572",
@@ -14,7 +14,7 @@
       "status": "false_positive",
       "triggeredRule": "Rule-AML-001",
       "narrative": "Cash deposits split below $10k threshold",
-      "timestamp": "2026-08-07T22:32:46.754465+00:00",
+      "timestamp": "2026-08-07T22:48:24.185116+00:00",
       "aiRecommendation": {
         "action": "File SAR within 24h",
         "confidence": 90,
@@ -23,7 +23,7 @@
       }
     },
     {
-      "id": "alert_9d3da10a26fe414289697e",
+      "id": "alert_6ee852f4102942e5878b14",
       "alertType": "layering",
       "severity": "critical",
       "accountId": "ACC-198246",
@@ -36,7 +36,7 @@
       "status": "open",
       "triggeredRule": "Rule-CFT-003",
       "narrative": "Funds moved through 4 shell entities in 3 jurisdictions",
-      "timestamp": "2026-08-12T03:28:48.754465+00:00",
+      "timestamp": "2026-08-12T03:44:26.185116+00:00",
       "aiRecommendation": {
         "action": "Close as false positive",
         "confidence": 92,
@@ -45,7 +45,7 @@
       }
     },
     {
-      "id": "alert_ea7803ba7dda41dbaf8af4",
+      "id": "alert_a258682241e0418ca7add7",
       "alertType": "smurfing",
       "severity": "high",
       "accountId": "ACC-331148",
@@ -58,7 +58,7 @@
       "status": "open",
       "triggeredRule": "Rule-AML-014",
       "narrative": "23 sub-$10k deposits across 7 branches in 48h",
-      "timestamp": "2026-08-09T10:18:01.754465+00:00",
+      "timestamp": "2026-08-09T10:33:39.185116+00:00",
       "aiRecommendation": {
         "action": "Request KYC refresh",
         "confidence": 80,
@@ -67,7 +67,7 @@
       }
     },
     {
-      "id": "alert_95103e2320ad47e2ba1d51",
+      "id": "alert_2979561c131d4a8db58cc7",
       "alertType": "rapid_movement",
       "severity": "medium",
       "accountId": "ACC-207175",
@@ -80,7 +80,7 @@
       "status": "under_review",
       "triggeredRule": "Rule-CFT-003",
       "narrative": "Inbound SEPA \u2192 outbound SWIFT within 11 minutes",
-      "timestamp": "2026-08-11T08:20:54.754465+00:00",
+      "timestamp": "2026-08-11T08:36:32.185116+00:00",
       "aiRecommendation": {
         "action": "File SAR within 24h",
         "confidence": 95,
@@ -89,7 +89,7 @@
       }
     },
     {
-      "id": "alert_f54d2ebd531b43c98a2bdd",
+      "id": "alert_5b69368172f74f2789e20c",
       "alertType": "integration",
       "severity": "medium",
       "accountId": "ACC-496922",
@@ -102,7 +102,7 @@
       "status": "false_positive",
       "triggeredRule": "Rule-CFT-003",
       "narrative": "Real-estate purchase with unexplained wealth source",
-      "timestamp": "2026-08-10T04:03:43.754465+00:00",
+      "timestamp": "2026-08-10T04:19:21.185116+00:00",
       "aiRecommendation": {
         "action": "Continue monitoring 30d",
         "confidence": 78,
@@ -111,7 +111,7 @@
       }
     },
     {
-      "id": "alert_9cde1eae9a224775a31f81",
+      "id": "alert_bb76cc86edf14d668167d6",
       "alertType": "round_tripping",
       "severity": "high",
       "accountId": "ACC-793384",
@@ -124,7 +124,7 @@
       "status": "open",
       "triggeredRule": "Rule-AML-001",
       "narrative": "A\u2192B\u2192C\u2192A circular flow netting to ~0 over 5 days",
-      "timestamp": "2026-08-09T22:40:33.754465+00:00",
+      "timestamp": "2026-08-09T22:56:11.185116+00:00",
       "aiRecommendation": {
         "action": "Request KYC refresh",
         "confidence": 86,
@@ -133,7 +133,7 @@
       }
     },
     {
-      "id": "alert_d74ac30b61b940dbbf718f",
+      "id": "alert_cbde6202765a4deb88fb06",
       "alertType": "funnel_account",
       "severity": "critical",
       "accountId": "ACC-270555",
@@ -146,7 +146,7 @@
       "status": "under_review",
       "triggeredRule": "Rule-CFT-019",
       "narrative": "Multiple inbound \u2192 single outbound to high-risk jurisdiction",
-      "timestamp": "2026-08-13T16:35:54.754465+00:00",
+      "timestamp": "2026-08-13T16:51:32.185116+00:00",
       "aiRecommendation": {
         "action": "Continue monitoring 30d",
         "confidence": 92,
@@ -155,7 +155,7 @@
       }
     },
     {
-      "id": "alert_e1a5d5680cc34b2c854bc3",
+      "id": "alert_a4d1eacd0dc948e7b34be1",
       "alertType": "cuckoo_smurfing",
       "severity": "high",
       "accountId": "ACC-271339",
@@ -168,7 +168,7 @@
       "status": "false_positive",
       "triggeredRule": "Rule-CFT-003",
       "narrative": "Third-party cash deposits matching expected invoice amounts",
-      "timestamp": "2026-08-11T21:25:41.754465+00:00",
+      "timestamp": "2026-08-11T21:41:19.185116+00:00",
       "aiRecommendation": {
         "action": "Close as false positive",
         "confidence": 82,
@@ -177,7 +177,7 @@
       }
     },
     {
-      "id": "alert_56865496dc904da3a36f2b",
+      "id": "alert_e9bf086ea3fc42149efd1e",
       "alertType": "structuring",
       "severity": "high",
       "accountId": "ACC-340174",
@@ -190,7 +190,7 @@
       "status": "under_review",
       "triggeredRule": "Rule-AML-001",
       "narrative": "Cash deposits split below $10k threshold",
-      "timestamp": "2026-08-11T23:56:33.754465+00:00",
+      "timestamp": "2026-08-12T00:12:11.185116+00:00",
       "aiRecommendation": {
         "action": "Continue monitoring 30d",
         "confidence": 94,
@@ -199,7 +199,7 @@
       }
     },
     {
-      "id": "alert_c4c91398e9954e02ac47de",
+      "id": "alert_21f60e022ab34c23851f1b",
       "alertType": "layering",
       "severity": "critical",
       "accountId": "ACC-514850",
@@ -212,7 +212,7 @@
       "status": "open",
       "triggeredRule": "Rule-CFT-019",
       "narrative": "Funds moved through 4 shell entities in 3 jurisdictions",
-      "timestamp": "2026-08-07T17:53:07.754465+00:00",
+      "timestamp": "2026-08-07T18:08:45.185116+00:00",
       "aiRecommendation": {
         "action": "Continue monitoring 30d",
         "confidence": 80,
@@ -221,7 +221,7 @@
       }
     },
     {
-      "id": "alert_4c5b78ed964d4b37927f1e",
+      "id": "alert_4a41d64bf9fd4676ad2a6b",
       "alertType": "smurfing",
       "severity": "high",
       "accountId": "ACC-711878",
@@ -234,7 +234,7 @@
       "status": "escalated",
       "triggeredRule": "Rule-AML-052",
       "narrative": "23 sub-$10k deposits across 7 branches in 48h",
-      "timestamp": "2026-08-13T10:54:59.754465+00:00",
+      "timestamp": "2026-08-13T11:10:37.185116+00:00",
       "aiRecommendation": {
         "action": "File SAR within 24h",
         "confidence": 75,
@@ -243,7 +243,7 @@
       }
     },
     {
-      "id": "alert_f60830058461498baee136",
+      "id": "alert_978fd48448fb443dac6fd6",
       "alertType": "rapid_movement",
       "severity": "medium",
       "accountId": "ACC-930555",
@@ -256,7 +256,7 @@
       "status": "under_review",
       "triggeredRule": "Rule-CFT-003",
       "narrative": "Inbound SEPA \u2192 outbound SWIFT within 11 minutes",
-      "timestamp": "2026-08-08T21:03:59.754465+00:00",
+      "timestamp": "2026-08-08T21:19:37.185116+00:00",
       "aiRecommendation": {
         "action": "Continue monitoring 30d",
         "confidence": 80,
@@ -265,7 +265,7 @@
       }
     },
     {
-      "id": "alert_58e0834207344be6a12eb6",
+      "id": "alert_29fd2858bcd748efaa589c",
       "alertType": "integration",
       "severity": "medium",
       "accountId": "ACC-813328",
@@ -278,7 +278,7 @@
       "status": "under_review",
       "triggeredRule": "Rule-CFT-019",
       "narrative": "Real-estate purchase with unexplained wealth source",
-      "timestamp": "2026-08-10T10:18:45.754465+00:00",
+      "timestamp": "2026-08-10T10:34:23.185116+00:00",
       "aiRecommendation": {
         "action": "File SAR within 24h",
         "confidence": 81,
@@ -287,7 +287,7 @@
       }
     },
     {
-      "id": "alert_cf13a5d24c174ab6a9d22a",
+      "id": "alert_ec22328f469c444881e220",
       "alertType": "round_tripping",
       "severity": "high",
       "accountId": "ACC-103402",
@@ -300,7 +300,7 @@
       "status": "open",
       "triggeredRule": "Rule-CFT-019",
       "narrative": "A\u2192B\u2192C\u2192A circular flow netting to ~0 over 5 days",
-      "timestamp": "2026-08-10T22:28:02.754465+00:00",
+      "timestamp": "2026-08-10T22:43:40.185116+00:00",
       "aiRecommendation": {
         "action": "Close as false positive",
         "confidence": 88,
@@ -309,7 +309,7 @@
       }
     },
     {
-      "id": "alert_a8603e303f1f4a20b6d160",
+      "id": "alert_50d6e881cde04f3a9a8c18",
       "alertType": "funnel_account",
       "severity": "critical",
       "accountId": "ACC-492077",
@@ -322,7 +322,7 @@
       "status": "closed",
       "triggeredRule": "Rule-AML-027",
       "narrative": "Multiple inbound \u2192 single outbound to high-risk jurisdiction",
-      "timestamp": "2026-08-08T15:04:44.754465+00:00",
+      "timestamp": "2026-08-08T15:20:22.185116+00:00",
       "aiRecommendation": {
         "action": "File SAR within 24h",
         "confidence": 75,
@@ -331,7 +331,7 @@
       }
     },
     {
-      "id": "alert_cdc05a11bdf64498811a37",
+      "id": "alert_082b5309c6e54ce4ad5979",
       "alertType": "cuckoo_smurfing",
       "severity": "high",
       "accountId": "ACC-351083",
@@ -344,7 +344,7 @@
       "status": "false_positive",
       "triggeredRule": "Rule-AML-052",
       "narrative": "Third-party cash deposits matching expected invoice amounts",
-      "timestamp": "2026-08-13T17:14:10.754465+00:00",
+      "timestamp": "2026-08-13T17:29:48.185116+00:00",
       "aiRecommendation": {
         "action": "Continue monitoring 30d",
         "confidence": 96,
@@ -353,7 +353,7 @@
       }
     },
     {
-      "id": "alert_b419093836384620855455",
+      "id": "alert_ce6b703876884fb388f33f",
       "alertType": "structuring",
       "severity": "high",
       "accountId": "ACC-676510",
@@ -366,7 +366,7 @@
       "status": "closed",
       "triggeredRule": "Rule-AML-052",
       "narrative": "Cash deposits split below $10k threshold",
-      "timestamp": "2026-08-11T23:42:18.754465+00:00",
+      "timestamp": "2026-08-11T23:57:56.185116+00:00",
       "aiRecommendation": {
         "action": "Continue monitoring 30d",
         "confidence": 96,
@@ -375,7 +375,7 @@
       }
     },
     {
-      "id": "alert_680fd3abe9fe481ca05d64",
+      "id": "alert_4d281968f0f74e4eaedd5e",
       "alertType": "layering",
       "severity": "critical",
       "accountId": "ACC-847581",
@@ -388,7 +388,7 @@
       "status": "escalated",
       "triggeredRule": "Rule-AML-052",
       "narrative": "Funds moved through 4 shell entities in 3 jurisdictions",
-      "timestamp": "2026-08-13T02:09:02.754465+00:00",
+      "timestamp": "2026-08-13T02:24:40.185116+00:00",
       "aiRecommendation": {
         "action": "Escalate to MLRO",
         "confidence": 79,
@@ -397,7 +397,7 @@
       }
     },
     {
-      "id": "alert_d2e699ee78c14891a6c2d0",
+      "id": "alert_6f55f8e00deb4d86bc5c7f",
       "alertType": "smurfing",
       "severity": "high",
       "accountId": "ACC-716886",
@@ -410,7 +410,7 @@
       "status": "open",
       "triggeredRule": "Rule-CFT-019",
       "narrative": "23 sub-$10k deposits across 7 branches in 48h",
-      "timestamp": "2026-08-13T20:14:51.754465+00:00",
+      "timestamp": "2026-08-13T20:30:29.185116+00:00",
       "aiRecommendation": {
         "action": "Escalate to MLRO",
         "confidence": 74,
@@ -419,7 +419,7 @@
       }
     },
     {
-      "id": "alert_4738258a2aae4101a8142c",
+      "id": "alert_727b59bf72bb4ffe9733ad",
       "alertType": "rapid_movement",
       "severity": "medium",
       "accountId": "ACC-174299",
@@ -432,7 +432,7 @@
       "status": "escalated",
       "triggeredRule": "Rule-AML-014",
       "narrative": "Inbound SEPA \u2192 outbound SWIFT within 11 minutes",
-      "timestamp": "2026-08-07T15:04:02.754465+00:00",
+      "timestamp": "2026-08-07T15:19:40.185116+00:00",
       "aiRecommendation": {
         "action": "Continue monitoring 30d",
         "confidence": 87,
@@ -441,7 +441,7 @@
       }
     },
     {
-      "id": "alert_7dd53f15ec7b4ec7a3356d",
+      "id": "alert_4ed12160b7764741ac4bc3",
       "alertType": "integration",
       "severity": "medium",
       "accountId": "ACC-946721",
@@ -454,7 +454,7 @@
       "status": "false_positive",
       "triggeredRule": "Rule-AML-052",
       "narrative": "Real-estate purchase with unexplained wealth source",
-      "timestamp": "2026-08-10T06:11:57.754465+00:00",
+      "timestamp": "2026-08-10T06:27:35.185116+00:00",
       "aiRecommendation": {
         "action": "Block transaction",
         "confidence": 85,
@@ -463,7 +463,7 @@
       }
     },
     {
-      "id": "alert_e0e5598679d84b898699fa",
+      "id": "alert_f1e2f50f6772435a89ab86",
       "alertType": "round_tripping",
       "severity": "high",
       "accountId": "ACC-806073",
@@ -476,7 +476,7 @@
       "status": "under_review",
       "triggeredRule": "Rule-AML-001",
       "narrative": "A\u2192B\u2192C\u2192A circular flow netting to ~0 over 5 days",
-      "timestamp": "2026-08-11T12:58:09.754465+00:00",
+      "timestamp": "2026-08-11T13:13:47.185116+00:00",
       "aiRecommendation": {
         "action": "Escalate to MLRO",
         "confidence": 78,
@@ -485,7 +485,7 @@
       }
     },
     {
-      "id": "alert_5a49ee1978aa432d853f55",
+      "id": "alert_e9e92987ae0b4e6dbbd460",
       "alertType": "funnel_account",
       "severity": "critical",
       "accountId": "ACC-542374",
@@ -498,7 +498,7 @@
       "status": "open",
       "triggeredRule": "Rule-AML-052",
       "narrative": "Multiple inbound \u2192 single outbound to high-risk jurisdiction",
-      "timestamp": "2026-08-07T21:06:07.754465+00:00",
+      "timestamp": "2026-08-07T21:21:45.185116+00:00",
       "aiRecommendation": {
         "action": "File SAR within 24h",
         "confidence": 73,
@@ -507,7 +507,7 @@
       }
     },
     {
-      "id": "alert_6ecfadb4ff3446e59b4b0a",
+      "id": "alert_9d6909c87e1a40569eb7e9",
       "alertType": "cuckoo_smurfing",
       "severity": "high",
       "accountId": "ACC-976638",
@@ -520,7 +520,7 @@
       "status": "under_review",
       "triggeredRule": "Rule-AML-052",
       "narrative": "Third-party cash deposits matching expected invoice amounts",
-      "timestamp": "2026-08-08T17:11:24.754465+00:00",
+      "timestamp": "2026-08-08T17:27:02.185116+00:00",
       "aiRecommendation": {
         "action": "Escalate to MLRO",
         "confidence": 84,
@@ -538,10 +538,10 @@
       "critical": 6
     },
     "byStatus": {
-      "closed": 2,
-      "under_review": 7,
       "false_positive": 5,
+      "under_review": 7,
       "escalated": 3,
+      "closed": 2,
       "open": 7
     },
     "avgRiskScore": 69.1,

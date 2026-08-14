@@ -1,7 +1,7 @@
 {
   "reports": [
     {
-      "id": "wb_38b45ab09393405f89dcb2",
+      "id": "wb_9dd63a4c8ec34d049c695b",
       "category": "fraud",
       "severity": "critical",
       "description": "Front office desk allegedly concealing losses via offsetting swaps with related party.",
@@ -9,8 +9,8 @@
       "status": "received",
       "triageScore": 89,
       "assignedTo": "mlro@regco.io",
-      "encryptedHash": "0xf91e35ebdbde4bfea1cb6a3fd738c963",
-      "createdAt": "2026-06-15T19:16:01.754465+00:00",
+      "encryptedHash": "0x4bc4afb08bff46ac9a43db4e658b0f92",
+      "createdAt": "2026-06-15T19:31:39.185116+00:00",
       "aiRecommendation": {
         "action": "Escalate to Ethics Committee + independent counsel",
         "confidence": 90,
@@ -19,7 +19,7 @@
       }
     },
     {
-      "id": "wb_a8b5e02ed45a4b28ad45bc",
+      "id": "wb_f67a626c156e4c27bc74d5",
       "category": "market_abuse",
       "severity": "high",
       "description": "Trader reportedly sharing client flow info with external hedge fund.",
@@ -27,8 +27,8 @@
       "status": "investigating",
       "triageScore": 82,
       "assignedTo": null,
-      "encryptedHash": "0xbc6906b34f4b4a10848b82a9b91ffe3f",
-      "createdAt": "2026-07-18T00:30:51.754465+00:00",
+      "encryptedHash": "0xe5effe5b64c54d1ebcc792fa2e4fbf98",
+      "createdAt": "2026-07-18T00:46:29.185116+00:00",
       "aiRecommendation": {
         "action": "Escalate to Ethics Committee + independent counsel",
         "confidence": 92,
@@ -37,7 +37,7 @@
       }
     },
     {
-      "id": "wb_55f117a39a664fd9964e79",
+      "id": "wb_49fb7115976e44d6b18c37",
       "category": "harassment",
       "severity": "medium",
       "description": "Repeated inappropriate comments by senior manager in Wealth Mgmt.",
@@ -45,8 +45,8 @@
       "status": "resolved",
       "triageScore": 65,
       "assignedTo": "ethics@regco.io",
-      "encryptedHash": "0xeef6897ec98641aa9c68b7532c8af216",
-      "createdAt": "2026-07-10T00:18:44.754465+00:00",
+      "encryptedHash": "0x3097a6cf5c5b4f68aa7dceb3c2279e9b",
+      "createdAt": "2026-07-10T00:34:22.185116+00:00",
       "aiRecommendation": {
         "action": "Assign to HR for investigation",
         "confidence": 90,
@@ -55,7 +55,7 @@
       }
     },
     {
-      "id": "wb_941830a648cf45a08e6d8c",
+      "id": "wb_078380410e5b479bb53bf7",
       "category": "safety",
       "severity": "low",
       "description": "Hospital wing understaffing leading to HIPAA shortcuts.",
@@ -63,8 +63,8 @@
       "status": "resolved",
       "triageScore": 48,
       "assignedTo": "ethics@regco.io",
-      "encryptedHash": "0x4816babea29a4d5bbb760d719a3eeaf5",
-      "createdAt": "2026-06-17T16:13:28.754465+00:00",
+      "encryptedHash": "0xcbd237450c9c415796396902e7b5bfa4",
+      "createdAt": "2026-06-17T16:29:06.185116+00:00",
       "aiRecommendation": {
         "action": "Assign to HR for investigation",
         "confidence": 90,
@@ -73,7 +73,7 @@
       }
     },
     {
-      "id": "wb_51906da79aeb44a3b2c095",
+      "id": "wb_161ba6b50b564273b73d0b",
       "category": "fraud",
       "severity": "high",
       "description": "AML analyst pressured to close alerts as false positive to meet SLA.",
@@ -81,8 +81,8 @@
       "status": "received",
       "triageScore": 78,
       "assignedTo": "mlro@regco.io",
-      "encryptedHash": "0xac815e042f3e4fe6871badef548a6559",
-      "createdAt": "2026-07-20T15:08:34.754465+00:00",
+      "encryptedHash": "0x7ecc9c56f7ab4b1f978f3fa658df88ed",
+      "createdAt": "2026-07-20T15:24:12.185116+00:00",
       "aiRecommendation": {
         "action": "Escalate to Ethics Committee + independent counsel",
         "confidence": 80,
@@ -91,7 +91,7 @@
       }
     },
     {
-      "id": "wb_6b8da562d27b49538bf6af",
+      "id": "wb_5f5bbdddc4a74682b20aed",
       "category": "other",
       "severity": "medium",
       "description": "Concerns about AI underwriting model showing gender bias in pricing.",
@@ -99,8 +99,8 @@
       "status": "received",
       "triageScore": 72,
       "assignedTo": "mlro@regco.io",
-      "encryptedHash": "0xb2204eb92e8842769dd007bf08a8b9da",
-      "createdAt": "2026-07-29T14:03:05.754465+00:00",
+      "encryptedHash": "0x7c800ee625be47099caebc8184f15a8f",
+      "createdAt": "2026-07-29T14:18:43.185116+00:00",
       "aiRecommendation": {
         "action": "Assign to HR for investigation",
         "confidence": 90,

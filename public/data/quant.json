@@ -1,7 +1,7 @@
 {
   "scenarios": [
     {
-      "id": "q_ed263a4681b74e20a8eea3",
+      "id": "q_e3df277dada64ebd83e800",
       "scenarioType": "CCAR",
       "description": "CCAR 2026 Severely Adverse",
       "detail": "Federal Reserve adverse macro scenario \u2014 GDP -8%, unemployment 10%, equity -50%",
@@ -10,7 +10,7 @@
       "expectedLoss": 34.86,
       "capitalImpact": 333.1,
       "status": "complete",
-      "createdAt": "2026-08-09T19:12:29.754465+00:00",
+      "createdAt": "2026-08-09T19:28:07.185116+00:00",
       "aiRecommendation": {
         "action": "Reduce rates desk VaR limit by 18%",
         "confidence": 95,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "q_06a27fb6ee35465abe771e",
+      "id": "q_3e891de9e6fe4fccb9a19f",
       "scenarioType": "EBA",
       "description": "EBA 2026 Adverse",
       "detail": "European Banking Authority adverse \u2014 sovereign spread +400bps, real estate -25%",
@@ -80,7 +80,7 @@
       "expectedLoss": 14.12,
       "capitalImpact": 133.1,
       "status": "complete",
-      "createdAt": "2026-07-30T17:48:07.754465+00:00",
+      "createdAt": "2026-07-30T18:03:45.185116+00:00",
       "aiRecommendation": {
         "action": "Accept \u2014 within Board appetite",
         "confidence": 90,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "q_2c3f93e940824d70a28d5d",
+      "id": "q_938fcb69a2e44355852f0d",
       "scenarioType": "BoE_ACS",
       "description": "BoE ACS 2026",
       "detail": "Bank of England Annual Cyclical Scenario \u2014 rates +300bps, GBP -25%",
@@ -150,7 +150,7 @@
       "expectedLoss": 34.57,
       "capitalImpact": 224.7,
       "status": "complete",
-      "createdAt": "2026-08-08T02:51:02.754465+00:00",
+      "createdAt": "2026-08-08T03:06:40.185116+00:00",
       "aiRecommendation": {
         "action": "Reduce rates desk VaR limit by 18%",
         "confidence": 75,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "q_745c64cb5d424ff59c2263",
+      "id": "q_c30125241de84a16ac9cdb",
       "scenarioType": "FRTB_IMA",
       "description": "FRTB IMA \u2014 Rates Desk",
       "detail": "Fundamental Review of Trading Book \u2014 Internal Models Approach, 99% VaR 10-day",
@@ -220,7 +220,7 @@
       "expectedLoss": 28.79,
       "capitalImpact": 327.7,
       "status": "running",
-      "createdAt": "2026-07-27T08:19:12.754465+00:00",
+      "createdAt": "2026-07-27T08:34:50.185116+00:00",
       "aiRecommendation": {
         "action": "Reduce rates desk VaR limit by 18%",
         "confidence": 79,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "q_e80f9cad44d64581b40e18",
+      "id": "q_5fa853965f00482c89d9cd",
       "scenarioType": "FRTB_IMA",
       "description": "FRTB IMA \u2014 Credit Desk",
       "detail": "FRTB IMA for credit spread risk, non-securitisation",
@@ -290,7 +290,7 @@
       "expectedLoss": 5.95,
       "capitalImpact": 54.8,
       "status": "draft",
-      "createdAt": "2026-07-28T23:14:23.754465+00:00",
+      "createdAt": "2026-07-28T23:30:01.185116+00:00",
       "aiRecommendation": {
         "action": "Accept \u2014 within Board appetite",
         "confidence": 80,
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "q_99128061161b4e5089a2d3",
+      "id": "q_ba78e3409f054dddab4917",
       "scenarioType": "NGFS",
       "description": "NGFS Disorderly Transition",
       "detail": "Late, then sudden policy response \u2014 carbon price $200/t by 2030",
@@ -360,7 +360,7 @@
       "expectedLoss": 21.6,
       "capitalImpact": 173.8,
       "status": "running",
-      "createdAt": "2026-08-10T05:44:01.754465+00:00",
+      "createdAt": "2026-08-10T05:59:39.185116+00:00",
       "aiRecommendation": {
         "action": "Accept \u2014 within Board appetite",
         "confidence": 88,
@@ -421,7 +421,7 @@
       ]
     },
     {
-      "id": "q_13954fcff50b47f19de9c9",
+      "id": "q_75df3e158dc64c70899d52",
       "scenarioType": "NGFS",
       "description": "NGFS Hot House World",
       "detail": "No further policy \u2014 3\u00b0C warming, physical risk dominates",
@@ -430,7 +430,7 @@
       "expectedLoss": 24.14,
       "capitalImpact": 256.2,
       "status": "complete",
-      "createdAt": "2026-07-23T16:26:05.754465+00:00",
+      "createdAt": "2026-07-23T16:41:43.185116+00:00",
       "aiRecommendation": {
         "action": "Reduce rates desk VaR limit by 18%",
         "confidence": 93,
@@ -491,7 +491,7 @@
       ]
     },
     {
-      "id": "q_749a0d4694c740afa155ae",
+      "id": "q_4e992593f1fc4858adeda5",
       "scenarioType": "custom",
       "description": "Custom: Sovereign Default EU Periphery",
       "detail": "Italy + Spain sovereign default, 40% recovery",
@@ -500,7 +500,7 @@
       "expectedLoss": 18.26,
       "capitalImpact": 200.3,
       "status": "complete",
-      "createdAt": "2026-08-04T02:51:35.754465+00:00",
+      "createdAt": "2026-08-04T03:07:13.185116+00:00",
       "aiRecommendation": {
         "action": "Reduce rates desk VaR limit by 18%",
         "confidence": 85,
@@ -561,7 +561,7 @@
       ]
     },
     {
-      "id": "q_7403c5df23c8427bb337b9",
+      "id": "q_193d01ad422b424f95d0c9",
       "scenarioType": "custom",
       "description": "Custom: Crypto Contagion",
       "detail": "Stablecoin de-peg + 3 exchange failures",
@@ -570,7 +570,7 @@
       "expectedLoss": 32.25,
       "capitalImpact": 454.0,
       "status": "running",
-      "createdAt": "2026-07-23T16:55:03.754465+00:00",
+      "createdAt": "2026-07-23T17:10:41.185116+00:00",
       "aiRecommendation": {
         "action": "Reduce rates desk VaR limit by 18%",
         "confidence": 91,
@@ -631,7 +631,7 @@
       ]
     },
     {
-      "id": "q_81881533a3494feb8ee67e",
+      "id": "q_93c6093a38b04b4086b077",
       "scenarioType": "custom",
       "description": "Liquidity Stress \u2014 30d Run",
       "detail": "30% deposit outflow over 30 days, HQLA depletion",
@@ -640,7 +640,7 @@
       "expectedLoss": 8.08,
       "capitalImpact": 45.3,
       "status": "complete",
-      "createdAt": "2026-07-26T13:30:03.754465+00:00",
+      "createdAt": "2026-07-26T13:45:41.185116+00:00",
       "aiRecommendation": {
         "action": "Accept \u2014 within Board appetite",
         "confidence": 90,
