@@ -106,3 +106,34 @@ Stage Summary:
 - Live site: https://testdemoqwenai2025-creator.github.io/FinRegGTP.BoT/
 - Back-to-dashboard button now appears on every page (Header global + PageHeader contextual + BackToDashboard for non-PageHeader views). Buttons auto-hide when already on dashboard. Verified on both desktop and mobile viewports.
 - "Endpoint unavailable" message eliminated from all live bundles.
+
+---
+Task ID: 4
+Agent: main
+Task: Produce a structured product roadmap document (PDF) for investor audience, prioritizing enhancement features by impact/effort/timeline for market assessment.
+
+Work Log:
+- Loaded PDF skill, then creative-flow brief + fonts.md + overflow.md per skill loading protocol.
+- Asked 6 clarifying questions in a single batch covering audience, length, style, modules, language, front matter.
+- User answers: Investors audience, Medium 15-20 pages, Bloomberg dark style, Impact/Effort matrix + Quarterly timeline modules, English, Cover + TOC front matter.
+- Built outline via Outline tool with 17 sections: cover, TOC, exec summary, current state snapshot (with capability radar SVG), strategic thesis, 9 enhancement pillars, impact/effort matrix, Gantt timeline, top 5 recommendations, ending.
+- Wrote /home/z/my-project/scripts/build-roadmap-html.py — Python script that constructs the full HTML with Bloomberg-dark CSS (#0B1220 background, amber #F59E0B + cyan #06B6D4 accents, Inter + JetBrains Mono fonts). Includes 3 hand-coded inline SVG charts: capability radar (6-axis hexagonal), impact/effort 2x2 bubble matrix, and Gantt timeline (4 quarters x 9 pillars).
+- Ran poster_validate.py check-html → PASS (only TINY_FONT warnings on intentional 9px monospace data callouts + cover_validate.js unavailable warning).
+- Installed pagedjs npm package for proper Paged.js pagination.
+- First render: 19 pages, 751KB. QA found 1 error (page numbers missing) + 4 warnings.
+- Fixed page numbers via @page margin boxes (margin: 0 0 32px 0 with @bottom-right counter(page) + @bottom-left brand string). Added @page :first and @page ending-page rules to suppress footer on cover and ending pages.
+- Fixed em-dash line-start punctuation issue in Pillar 6 (rephrased "— once enterprises build" to ". Once enterprises build").
+- Added 3 closing paragraphs + cyan callout to fill out recommendations page (fill ratio was 32%, now adequate).
+- Set PDF metadata via pdf.py meta.set: Title, Author (RegGuard AI Product Office), Subject, Creator, Keywords.
+- Final QA: 11 PASS, 0 ERRORS, 2 minor warnings (TOC hand-coded so not clickable; ending page intentionally has no page number per design). Status: WARN — acceptable for delivery.
+
+Stage Summary:
+- Final deliverable: /home/z/my-project/download/RegGuard-AI-Roadmap-v2.3.pdf (21 pages, 760KB, ~5,500 words)
+- HTML source: /home/z/my-project/scripts/roadmap.html (103KB) — editable for future revisions
+- Build script: /home/z/my-project/scripts/build-roadmap-html.py (106KB) — re-runnable
+- Style: Bloomberg Terminal Dark (deep navy #0B1220 + amber/cyan accents + Inter/JetBrains Mono typography)
+- Audience: Investors; positioning: pre-market-assessment enhancement plan
+- 9 enhancement pillars with effort estimates (42 EW, 22 EW, 14 EW, 30 EW, 28 EW, 18 EW, 20 EW, 10 EW, 12 EW = 196 EW total)
+- 3 inline SVG charts: capability radar, impact/effort 2x2 matrix, Gantt timeline
+- Top 5 recommendations: (1) AI Intelligence Layer, (2) Evidence Vault, (3) SSO+SOC2, (4) Public REST API, (5) Broader Jurisdiction Coverage
+- All previously queued fixes (endpoint unavailable + back buttons) and four paths (live feeds, blockchain anchoring, Prisma expansion, mobile touch) were already completed in prior tasks per worklog Task IDs 2 and 3.
