@@ -83,6 +83,9 @@ export function RegulatoryWatchView() {
                       <Badge variant="outline" className={`text-[10px] ${jurisColor[c.jurisdiction] ?? jurisColor.Global}`}>{c.jurisdiction}</Badge>
                       <Badge variant="outline" className={`text-[10px] ${statusColor[c.status]}`}>{c.status}</Badge>
                       <span className="text-[10px] text-slate-400">{c.source}</span>
+                      {(c as any).dataSource === 'real_feed' && (
+                        <Badge variant="outline" className="text-[10px] border-emerald-300 bg-emerald-50 text-emerald-700">● live</Badge>
+                      )}
                     </div>
                     <p className="mt-0.5 text-xs font-semibold text-slate-800">{c.title}</p>
                     <p className="mt-0.5 line-clamp-2 text-[11px] text-slate-500">{c.summary}</p>

@@ -1,6 +1,300 @@
 {
   "changes": [
     {
+      "id": "rw_real_68f22d29252848cea055df",
+      "source": "Federal Register (live)",
+      "title": "Continuation of the National Emergency With Respect to Export Control Regulations",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 80,
+      "affectedPolicies": 4,
+      "status": "new",
+      "summary": "No abstract provided.",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16748/continuation-of-the-national-emergency-with-respect-to-export-control-regulations",
+      "documentType": "Presidential Document",
+      "agencies": "EXECUTIVE OFFICE OF THE PRESIDENT",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 92,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_9c6b0b189e2646d0aaa3ba",
+      "source": "Federal Register (live)",
+      "title": "Large Power Transformers From the Republic of Korea: Final Results of Antidumping Duty Administrative Review; 2023-2024",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 63,
+      "affectedPolicies": 3,
+      "status": "new",
+      "summary": "The U.S. Department of Commerce (Commerce) determines large power transformers from the Republic of Korea (Korea) were sold at less than normal value (NV) during the period of review (POR) August 1, 2023, through July 31, 2024.",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16663/large-power-transformers-from-the-republic-of-korea-final-results-of-antidumping-duty-administrative",
+      "documentType": "Notice",
+      "agencies": "DEPARTMENT OF COMMERCE, International Trade Administration",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 83,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_f874e399770342f79b6fc7",
+      "source": "Federal Register (live)",
+      "title": "Certain Passenger Vehicle and Light Truck Tires From the People's Republic of China: Final Results of Antidumping Duty Administrative Review; 2023-2024",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 83,
+      "affectedPolicies": 2,
+      "status": "new",
+      "summary": "The U.S. Department of Commerce (Commerce) determines that certain exporters of passenger vehicle and light truck tires (passenger tires) from the People's Republic of China (China) made sales of subject merchandise at prices below than normal value during the period of review (P",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16662/certain-passenger-vehicle-and-light-truck-tires-from-the-peoples-republic-of-china-final-results-of",
+      "documentType": "Notice",
+      "agencies": "DEPARTMENT OF COMMERCE, International Trade Administration",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 96,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_5af01ad7a71c4fbf80aa4c",
+      "source": "Federal Register (live)",
+      "title": "Safety Zone; St. Clair River; Port Huron, MI",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 73,
+      "affectedPolicies": 2,
+      "status": "new",
+      "summary": "The Coast Guard is establishing a temporary safety zone for navigable waters of the St. Clair River for 7.5 miles beginning in Port Huron, MI. Though this is an unsanctioned, non-permitted marine event, this zone is necessary to provide for the safety of life on these navigable w",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16644/safety-zone-st-clair-river-port-huron-mi",
+      "documentType": "Rule",
+      "agencies": "DEPARTMENT OF HOMELAND SECURITY, Coast Guard",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 82,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_84579c45e13846f2a5bc49",
+      "source": "Federal Register (live)",
+      "title": "Streamlining Export Controls for Drone Exports",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 87,
+      "affectedPolicies": 8,
+      "status": "new",
+      "summary": "The Bureau of Industry and Security (BIS) is easing export controls on certain Unmanned Aerial Vehicles (UAVs or drones) and related parts, components, accessories, attachments, technology, and software under the Export Administration Regulations (EAR). Specifically, this rule: e",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16628/streamlining-export-controls-for-drone-exports",
+      "documentType": "Rule",
+      "agencies": "DEPARTMENT OF COMMERCE, Bureau of Industry and Security",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 82,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_f652ec2f61bb4a8f9abd05",
+      "source": "Federal Register (live)",
+      "title": "Unified Agenda of Federal Regulatory and Deregulatory Actions-2026",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 75,
+      "affectedPolicies": 3,
+      "status": "new",
+      "summary": "Executive Order 12866, Regulatory Planning and Review (Sep. 30, 1993), requires each agency to publish a regulatory agenda (Agenda) of regulations under development or review during the next year which will be included in the Unified Agenda of Regulatory and Deregulatory Actions ",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16615/unified-agenda-of-federal-regulatory-and-deregulatory-actions-2026",
+      "documentType": "Notice",
+      "agencies": "FEDERAL COMMUNICATIONS COMMISSION",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 93,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_892c4f7face7430082a539",
+      "source": "Federal Register (live)",
+      "title": "Introduction to the Unified Agenda of Federal Regulatory and Deregulatory Actions-2026",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 63,
+      "affectedPolicies": 3,
+      "status": "new",
+      "summary": "Publication of the 2026 Unified Agenda of Federal Regulatory and Deregulatory Actions represents a key component of the regulatory planning mechanism prescribed in Executive Order (\"E.O.\") 12866, \"Regulatory Planning and Review,\" (58 FR 51735, as amended) and reaffirmed in E.O. 1",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16603/introduction-to-the-unified-agenda-of-federal-regulatory-and-deregulatory-actions-2026",
+      "documentType": "Notice",
+      "agencies": "REGULATORY INFORMATION SERVICE CENTER",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 87,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_47dc4ab09220488ea82679",
+      "source": "Federal Register (live)",
+      "title": "FCC To Review E-Rate Program To Ensure Congress's Vision",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 63,
+      "affectedPolicies": 8,
+      "status": "new",
+      "summary": "In this document, the Federal Communications Commission (Commission) seeks comment on measures the Commission can take to better protect children when using E-Rate-funded networks, the Commission's progress in ensuring affordable access to high-speed broadband to and within schoo",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16590/fcc-to-review-e-rate-program-to-ensure-congresss-vision",
+      "documentType": "Proposed Rule",
+      "agencies": "FEDERAL COMMUNICATIONS COMMISSION",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 81,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_2052bf7212b043058655af",
+      "source": "Federal Register (live)",
+      "title": "Airworthiness Directives; The Boeing Company Airplanes",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-13T00:00:00+00:00",
+      "impactScore": 74,
+      "affectedPolicies": 2,
+      "status": "new",
+      "summary": "The FAA is superseding Airworthiness Directive (AD) 2018-11- 14, which applied to certain The Boeing Company Model 767-300 and -300F series airplanes with certain winglets installed. AD 2018-11-14 required high frequency eddy current (HFEC) inspections for cracking of the lower o",
+      "url": "https://www.federalregister.gov/documents/2026/08/13/2026-16504/airworthiness-directives-the-boeing-company-airplanes",
+      "documentType": "Rule",
+      "agencies": "DEPARTMENT OF TRANSPORTATION, Federal Aviation Administration",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 84,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_6a39c01e554b4a1d8d6917",
+      "source": "Federal Register (live)",
+      "title": "Renewal of the Innovation Advisory Committee",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-12T00:00:00+00:00",
+      "impactScore": 78,
+      "affectedPolicies": 8,
+      "status": "new",
+      "summary": "The Commodity Futures Trading Commission (CFTC or Commission) is publishing this notice to announce the renewal of the Innovation Advisory Committee (IAC). The Commission has determined that the renewal of the IAC is necessary and in the public's interest.",
+      "url": "https://www.federalregister.gov/documents/2026/08/12/2026-16423/renewal-of-the-innovation-advisory-committee",
+      "documentType": "Notice",
+      "agencies": "COMMODITY FUTURES TRADING COMMISSION",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 84,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_b1d1a8b74af844f7851b1f",
+      "source": "Federal Register (live)",
+      "title": "Agenda",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 66,
+      "affectedPolicies": 5,
+      "status": "new",
+      "summary": "This notice is given pursuant to the requirements of the Regulatory Flexibility Act and Executive Order 12866 (\"Regulatory Planning and Review\"), as amended, which require the publication by the Department of an agenda of regulations.",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16600/agenda",
+      "documentType": "Notice",
+      "agencies": "DEPARTMENT OF THE TREASURY",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 91,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_1ec641a08228474db4e88e",
+      "source": "Federal Register (live)",
+      "title": "Beneficial Ownership Information Reporting Requirement Revision",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 66,
+      "affectedPolicies": 3,
+      "status": "new",
+      "summary": "FinCEN is issuing this final rule to adopt as final and with certain limited changes the interim final rule issued on March 26, 2025, which narrowed beneficial ownership information (BOI) reporting requirements under FinCEN's regulations implementing the Corporate Transparency Ac",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16576/beneficial-ownership-information-reporting-requirement-revision",
+      "documentType": "Rule",
+      "agencies": "DEPARTMENT OF THE TREASURY, Financial Crimes Enforcement Network",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 81,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_c5b84914020e47a6bf4a68",
+      "source": "Federal Register (live)",
+      "title": "Geographic Targeting Order Imposing Recordkeeping and Reporting Requirements on Certain Financial Institutions in Minnesota",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-11T00:00:00+00:00",
+      "impactScore": 73,
+      "affectedPolicies": 9,
+      "status": "new",
+      "summary": "FinCEN is issuing this Geographic Targeting Order, requiring banks and money transmitters located in the Counties of Hennepin and Ramsey, Minnesota to retain and report records of certain payments of $3,000 or more.",
+      "url": "https://www.federalregister.gov/documents/2026/08/11/2026-16365/geographic-targeting-order-imposing-recordkeeping-and-reporting-requirements-on-certain-financial",
+      "documentType": "Rule",
+      "agencies": "DEPARTMENT OF THE TREASURY, Financial Crimes Enforcement Network",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 93,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_bea8b1327e4d493fa57395",
+      "source": "Federal Register (live)",
+      "title": "Purchase, Sale, and Pledge Of Eligible Obligations",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-06T00:00:00+00:00",
+      "impactScore": 80,
+      "affectedPolicies": 9,
+      "status": "new",
+      "summary": "This final rule streamlines the NCUA Board (Board)'s regulations governing the purchase, sale, and pledge of eligible obligations. Specifically, the final rule removes the prescriptive lists of items that must be addressed in the written policies adopted by a federal credit union",
+      "url": "https://www.federalregister.gov/documents/2026/08/06/2026-16030/purchase-sale-and-pledge-of-eligible-obligations",
+      "documentType": "Rule",
+      "agencies": "NATIONAL CREDIT UNION ADMINISTRATION",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 94,
+        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
       "id": "rw_26e0acd090e247dc98bc8d",
       "source": "Federal Register",
       "title": "SEC Climate Disclosure Rule",
@@ -256,5 +550,25 @@
       }
     }
   ],
-  "total": 15
+  "total": 29,
+  "realFeedCount": 15,
+  "syntheticCount": 14,
+  "lastRefreshed": "2026-08-14T13:53:22.871879+00:00",
+  "sources": [
+    {
+      "name": "Federal Register API",
+      "type": "real_feed",
+      "url": "https://www.federalregister.gov/api/v1/documents.json"
+    },
+    {
+      "name": "EUR-Lex OJ RSS",
+      "type": "real_feed",
+      "url": "https://eur-lex.europa.eu/rss/"
+    },
+    {
+      "name": "Synthetic generator",
+      "type": "synthetic",
+      "url": "scripts/gen-synthetic-data.py"
+    }
+  ]
 }

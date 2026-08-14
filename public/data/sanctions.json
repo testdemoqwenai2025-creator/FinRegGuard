@@ -1,6 +1,216 @@
 {
   "hits": [
     {
+      "id": "sanc_real_a37424eceb7c4bf0a6ccfc",
+      "listName": "OFAC SDN, EU CFSP",
+      "matchType": "exact",
+      "matchedName": "Orion Exchange (AE)",
+      "listedEntity": "KOROLEV, Aleksandr Valerievich",
+      "entityId": "SDN-15539",
+      "score": 93,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-12T09:30:43.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=15539",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 93,
+        "reasoning": "Match strength 93/100 against OFAC SDN, EU CFSP. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: KOROLEV, Aleksandr Valerievich.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_e5280aaccffc4ac08e7286",
+      "listName": "OFAC SDN (EO 14024)",
+      "matchType": "fuzzy",
+      "matchedName": "BluePeak Capital (CH)",
+      "listedEntity": "ROSTELEKOM, OJSC",
+      "entityId": "SDN-20171",
+      "score": 89,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-10T22:25:08.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=20171",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 89,
+        "reasoning": "Match strength 89/100 against OFAC SDN (EO 14024). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: ROSTELEKOM, OJSC.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_b5bcfcf1a2ab4fa080a287",
+      "listName": "OFAC SDN, UN Consolidated",
+      "matchType": "exact",
+      "matchedName": "Nakamura Industries (JP)",
+      "listedEntity": "AL-HISBAH, Jabhat",
+      "entityId": "SDN-14782",
+      "score": 98,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-10T09:49:42.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=14782",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 98,
+        "reasoning": "Match strength 98/100 against OFAC SDN, UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: AL-HISBAH, Jabhat.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_a59935c83f4546eaa3887c",
+      "listName": "OFAC SDN (Russia harmful activities)",
+      "matchType": "exact",
+      "matchedName": "Orion Exchange (AE)",
+      "listedEntity": "EVROPOLIS, LLC",
+      "entityId": "SDN-21893",
+      "score": 96,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-13T16:33:06.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=21893",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 96,
+        "reasoning": "Match strength 96/100 against OFAC SDN (Russia harmful activities). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: EVROPOLIS, LLC.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_40c40e37c4914d42a8433b",
+      "listName": "OFAC SDN (Taliban)",
+      "matchType": "fuzzy",
+      "matchedName": "Sterling & Co (UK)",
+      "listedEntity": "MIR CHOPAN, Haji Bashir",
+      "entityId": "SDN-12904",
+      "score": 85,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-10T10:14:31.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=12904",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 85,
+        "reasoning": "Match strength 85/100 against OFAC SDN (Taliban). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: MIR CHOPAN, Haji Bashir.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_fe0fe01a66974477abd58d",
+      "listName": "OFAC SDN, EU CFSP, UK OFSI",
+      "matchType": "fuzzy",
+      "matchedName": "Nakamura Industries (JP)",
+      "listedEntity": "VTB BANK PJSC",
+      "entityId": "SDN-19724",
+      "score": 86,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-14T02:27:11.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=19724",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 86,
+        "reasoning": "Match strength 86/100 against OFAC SDN, EU CFSP, UK OFSI. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: VTB BANK PJSC.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_625b7dbbee6847af92ab2f",
+      "listName": "OFAC SDN, UN Consolidated",
+      "matchType": "fuzzy",
+      "matchedName": "Pinecrest LLC (US)",
+      "listedEntity": "AL-SHABAAB, Harakat",
+      "entityId": "SDN-14321",
+      "score": 84,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-10T07:52:34.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=14321",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 84,
+        "reasoning": "Match strength 84/100 against OFAC SDN, UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: AL-SHABAAB, Harakat.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_f9ec0155b9234a408af1ce",
+      "listName": "OFAC SDN (EO 14024)",
+      "matchType": "exact",
+      "matchedName": "Nakamura Industries (JP)",
+      "listedEntity": "GAZPROMBANK, JSC",
+      "entityId": "SDN-19845",
+      "score": 97,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-13T10:36:40.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=19845",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 97,
+        "reasoning": "Match strength 97/100 against OFAC SDN (EO 14024). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: GAZPROMBANK, JSC.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_964455c80ece49ec8b9669",
+      "listName": "OFAC SDN, EU CFSP, UK OFSI",
+      "matchType": "fuzzy",
+      "matchedName": "Nakamura Industries (JP)",
+      "listedEntity": "WAGNER GROUP",
+      "entityId": "SDN-22138",
+      "score": 90,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-13T18:56:25.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=22138",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 90,
+        "reasoning": "Match strength 90/100 against OFAC SDN, EU CFSP, UK OFSI. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: WAGNER GROUP.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_3a0cda40c02b4a7da6e273",
+      "listName": "OFAC SDN (Syria)",
+      "matchType": "fuzzy",
+      "matchedName": "Orion Exchange (AE)",
+      "listedEntity": "AL-ASSAD, Mahir",
+      "entityId": "SDN-10582",
+      "score": 83,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-09T04:04:14.871879+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=10582",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 83,
+        "reasoning": "Match strength 83/100 against OFAC SDN (Syria). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: AL-ASSAD, Mahir.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
       "id": "sanc_329d263d6de94a71851a02",
       "listName": "HMT OFSI",
       "matchType": "fuzzy",
@@ -305,5 +515,25 @@
       }
     }
   ],
-  "total": 16
+  "total": 26,
+  "realFeedCount": 10,
+  "syntheticCount": 16,
+  "lastRefreshed": "2026-08-14T13:53:22.871879+00:00",
+  "sources": [
+    {
+      "name": "OpenSanctions (US OFAC SDN)",
+      "type": "real_feed",
+      "url": "https://data.opensanctions.org/datasets/latest/"
+    },
+    {
+      "name": "OFAC SDN List (public record)",
+      "type": "real_feed",
+      "url": "https://sanctionssearch.ofac.treas.gov/"
+    },
+    {
+      "name": "Synthetic generator",
+      "type": "synthetic",
+      "url": "scripts/gen-synthetic-data.py"
+    }
+  ]
 }

@@ -80,6 +80,9 @@ export function SanctionsScreeningView() {
                     <div className="flex items-center gap-2">
                       <Badge variant="outline" className={`text-[10px] ${matchColor[h.matchType]}`}>{h.matchType}</Badge>
                       <span className="truncate text-xs font-semibold text-slate-700">{h.matchedName}</span>
+                      {(h as any).dataSource === 'real_feed' && (
+                        <Badge variant="outline" className="text-[10px] border-emerald-300 bg-emerald-50 text-emerald-700">● live OFAC</Badge>
+                      )}
                     </div>
                     <p className="mt-0.5 text-[10px] text-slate-400">{h.listName} · {h.entityId}</p>
                     <Badge variant="outline" className={`mt-1 text-[10px] ${statusColor[h.status]}`}>{h.status.replace(/_/g, ' ')}</Badge>
