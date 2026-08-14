@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# Visual QA Report: RegGuard AI Dashboard\n\n**1. RENDERING**\nYes, the page is rendering properly. There are no blank screens, error boundaries, or \"Something went wrong\" messages visible.\n\n**2. LAYOUT**\nThe layout looks professional and follows a standard enterprise dashboard structure:\n*   **Sidebar:** Present on the left with navigation links (Dashboard, Regulations, Policies, etc.).\n*   **Header:** Present at the top containing the logo, search bar, status indicators, and user profile.\n*   **Main Content Area:** A well-organized central area displaying various data widgets.\n\n**3. KPI TILES**\nYes, four KPI tiles are visible at the top of the main content area, all populated with data:\n*   **Tracked Regulations:** 12 (3 pending effective)\n*   **Active Policies:** 6 (0 overdue for review)\n*   **Critical Risks:** 4 (Residual ≥ 12)\n*   **Audit Events:** 15 (Last 30 days)\n\n**4. COMPLIANCE GAUGE**\nYes, an \"Overall Compliance Score\" circular gauge is visible on the left side of the second row.\n*   **Value Displayed:** **79 / 100** (with a note of -1 pts vs last month).\n\n**5. TREND CHART**\nYes, a \"Compliance Trend (6 months)\" area chart is rendering correctly on the right side of the second row. It shows two distinct lines/areas (a green one for Compliance Score and a red one for Open Findings) across the months of March through August.\n\n**6. FEEDS**\nBoth feed panels are visible and populated with content rows:\n*   **Priority Alerts:** Contains 5 distinct alert items (e.g., SEC Rule 15c2-11, Basel III Credit Risk gap).\n*   **Recent Activity:** Contains an immutable audit trail with 8 listed events.\n\n**7. GLITCHES**\nThere are no obvious visual glitches, overlapping elements, or broken images. The layout is clean, though there is a minor visual artifact where a black circle with an 'N' overlaps the sidebar's \"Coverage\" section (likely a browser extension or cursor icon captured in the screenshot). The text in the bottom-most card (\"Key Program Status\") appears slightly bolded or overlapped, but remains legible.\n\n**8. FOOTER**\nYes, a footer is visible at the very bottom of the page. It contains the product name (\"RegGuard AI - AI Regulatory Compliance Automator\"), a tagline (\"TAM $55B regtech by 2027\"), version info (\"v1.0.0 • build 2026.08\"), and utility icons.\n\n---\n\n### OVERALL ASSESSMENT\n**Looks Good.** The dashboard is fully rendered, professionally designed, and all data components (KPIs, charts, feeds) are populated and functional.\n\n### INTERACTIVE-READY VERDICT\n**Ready for Interaction.** All UI elements appear stable and correctly positioned for user engagement.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1786708466,
+  "id": "20260814195420e68ed7419f5c4f9f",
+  "model": "glm-5v-turbo",
+  "object": "chat.completion",
+  "request_id": "20260814195420e68ed7419f5c4f9f",
+  "usage": {
+    "completion_tokens": 627,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 2791,
+    "prompt_tokens_details": {
+      "cached_tokens": 2
+    },
+    "total_tokens": 3418
+  }
+}

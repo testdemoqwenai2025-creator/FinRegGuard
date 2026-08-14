@@ -1,0 +1,110 @@
+// AI Regulatory Compliance Automator - Prisma Schema
+// Tracks regulations across jurisdictions, manages policies with version history,
+// maintains immutable audit trail, and quantifies compliance risk per business unit.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Tracked regulation changes across jurisdictions (US, EU, UK, APAC, etc.)
+model Regulation {
+  id            String   @id @default(cuid())
+  title         String
+  jurisdiction  String   // US, EU, UK, JP, SG, AU, CA, ...
+  regulator     String   // SEC, FINRA, FCA, ESMA, MAS, ...
+  category      String   // AML, KYC, MiFID II, GDPR, HIPAA, Basel III, ...
+  status        String   // monitoring, pending, effective, superseded
+  effectiveDate DateTime
+  summary       String
+  impactLevel   String   // low, medium, high, critical
+  affectedUnits String   // comma-separated business units
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([jurisdiction])
+  @@index([status])
+  @@index([effectiveDate])
+}
+
+/// Internal policy documents with auto-update suggestions from AI
+model Policy {
+  id            String   @id @default(cuid())
+  title         String
+  category      String
+  ownerUnit     String   // e.g., Compliance, Risk, Legal, Operations
+  version       String   // semantic version e.g. 2.4.1
+  status        String   // draft, review, approved, published, retired
+  reviewDate    DateTime
+  content       String
+  aiSuggestion  String?  // AI-generated auto-update suggestion
+  lastUpdated   DateTime @updatedAt
+  createdAt     DateTime @default(now())
+
+  @@index([category])
+  @@index([status])
+}
+
+/// Immutable audit trail entry for every compliance-relevant action
+model AuditLog {
+  id          String   @id @default(cuid())
+  actor       String   // user email or system
+  action      String   // policy.update, regulation.review, risk.escalate, ...
+  targetType  String   // policy, regulation, risk, user, report
+  targetId    String
+  description String
+  ipAddress   String?
+  severity    String   // info, warning, critical
+  timestamp   DateTime @default(now())
+
+  @@index([timestamp])
+  @@index([action])
+  @@index([targetType])
+}
+
+/// Risk scoring per business unit x regulation category
+model RiskItem {
+  id              String   @id @default(cuid())
+  businessUnit    String   // Retail Banking, Insurance, Pharma R&D, Hospital Ops
+  regulationArea  String   // AML, Data Privacy, Clinical Trials, ...
+  likelihood      Int      // 1-5
+  impact          Int      // 1-5
+  inherentRisk    Int      // likelihood * impact
+  residualRisk    Int      // after controls
+  trend           String   // improving, stable, worsening
+  owner           String
+  mitigationPlan  String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([businessUnit])
+}
+
+/// Aggregate compliance metric snapshots for the dashboard
+model ComplianceMetric {
+  id              String   @id @default(cuid())
+  snapshotDate    DateTime
+  overallScore    Int      // 0-100
+  openFindings    Int
+  overdueTasks    Int
+  policiesCurrent Int
+  trainingComplete Int     // percent
+  createdAt       DateTime @default(now())
+
+  @@index([snapshotDate])
+}
+
+/// Persisted chat history for the AI Compliance Assistant
+model ChatMessage {
+  id        String   @id @default(cuid())
+  role      String   // user, assistant, system
+  content   String
+  context   String?  // optional context tag e.g. regulation:EU-MiFID
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}

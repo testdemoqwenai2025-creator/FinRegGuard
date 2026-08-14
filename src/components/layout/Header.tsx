@@ -1,0 +1,130 @@
+'use client'
+
+import { Shield, Search, Bell, Settings, ChevronDown } from 'lucide-react'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
+import { Input } from '@/components/ui/input'
+
+export function Header() {
+  return (
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <div className="flex h-16 items-center gap-4 px-4 sm:px-6">
+        {/* Brand */}
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 shadow-sm">
+            <Shield className="h-5 w-5 text-white" aria-hidden="true" />
+          </div>
+          <div className="flex flex-col leading-tight">
+            <span className="text-base font-bold text-slate-900">RegGuard AI</span>
+            <span className="text-[10px] uppercase tracking-wider text-emerald-600 font-semibold">
+              Compliance Automator
+            </span>
+          </div>
+        </div>
+
+        {/* Search */}
+        <div className="relative ml-2 hidden flex-1 max-w-md md:block">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <Input
+            type="search"
+            placeholder="Search regulations, policies, audit entries..."
+            className="h-9 pl-9 bg-slate-50 border-slate-200 text-sm"
+            aria-label="Global search"
+          />
+        </div>
+
+        <div className="ml-auto flex items-center gap-2 sm:gap-3">
+          <Badge
+            variant="outline"
+            className="hidden sm:inline-flex border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-50"
+          >
+            <span className="mr-1 h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            Live
+          </Badge>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className="relative inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors outline-none"
+              aria-label="Notifications"
+            >
+              <Bell className="h-5 w-5" />
+              <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-80">
+              <DropdownMenuLabel className="flex items-center justify-between">
+                <span>Notifications</span>
+                <Badge variant="secondary" className="text-[10px]">3 new</Badge>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="flex flex-col items-start gap-1 py-2">
+                <div className="flex w-full items-center justify-between">
+                  <span className="text-sm font-medium">SEC Rule 15c2-11</span>
+                  <Badge variant="destructive" className="text-[10px]">Critical</Badge>
+                </div>
+                <p className="text-xs text-slate-500">Effective in 38 days — Capital Markets not yet ready</p>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex flex-col items-start gap-1 py-2">
+                <div className="flex w-full items-center justify-between">
+                  <span className="text-sm font-medium">HIPAA Policy Overdue</span>
+                  <Badge variant="secondary" className="text-[10px]">Warning</Badge>
+                </div>
+                <p className="text-xs text-slate-500">5 days past review date — escalate to CCO</p>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex flex-col items-start gap-1 py-2">
+                <div className="flex w-full items-center justify-between">
+                  <span className="text-sm font-medium">Basel III Risk Escalated</span>
+                  <Badge variant="destructive" className="text-[10px]">Critical</Badge>
+                </div>
+                <p className="text-xs text-slate-500">Residual risk exceeds tolerance — Group Risk notified</p>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <button
+            className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors"
+            aria-label="Settings"
+          >
+            <Settings className="h-5 w-5" />
+          </button>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="inline-flex items-center gap-2 rounded-full p-1 pr-2 hover:bg-slate-100 transition-colors outline-none">
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white text-xs font-semibold">
+                  SC
+                </AvatarFallback>
+              </Avatar>
+              <div className="hidden lg:flex flex-col items-start leading-tight">
+                <span className="text-xs font-semibold text-slate-900">Sarah Chen</span>
+                <span className="text-[10px] text-slate-500">Chief Compliance Officer</span>
+              </div>
+              <ChevronDown className="hidden lg:block h-4 w-4 text-slate-400" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuLabel>
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold">Sarah Chen</span>
+                  <span className="text-xs font-normal text-slate-500">sarah.chen@regco.io</span>
+                </div>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>My Tasks (12)</DropdownMenuItem>
+              <DropdownMenuItem>Sign-off Queue</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="text-rose-600">Sign out</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+    </header>
+  )
+}

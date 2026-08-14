@@ -1,0 +1,336 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { Badge } from '@/components/ui/badge'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import {
+  Bot,
+  Send,
+  Sparkles,
+  ShieldCheck,
+  Lightbulb,
+  FileText,
+  Gavel,
+  AlertTriangle,
+  Trash2,
+} from 'lucide-react'
+import { format, parseISO } from 'date-fns'
+import type { ChatMessage } from '@/lib/types'
+
+type Msg = {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  createdAt?: string
+}
+
+const SUGGESTED = [
+  {
+    icon: Gavel,
+    text: 'What is the impact of EU AI Act on our insurance underwriting models?',
+    accent: 'text-fuchsia-600 bg-fuchsia-50',
+  },
+  {
+    icon: FileText,
+    text: 'Draft a policy update for the AML/CFT section on sanctions screening.',
+    accent: 'text-violet-600 bg-violet-50',
+  },
+  {
+    icon: AlertTriangle,
+    text: 'Which risks have worsened this quarter and what is the recommended remediation?',
+    accent: 'text-rose-600 bg-rose-50',
+  },
+  {
+    icon: ShieldCheck,
+    text: 'Summarise our HIPAA encryption posture vs the proposed HHS NPRM.',
+    accent: 'text-emerald-600 bg-emerald-50',
+  },
+]
+
+export function AssistantView() {
+  const [messages, setMessages] = useState<Msg[]>([])
+  const [input, setInput] = useState('')
+  const [sending, setSending] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    fetch('/api/chat')
+      .then((r) => r.json())
+      .then((d) => {
+        const persisted: Msg[] = (d.messages ?? [])
+          .filter((m: ChatMessage) => m.role === 'user' || m.role === 'assistant')
+          .map((m: ChatMessage) => ({
+            id: m.id,
+            role: m.role as 'user' | 'assistant',
+            content: m.content,
+            createdAt: m.createdAt,
+          }))
+        setMessages(persisted)
+      })
+      .finally(() => setLoading(false))
+  }, [])
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
+    }
+  }, [messages, sending])
+
+  const send = async (text: string) => {
+    const trimmed = text.trim()
+    if (!trimmed || sending) return
+    const userMsg: Msg = { id: `u-${Date.now()}`, role: 'user', content: trimmed }
+    setMessages((prev) => [...prev, userMsg])
+    setInput('')
+    setSending(true)
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: trimmed,
+          history: messages.map((m) => ({ role: m.role, content: m.content })),
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.detail || 'Request failed')
+      const aiMsg: Msg = {
+        id: `a-${Date.now()}`,
+        role: 'assistant',
+        content: data.reply ?? 'Sorry, I could not generate a response.',
+      }
+      setMessages((prev) => [...prev, aiMsg])
+    } catch (err) {
+      const e = err instanceof Error ? err.message : 'Unknown error'
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `e-${Date.now()}`,
+          role: 'assistant',
+          content: `⚠️ I couldn't reach the AI service just now (${e}). Please try again.`,
+        },
+      ])
+    } finally {
+      setSending(false)
+      inputRef.current?.focus()
+    }
+  }
+
+  const clearChat = () => {
+    if (confirm('Clear the visible conversation? Persisted history remains in the audit trail.')) {
+      setMessages([])
+    }
+  }
+
+  return (
+    <div className="p-4 sm:p-6 space-y-6">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            AI Compliance Assistant
+          </h1>
+          <p className="mt-1 text-sm text-slate-500">
+            Ask about regulations, draft policy language, or assess impact on your business units.
+            Powered by Z.ai LLM with regulatory context.
+          </p>
+        </div>
+        <Button variant="outline" size="sm" onClick={clearChat} className="gap-2">
+          <Trash2 className="h-4 w-4" />
+          Clear
+        </Button>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-4">
+        {/* Chat column */}
+        <Card className="lg:col-span-3 border-slate-200 shadow-sm flex flex-col h-[680px]">
+          <CardHeader className="border-b border-slate-100 pb-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600">
+                  <Bot className="h-4 w-4 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-base">RegGuard Copilot</CardTitle>
+                  <CardDescription className="text-[11px]">
+                    Trained on your regulations &amp; policies
+                  </CardDescription>
+                </div>
+              </div>
+              <Badge variant="outline" className="text-[10px] border-emerald-200 bg-emerald-50 text-emerald-700">
+                <span className="mr-1 h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Online
+              </Badge>
+            </div>
+          </CardHeader>
+
+          <CardContent className="flex-1 p-0 overflow-hidden">
+            <div ref={scrollRef} className="h-full overflow-y-auto px-4 py-4 space-y-4">
+              {loading && (
+                <div className="flex justify-center py-12">
+                  <div className="h-6 w-6 animate-spin rounded-full border-2 border-slate-200 border-t-emerald-500" />
+                </div>
+              )}
+              {!loading && messages.length === 0 && (
+                <div className="flex h-full flex-col items-center justify-center px-6 text-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50">
+                    <Sparkles className="h-7 w-7 text-emerald-600" />
+                  </div>
+                  <h3 className="mt-3 text-base font-semibold text-slate-800">
+                    Ask me anything about your compliance posture
+                  </h3>
+                  <p className="mt-1 max-w-md text-xs text-slate-500">
+                    I have context on the 12 regulations you track, your 6 active policies, and the
+                    12 risk items across 8 business units.
+                  </p>
+                </div>
+              )}
+              {messages.map((m) => (
+                <MessageBubble key={m.id} msg={m} />
+              ))}
+              {sending && (
+                <div className="flex items-start gap-2.5">
+                  <Avatar role="assistant" />
+                  <div className="rounded-2xl rounded-tl-sm bg-slate-100 px-4 py-3">
+                    <div className="flex gap-1">
+                      <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400 [animation-delay:-0.3s]" />
+                      <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400 [animation-delay:-0.15s]" />
+                      <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400" />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </CardContent>
+
+          {/* Input */}
+          <div className="border-t border-slate-100 p-3">
+            <div className="flex items-end gap-2">
+              <Textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ask about regulations, request a policy draft, or assess risk..."
+                className="min-h-[44px] max-h-32 resize-none text-sm"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault()
+                    send(input)
+                  }
+                }}
+                aria-label="Message input"
+              />
+              <Button
+                size="icon"
+                className="h-11 w-11 shrink-0 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50"
+                onClick={() => send(input)}
+                disabled={!input.trim() || sending}
+                aria-label="Send message"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
+            </div>
+            <p className="mt-1.5 text-[10px] text-slate-400">
+              Press Enter to send · Shift+Enter for new line · Responses are logged to the audit trail.
+            </p>
+          </div>
+        </Card>
+
+        {/* Suggested prompts sidebar */}
+        <div className="space-y-4">
+          <Card className="border-slate-200 shadow-sm">
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-2 text-sm">
+                <Lightbulb className="h-4 w-4 text-amber-500" />
+                Suggested Prompts
+              </CardTitle>
+              <CardDescription className="text-[11px]">
+                Tap to send a pre-built question
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {SUGGESTED.map((s) => {
+                const Icon = s.icon
+                return (
+                  <button
+                    key={s.text}
+                    onClick={() => send(s.text)}
+                    disabled={sending}
+                    className="group w-full rounded-lg border border-slate-200 bg-white p-2.5 text-left transition-all hover:border-emerald-200 hover:bg-emerald-50/30 disabled:opacity-50"
+                  >
+                    <div className="flex items-start gap-2">
+                      <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md ${s.accent}`}>
+                        <Icon className="h-3.5 w-3.5" />
+                      </div>
+                      <p className="text-[11px] leading-tight text-slate-700 group-hover:text-slate-900">
+                        {s.text}
+                      </p>
+                    </div>
+                  </button>
+                )
+              })}
+            </CardContent>
+          </Card>
+
+          <Card className="border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50/40 shadow-sm">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 text-xs font-semibold text-emerald-900">
+                <ShieldCheck className="h-4 w-4" />
+                Privacy &amp; Audit
+              </div>
+              <p className="mt-1.5 text-[11px] leading-relaxed text-emerald-800/80">
+                Conversations are encrypted in transit and persisted to the immutable audit trail.
+                The assistant cannot access customer PII or transaction-level data.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Avatar({ role }: { role: 'user' | 'assistant' }) {
+  if (role === 'user') {
+    return (
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-700 text-xs font-semibold text-white">
+        SC
+      </div>
+    )
+  }
+  return (
+    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600">
+      <Bot className="h-4 w-4 text-white" />
+    </div>
+  )
+}
+
+function MessageBubble({ msg }: { msg: Msg }) {
+  const isUser = msg.role === 'user'
+  return (
+    <div className={`flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : ''}`}>
+      <Avatar role={msg.role} />
+      <div
+        className={`max-w-[78%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+          isUser
+            ? 'rounded-tr-sm bg-slate-800 text-white'
+            : 'rounded-tl-sm bg-slate-100 text-slate-800'
+        }`}
+      >
+        <p className="whitespace-pre-wrap">{msg.content}</p>
+        {msg.createdAt && (
+          <p
+            className={`mt-1 text-[10px] ${isUser ? 'text-slate-300' : 'text-slate-400'}`}
+          >
+            {format(parseISO(msg.createdAt), 'MMM d, HH:mm')}
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}
