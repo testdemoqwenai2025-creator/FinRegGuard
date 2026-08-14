@@ -34,6 +34,7 @@ import {
 import { format, parseISO, isBefore, formatDistanceToNow } from 'date-fns'
 import type { Policy } from '@/lib/types'
 import { dataUrl } from '@/lib/data'
+import { BackToDashboard } from '@/components/shared/BackToDashboard'
 
 const statusColor: Record<string, string> = {
   draft: 'bg-slate-100 text-slate-700 border-slate-200',
@@ -109,6 +110,7 @@ export function PoliciesView() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <BackToDashboard />
           <Select value={statusFilter} onValueChange={setStatusFilter}>
             <SelectTrigger className="h-9 w-36 text-sm" aria-label="Status filter">
               <SelectValue placeholder="Status" />

@@ -25,6 +25,7 @@ import {
   TrendingUp,
   type LucideIcon,
 } from 'lucide-react'
+import { dataUrl, IS_STATIC_BUILD } from '@/lib/data'
 
 type Zone =
   | 'Core'
@@ -103,8 +104,20 @@ export function ViewShell({
 
   useEffect(() => {
     let active = true
+
+    // In static GitHub Pages builds, the dynamic /api/views/* routes are
+    // stripped out (they don't exist on a static host). Skip the fetch
+    // entirely and render the empty / "live preview" state instead of an
+    // alarming "Endpoint unavailable" error.
+    if (IS_STATIC_BUILD) {
+      setLoading(false)
+      setData(null)
+      setError(null)
+      return
+    }
+
     setLoading(true)
-    fetch(`/api/views/${viewKey}`)
+    fetch(dataUrl(`views/${viewKey}`))
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
       .then((d) => {
         if (active) {
@@ -143,12 +156,18 @@ export function ViewShell({
 
       <div className={`mb-6 flex flex-wrap items-center gap-3 rounded-lg bg-gradient-to-r ${zoneColorClass} px-4 py-3 ring-1`}>
         <Badge variant="outline" className="border-current/30 bg-white/60">
-          <Sparkles className="mr-1 h-3 w-3" /> Live
+          <Sparkles className="mr-1 h-3 w-3" /> {IS_STATIC_BUILD ? 'Static preview' : 'Live'}
         </Badge>
         <span className="text-xs font-medium">Endpoint: <code className="font-mono">/api/views/{viewKey}</code></span>
         <span className="text-xs text-slate-500/80">·</span>
         <span className="text-xs text-slate-500/80">
-          {loading ? 'fetching…' : error ? `error: ${error}` : `payload: ${data ? 'received' : 'empty'}`}
+          {IS_STATIC_BUILD
+            ? 'static build · data served from /data/*.json'
+            : loading
+              ? 'fetching…'
+              : error
+                ? `error: ${error}`
+                : `payload: ${data ? 'received' : 'empty'}`}
         </span>
       </div>
 
@@ -169,14 +188,16 @@ export function ViewShell({
       )}
 
       {!loading && error && (
-        <Card className="border-rose-200 bg-rose-50/40">
+        <Card className="border-amber-200 bg-amber-50/40">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-rose-900">
+            <CardTitle className="flex items-center gap-2 text-amber-900">
               <AlertOctagon className="h-5 w-5" />
-              Endpoint unavailable
+              Live endpoint not reachable
             </CardTitle>
-            <CardDescription className="text-rose-700">
-              The view shell could not reach <code>/api/views/{viewKey}</code>. The route may still be deploying.
+            <CardDescription className="text-amber-700">
+              The dev-server view payload at <code>/api/views/{viewKey}</code> could not be loaded
+              ({error}). This is expected in static-only builds — the rest of the app continues
+              to work using the bundled JSON files in <code>/data/</code>.
             </CardDescription>
           </CardHeader>
         </Card>

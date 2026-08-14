@@ -1,6 +1,6 @@
 'use client'
 
-import { Shield, Search, Bell, Settings, ChevronDown } from 'lucide-react'
+import { Shield, Search, Bell, Settings, ChevronDown, LayoutDashboard } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,23 +12,48 @@ import {
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { useHome } from '@/lib/home-context'
 
 export function Header() {
+  const goHome = useHome()
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="flex h-16 items-center gap-4 px-4 sm:px-6">
-        {/* Brand */}
-        <div className="flex items-center gap-2.5">
+      <div className="flex h-16 items-center gap-2 sm:gap-4 px-4 sm:px-6">
+        {/* Brand — clicking the brand also returns home */}
+        <button
+          type="button"
+          onClick={() => goHome?.()}
+          disabled={!goHome}
+          className="flex items-center gap-2.5 rounded-md outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-emerald-500/40 disabled:cursor-default"
+          aria-label="Return to dashboard"
+        >
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 shadow-sm">
             <Shield className="h-5 w-5 text-white" aria-hidden="true" />
           </div>
-          <div className="flex flex-col leading-tight">
+          <div className="flex flex-col leading-tight text-left">
             <span className="text-base font-bold text-slate-900">RegGuard AI</span>
             <span className="text-[10px] uppercase tracking-wider text-emerald-600 font-semibold">
               Compliance Automator
             </span>
           </div>
-        </div>
+        </button>
+
+        {/* Back to Dashboard button — visible on every page except the dashboard itself.
+            On mobile it's icon-only; on sm+ it shows the label too. */}
+        {goHome && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => goHome()}
+            className="ml-1 inline-flex gap-1.5 border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+            aria-label="Back to Dashboard"
+          >
+            <LayoutDashboard className="h-4 w-4" />
+            <span className="hidden sm:inline text-xs font-medium">Dashboard</span>
+          </Button>
+        )}
 
         {/* Search */}
         <div className="relative ml-2 hidden flex-1 max-w-md md:block">
@@ -119,6 +144,15 @@ export function Header() {
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>My Tasks (12)</DropdownMenuItem>
               <DropdownMenuItem>Sign-off Queue</DropdownMenuItem>
+              {goHome && (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => goHome()} className="gap-2">
+                    <LayoutDashboard className="h-4 w-4" />
+                    Back to Dashboard
+                  </DropdownMenuItem>
+                </>
+              )}
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-rose-600">Sign out</DropdownMenuItem>
             </DropdownMenuContent>

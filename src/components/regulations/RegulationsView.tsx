@@ -32,6 +32,7 @@ import { Search, Filter, Gavel, MapPin, Calendar, Building2, Sparkles } from 'lu
 import { format, parseISO, formatDistanceToNow, isAfter } from 'date-fns'
 import type { Regulation } from '@/lib/types'
 import { dataUrl } from '@/lib/data'
+import { BackToDashboard } from '@/components/shared/BackToDashboard'
 
 const JURISDICTIONS = ['ALL', 'US', 'EU', 'UK', 'JP', 'SG', 'AU', 'CA']
 const STATUSES = ['ALL', 'monitoring', 'pending', 'effective', 'superseded']
@@ -116,12 +117,15 @@ export function RegulationsView() {
 
   return (
     <div className="p-4 sm:p-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Regulation Tracker</h1>
-        <p className="mt-1 text-sm text-slate-500">
-          {items.length} regulations monitored across {byJurisdiction.length} jurisdictions —
-          automatically ingested from regulator publications and tagged by AI.
-        </p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Regulation Tracker</h1>
+          <p className="mt-1 text-sm text-slate-500">
+            {items.length} regulations monitored across {byJurisdiction.length} jurisdictions —
+            automatically ingested from regulator publications and tagged by AI.
+          </p>
+        </div>
+        <BackToDashboard />
       </div>
 
       {/* Stat strip */}

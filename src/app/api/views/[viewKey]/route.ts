@@ -674,7 +674,15 @@ async function buildPayload(viewKey: string) {
     default:
       return {
         metrics: [
-          { label: 'Status', value: 'No data', trend: 'configure endpoint', intent: 'neutral' as const },
+          { label: 'Status', value: 'Preview only', trend: 'static JSON', intent: 'neutral' as const },
+          { label: 'Source', value: '/data/', trend: 'bundled', intent: 'good' as const },
+        ],
+        highlights: [
+          {
+            title: `View "${viewKey}" runs on bundled static data`,
+            body: 'This view is rendered from the JSON files under /public/data/. The dynamic /api/views/* route is only used in dev/standalone server mode.',
+            intent: 'neutral' as const,
+          },
         ],
       }
   }

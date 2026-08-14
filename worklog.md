@@ -79,3 +79,30 @@ Stage Summary:
 - Path 3: Prisma schema expanded from 22 → 29 models (added NetworkEntity, NetworkEdge, NetworkCluster, CounterfactualScenario, SystemicRiskMetric, RegulatorSubmission, plus 8 new fields on ChainAnchor). DB synced; verified all tables exist.
 - Path 4: Network Graph canvas now fully mobile-friendly — single-touch drag/pan with mode toggle, two-finger pinch-zoom, mobile-only hint badge. Pan-mode toggle button added to header. Header now flex-wraps on narrow viewports.
 - v2.2 deliverables: scripts/fetch-free-tier-data.py (580 lines), scripts/build-chain-anchors.py (280 lines), prisma/schema.prisma (now 488 lines with 29 models), updated ChainEvidenceView.tsx, updated NetworkGraphExplorerView.tsx (~580 lines now), updated SanctionsScreeningView.tsx, updated RegulatoryWatchView.tsx.
+
+---
+Task ID: 2
+Agent: main
+Task: Fix two issues reported by user — (1) some pages show "endpoint unavailable" message, (2) every page should have a "Return to Home / Dashboard" button.
+
+Work Log:
+- Diagnosed "endpoint unavailable" — found the string lives in `src/components/shared/ViewShell.tsx` (line 176), which fetches `/api/views/${viewKey}` directly without using `dataUrl()` helper. That route is stripped from the static GitHub Pages build (by `scripts/build-static.sh`), so any page using ViewShell fails. The good news: no view currently imports ViewShell — but the file was a footgun for future use.
+- Also found the `/api/views/[viewKey]/route.ts` `default:` case returned a metric labelled `"Status: No data · configure endpoint"` for unknown viewKeys in dev mode. Rewrote to a friendlier "Preview only · static JSON" message with an explanatory highlight.
+- Fixed ViewShell.tsx: imported `dataUrl, IS_STATIC_BUILD` from `@/lib/data`; in static mode now skips the fetch entirely (sets loading=false, data=null, error=null) instead of attempting an unreachable request; replaced the alarming "Endpoint unavailable" error card with a friendlier amber "Live endpoint not reachable" card explaining that static builds use bundled JSON.
+- Created `src/lib/home-context.tsx` — a React Context (`HomeContext`) + `useHome()` hook so any component can read the "go home" callback without prop-drilling through every view.
+- Created `src/components/shared/BackToDashboard.tsx` — a small reusable outline button (Dashboard icon + label) that calls `useHome()` and renders nothing when already on the dashboard.
+- Updated `src/components/layout/Header.tsx`: brand logo+name is now a clickable button that returns to dashboard; added a global "Dashboard" outline button (icon-only on mobile, icon+label on sm+) visible on every non-dashboard page; added "Back to Dashboard" item to the user dropdown menu.
+- Updated `src/components/shared/PageHeader.tsx`: auto-renders a "← Dashboard" back button at the top-right via `useHome()` for every view that uses PageHeader (22 views). Button is hidden when on the dashboard.
+- Wired HomeContext in `src/app/page.tsx`: wraps entire app in `<HomeContext.Provider value={goHome}>`. `goHome` is `null` when on dashboard (so buttons auto-hide there) and a stable `useCallback` wrapper around `setView('dashboard')` otherwise. Initial implementation had a conditional `useCallback` call that violated the Rules of Hooks (React error #310) — fixed by always calling `useCallback` unconditionally and conditionally nulling the `goHome` variable.
+- Added `BackToDashboard` to the 6 views that don't use PageHeader: RegulationsView, PoliciesView, AuditView, RiskView, AssistantView, ReportsView. For views with existing right-side action buttons (Clear, Export CSV, etc.), grouped the back button with them in a flex container.
+- Rebuilt static export via `scripts/build-static.sh` — successful, 73 files, 2.4MB.
+- Deployed to gh-pages branch via `scripts/deploy-gh-pages.sh` — force-pushed commit `da89210`.
+- Verified live via agent-browser: dashboard loads correctly, "Return to dashboard" button is disabled on dashboard (as designed), navigating to Quant Lab view succeeds with zero runtime errors, two enabled back buttons appear (Header brand + PageHeader), clicking either returns to dashboard. Also tested RegulationsView (no PageHeader) — its `BackToDashboard` component button works. Mobile viewport (390×844) also confirmed working.
+- Confirmed via curl that "Endpoint unavailable" string no longer appears in any live JS chunk, and "Back to Dashboard" string IS present in the deployed bundle.
+
+Stage Summary:
+- Files created: `src/lib/home-context.tsx`, `src/components/shared/BackToDashboard.tsx`
+- Files modified: `src/components/shared/ViewShell.tsx`, `src/components/shared/PageHeader.tsx`, `src/components/layout/Header.tsx`, `src/app/page.tsx`, `src/app/api/views/[viewKey]/route.ts`, `src/components/regulations/RegulationsView.tsx`, `src/components/policies/PoliciesView.tsx`, `src/components/audit/AuditView.tsx`, `src/components/risk/RiskView.tsx`, `src/components/assistant/AssistantView.tsx`, `src/components/reports/ReportsView.tsx`
+- Live site: https://testdemoqwenai2025-creator.github.io/FinRegGTP.BoT/
+- Back-to-dashboard button now appears on every page (Header global + PageHeader contextual + BackToDashboard for non-PageHeader views). Buttons auto-hide when already on dashboard. Verified on both desktop and mobile viewports.
+- "Endpoint unavailable" message eliminated from all live bundles.

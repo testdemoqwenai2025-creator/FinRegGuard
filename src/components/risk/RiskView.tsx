@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import type { RiskItem, RiskUnitSummary } from '@/lib/types'
 import { dataUrl } from '@/lib/data'
+import { BackToDashboard } from '@/components/shared/BackToDashboard'
 
 // 5x5 risk matrix: likelihood (rows) x impact (cols)
 // Cell color intensity based on inherent risk score (likelihood * impact)
@@ -72,12 +73,15 @@ export function RiskView() {
 
   return (
     <div className="p-4 sm:p-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Risk Assessment Matrix</h1>
-        <p className="mt-1 text-sm text-slate-500">
-          {risks.length} risks scored across {summary.length} business units. Likelihood × Impact =
-          inherent risk; residual risk reflects control effectiveness.
-        </p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Risk Assessment Matrix</h1>
+          <p className="mt-1 text-sm text-slate-500">
+            {risks.length} risks scored across {summary.length} business units. Likelihood × Impact =
+            inherent risk; residual risk reflects control effectiveness.
+          </p>
+        </div>
+        <BackToDashboard />
       </div>
 
       {/* Top stats */}

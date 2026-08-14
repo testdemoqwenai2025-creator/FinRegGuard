@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Sidebar, MobileNav } from '@/components/layout/Sidebar'
 import { Header } from '@/components/layout/Header'
+import { HomeContext } from '@/lib/home-context'
 import { DashboardView } from '@/components/dashboard/DashboardView'
 import { RegulationsView } from '@/components/regulations/RegulationsView'
 import { PoliciesView } from '@/components/policies/PoliciesView'
@@ -79,6 +80,12 @@ export type ViewKey =
 export default function Home() {
   const [view, setView] = useState<ViewKey>('dashboard')
 
+  // Always call useCallback unconditionally (Rules of Hooks).
+  // goHome is null when we're already on the dashboard — this lets Header,
+  // PageHeader, and any consumer hide their "Back to Dashboard" button.
+  const goToDashboard = useCallback(() => setView('dashboard'), [])
+  const goHome = view === 'dashboard' ? null : goToDashboard
+
   const render = () => {
     switch (view) {
       case 'dashboard': return <DashboardView />
@@ -126,49 +133,51 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-      <Header />
-      <div className="flex flex-1 w-full flex-col lg:flex-row">
-        <MobileNav current={view} onChange={setView} />
-        <Sidebar current={view} onChange={setView} />
-        <main className="flex-1 min-w-0 overflow-x-hidden">
-          {render()}
-        </main>
-      </div>
-      <footer className="mt-auto border-t border-slate-200 bg-white px-6 py-4 text-xs text-slate-500">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2">
-            <Scale className="h-4 w-4 text-emerald-600" />
-            <span>
-              <strong className="text-slate-700">RegGuard AI</strong> · AI Regulatory Compliance
-              Automator
-            </span>
-            <span className="hidden sm:inline text-slate-400">·</span>
-            <span className="hidden sm:inline">29 state machines · 6 zones · machine proposes, human confirms</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span>v2.1.0 · build {new Date().getFullYear()}.08</span>
-            <a
-              href="https://github.com/testdemoqwenai2025-creator/FinRegGTP.BoT"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-slate-700 transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="h-4 w-4" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-slate-700 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-4 w-4" />
-            </a>
-          </div>
+    <HomeContext.Provider value={goHome}>
+      <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+        <Header />
+        <div className="flex flex-1 w-full flex-col lg:flex-row">
+          <MobileNav current={view} onChange={setView} />
+          <Sidebar current={view} onChange={setView} />
+          <main className="flex-1 min-w-0 overflow-x-hidden">
+            {render()}
+          </main>
         </div>
-      </footer>
-    </div>
+        <footer className="mt-auto border-t border-slate-200 bg-white px-6 py-4 text-xs text-slate-500">
+          <div className="mx-auto flex max-w-[1400px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2">
+              <Scale className="h-4 w-4 text-emerald-600" />
+              <span>
+                <strong className="text-slate-700">RegGuard AI</strong> · AI Regulatory Compliance
+                Automator
+              </span>
+              <span className="hidden sm:inline text-slate-400">·</span>
+              <span className="hidden sm:inline">29 state machines · 6 zones · machine proposes, human confirms</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span>v2.1.0 · build {new Date().getFullYear()}.08</span>
+              <a
+                href="https://github.com/testdemoqwenai2025-creator/FinRegGTP.BoT"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-slate-700 transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="h-4 w-4" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-slate-700 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </HomeContext.Provider>
   )
 }

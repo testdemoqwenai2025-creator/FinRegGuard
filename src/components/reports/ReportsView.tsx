@@ -28,6 +28,7 @@ import { Download, TrendingUp, Globe2, Building2, DollarSign } from 'lucide-reac
 import { format, parseISO } from 'date-fns'
 import type { DashboardData, Regulation, RiskItem } from '@/lib/types'
 import { dataUrl } from '@/lib/data'
+import { BackToDashboard } from '@/components/shared/BackToDashboard'
 
 const JURISDICTION_COLORS: Record<string, string> = {
   US: '#0ea5e9',
@@ -121,10 +122,13 @@ export function ReportsView() {
             Compliance trends, jurisdiction breakdown, and ROI from automated monitoring.
           </p>
         </div>
-        <Button size="sm" className="gap-2 bg-emerald-600 hover:bg-emerald-700">
-          <Download className="h-4 w-4" />
-          Export Quarterly Pack
-        </Button>
+        <div className="flex items-center gap-2">
+          <BackToDashboard />
+          <Button size="sm" className="gap-2 bg-emerald-600 hover:bg-emerald-700">
+            <Download className="h-4 w-4" />
+            Export Quarterly Pack
+          </Button>
+        </div>
       </div>
 
       {/* ROI / Top stat row */}

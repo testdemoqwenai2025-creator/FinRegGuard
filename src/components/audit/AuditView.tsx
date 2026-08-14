@@ -25,6 +25,7 @@ import { Search, Download, Shield, Filter, Hash } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
 import type { AuditLog } from '@/lib/types'
 import { dataUrl } from '@/lib/data'
+import { BackToDashboard } from '@/components/shared/BackToDashboard'
 
 const SEVERITIES = ['ALL', 'info', 'warning', 'critical']
 const ACTIONS = [
@@ -136,10 +137,13 @@ export function AuditView() {
             Immutable, hash-chained log of every compliance-relevant action across the platform.
           </p>
         </div>
-        <Button size="sm" className="gap-2 bg-emerald-600 hover:bg-emerald-700" onClick={exportCsv}>
-          <Download className="h-4 w-4" />
-          Export CSV ({filtered.length})
-        </Button>
+        <div className="flex items-center gap-2">
+          <BackToDashboard />
+          <Button size="sm" className="gap-2 bg-emerald-600 hover:bg-emerald-700" onClick={exportCsv}>
+            <Download className="h-4 w-4" />
+            Export CSV ({filtered.length})
+          </Button>
+        </div>
       </div>
 
       {/* Integrity banner */}

@@ -2,6 +2,9 @@
 
 import { cn } from '@/lib/utils'
 import type { LucideIcon } from 'lucide-react'
+import { LayoutDashboard } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { useHome } from '@/lib/home-context'
 
 export function PageHeader({
   zone,
@@ -16,6 +19,8 @@ export function PageHeader({
   icon: LucideIcon
   accent?: string
 }) {
+  const goHome = useHome()
+
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-start gap-3">
@@ -28,6 +33,21 @@ export function PageHeader({
           <p className="mt-1 max-w-3xl text-sm text-slate-500">{subtitle}</p>
         </div>
       </div>
+
+      {/* Back to Dashboard — auto-rendered on every view that uses PageHeader,
+          except when we're already on the dashboard (goHome is null there). */}
+      {goHome && (
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => goHome()}
+          className="gap-1.5 border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 self-start sm:self-auto"
+          aria-label="Back to Dashboard"
+        >
+          <LayoutDashboard className="h-4 w-4" />
+          <span className="text-xs font-medium">Dashboard</span>
+        </Button>
+      )}
     </div>
   )
 }

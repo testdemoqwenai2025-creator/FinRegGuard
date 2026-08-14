@@ -20,6 +20,7 @@ import {
 import { format, parseISO } from 'date-fns'
 import type { ChatMessage } from '@/lib/types'
 import { dataUrl, IS_STATIC_BUILD } from '@/lib/data'
+import { BackToDashboard } from '@/components/shared/BackToDashboard'
 
 type Msg = {
   id: string
@@ -152,10 +153,13 @@ export function AssistantView() {
             Powered by Z.ai LLM with regulatory context.
           </p>
         </div>
-        <Button variant="outline" size="sm" onClick={clearChat} className="gap-2">
-          <Trash2 className="h-4 w-4" />
-          Clear
-        </Button>
+        <div className="flex items-center gap-2">
+          <BackToDashboard />
+          <Button variant="outline" size="sm" onClick={clearChat} className="gap-2">
+            <Trash2 className="h-4 w-4" />
+            Clear
+          </Button>
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">
