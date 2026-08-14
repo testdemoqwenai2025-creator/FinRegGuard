@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Network, Users, GitFork, AlertTriangle, RotateCcw, Play, Pause, ZoomIn, ZoomOut } from 'lucide-react'
+import { Network, Users, GitFork, AlertTriangle, RotateCcw, Play, Pause, ZoomIn, ZoomOut, Move } from 'lucide-react'
 import { dataUrl } from '@/lib/data'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
@@ -354,6 +354,94 @@ export function NetworkGraphExplorerView() {
     setZoom(z => Math.max(0.4, Math.min(3, z * delta)))
   }
 
+  // ─── Touch interaction (mobile / tablet) ───
+  // Single-touch: drag a node OR pan canvas (depending on `panMode` state)
+  // Two-finger pinch: zoom in/out
+  const touchState = useRef<{
+    mode: 'none' | 'drag' | 'pan' | 'pinch'
+    startClientX: number; startClientY: number
+    startPanX: number; startPanY: number
+    startDist: number; startZoom: number
+    moved: boolean
+  }>({ mode: 'none', startClientX: 0, startClientY: 0, startPanX: 0, startPanY: 0, startDist: 0, startZoom: 1, moved: false })
+
+  const [panMode, setPanMode] = useState(false)
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    const rect = canvasRef.current?.getBoundingClientRect()
+    if (!rect) return
+    if (e.touches.length === 1) {
+      const t = e.touches[0]
+      const mx = (t.clientX - rect.left - pan.current.x) / zoom
+      const my = (t.clientY - rect.top - pan.current.y) / zoom
+      const n = panMode ? null : findNodeAt(mx, my)
+      if (n) {
+        n.fx = n.x; n.fy = n.y
+        dragNode.current = n
+        setSelected(n)
+        touchState.current = { mode: 'drag', startClientX: t.clientX, startClientY: t.clientY, startPanX: 0, startPanY: 0, startDist: 0, startZoom: zoom, moved: false }
+      } else {
+        touchState.current = { mode: 'pan', startClientX: t.clientX, startClientY: t.clientY, startPanX: pan.current.x, startPanY: pan.current.y, startDist: 0, startZoom: zoom, moved: false }
+      }
+    } else if (e.touches.length === 2) {
+      const t1 = e.touches[0], t2 = e.touches[1]
+      const dist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY)
+      touchState.current = { mode: 'pinch', startClientX: 0, startClientY: 0, startPanX: 0, startPanY: 0, startDist: dist, startZoom: zoom, moved: false }
+      // Cancel any in-progress drag
+      if (dragNode.current) {
+        dragNode.current.fx = null
+        dragNode.current.fy = null
+        dragNode.current = null
+      }
+    }
+  }
+  const onTouchMove = (e: React.TouchEvent) => {
+    const rect = canvasRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const ts = touchState.current
+    if (ts.mode === 'drag' && dragNode.current && e.touches.length === 1) {
+      const t = e.touches[0]
+      const mx = (t.clientX - rect.left - pan.current.x) / zoom
+      const my = (t.clientY - rect.top - pan.current.y) / zoom
+      dragNode.current.fx = mx
+      dragNode.current.fy = my
+      // Mark as moved so we don't fire a "click" (selection already happened)
+      if (Math.hypot(t.clientX - ts.startClientX, t.clientY - ts.startClientY) > 5) ts.moved = true
+      e.preventDefault()
+    } else if (ts.mode === 'pan' && e.touches.length === 1) {
+      const t = e.touches[0]
+      pan.current.x = ts.startPanX + (t.clientX - ts.startClientX)
+      pan.current.y = ts.startPanY + (t.clientY - ts.startClientY)
+      if (Math.hypot(t.clientX - ts.startClientX, t.clientY - ts.startClientY) > 5) ts.moved = true
+      e.preventDefault()
+    } else if (ts.mode === 'pinch' && e.touches.length === 2) {
+      const t1 = e.touches[0], t2 = e.touches[1]
+      const dist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY)
+      if (ts.startDist > 0) {
+        const ratio = dist / ts.startDist
+        const newZoom = Math.max(0.4, Math.min(3, ts.startZoom * ratio))
+        setZoom(newZoom)
+      }
+      ts.moved = true
+      e.preventDefault()
+    }
+  }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchState.current.mode === 'drag' && dragNode.current) {
+      // Release node fix
+      dragNode.current.fx = null
+      dragNode.current.fy = null
+      dragNode.current = null
+    }
+    if (e.touches.length === 0) {
+      touchState.current = { mode: 'none', startClientX: 0, startClientY: 0, startPanX: 0, startPanY: 0, startDist: 0, startZoom: 1, moved: false }
+    } else if (e.touches.length === 1) {
+      // Was a pinch, now a single touch — switch to pan
+      const t = e.touches[0]
+      touchState.current = { mode: 'pan', startClientX: t.clientX, startClientY: t.clientY, startPanX: pan.current.x, startPanY: pan.current.y, startDist: 0, startZoom: zoom, moved: false }
+    }
+  }
+
   if (loading) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
 
   const flagged = nodes.filter(n => n.isFlagged).length
@@ -378,11 +466,14 @@ export function NetworkGraphExplorerView() {
 
       <div className="grid gap-6 lg:grid-cols-5">
         <Card className="lg:col-span-3 border-slate-200">
-          <CardHeader className="pb-3 flex flex-row items-center justify-between">
-            <CardTitle className="text-sm">Force-Directed Network Topology — drag · hover · zoom</CardTitle>
+          <CardHeader className="pb-3 flex flex-row items-center justify-between flex-wrap gap-2">
+            <CardTitle className="text-sm">Force-Directed Network Topology — drag · pinch · zoom</CardTitle>
             <div className="flex items-center gap-1">
               <Button size="sm" variant="ghost" onClick={() => setRunning(r => !r)} title={running ? 'Pause' : 'Play'}>
                 {running ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+              </Button>
+              <Button size="sm" variant={panMode ? 'secondary' : 'ghost'} onClick={() => setPanMode(p => !p)} title={panMode ? 'Pan mode ON' : 'Pan mode OFF'}>
+                <Move className="h-4 w-4" />
               </Button>
               <Button size="sm" variant="ghost" onClick={() => setZoom(z => Math.min(3, z * 1.2))} title="Zoom in">
                 <ZoomIn className="h-4 w-4" />
@@ -399,15 +490,21 @@ export function NetworkGraphExplorerView() {
             <div ref={containerRef} className="relative w-full">
               <canvas
                 ref={canvasRef}
-                className="rounded-lg touch-none"
+                className="rounded-lg touch-none select-none"
                 onMouseDown={onMouseDown}
                 onMouseMove={onMouseMove}
                 onMouseUp={onMouseUp}
                 onMouseLeave={() => { onMouseUp(); setHovered(null) }}
                 onWheel={onWheel}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
               />
               <div className="pointer-events-none absolute bottom-2 right-3 text-[10px] font-mono text-slate-400">
-                {running ? '● simulating' : '❚❚ paused'} · zoom {zoom.toFixed(2)}× · {nodes.length} nodes
+                {running ? '● simulating' : '❚❚ paused'} · zoom {zoom.toFixed(2)}× · {nodes.length} nodes{panMode ? ' · pan mode' : ''}
+              </div>
+              <div className="pointer-events-none absolute top-2 left-2 rounded bg-slate-900/80 px-2 py-1 text-[10px] text-white lg:hidden">
+                {panMode ? 'Pan: drag to scroll · pinch to zoom' : 'Drag nodes · pinch to zoom · toggle Pan mode for scroll'}
               </div>
             </div>
           </CardContent>
@@ -433,7 +530,14 @@ export function NetworkGraphExplorerView() {
 
           {selected && (
             <Card className="border-slate-200">
-              <CardHeader className="pb-3"><CardTitle className="text-sm">Selected Entity</CardTitle></CardHeader>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm flex items-center gap-2">
+                  Selected Entity
+                  {(selected as any).enriched && (
+                    <Badge variant="outline" className="text-[10px] border-emerald-300 bg-emerald-50 text-emerald-700">● enriched</Badge>
+                  )}
+                </CardTitle>
+              </CardHeader>
               <CardContent className="space-y-2 text-xs">
                 {[
                   ['Label', selected.label],
@@ -447,6 +551,32 @@ export function NetworkGraphExplorerView() {
                     <span className="font-mono font-medium text-slate-800">{v}</span>
                   </div>
                 ))}
+                {(selected as any).enriched && (
+                  <div className="mt-2 rounded-md border border-emerald-200 bg-emerald-50/60 p-2">
+                    <p className="mb-1 text-[10px] font-semibold text-emerald-700">
+                      ● Enrichment — {(selected as any).enriched.source}
+                    </p>
+                    {[
+                      ...( (selected as any).enriched.matchedRealEntity ? [['Matched Entity', (selected as any).enriched.matchedRealEntity]] : []),
+                      ...( (selected as any).enriched.matchedCompany ? [['Matched Company', (selected as any).enriched.matchedCompany]] : []),
+                      ...( (selected as any).enriched.lei ? [['LEI', (selected as any).enriched.lei]] : []),
+                      ...( (selected as any).enriched.jurisdiction ? [['Reg. Jurisdiction', (selected as any).enriched.jurisdiction]] : []),
+                      ...( (selected as any).enriched.legalForm ? [['Legal Form', (selected as any).enriched.legalForm]] : []),
+                      ...( (selected as any).enriched.address ? [['Address', (selected as any).enriched.address]] : []),
+                    ].map(([k, v]) => (
+                      <div key={k as string} className="flex justify-between gap-2 pb-1">
+                        <span className="text-slate-500">{k}</span>
+                        <span className="text-right font-mono text-slate-800 text-[10px]">{v}</span>
+                      </div>
+                    ))}
+                    {(selected as any).enriched.registryUrl && (
+                      <a href={(selected as any).enriched.registryUrl} target="_blank" rel="noopener noreferrer"
+                         className="mt-1 inline-block text-[10px] text-indigo-600 hover:underline">
+                        View registry record ↗
+                      </a>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           )}

@@ -299,16 +299,152 @@ model WhistleblowerReport {
 model ChainAnchor {
   id            String   @id @default(cuid())
   payloadHash   String
-  chain         String   // hyperledger_besu, ethereum_sepolia, polygon
+  chain         String   // hyperledger_besu, ethereum_sepolia, polygon_amoy
   txHash        String
   blockNumber   Int
-  anchorType    String   // audit_log, evidence, decision, attestation
+  anchorType    String   // audit_log, evidence, decision, attestation, merkle_root
   anchoredBy    String
   verifiedAt    DateTime?
   createdAt     DateTime @default(now())
+  // ─── v2.2: Merkle tree + broadcast metadata ───
+  verified      Boolean  @default(false)
+  broadcastMode String?  // live_polygon_amoy, simulated_broadcast, merkle_proof_of_root
+  merkleRoot    String?
+  merkleProof   String?  // JSON-serialised array of {position, hash}
+  leafCount     Int?
+  chainId       Int?
+  auditId       String?
+  verificationUrl String?
+  aiRecAction     String?
+  aiRecConfidence Int?
+  aiRecReasoning  String?
 
   @@index([chain])
   @@index([anchorType])
+  @@index([verified])
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// v2.2 — SURVEILLANCE ZONE EXTENSIONS (Network Graph + Entity Enrichment)
+// ─────────────────────────────────────────────────────────────────────
+
+/// Entity-node in the network graph (counterparty, beneficial owner, account, address, wallet)
+model NetworkEntity {
+  id            String   @id @default(cuid())
+  externalId    String   // n0, n1, ... — used by network.json edges
+  label         String
+  type          String   // person, company, account, address, crypto_wallet
+  riskScore     Int      // 0-100
+  jurisdiction  String
+  isFlagged     Boolean  @default(false)
+  // v2.2 enrichment
+  enrichedName      String?
+  enrichedSource    String?  // OFAC SDN, EU CFSP, OpenCorporates, GLEIF
+  enrichedLei       String?
+  enrichedAddress   String?
+  enrichedVerifiedAt DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([type])
+  @@index([isFlagged])
+  @@index([jurisdiction])
+}
+
+/// Relationship edge in the network graph (ownership, txn, shared_address, etc.)
+model NetworkEdge {
+  id        String   @id @default(cuid())
+  source    String   // NetworkEntity.externalId
+  target    String   // NetworkEntity.externalId
+  type      String   // ownership, transaction, shared_address, beneficial_owner
+  weight    Float
+  currency  String
+  timestamp DateTime @default(now())
+
+  @@index([source])
+  @@index([target])
+  @@index([type])
+}
+
+/// Louvain community detection cluster result
+model NetworkCluster {
+  id        String   @id @default(cuid())
+  clusterId String   // c0, c1, ...
+  label     String
+  risk      Int
+  nodeCount Int
+  detectedAt DateTime @default(now())
+
+  @@index([clusterId])
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// v2.2 — PLATFORM ZONE EXTENSIONS (Time Machine)
+// ─────────────────────────────────────────────────────────────────────
+
+/// Counterfactual regulatory scenario (Time Machine view)
+model CounterfactualScenario {
+  id            String   @id @default(cuid())
+  title         String
+  description   String
+  jurisdiction  String
+  // Simulated baseline vs counterfactual outcomes
+  baselineRiskScore    Int
+  counterfactualRiskScore Int
+  deltaPolicies  Int
+  deltaCost      Float
+  confidence     Int
+  status         String   // draft, simulated, approved
+  createdAt      DateTime @default(now())
+
+  @@index([jurisdiction])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// v2.2 — QUANT ZONE EXTENSIONS (Systemic Risk)
+// ─────────────────────────────────────────────────────────────────────
+
+/// Systemic risk metric (D-SIB / G-SIB scorecard)
+model SystemicRiskMetric {
+  id              String   @id @default(cuid())
+  bankName        String
+  bucket          String   // D-SIB bucket 1-5
+  // Basel indicator metrics
+  size            Float
+  interconnectedness Float
+  substitutability Float
+  complexity      Float
+  crossJurisdiction Float
+  // Aggregate
+  systemicScore   Int
+  trend           String   // increasing, stable, decreasing
+  lastRefreshed   DateTime @default(now())
+
+  @@index([bankName])
+  @@index([bucket])
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// v2.2 — COLLABORATION ZONE EXTENSIONS (Regulator Portal)
+// ─────────────────────────────────────────────────────────────────────
+
+/// Submission to regulator portal (exam pack, SAR, RFI response)
+model RegulatorSubmission {
+  id           String   @id @default(cuid())
+  regulator    String   // FCA, SEC, ESMA, MAS, PRA, FinCEN
+  submissionType String // exam_pack, SAR, RFI_response, quarterly_return
+  status       String   // draft, in_review, submitted, accepted, rejected
+  dueDate      DateTime?
+  submittedAt  DateTime?
+  submittedBy  String?
+  contentHash  String?  // SHA-256 of submission contents
+  chainAnchorId String? // FK to ChainAnchor if anchored on-chain
+  createdAt    DateTime @default(now())
+
+  @@index([regulator])
+  @@index([status])
+  @@index([submissionType])
 }
 
 /// Digital asset compliance events

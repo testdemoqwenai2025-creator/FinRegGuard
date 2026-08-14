@@ -1,305 +1,588 @@
 {
   "anchors": [
     {
-      "id": "chain_3663232acaf244e39abfe9",
-      "payloadHash": "0x87a4d7c7375b4e8db9b69c31c1b2978d",
+      "id": "chain_master_87140f5b28ae4dd48e301a",
+      "payloadHash": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
       "chain": "polygon_amoy",
-      "txHash": "0x8f7cd2d05e7a47738b0e8874f14e2f5e",
-      "blockNumber": 5643937,
-      "anchorType": "evidence",
+      "txHash": "0x214b68175ed9329f39cc521225681a41a412f350f396d5887fbf4951ee535827",
+      "blockNumber": 5789975,
+      "anchorType": "merkle_root",
       "anchoredBy": "mlro@regco.io",
-      "verifiedAt": "2026-08-10T04:35:41.185116+00:00",
-      "createdAt": "2026-08-09T09:30:56.185116+00:00",
-      "verified": false
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-08-14T14:04:03.580115+00:00",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "leafCount": 15,
+      "chainId": 80002,
+      "rpcUrl": "https://rpc-amoy.polygon.technology",
+      "aiRecommendation": {
+        "action": "Auto-verify all 15 audit entries against on-chain Merkle root",
+        "confidence": 96,
+        "reasoning": "SHA-256 hashes + Merkle tree root anchored on Polygon Amoy testnet (chainId=80002). Each entry verifiable with its Merkle proof. Broadcast mode: simulated_broadcast.",
+        "reviewerAction": "approve_verification"
+      }
     },
     {
-      "id": "chain_5e7f1a528da64df2989d32",
-      "payloadHash": "0x82abcfe7dfe74321b92333713c38ec41",
-      "chain": "ethereum_sepolia",
-      "txHash": "0x2ce08461f85e441da04d50d02af604f8",
-      "blockNumber": 4932678,
-      "anchorType": "decision",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": null,
-      "createdAt": "2026-08-10T07:56:51.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_ba35371c02dd4736b8637f",
-      "payloadHash": "0x2b3eb4e2f1a94a73b25e6f40c124a1a3",
-      "chain": "ethereum_sepolia",
-      "txHash": "0xd2c2ab851a434911a58303e0318cf053",
-      "blockNumber": 5168082,
-      "anchorType": "attestation",
-      "anchoredBy": "system",
-      "verifiedAt": null,
-      "createdAt": "2026-07-28T09:18:58.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_874e6d5da522452aae9201",
-      "payloadHash": "0xafaddbe24cfe444b84fb40ed69b11391",
+      "id": "chain_6230dd355b134b99a927ae",
+      "payloadHash": "0x2b5777efddf9224ad8f4f09590346931ca332b0d86ba7a95d483fe44d765bba8",
       "chain": "polygon_amoy",
-      "txHash": "0x951d32549d8d4b2d9718b8d3604a097c",
-      "blockNumber": 5254188,
-      "anchorType": "decision",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": null,
-      "createdAt": "2026-07-25T11:31:57.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_72d8ceccc5ad4b9cb617fc",
-      "payloadHash": "0x6f642094152d4abca0a7aa2e5c0121a9",
-      "chain": "hyperledger_besu",
-      "txHash": "0x1cda1ef3da4a4d8096267e22e1c27d94",
-      "blockNumber": 5520107,
-      "anchorType": "evidence",
-      "anchoredBy": "mlro@regco.io",
-      "verifiedAt": "2026-08-09T22:45:36.185116+00:00",
-      "createdAt": "2026-08-06T08:10:21.185116+00:00",
-      "verified": false
-    },
-    {
-      "id": "chain_e93dd2d2936c44158ebf7a",
-      "payloadHash": "0x925fe60de867436296f4c8ccc3e0629e",
-      "chain": "ethereum_sepolia",
-      "txHash": "0x05584eaf7d2b40efbf514b9587411e09",
-      "blockNumber": 4562889,
-      "anchorType": "attestation",
-      "anchoredBy": "system",
-      "verifiedAt": null,
-      "createdAt": "2026-07-24T11:13:18.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_9fd23684b2da4c7ea8d1c9",
-      "payloadHash": "0x7e492490b38d4165a2a078adc4b55a1e",
-      "chain": "ethereum_sepolia",
-      "txHash": "0xd2d547b7b4134f2d9b8c451acad6bda9",
-      "blockNumber": 5015506,
+      "txHash": "0x0d045656db10a3aa1b1b1a8e36e149e18536f7839a94f1e442fd5713fc3895c5",
+      "blockNumber": 5788054,
       "anchorType": "audit_log",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": "2026-08-11T13:49:54.185116+00:00",
-      "createdAt": "2026-07-21T12:00:16.185116+00:00",
-      "verified": true
+      "anchoredBy": "james.okafor@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-08-14T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhu000tqhcu121jdit4",
+      "actor": "james.okafor@regco.io",
+      "action": "user.access",
+      "targetType": "user",
+      "merkleProof": [
+        {
+          "position": "right",
+          "hash": "0b21a604ae58455968712a675444054555a7c88a5297214d29cb6f3013dc5392"
+        },
+        {
+          "position": "right",
+          "hash": "12c70777770c4952465625ce1406959853eb45e93f1eb0130ebfcee400dcc243"
+        },
+        {
+          "position": "right",
+          "hash": "5bdfb00e499188aa3424d90e2023ab9d591d9c5ca1fc324648cddfb57aa47446"
+        },
+        {
+          "position": "right",
+          "hash": "4af4e9b372ae4c73d4a52604757305f1eadac07617b748ffe0cf5972504f66e2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
     },
     {
-      "id": "chain_8947c7a230df43098e3f58",
-      "payloadHash": "0xe5480bab8d1c4678b468eeb9d77ce1e1",
-      "chain": "hyperledger_besu",
-      "txHash": "0x689d1717d4244305b8275b2fbe8bb078",
-      "blockNumber": 4960205,
+      "id": "chain_803e5244bbff469a950a03",
+      "payloadHash": "0x0b21a604ae58455968712a675444054555a7c88a5297214d29cb6f3013dc5392",
+      "chain": "polygon_amoy",
+      "txHash": "0x72727fe07a10106b4272546b8d8574a0924c214a7f736bdf551c5e02b8606ba9",
+      "blockNumber": 5706464,
       "anchorType": "audit_log",
-      "anchoredBy": "system",
-      "verifiedAt": "2026-08-09T18:24:09.185116+00:00",
-      "createdAt": "2026-07-29T10:35:43.185116+00:00",
-      "verified": true
+      "anchoredBy": "priya.patel@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-08-14T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhs000rqhcup0fmgsfi",
+      "actor": "priya.patel@regco.io",
+      "action": "chat.session",
+      "targetType": "report",
+      "merkleProof": [
+        {
+          "position": "left",
+          "hash": "2b5777efddf9224ad8f4f09590346931ca332b0d86ba7a95d483fe44d765bba8"
+        },
+        {
+          "position": "right",
+          "hash": "12c70777770c4952465625ce1406959853eb45e93f1eb0130ebfcee400dcc243"
+        },
+        {
+          "position": "right",
+          "hash": "5bdfb00e499188aa3424d90e2023ab9d591d9c5ca1fc324648cddfb57aa47446"
+        },
+        {
+          "position": "right",
+          "hash": "4af4e9b372ae4c73d4a52604757305f1eadac07617b748ffe0cf5972504f66e2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
     },
     {
-      "id": "chain_baad5928582043daa5a732",
-      "payloadHash": "0xe4417da8aa2b4c2bb8a12c9802f3fa91",
-      "chain": "ethereum_sepolia",
-      "txHash": "0xd480005f17b142ebbbcc119914d9297c",
-      "blockNumber": 5686270,
-      "anchorType": "decision",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": "2026-08-12T22:00:26.185116+00:00",
-      "createdAt": "2026-07-30T23:37:26.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_f518bb1e461e47a889ecb6",
-      "payloadHash": "0x0a3c586eb52c47189c761d8dce3f3eea",
+      "id": "chain_10eb07c05cb84a5fb52bdb",
+      "payloadHash": "0x612a18be6576d1e645c4f30f2fdb199ad4b58eb806717c5c2ab0a53bd33a0816",
       "chain": "polygon_amoy",
-      "txHash": "0x1be38f4fd50c43549c38623b13928a20",
-      "blockNumber": 4421216,
-      "anchorType": "attestation",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": "2026-08-09T17:39:38.185116+00:00",
-      "createdAt": "2026-07-30T01:50:02.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_bc33944350bf4c6d8f45a8",
-      "payloadHash": "0x4f2517e0856b485292c529fdbc1124e1",
-      "chain": "polygon_amoy",
-      "txHash": "0xcce14aa85a9446ad8efc7c89f2f84807",
-      "blockNumber": 5327292,
-      "anchorType": "attestation",
-      "anchoredBy": "mlro@regco.io",
-      "verifiedAt": "2026-08-10T14:44:06.185116+00:00",
-      "createdAt": "2026-07-27T07:31:12.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_dfcf8f9834ba47d6821367",
-      "payloadHash": "0x67ab43ce063f47719573e2f11e32da99",
-      "chain": "ethereum_sepolia",
-      "txHash": "0x2010bd11c344407f941b85f9d73875ad",
-      "blockNumber": 4765493,
-      "anchorType": "audit_log",
-      "anchoredBy": "mlro@regco.io",
-      "verifiedAt": "2026-08-07T22:43:49.185116+00:00",
-      "createdAt": "2026-08-05T20:01:33.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_969580bdc9f741dfb669bf",
-      "payloadHash": "0x614d55080643455fb0e7f009862f44c1",
-      "chain": "polygon_amoy",
-      "txHash": "0x3530db4dd88d47a7be89d755887180d3",
-      "blockNumber": 4056447,
-      "anchorType": "attestation",
-      "anchoredBy": "mlro@regco.io",
-      "verifiedAt": "2026-08-11T00:48:00.185116+00:00",
-      "createdAt": "2026-08-11T05:04:50.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_19af6f4095c447978db6f0",
-      "payloadHash": "0x088ef82068fc46119143f4c180a103e4",
-      "chain": "ethereum_sepolia",
-      "txHash": "0xd0fbfb8d8dd4405da9492e946a067395",
-      "blockNumber": 5411336,
-      "anchorType": "attestation",
-      "anchoredBy": "system",
-      "verifiedAt": "2026-08-11T15:09:45.185116+00:00",
-      "createdAt": "2026-08-02T07:15:39.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_ab82a8cae5384a8a84763f",
-      "payloadHash": "0x4fd701b8e21944b09399dbb2f6294724",
-      "chain": "polygon_amoy",
-      "txHash": "0x0ac1df1e86bc4baba3fefe719b5ce9b3",
-      "blockNumber": 4887363,
-      "anchorType": "attestation",
-      "anchoredBy": "system",
-      "verifiedAt": "2026-08-08T18:04:08.185116+00:00",
-      "createdAt": "2026-07-17T07:17:34.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_16094717d76d4bdcb0566a",
-      "payloadHash": "0xc9fb318003774dfab733eea1d9b174c9",
-      "chain": "polygon_amoy",
-      "txHash": "0xe18033615ae04ec6be4a32e3fdeefe7f",
-      "blockNumber": 5936710,
-      "anchorType": "attestation",
-      "anchoredBy": "mlro@regco.io",
-      "verifiedAt": null,
-      "createdAt": "2026-07-28T02:46:27.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_3555d11688d340cdad16c5",
-      "payloadHash": "0xfdb5862885a14ba2a7438df33f4b2463",
-      "chain": "polygon_amoy",
-      "txHash": "0xb820e282f6944680a2fb6a6c08be4c6a",
-      "blockNumber": 5245330,
+      "txHash": "0xa7f5f6fdb4fa333bd8639a1c59448504a52e9817c9f69e7c17040872e174bf61",
+      "blockNumber": 5714621,
       "anchorType": "audit_log",
       "anchoredBy": "system",
-      "verifiedAt": "2026-08-10T06:15:09.185116+00:00",
-      "createdAt": "2026-08-06T11:51:28.185116+00:00",
-      "verified": true
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-08-10T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhn000jqhcu7szkv217",
+      "actor": "system",
+      "action": "regulation.detected",
+      "targetType": "regulation",
+      "merkleProof": [
+        {
+          "position": "right",
+          "hash": "507ae2e2d8ec640374da7aac8573f81ac3e1a60e5776ab0dff4bb5bbf2c89abf"
+        },
+        {
+          "position": "left",
+          "hash": "21260e748ea222296d70dfbc9038a09299b741ac0e61b6a656a55d0e07c4a0a9"
+        },
+        {
+          "position": "right",
+          "hash": "5bdfb00e499188aa3424d90e2023ab9d591d9c5ca1fc324648cddfb57aa47446"
+        },
+        {
+          "position": "right",
+          "hash": "4af4e9b372ae4c73d4a52604757305f1eadac07617b748ffe0cf5972504f66e2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
     },
     {
-      "id": "chain_43c5e7169b794614afb79b",
-      "payloadHash": "0x6d18b563234d4ac59cf883d7890e41bf",
-      "chain": "hyperledger_besu",
-      "txHash": "0x5c32a66ea85d4861915ccd64e3450403",
-      "blockNumber": 5181158,
-      "anchorType": "attestation",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": "2026-08-09T08:16:37.185116+00:00",
-      "createdAt": "2026-08-09T10:13:19.185116+00:00",
-      "verified": false
-    },
-    {
-      "id": "chain_c6a3a0d7bcd443c896b8a9",
-      "payloadHash": "0x82735568e3894de68394669ca31e471b",
-      "chain": "ethereum_sepolia",
-      "txHash": "0x5834609b0fba4a6eb28471cd028c8148",
-      "blockNumber": 4465570,
-      "anchorType": "evidence",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": "2026-08-08T22:46:46.185116+00:00",
-      "createdAt": "2026-07-16T23:53:57.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_311f4c4f56554700bec705",
-      "payloadHash": "0x1e3f8c376a77432f896f306ce8addf1e",
-      "chain": "hyperledger_besu",
-      "txHash": "0xb693f3c23f3b443ab199459818138073",
-      "blockNumber": 4723449,
+      "id": "chain_1a1506d2b8da4d55a57650",
+      "payloadHash": "0x507ae2e2d8ec640374da7aac8573f81ac3e1a60e5776ab0dff4bb5bbf2c89abf",
+      "chain": "polygon_amoy",
+      "txHash": "0xd292f4d067e8ab5a01116c9097fc6f96da61ed9e39afd691dc972941fbad0270",
+      "blockNumber": 5646288,
       "anchorType": "audit_log",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": null,
-      "createdAt": "2026-07-25T09:00:35.185116+00:00",
-      "verified": true
+      "anchoredBy": "marcus.lee@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-08-08T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhw000wqhcuzzg5uz7d",
+      "actor": "marcus.lee@regco.io",
+      "action": "audit.review",
+      "targetType": "report",
+      "merkleProof": [
+        {
+          "position": "left",
+          "hash": "612a18be6576d1e645c4f30f2fdb199ad4b58eb806717c5c2ab0a53bd33a0816"
+        },
+        {
+          "position": "left",
+          "hash": "21260e748ea222296d70dfbc9038a09299b741ac0e61b6a656a55d0e07c4a0a9"
+        },
+        {
+          "position": "right",
+          "hash": "5bdfb00e499188aa3424d90e2023ab9d591d9c5ca1fc324648cddfb57aa47446"
+        },
+        {
+          "position": "right",
+          "hash": "4af4e9b372ae4c73d4a52604757305f1eadac07617b748ffe0cf5972504f66e2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
     },
     {
-      "id": "chain_a7faed34cab64d4ab15660",
-      "payloadHash": "0x22c80f1717a34d5ab6a32eaf97aca39f",
-      "chain": "hyperledger_besu",
-      "txHash": "0xb8b762aadee342beb6fa058bbaaaf2a0",
-      "blockNumber": 4243415,
-      "anchorType": "evidence",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": "2026-08-09T01:01:52.185116+00:00",
-      "createdAt": "2026-08-04T12:38:18.185116+00:00",
-      "verified": true
-    },
-    {
-      "id": "chain_b983402ab45d4ed0b6afec",
-      "payloadHash": "0xb2e753f9acfa455aa77a974848100650",
-      "chain": "ethereum_sepolia",
-      "txHash": "0xaa3797020381424aaa4a6609746950eb",
-      "blockNumber": 4998585,
-      "anchorType": "audit_log",
-      "anchoredBy": "sarah.chen@regco.io",
-      "verifiedAt": "2026-08-09T01:52:17.185116+00:00",
-      "createdAt": "2026-07-30T02:05:59.185116+00:00",
-      "verified": false
-    },
-    {
-      "id": "chain_0c4425c58e294c90841b44",
-      "payloadHash": "0xb060816a790a447cab4b78631295f68d",
-      "chain": "hyperledger_besu",
-      "txHash": "0xc2e3cd70c3564ae587deb261a2298dcd",
-      "blockNumber": 5699083,
+      "id": "chain_dd6671b058d14f80815e28",
+      "payloadHash": "0x2efde8e31ba5a0c40bdd75a5bfe81899e90c3759126153a10be34e17d4b1fd0b",
+      "chain": "polygon_amoy",
+      "txHash": "0xd8e93cd18618ed08f44c1919fdf28618803e895163e70ba28a095a6dbff224c6",
+      "blockNumber": 5764113,
       "anchorType": "audit_log",
       "anchoredBy": "system",
-      "verifiedAt": "2026-08-13T05:48:07.185116+00:00",
-      "createdAt": "2026-08-06T14:10:11.185116+00:00",
-      "verified": true
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-08-07T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhq000pqhcufr3cmi6b",
+      "actor": "system",
+      "action": "policy.overdue",
+      "targetType": "policy",
+      "merkleProof": [
+        {
+          "position": "right",
+          "hash": "19cb4f9fd4d7d48154523960f69444c90050abce87dcdadd9fc2a51084544edc"
+        },
+        {
+          "position": "right",
+          "hash": "f14d1e1695ac166b1cb23f3360931366b9651686b1bce243e6ecb650a16ba552"
+        },
+        {
+          "position": "left",
+          "hash": "510d937779a1d68e1d7272c770f8214d81d88f7066c909e820c58115bf3f7da9"
+        },
+        {
+          "position": "right",
+          "hash": "4af4e9b372ae4c73d4a52604757305f1eadac07617b748ffe0cf5972504f66e2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
     },
     {
-      "id": "chain_b1c2e7266de34aba855a6a",
-      "payloadHash": "0x0e0f9a9ef8f140f6b45a9cd4d3609fc1",
+      "id": "chain_3d898a80b634410c832321",
+      "payloadHash": "0x19cb4f9fd4d7d48154523960f69444c90050abce87dcdadd9fc2a51084544edc",
       "chain": "polygon_amoy",
-      "txHash": "0x2dd64886a42f4fbfa25a25acf30ea8dd",
-      "blockNumber": 4511522,
-      "anchorType": "evidence",
-      "anchoredBy": "mlro@regco.io",
-      "verifiedAt": "2026-08-07T18:35:18.185116+00:00",
-      "createdAt": "2026-07-24T20:54:00.185116+00:00",
-      "verified": true
+      "txHash": "0x4dcfb0d092f85b381f9058b125e3ebdab1ac6a75d87186a261bd86146099e33a",
+      "blockNumber": 5656848,
+      "anchorType": "audit_log",
+      "anchoredBy": "sarah.chen@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-08-03T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhq000oqhcutbp6ydm0",
+      "actor": "sarah.chen@regco.io",
+      "action": "regulation.review",
+      "targetType": "regulation",
+      "merkleProof": [
+        {
+          "position": "left",
+          "hash": "2efde8e31ba5a0c40bdd75a5bfe81899e90c3759126153a10be34e17d4b1fd0b"
+        },
+        {
+          "position": "right",
+          "hash": "f14d1e1695ac166b1cb23f3360931366b9651686b1bce243e6ecb650a16ba552"
+        },
+        {
+          "position": "left",
+          "hash": "510d937779a1d68e1d7272c770f8214d81d88f7066c909e820c58115bf3f7da9"
+        },
+        {
+          "position": "right",
+          "hash": "4af4e9b372ae4c73d4a52604757305f1eadac07617b748ffe0cf5972504f66e2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
     },
     {
-      "id": "chain_4242e57318e34fe7bc344e",
-      "payloadHash": "0x9073f39c65ae4dce82ae66f23cebeb15",
-      "chain": "hyperledger_besu",
-      "txHash": "0xd68cf06e2e06406cbfd5cae7a49c5f4c",
-      "blockNumber": 5673015,
-      "anchorType": "attestation",
-      "anchoredBy": "mlro@regco.io",
-      "verifiedAt": "2026-08-09T07:47:17.185116+00:00",
-      "createdAt": "2026-07-26T08:46:10.185116+00:00",
-      "verified": false
+      "id": "chain_559c1a6056f54258a570d6",
+      "payloadHash": "0xe5f7048ddc5972d9eedb6bc5d2108903cdb6b123e9e51f08207ba4ba6ae36b46",
+      "chain": "polygon_amoy",
+      "txHash": "0x7d1b0cf6e65a873195dcb77b18c4e1b5c23e14c79fc266d17abe45e9edf3b03f",
+      "blockNumber": 5724790,
+      "anchorType": "audit_log",
+      "anchoredBy": "system",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-28T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zht000sqhculugbqb8p",
+      "actor": "system",
+      "action": "regulation.effective",
+      "targetType": "regulation",
+      "merkleProof": [
+        {
+          "position": "right",
+          "hash": "cf69e90a7733b4df2fc797381c97c1cce998f30e65f402e4e3b6df3287c8d5b2"
+        },
+        {
+          "position": "left",
+          "hash": "45434039a1040436a0c2dd776a7afae7f361510cb53c8bc4832c67d02f35f064"
+        },
+        {
+          "position": "left",
+          "hash": "510d937779a1d68e1d7272c770f8214d81d88f7066c909e820c58115bf3f7da9"
+        },
+        {
+          "position": "right",
+          "hash": "4af4e9b372ae4c73d4a52604757305f1eadac07617b748ffe0cf5972504f66e2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
+    },
+    {
+      "id": "chain_ebe9f944017d4ab082498d",
+      "payloadHash": "0xcf69e90a7733b4df2fc797381c97c1cce998f30e65f402e4e3b6df3287c8d5b2",
+      "chain": "polygon_amoy",
+      "txHash": "0x4a7c2770d881e469c270f1a6102f0cac7b662277beff36a983f221f690e28c26",
+      "blockNumber": 5650544,
+      "anchorType": "audit_log",
+      "anchoredBy": "priya.patel@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-26T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zho000lqhcug5jehw8m",
+      "actor": "priya.patel@regco.io",
+      "action": "policy.review",
+      "targetType": "policy",
+      "merkleProof": [
+        {
+          "position": "left",
+          "hash": "e5f7048ddc5972d9eedb6bc5d2108903cdb6b123e9e51f08207ba4ba6ae36b46"
+        },
+        {
+          "position": "left",
+          "hash": "45434039a1040436a0c2dd776a7afae7f361510cb53c8bc4832c67d02f35f064"
+        },
+        {
+          "position": "left",
+          "hash": "510d937779a1d68e1d7272c770f8214d81d88f7066c909e820c58115bf3f7da9"
+        },
+        {
+          "position": "right",
+          "hash": "4af4e9b372ae4c73d4a52604757305f1eadac07617b748ffe0cf5972504f66e2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
+    },
+    {
+      "id": "chain_5d3263bd5d404dfea40c93",
+      "payloadHash": "0x7a699b399456db73a61b80a5adc85c42f822c5a7c5c686dab2a20d6f2d0a3299",
+      "chain": "polygon_amoy",
+      "txHash": "0xb843b2a8ef4dca9ca9affb3ffbc42af1a77b82b7c1137556666a792129bf0622",
+      "blockNumber": 5644392,
+      "anchorType": "audit_log",
+      "anchoredBy": "marcus.lee@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-25T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zho000kqhcu2fofghci",
+      "actor": "marcus.lee@regco.io",
+      "action": "risk.escalate",
+      "targetType": "risk",
+      "merkleProof": [
+        {
+          "position": "right",
+          "hash": "8c889d59ca5c31e2e2b97b2d4b7517a7f45d861462cbf465bcc704a970964006"
+        },
+        {
+          "position": "right",
+          "hash": "d0e343b14f1a2977f0b005e617d7d0a4dbca6df5514e6a7a18dcb1d04ace193a"
+        },
+        {
+          "position": "right",
+          "hash": "6bd3f6a3922ecc75c4fd53770d3b161d19f9b63b09aba3bfb0578042812b2460"
+        },
+        {
+          "position": "left",
+          "hash": "1ef00155f371fe4910963b730c7c625e63b292533b4aeee6a3b9aae3ff5261b2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
+    },
+    {
+      "id": "chain_d1d839a2f25644afbeeb15",
+      "payloadHash": "0x8c889d59ca5c31e2e2b97b2d4b7517a7f45d861462cbf465bcc704a970964006",
+      "chain": "polygon_amoy",
+      "txHash": "0x0cc9d84152a3c5e818292a57ac9ed442a0d9b51c3426c5771beab723ea2c8376",
+      "blockNumber": 5754689,
+      "anchorType": "audit_log",
+      "anchoredBy": "sarah.chen@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-24T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhm000iqhcuw1cqi22i",
+      "actor": "sarah.chen@regco.io",
+      "action": "policy.update",
+      "targetType": "policy",
+      "merkleProof": [
+        {
+          "position": "left",
+          "hash": "7a699b399456db73a61b80a5adc85c42f822c5a7c5c686dab2a20d6f2d0a3299"
+        },
+        {
+          "position": "right",
+          "hash": "d0e343b14f1a2977f0b005e617d7d0a4dbca6df5514e6a7a18dcb1d04ace193a"
+        },
+        {
+          "position": "right",
+          "hash": "6bd3f6a3922ecc75c4fd53770d3b161d19f9b63b09aba3bfb0578042812b2460"
+        },
+        {
+          "position": "left",
+          "hash": "1ef00155f371fe4910963b730c7c625e63b292533b4aeee6a3b9aae3ff5261b2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
+    },
+    {
+      "id": "chain_1ea056412e77475cb46784",
+      "payloadHash": "0x380695d34ec0acdd73b32a40b0510bd7c71770984de68303c0c42ec83c44916b",
+      "chain": "polygon_amoy",
+      "txHash": "0xf0a293c6035cec799efd783ad0ef961b22387a1798bedb4fa0aefaae827b1063",
+      "blockNumber": 5786502,
+      "anchorType": "audit_log",
+      "anchoredBy": "sarah.chen@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-21T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhv000uqhcun7o3z4g4",
+      "actor": "sarah.chen@regco.io",
+      "action": "policy.publish",
+      "targetType": "policy",
+      "merkleProof": [
+        {
+          "position": "right",
+          "hash": "9244f7dd97dfffd69fb4f96d3914ba63ac48ef09be6ddf313180b5f402696a6f"
+        },
+        {
+          "position": "left",
+          "hash": "f841fc3d5871654d7cd278b1a4c75cca9a436ba9a5da9f1af565abe5edd1cff0"
+        },
+        {
+          "position": "right",
+          "hash": "6bd3f6a3922ecc75c4fd53770d3b161d19f9b63b09aba3bfb0578042812b2460"
+        },
+        {
+          "position": "left",
+          "hash": "1ef00155f371fe4910963b730c7c625e63b292533b4aeee6a3b9aae3ff5261b2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
+    },
+    {
+      "id": "chain_330ab5aa5c4c40dfa758e4",
+      "payloadHash": "0x9244f7dd97dfffd69fb4f96d3914ba63ac48ef09be6ddf313180b5f402696a6f",
+      "chain": "polygon_amoy",
+      "txHash": "0x78076b27b8c4b27ee1e3cb76a930247840a08c1ec8a48ae9f9cc6c05661e09fe",
+      "blockNumber": 5752103,
+      "anchorType": "audit_log",
+      "anchoredBy": "marcus.lee@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-21T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhr000qqhcu1k8sburr",
+      "actor": "marcus.lee@regco.io",
+      "action": "risk.assess",
+      "targetType": "risk",
+      "merkleProof": [
+        {
+          "position": "left",
+          "hash": "380695d34ec0acdd73b32a40b0510bd7c71770984de68303c0c42ec83c44916b"
+        },
+        {
+          "position": "left",
+          "hash": "f841fc3d5871654d7cd278b1a4c75cca9a436ba9a5da9f1af565abe5edd1cff0"
+        },
+        {
+          "position": "right",
+          "hash": "6bd3f6a3922ecc75c4fd53770d3b161d19f9b63b09aba3bfb0578042812b2460"
+        },
+        {
+          "position": "left",
+          "hash": "1ef00155f371fe4910963b730c7c625e63b292533b4aeee6a3b9aae3ff5261b2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
+    },
+    {
+      "id": "chain_2e3931e2e7e74ea4bbe3dc",
+      "payloadHash": "0x18a0712832fe6c6f68bfc64edfb5e08b4dc4f185182a138b13ec4da5f7f373f5",
+      "chain": "polygon_amoy",
+      "txHash": "0x32571a975f5ea0490e3cd8cea785f6df092c49db7d045d8ec87e38c182a9883b",
+      "blockNumber": 5769239,
+      "anchorType": "audit_log",
+      "anchoredBy": "james.okafor@regco.io",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-19T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhp000nqhcudr9fa3io",
+      "actor": "james.okafor@regco.io",
+      "action": "audit.export",
+      "targetType": "report",
+      "merkleProof": [
+        {
+          "position": "right",
+          "hash": "ce3954d1ed022562973731078ad52965391cecfd00731fd47f45e9cb11facdba"
+        },
+        {
+          "position": "right",
+          "hash": "f4b208793a43645881ec65988edb07db4e86a4a0a03103426d77bec9fb2c68ea"
+        },
+        {
+          "position": "left",
+          "hash": "5aea8a63ccf24261663bf890f8b488b59cd835d0d2fa7b326aa7a6b2ecbbb6df"
+        },
+        {
+          "position": "left",
+          "hash": "1ef00155f371fe4910963b730c7c625e63b292533b4aeee6a3b9aae3ff5261b2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
+    },
+    {
+      "id": "chain_4f9b3c90323f43cb925b58",
+      "payloadHash": "0xce3954d1ed022562973731078ad52965391cecfd00731fd47f45e9cb11facdba",
+      "chain": "polygon_amoy",
+      "txHash": "0x6cb1633ce0272b844d6347bd191d240d4536d10ceda4301d06e84f8d2cbab4eb",
+      "blockNumber": 5764604,
+      "anchorType": "audit_log",
+      "anchoredBy": "system",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-19T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhp000mqhcu5xqrebc6",
+      "actor": "system",
+      "action": "ai.suggestion.generate",
+      "targetType": "policy",
+      "merkleProof": [
+        {
+          "position": "left",
+          "hash": "18a0712832fe6c6f68bfc64edfb5e08b4dc4f185182a138b13ec4da5f7f373f5"
+        },
+        {
+          "position": "right",
+          "hash": "f4b208793a43645881ec65988edb07db4e86a4a0a03103426d77bec9fb2c68ea"
+        },
+        {
+          "position": "left",
+          "hash": "5aea8a63ccf24261663bf890f8b488b59cd835d0d2fa7b326aa7a6b2ecbbb6df"
+        },
+        {
+          "position": "left",
+          "hash": "1ef00155f371fe4910963b730c7c625e63b292533b4aeee6a3b9aae3ff5261b2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
+    },
+    {
+      "id": "chain_afcd488a050149fea015f0",
+      "payloadHash": "0x1eb3e545d8debf26c88ca7d683278d592987f4bf526b8f603c97f2d1d8bb7cbe",
+      "chain": "polygon_amoy",
+      "txHash": "0x1f16c51af0c864a804b24fb65cab71b2b6987a8ecfa26797594339ad7b20044c",
+      "blockNumber": 5785946,
+      "anchorType": "audit_log",
+      "anchoredBy": "system",
+      "verifiedAt": "2026-08-14T14:04:03.580115+00:00",
+      "createdAt": "2026-07-17T12:53:21.288Z",
+      "verified": true,
+      "broadcastMode": "simulated_broadcast",
+      "auditId": "cmssy6zhv000vqhcu233o8rn0",
+      "actor": "system",
+      "action": "risk.threshold",
+      "targetType": "risk",
+      "merkleProof": [
+        {
+          "position": "right",
+          "hash": "1eb3e545d8debf26c88ca7d683278d592987f4bf526b8f603c97f2d1d8bb7cbe"
+        },
+        {
+          "position": "left",
+          "hash": "d36bb619e91babb899b47df64d1176e752c7c3ead9cbf39a46ff99aefc513752"
+        },
+        {
+          "position": "left",
+          "hash": "5aea8a63ccf24261663bf890f8b488b59cd835d0d2fa7b326aa7a6b2ecbbb6df"
+        },
+        {
+          "position": "left",
+          "hash": "1ef00155f371fe4910963b730c7c625e63b292533b4aeee6a3b9aae3ff5261b2"
+        }
+      ],
+      "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+      "verificationUrl": ""
     }
   ],
-  "total": 25
+  "total": 16,
+  "merkleRoot": "0x919a31ef48a26678ff4d2b2a0c8cba5aeac5fd589f7e88b5c9547fa0dc45d1f1",
+  "leafCount": 15,
+  "broadcastMode": "simulated_broadcast",
+  "chainId": 80002,
+  "lastRefreshed": "2026-08-14T14:04:03.580115+00:00",
+  "verificationInstructions": "Each entry's `merkleProof` can be independently verified against the `merkleRoot` using RFC 6962 Merkle verification. Start with the entry's `payloadHash` (SHA-256 of canonical JSON), apply each proof step in order: if position=='right', hash(current + proof); if position=='left', hash(proof + current). Final hash must equal `merkleRoot`."
 }

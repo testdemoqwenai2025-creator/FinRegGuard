@@ -1,13 +1,13 @@
 {
   "changes": [
     {
-      "id": "rw_real_68f22d29252848cea055df",
+      "id": "rw_real_835e810c734d4e0fb17e45",
       "source": "Federal Register (live)",
       "title": "Continuation of the National Emergency With Respect to Export Control Regulations",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 80,
-      "affectedPolicies": 4,
+      "impactScore": 88,
+      "affectedPolicies": 9,
       "status": "new",
       "summary": "No abstract provided.",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16748/continuation-of-the-national-emergency-with-respect-to-export-control-regulations",
@@ -15,20 +15,20 @@
       "agencies": "EXECUTIVE OFFICE OF THE PRESIDENT",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 92,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 94,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_9c6b0b189e2646d0aaa3ba",
+      "id": "rw_real_c82cc1fab65843129357da",
       "source": "Federal Register (live)",
       "title": "Large Power Transformers From the Republic of Korea: Final Results of Antidumping Duty Administrative Review; 2023-2024",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 63,
-      "affectedPolicies": 3,
+      "impactScore": 92,
+      "affectedPolicies": 5,
       "status": "new",
       "summary": "The U.S. Department of Commerce (Commerce) determines large power transformers from the Republic of Korea (Korea) were sold at less than normal value (NV) during the period of review (POR) August 1, 2023, through July 31, 2024.",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16663/large-power-transformers-from-the-republic-of-korea-final-results-of-antidumping-duty-administrative",
@@ -36,20 +36,20 @@
       "agencies": "DEPARTMENT OF COMMERCE, International Trade Administration",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 83,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 85,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_f874e399770342f79b6fc7",
+      "id": "rw_real_52edb6a4dd4a483cbdda74",
       "source": "Federal Register (live)",
       "title": "Certain Passenger Vehicle and Light Truck Tires From the People's Republic of China: Final Results of Antidumping Duty Administrative Review; 2023-2024",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 83,
-      "affectedPolicies": 2,
+      "impactScore": 92,
+      "affectedPolicies": 9,
       "status": "new",
       "summary": "The U.S. Department of Commerce (Commerce) determines that certain exporters of passenger vehicle and light truck tires (passenger tires) from the People's Republic of China (China) made sales of subject merchandise at prices below than normal value during the period of review (P",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16662/certain-passenger-vehicle-and-light-truck-tires-from-the-peoples-republic-of-china-final-results-of",
@@ -57,20 +57,20 @@
       "agencies": "DEPARTMENT OF COMMERCE, International Trade Administration",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 96,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 85,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_5af01ad7a71c4fbf80aa4c",
+      "id": "rw_real_6e72e7cae40a45e6901cb8",
       "source": "Federal Register (live)",
       "title": "Safety Zone; St. Clair River; Port Huron, MI",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 73,
-      "affectedPolicies": 2,
+      "impactScore": 66,
+      "affectedPolicies": 9,
       "status": "new",
       "summary": "The Coast Guard is establishing a temporary safety zone for navigable waters of the St. Clair River for 7.5 miles beginning in Port Huron, MI. Though this is an unsanctioned, non-permitted marine event, this zone is necessary to provide for the safety of life on these navigable w",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16644/safety-zone-st-clair-river-port-huron-mi",
@@ -78,20 +78,20 @@
       "agencies": "DEPARTMENT OF HOMELAND SECURITY, Coast Guard",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 82,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 89,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_84579c45e13846f2a5bc49",
+      "id": "rw_real_58002d7ac9f5459ebaa623",
       "source": "Federal Register (live)",
       "title": "Streamlining Export Controls for Drone Exports",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 87,
-      "affectedPolicies": 8,
+      "impactScore": 69,
+      "affectedPolicies": 3,
       "status": "new",
       "summary": "The Bureau of Industry and Security (BIS) is easing export controls on certain Unmanned Aerial Vehicles (UAVs or drones) and related parts, components, accessories, attachments, technology, and software under the Export Administration Regulations (EAR). Specifically, this rule: e",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16628/streamlining-export-controls-for-drone-exports",
@@ -99,20 +99,20 @@
       "agencies": "DEPARTMENT OF COMMERCE, Bureau of Industry and Security",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 82,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 81,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_f652ec2f61bb4a8f9abd05",
+      "id": "rw_real_4523e230a05f40f5865eb2",
       "source": "Federal Register (live)",
       "title": "Unified Agenda of Federal Regulatory and Deregulatory Actions-2026",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 75,
-      "affectedPolicies": 3,
+      "impactScore": 85,
+      "affectedPolicies": 9,
       "status": "new",
       "summary": "Executive Order 12866, Regulatory Planning and Review (Sep. 30, 1993), requires each agency to publish a regulatory agenda (Agenda) of regulations under development or review during the next year which will be included in the Unified Agenda of Regulatory and Deregulatory Actions ",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16615/unified-agenda-of-federal-regulatory-and-deregulatory-actions-2026",
@@ -120,19 +120,19 @@
       "agencies": "FEDERAL COMMUNICATIONS COMMISSION",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 93,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 85,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_892c4f7face7430082a539",
+      "id": "rw_real_d9fdb0acffcc4aad97c8c1",
       "source": "Federal Register (live)",
       "title": "Introduction to the Unified Agenda of Federal Regulatory and Deregulatory Actions-2026",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 63,
+      "impactScore": 60,
       "affectedPolicies": 3,
       "status": "new",
       "summary": "Publication of the 2026 Unified Agenda of Federal Regulatory and Deregulatory Actions represents a key component of the regulatory planning mechanism prescribed in Executive Order (\"E.O.\") 12866, \"Regulatory Planning and Review,\" (58 FR 51735, as amended) and reaffirmed in E.O. 1",
@@ -141,20 +141,20 @@
       "agencies": "REGULATORY INFORMATION SERVICE CENTER",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 87,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 81,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_47dc4ab09220488ea82679",
+      "id": "rw_real_f762e557862549258ab142",
       "source": "Federal Register (live)",
       "title": "FCC To Review E-Rate Program To Ensure Congress's Vision",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 63,
-      "affectedPolicies": 8,
+      "impactScore": 62,
+      "affectedPolicies": 5,
       "status": "new",
       "summary": "In this document, the Federal Communications Commission (Commission) seeks comment on measures the Commission can take to better protect children when using E-Rate-funded networks, the Commission's progress in ensuring affordable access to high-speed broadband to and within schoo",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16590/fcc-to-review-e-rate-program-to-ensure-congresss-vision",
@@ -162,20 +162,20 @@
       "agencies": "FEDERAL COMMUNICATIONS COMMISSION",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 81,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 87,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_2052bf7212b043058655af",
+      "id": "rw_real_794d9645990343d9bfe035",
       "source": "Federal Register (live)",
       "title": "Airworthiness Directives; The Boeing Company Airplanes",
       "jurisdiction": "US",
       "publishedAt": "2026-08-13T00:00:00+00:00",
-      "impactScore": 74,
-      "affectedPolicies": 2,
+      "impactScore": 61,
+      "affectedPolicies": 9,
       "status": "new",
       "summary": "The FAA is superseding Airworthiness Directive (AD) 2018-11- 14, which applied to certain The Boeing Company Model 767-300 and -300F series airplanes with certain winglets installed. AD 2018-11-14 required high frequency eddy current (HFEC) inspections for cracking of the lower o",
       "url": "https://www.federalregister.gov/documents/2026/08/13/2026-16504/airworthiness-directives-the-boeing-company-airplanes",
@@ -183,20 +183,20 @@
       "agencies": "DEPARTMENT OF TRANSPORTATION, Federal Aviation Administration",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 84,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 90,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_6a39c01e554b4a1d8d6917",
+      "id": "rw_real_da32814329044b28bf1bf3",
       "source": "Federal Register (live)",
       "title": "Renewal of the Innovation Advisory Committee",
       "jurisdiction": "US",
       "publishedAt": "2026-08-12T00:00:00+00:00",
-      "impactScore": 78,
-      "affectedPolicies": 8,
+      "impactScore": 88,
+      "affectedPolicies": 5,
       "status": "new",
       "summary": "The Commodity Futures Trading Commission (CFTC or Commission) is publishing this notice to announce the renewal of the Innovation Advisory Committee (IAC). The Commission has determined that the renewal of the IAC is necessary and in the public's interest.",
       "url": "https://www.federalregister.gov/documents/2026/08/12/2026-16423/renewal-of-the-innovation-advisory-committee",
@@ -204,20 +204,20 @@
       "agencies": "COMMODITY FUTURES TRADING COMMISSION",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 84,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 96,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_b1d1a8b74af844f7851b1f",
+      "id": "rw_real_5b52826310aa42ee8467c1",
       "source": "Federal Register (live)",
       "title": "Agenda",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 66,
-      "affectedPolicies": 5,
+      "impactScore": 60,
+      "affectedPolicies": 3,
       "status": "new",
       "summary": "This notice is given pursuant to the requirements of the Regulatory Flexibility Act and Executive Order 12866 (\"Regulatory Planning and Review\"), as amended, which require the publication by the Department of an agenda of regulations.",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16600/agenda",
@@ -225,20 +225,20 @@
       "agencies": "DEPARTMENT OF THE TREASURY",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 91,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 94,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_1ec641a08228474db4e88e",
+      "id": "rw_real_5f303a747a3f4a43b0f4da",
       "source": "Federal Register (live)",
       "title": "Beneficial Ownership Information Reporting Requirement Revision",
       "jurisdiction": "US",
       "publishedAt": "2026-08-14T00:00:00+00:00",
-      "impactScore": 66,
-      "affectedPolicies": 3,
+      "impactScore": 77,
+      "affectedPolicies": 8,
       "status": "new",
       "summary": "FinCEN is issuing this final rule to adopt as final and with certain limited changes the interim final rule issued on March 26, 2025, which narrowed beneficial ownership information (BOI) reporting requirements under FinCEN's regulations implementing the Corporate Transparency Ac",
       "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16576/beneficial-ownership-information-reporting-requirement-revision",
@@ -246,20 +246,20 @@
       "agencies": "DEPARTMENT OF THE TREASURY, Financial Crimes Enforcement Network",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 81,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 82,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_c5b84914020e47a6bf4a68",
+      "id": "rw_real_7771c76621a5466ea8b8b3",
       "source": "Federal Register (live)",
       "title": "Geographic Targeting Order Imposing Recordkeeping and Reporting Requirements on Certain Financial Institutions in Minnesota",
       "jurisdiction": "US",
       "publishedAt": "2026-08-11T00:00:00+00:00",
-      "impactScore": 73,
-      "affectedPolicies": 9,
+      "impactScore": 76,
+      "affectedPolicies": 7,
       "status": "new",
       "summary": "FinCEN is issuing this Geographic Targeting Order, requiring banks and money transmitters located in the Counties of Hennepin and Ramsey, Minnesota to retain and report records of certain payments of $3,000 or more.",
       "url": "https://www.federalregister.gov/documents/2026/08/11/2026-16365/geographic-targeting-order-imposing-recordkeeping-and-reporting-requirements-on-certain-financial",
@@ -267,20 +267,20 @@
       "agencies": "DEPARTMENT OF THE TREASURY, Financial Crimes Enforcement Network",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 93,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 87,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
       },
       "dataSource": "real_feed"
     },
     {
-      "id": "rw_real_bea8b1327e4d493fa57395",
+      "id": "rw_real_1e78ea06abed48a39a689f",
       "source": "Federal Register (live)",
       "title": "Purchase, Sale, and Pledge Of Eligible Obligations",
       "jurisdiction": "US",
       "publishedAt": "2026-08-06T00:00:00+00:00",
-      "impactScore": 80,
-      "affectedPolicies": 9,
+      "impactScore": 92,
+      "affectedPolicies": 6,
       "status": "new",
       "summary": "This final rule streamlines the NCUA Board (Board)'s regulations governing the purchase, sale, and pledge of eligible obligations. Specifically, the final rule removes the prescriptive lists of items that must be addressed in the written policies adopted by a federal credit union",
       "url": "https://www.federalregister.gov/documents/2026/08/06/2026-16030/purchase-sale-and-pledge-of-eligible-obligations",
@@ -288,9 +288,219 @@
       "agencies": "NATIONAL CREDIT UNION ADMINISTRATION",
       "aiRecommendation": {
         "action": "Auto-draft policy update + impact assessment",
-        "confidence": 94,
-        "reasoning": "Impact score high. Title matches 4 active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "confidence": 80,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
         "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_f6effccfe1e74af1a34b6d",
+      "source": "Federal Register (live)",
+      "title": "Proposed Establishment of the Rancho Santa Fe Viticultural Area",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 64,
+      "affectedPolicies": 3,
+      "status": "new",
+      "summary": "The Alcohol and Tobacco Tax and Trade Bureau (TTB) proposes to establish the 15,827-acre \"Rancho Santa Fe\" American viticultural area (AVA) in San Diego County, California. The proposed AVA is located entirely within the existing South Coast AVA. TTB designates viticultural areas",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16671/proposed-establishment-of-the-rancho-santa-fe-viticultural-area",
+      "documentType": "Proposed Rule",
+      "agencies": "DEPARTMENT OF THE TREASURY, Alcohol and Tobacco Tax and Trade Bureau",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 92,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_b5dc79bdf8984f23ba60d0",
+      "source": "Federal Register (live)",
+      "title": "Proposed Establishment of the Llano Uplift and Hickory Sands District Viticultural Areas",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 66,
+      "affectedPolicies": 6,
+      "status": "new",
+      "summary": "The Alcohol and Tobacco Tax and Trade Bureau (TTB) proposes to establish the 2,096-square mile \"Llano Uplift\" American viticultural area (AVA) in portions of Blanco, Burnet, Gillespie, Llano, Mason, McCulloch, and San Saba Counties in Texas. The proposed AVA entirely encompasses ",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16670/proposed-establishment-of-the-llano-uplift-and-hickory-sands-district-viticultural-areas",
+      "documentType": "Proposed Rule",
+      "agencies": "DEPARTMENT OF THE TREASURY, Alcohol and Tobacco Tax and Trade Bureau",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 92,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_e50675dd5b504129831fe3",
+      "source": "Federal Register (live)",
+      "title": "Proposed Establishment of the Mill Creek-Walla Walla Valley Viticultural Area",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 64,
+      "affectedPolicies": 2,
+      "status": "new",
+      "summary": "The Alcohol and Tobacco Tax and Trade Bureau (TTB) proposes to establish the approximately 4,898-acre \"Mill Creek--Walla Walla Valley\" American viticultural area (AVA) in Walla Walla County, Washington. The proposed viticultural area lies entirely within the established Columbia ",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16669/proposed-establishment-of-the-mill-creek-walla-walla-valley-viticultural-area",
+      "documentType": "Proposed Rule",
+      "agencies": "DEPARTMENT OF THE TREASURY, Alcohol and Tobacco Tax and Trade Bureau",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 80,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_003a6f4b00574e83a4392e",
+      "source": "Federal Register (live)",
+      "title": "Proposed Establishment of the Kaw Valley Viticultural Area",
+      "jurisdiction": "US",
+      "publishedAt": "2026-08-14T00:00:00+00:00",
+      "impactScore": 73,
+      "affectedPolicies": 5,
+      "status": "new",
+      "summary": "The Alcohol and Tobacco Tax and Trade Bureau (TTB) proposes to establish the approximately 3,515,482-acre (5,493-square mile) \"Kaw Valley\" American viticultural area in northeastern Kansas. The proposed viticultural area is not within any other established viticultural area. TTB ",
+      "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16668/proposed-establishment-of-the-kaw-valley-viticultural-area",
+      "documentType": "Proposed Rule",
+      "agencies": "DEPARTMENT OF THE TREASURY, Alcohol and Tobacco Tax and Trade Bureau",
+      "aiRecommendation": {
+        "action": "Auto-draft policy update + impact assessment",
+        "confidence": 81,
+        "reasoning": "Impact score high. Title matches active policy clauses. Recommended review window: 14 days per Federal Register public-comment period.",
+        "reviewerAction": "approve_auto_draft"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_dd07789d4b514149a0c211",
+      "source": "ESMA RSS (live)",
+      "title": "ESMA confirms go-live for weekly commodity derivatives position reporting",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-08-06T14:02:51.830046+00:00",
+      "impactScore": 79,
+      "affectedPolicies": 6,
+      "status": "new",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">ESMA confirms go-live for weekly commodity derivatives position reporting</span>\n  \n<span class=\"field field--name-created field--type-created field--label-hidden\"><time datetime=\"2026-08-14T10:54:44+02:",
+      "url": "https://www.esma.europa.eu/press-news/esma-news/esma-confirms-go-live-weekly-commodity-derivatives-position-reporting",
+      "documentType": "ESMA News / Consultation",
+      "agencies": "European Securities and Markets Authority",
+      "aiRecommendation": {
+        "action": "Cross-reference against MiFID II / SFDR / EMIR inventory",
+        "confidence": 90,
+        "reasoning": "ESMA publication flagged against RegGuard EU policy graph. 2-4 clauses overlap with existing obligations \u2014 recommended delta-update.",
+        "reviewerAction": "approve_delta_update"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_debfbcdb85564691875549",
+      "source": "ESMA RSS (live)",
+      "title": "EBA, EIOPA and ESMA propose amendments to bilateral margin requirements",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-08-07T14:02:51.830046+00:00",
+      "impactScore": 59,
+      "affectedPolicies": 5,
+      "status": "new",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">EBA, EIOPA and ESMA propose amendments to bilateral margin requirements</span>\n  \n<span class=\"field field--name-created field--type-created field--label-hidden\"><time datetime=\"2026-08-03T10:56:46+02:00",
+      "url": "https://www.esma.europa.eu/press-news/esma-news/eba-eiopa-and-esma-propose-amendments-bilateral-margin-requirements",
+      "documentType": "ESMA News / Consultation",
+      "agencies": "European Securities and Markets Authority",
+      "aiRecommendation": {
+        "action": "Cross-reference against MiFID II / SFDR / EMIR inventory",
+        "confidence": 84,
+        "reasoning": "ESMA publication flagged against RegGuard EU policy graph. 2-4 clauses overlap with existing obligations \u2014 recommended delta-update.",
+        "reviewerAction": "approve_delta_update"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_58f78b7907ca483bb2dc9c",
+      "source": "ESMA RSS (live)",
+      "title": "EBA, EIOPA and ESMA call for enhanced governance and consistent supervision to mitigate ICT risks from frontier AI models in the EU financial sector",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-08-01T14:02:51.830046+00:00",
+      "impactScore": 72,
+      "affectedPolicies": 3,
+      "status": "new",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">EBA, EIOPA and ESMA call for enhanced governance and consistent supervision to mitigate ICT risks from frontier AI models in the EU financial sector</span>\n  \n<span class=\"field field--name-created field",
+      "url": "https://www.esma.europa.eu/press-news/esma-news/eba-eiopa-and-esma-call-enhanced-governance-and-consistent-supervision",
+      "documentType": "ESMA News / Consultation",
+      "agencies": "European Securities and Markets Authority",
+      "aiRecommendation": {
+        "action": "Cross-reference against MiFID II / SFDR / EMIR inventory",
+        "confidence": 80,
+        "reasoning": "ESMA publication flagged against RegGuard EU policy graph. 2-4 clauses overlap with existing obligations \u2014 recommended delta-update.",
+        "reviewerAction": "approve_delta_update"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_340300be7fd34548b6d915",
+      "source": "ESMA RSS (live)",
+      "title": "ESMA publishes latest edition of its newsletter",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-08-09T14:02:51.830046+00:00",
+      "impactScore": 76,
+      "affectedPolicies": 1,
+      "status": "new",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">ESMA publishes latest edition of its newsletter</span>\n  \n<span class=\"field field--name-created field--type-created field--label-hidden\"><time datetime=\"2026-07-31T09:56:51+02:00\" title=\"Friday, July 31",
+      "url": "https://www.esma.europa.eu/press-news/esma-news/esma-publishes-latest-edition-its-newsletter-44",
+      "documentType": "ESMA News / Consultation",
+      "agencies": "European Securities and Markets Authority",
+      "aiRecommendation": {
+        "action": "Cross-reference against MiFID II / SFDR / EMIR inventory",
+        "confidence": 91,
+        "reasoning": "ESMA publication flagged against RegGuard EU policy graph. 2-4 clauses overlap with existing obligations \u2014 recommended delta-update.",
+        "reviewerAction": "approve_delta_update"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_7eb44174732b4bdeab1b80",
+      "source": "ESMA RSS (live)",
+      "title": "ESMA authorises EuroCTP as the Consolidated Tape Provider for shares and exchange-traded funds",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-08-01T14:02:51.830046+00:00",
+      "impactScore": 62,
+      "affectedPolicies": 2,
+      "status": "new",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">ESMA authorises EuroCTP as the Consolidated Tape Provider for shares and exchange-traded funds</span>\n  \n<span class=\"field field--name-created field--type-created field--label-hidden\"><time datetime=\"20",
+      "url": "https://www.esma.europa.eu/press-news/esma-news/esma-authorises-euroctp-consolidated-tape-provider-shares-and-exchange-traded",
+      "documentType": "ESMA News / Consultation",
+      "agencies": "European Securities and Markets Authority",
+      "aiRecommendation": {
+        "action": "Cross-reference against MiFID II / SFDR / EMIR inventory",
+        "confidence": 85,
+        "reasoning": "ESMA publication flagged against RegGuard EU policy graph. 2-4 clauses overlap with existing obligations \u2014 recommended delta-update.",
+        "reviewerAction": "approve_delta_update"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "rw_real_c28f614b2b3a4daea975db",
+      "source": "ESMA RSS (live)",
+      "title": "ESMA calls on firms to finalise preparations ahead of T+1 settlement deadlines",
+      "jurisdiction": "EU",
+      "publishedAt": "2026-08-02T14:02:51.830046+00:00",
+      "impactScore": 61,
+      "affectedPolicies": 1,
+      "status": "new",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">ESMA calls on firms to finalise preparations ahead of T+1 settlement deadlines</span>\n  \n<span class=\"field field--name-created field--type-created field--label-hidden\"><time datetime=\"2026-07-20T14:00:4",
+      "url": "https://www.esma.europa.eu/press-news/esma-news/esma-calls-firms-finalise-preparations-ahead-t1-settlement-deadlines",
+      "documentType": "ESMA News / Consultation",
+      "agencies": "European Securities and Markets Authority",
+      "aiRecommendation": {
+        "action": "Cross-reference against MiFID II / SFDR / EMIR inventory",
+        "confidence": 79,
+        "reasoning": "ESMA publication flagged against RegGuard EU policy graph. 2-4 clauses overlap with existing obligations \u2014 recommended delta-update.",
+        "reviewerAction": "approve_delta_update"
       },
       "dataSource": "real_feed"
     },
@@ -550,15 +760,20 @@
       }
     }
   ],
-  "total": 29,
-  "realFeedCount": 15,
+  "total": 39,
+  "realFeedCount": 25,
   "syntheticCount": 14,
-  "lastRefreshed": "2026-08-14T13:53:22.871879+00:00",
+  "lastRefreshed": "2026-08-14T14:02:51.830046+00:00",
   "sources": [
     {
       "name": "Federal Register API",
       "type": "real_feed",
       "url": "https://www.federalregister.gov/api/v1/documents.json"
+    },
+    {
+      "name": "ESMA RSS",
+      "type": "real_feed",
+      "url": "https://www.esma.europa.eu/rss.xml"
     },
     {
       "name": "EUR-Lex OJ RSS",

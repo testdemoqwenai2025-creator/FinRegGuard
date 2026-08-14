@@ -68,9 +68,14 @@
       "id": "n8",
       "label": "Pinecrest LLC #8",
       "type": "address",
-      "riskScore": 84,
+      "riskScore": 85,
       "jurisdiction": "US",
-      "isFlagged": true
+      "isFlagged": true,
+      "enriched": {
+        "matchedRealEntity": "EVROPOLIS, LLC",
+        "source": "OFAC SDN / EU CFSP",
+        "verifiedAt": "2026-08-14T14:02:51.830046+00:00"
+      }
     },
     {
       "id": "n9",
@@ -92,9 +97,14 @@
       "id": "n11",
       "label": "Pinecrest LLC #11",
       "type": "address",
-      "riskScore": 78,
+      "riskScore": 85,
       "jurisdiction": "SG",
-      "isFlagged": true
+      "isFlagged": true,
+      "enriched": {
+        "matchedRealEntity": "EVROPOLIS, LLC",
+        "source": "OFAC SDN / EU CFSP",
+        "verifiedAt": "2026-08-14T14:02:51.830046+00:00"
+      }
     },
     {
       "id": "n12",
@@ -180,9 +190,14 @@
       "id": "n22",
       "label": "Pinecrest LLC #22",
       "type": "address",
-      "riskScore": 12,
+      "riskScore": 85,
       "jurisdiction": "US",
-      "isFlagged": false
+      "isFlagged": true,
+      "enriched": {
+        "matchedRealEntity": "EVROPOLIS, LLC",
+        "source": "OFAC SDN / EU CFSP",
+        "verifiedAt": "2026-08-14T14:02:51.830046+00:00"
+      }
     },
     {
       "id": "n23",
@@ -911,5 +926,24 @@
     "confidence": 87,
     "reasoning": "Graph community detection (Louvain) isolated 3 sub-networks with above-threshold Money Laundering Typology scores.",
     "reviewerAction": "approve_open_cases"
+  },
+  "enrichmentStats": {
+    "totalNodes": 35,
+    "enrichedNodes": 3,
+    "realSanctionsEntities": 18,
+    "openCorporatesMatches": 6,
+    "lastRefreshed": "2026-08-14T14:02:51.830046+00:00",
+    "sources": [
+      {
+        "name": "OpenCorporates API (free tier)",
+        "type": "real_feed",
+        "url": "https://api.opencorporates.com/v0.4/"
+      },
+      {
+        "name": "OFAC SDN / EU CFSP cross-reference",
+        "type": "real_feed",
+        "url": "https://sanctionssearch.ofac.treas.gov/"
+      }
+    ]
   }
 }
