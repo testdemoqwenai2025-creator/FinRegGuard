@@ -54,6 +54,8 @@ import { MarketplaceView } from '@/components/platform/MarketplaceView'
 import { LocalizationMatrixView } from '@/components/platform/LocalizationMatrixView'
 import { TiaView } from '@/components/platform/TiaView'
 import { DataSensitivityView } from '@/components/platform/DataSensitivityView'
+// ─── Forms (Phase 1 Commit 2 — L5/L6/L7 Auto-Fill) ───
+import { FormInstanceView } from '@/components/forms/FormInstanceView'
 import { Scale, Github, Linkedin } from 'lucide-react'
 
 export type ViewKey =
@@ -67,6 +69,7 @@ export type ViewKey =
   | 'reports'
   | 'control-monitor'
   | 'consumer-duty'
+  | 'form-instance'
   // Surveillance Zone
   | 'transaction-surveillance'
   | 'comms-surveillance'
@@ -129,6 +132,7 @@ export default function Home() {
       case 'reports': return <ReportsView />
       case 'control-monitor': return <ControlMonitorView />
       case 'consumer-duty': return <ConsumerDutyView />
+      case 'form-instance': return <FormInstanceView />
 
       // ─── Surveillance ───
       case 'transaction-surveillance': return <TransactionSurveillanceView />

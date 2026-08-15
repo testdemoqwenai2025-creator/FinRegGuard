@@ -73,6 +73,7 @@ const NAV_ZONES: NavZone[] = [
       { key: 'reports', label: 'Reports', icon: BarChart3, description: 'Trends & analytics' },
       { key: 'control-monitor', label: 'Control Monitor', icon: Gauge, description: 'Continuous control testing' },
       { key: 'consumer-duty', label: 'Consumer Duty & AI Rights', icon: HeartHandshake, description: 'Consumer Duty + ADM + disclosures' },
+      { key: 'form-instance', label: 'Form Auto-Fill', icon: FileCheck2, description: 'L5/L6/L7 orchestrator + provenance' },
     ],
   },
   {
