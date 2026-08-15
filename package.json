@@ -12,7 +12,10 @@
     "db:migrate": "prisma migrate dev",
     "db:reset": "prisma migrate reset",
     "deploy:preview": "bash scripts/deploy-preview.sh",
-    "build:static": "bash scripts/build-static.sh"
+    "build:static": "bash scripts/build-static.sh",
+    "audit:plugins": "bun scripts/audit-plugins.ts",
+    "audit:plugins:live": "bun scripts/audit-plugins-live.ts",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

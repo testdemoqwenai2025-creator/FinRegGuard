@@ -11,7 +11,9 @@
 #
 # To bypass temporarily (NOT recommended): git commit --no-verify
 #
-# Install: this file lives at .git/hooks/pre-commit and must be executable.
+# This file is tracked at .githooks/pre-commit and is auto-installed when a
+# developer runs `bun install` (via the `prepare` script in package.json, which
+# runs `git config core.hooksPath .githooks`). See CONTRIBUTING.md.
 
 set -euo pipefail
 
@@ -23,20 +25,23 @@ if [ ! -f "plugins/manifest.json" ]; then
   exit 0
 fi
 
+# Only run if bun is available (don't break clones that haven't installed deps yet)
+if ! command -v bun >/dev/null 2>&1; then
+  echo "⚠  bun not found — skipping plugin audit. Install bun to enable pre-commit drift checks."
+  exit 0
+fi
+
 echo "→ Running plugin manifest audit (pre-commit)..."
 
-# Run the audit. --json mode is silent on success, prints issues on failure.
+# Capture output for display on failure; suppress on success.
 OUTPUT=$(bun scripts/audit-plugins.ts 2>&1) || true
-
-# Check the exit code properly
-bun scripts/audit-plugins.ts > /dev/null 2>&1
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -ne 0 ]; then
   echo ""
   echo "✗ Plugin manifest audit FAILED — commit blocked."
   echo ""
-  echo "$OUTPUT" | grep -E "DRIFT|FAIL|with issues|EMPTY|THIN" | head -20
+  echo "$OUTPUT" | grep -E "DRIFT|FAIL|with issues|EMPTY|THIN|MISSING" | head -20
   echo ""
   echo "To see the full report, run: bun scripts/audit-plugins.ts"
   echo "To bypass (NOT recommended): git commit --no-verify"
