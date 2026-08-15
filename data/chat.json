@@ -1,0 +1,9 @@
+{
+  "reply": "The EU AI Act (Regulation (EU) 2024/1689) is the European Union's horizontal framework for artificial intelligence. It classifies AI systems into four risk tiers — unacceptable, high, limited, minimal — with high-risk providers subject to conformity assessment, post-market monitoring, and CE marking obligations. RegGuard AI maps your inventory of AI systems against the Act's Article 6 high-risk criteria and Annex III use-cases, auto-drafts technical documentation under Article 11, and pre-files conformity declarations once a human reviewer confirms Boolean approval. Phase-in runs 2025-2027.",
+  "sources": [
+    "EU AI Act Final Text (OJ L 2024/1689)",
+    "Annex I — List of Union Harmonisation Legislation",
+    "Annex III — High-Risk AI Systems"
+  ],
+  "staticFallback": true
+}

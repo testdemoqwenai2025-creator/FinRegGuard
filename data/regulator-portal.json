@@ -1,0 +1,83 @@
+{
+  "examiner": {
+    "name": "Examiner Jordan Reyes",
+    "agency": "SEC",
+    "examinationId": "SEC-2025-Q4-04471",
+    "scopedEntities": [
+      "Retail Banking",
+      "Wealth Management"
+    ],
+    "scopedDateRange": [
+      "2024-01-01",
+      "2025-08-14"
+    ]
+  },
+  "queries": [
+    {
+      "id": "q1",
+      "query": "Show all Consumer Duty breaches Q1 2025",
+      "timestamp": "2026-08-14T12:40:22.185116+00:00",
+      "recordsReturned": 23,
+      "logged": true
+    },
+    {
+      "id": "q2",
+      "query": "List all SAR filings >$10k Mar-May 2025",
+      "timestamp": "2026-08-14T11:40:22.185116+00:00",
+      "recordsReturned": 47,
+      "logged": true
+    },
+    {
+      "id": "q3",
+      "query": "Best execution venue analysis Aug 2025",
+      "timestamp": "2026-08-13T13:40:22.185116+00:00",
+      "recordsReturned": 12,
+      "logged": true
+    },
+    {
+      "id": "q4",
+      "query": "Risk matrix for Wealth Management",
+      "timestamp": "2026-08-12T13:40:22.185116+00:00",
+      "recordsReturned": 8,
+      "logged": true
+    }
+  ],
+  "availableDocuments": [
+    {
+      "id": "d1",
+      "type": "Policy",
+      "title": "Consumer Duty Outcomes Monitoring v2.1",
+      "scoped": true
+    },
+    {
+      "id": "d2",
+      "type": "Audit Trail",
+      "title": "Aug 2025 audit log export",
+      "scoped": true
+    },
+    {
+      "id": "d3",
+      "type": "Risk Register",
+      "title": "Wealth Mgmt Q3 risk register",
+      "scoped": true
+    },
+    {
+      "id": "d4",
+      "type": "Policy",
+      "title": "Capital Markets \u2014 Market Integrity",
+      "scoped": false
+    },
+    {
+      "id": "d5",
+      "type": "Audit Trail",
+      "title": "Hospital Wing HIPAA logs",
+      "scoped": false
+    }
+  ],
+  "aiRecommendation": {
+    "action": "Auto-prepare scoped evidence packet (47 documents) \u2014 examiner sees only entitlements",
+    "confidence": 100,
+    "reasoning": "Every examiner query logged to ChainAnchor. All scoped documents pre-assembled. 0 entitlement violations detected.",
+    "reviewerAction": "approve_release_to_examiner"
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "eras": [
+    {
+      "id": "rep_era_2010",
+      "era": "2010-2013",
+      "name": "Paper & PDF Era",
+      "format": "paper-pdf",
+      "description": "Regulatory reports submitted as paper forms or static PDF files. Manual data entry at the regulator end. No machine-readable structure. Average processing latency 30-60 days from submission to acknowledgement.",
+      "regulatorsAdopted": [
+        "SEC",
+        "FinCEN",
+        "FCA",
+        "BaFin"
+      ],
+      "regulatorsCount": 4,
+      "adoptionRate": 12,
+      "submissionLatencyDays": 45,
+      "xbrlTaxonomyVersion": null,
+      "machineReadable": false,
+      "automationLevel": "manual",
+      "keyStandards": [
+        "PDF/A",
+        "XBRL 2.1 (early adopters)"
+      ],
+      "evidenceRetention": "physical + scanned PDF",
+      "aiRecommendation": {
+        "action": "Migrate remaining paper submissions to XBRL baseline",
+        "confidence": 92,
+        "reasoning": "Paper/PDF era submissions carry 30-60 day processing latency and prevent automated cross-firm pattern detection. All Tier-1 regulators have migrated; remaining paper submissions are from long-tail small firms.",
+        "reviewerAction": "approve_xbrl_baseline_migration"
+      }
+    },
+    {
+      "id": "rep_era_2014",
+      "era": "2014-2017",
+      "name": "Structured PDF + Early XBRL",
+      "format": "structured-pdf",
+      "description": "PDF forms with embedded XFA or AcroForm fields. Early XBRL 2.1 adoption by SEC (EDGAR) and EBA (EBA Reporting Framework 1.0). Filing throughput improved but cross-regulator comparability remained limited.",
+      "regulatorsAdopted": [
+        "SEC",
+        "EBA",
+        "FINRA",
+        "FCA",
+        "ESMA"
+      ],
+      "regulatorsCount": 5,
+      "adoptionRate": 28,
+      "submissionLatencyDays": 14,
+      "xbrlTaxonomyVersion": "XBRL 2.1",
+      "machineReadable": true,
+      "automationLevel": "semi-automated",
+      "keyStandards": [
+        "XBRL 2.1",
+        "AcroForm",
+        "EBA RF 1.0"
+      ],
+      "evidenceRetention": "PDF + XBRL instance",
+      "aiRecommendation": {
+        "action": "Decommission AcroForm-only filings",
+        "confidence": 87,
+        "reasoning": "AcroForm-based PDFs cannot be parsed by modern regulator pipelines without OCR fallback. Migrate to XBRL 2.1 baseline to enable automated validation.",
+        "reviewerAction": "approve_form_decommission"
+      }
+    },
+    {
+      "id": "rep_era_2018",
+      "era": "2018-2020",
+      "name": "XBRL Taxonomy Standardization",
+      "format": "xbrl",
+      "description": "Industry-wide adoption of XBRL taxonomies (EBA RF 2.0, SEC EDGAR XBRL, FCA GABRIEL XBRL). Multi-jurisdictional frameworks (FINREP, COREP, AnaCredit) consolidated. Submission latency dropped to 3-5 days.",
+      "regulatorsAdopted": [
+        "SEC",
+        "EBA",
+        "FINRA",
+        "FCA",
+        "ESMA",
+        "MAS",
+        "HKMA",
+        "APRA",
+        "OSFI"
+      ],
+      "regulatorsCount": 9,
+      "adoptionRate": 58,
+      "submissionLatencyDays": 4,
+      "xbrlTaxonomyVersion": "XBRL 2.1 + Dimensions 1.0",
+      "machineReadable": true,
+      "automationLevel": "automated",
+      "keyStandards": [
+        "XBRL 2.1",
+        "EBA RF 2.0",
+        "FINREP",
+        "COREP",
+        "AnaCredit"
+      ],
+      "evidenceRetention": "XBRL instance + DPM database",
+      "aiRecommendation": {
+        "action": "Continue current trajectory",
+        "confidence": 95,
+        "reasoning": "XBRL adoption reached 58% across Tier-1 regulators. Remaining gaps are in APAC (MAS, HKMA) and smaller EU member states. No immediate remediation required.",
+        "reviewerAction": "acknowledge_trajectory"
+      }
+    },
+    {
+      "id": "rep_era_2021",
+      "era": "2021-2023",
+      "name": "API-Based Submission",
+      "format": "api",
+      "description": "Regulators expose REST/GraphQL submission APIs replacing batch XBRL file uploads. FCA Digital Gateway, MAS SGFinD, ESMA DORA Register all moved to API-first. Real-time validation feedback at submission time.",
+      "regulatorsAdopted": [
+        "SEC",
+        "EBA",
+        "FINRA",
+        "FCA",
+        "ESMA",
+        "MAS",
+        "HKMA",
+        "APRA",
+        "OSFI",
+        "JFSA"
+      ],
+      "regulatorsCount": 10,
+      "adoptionRate": 78,
+      "submissionLatencyDays": 1,
+      "xbrlTaxonomyVersion": "XBRL 2.1 + xBRL-CSV",
+      "machineReadable": true,
+      "automationLevel": "api-first",
+      "keyStandards": [
+        "REST",
+        "OAuth 2.0",
+        "OpenAPI 3.0",
+        "xBRL-CSV",
+        "EBA RF 3.0"
+      ],
+      "evidenceRetention": "API response + signed receipt",
+      "aiRecommendation": {
+        "action": "Onboard remaining long-tail firms to API submission",
+        "confidence": 89,
+        "reasoning": "API-first adoption reached 78%. Remaining 22% are small firms relying on batch XBRL via third-party filing agents. Targeted outreach required.",
+        "reviewerAction": "approve_small_firm_outreach"
+      }
+    },
+    {
+      "id": "rep_era_2024",
+      "era": "2024-2026",
+      "name": "Streaming & Event-Driven",
+      "format": "streaming",
+      "description": "Real-time streaming submissions via Kafka, AWS Kinesis, or regulator-hosted message brokers. Event-driven architecture supports continuous reporting (e.g. EMIR T+1, SFTR intra-day). Average latency: 15 minutes.",
+      "regulatorsAdopted": [
+        "SEC",
+        "EBA",
+        "ESMA",
+        "FCA",
+        "MAS",
+        "HKMA",
+        "CFTC",
+        "JFSA"
+      ],
+      "regulatorsCount": 8,
+      "adoptionRate": 42,
+      "submissionLatencyDays": 0.01,
+      "xbrlTaxonomyVersion": "xBRL-JSON + xBRL-CSV",
+      "machineReadable": true,
+      "automationLevel": "streaming",
+      "keyStandards": [
+        "Kafka",
+        "Avro",
+        "xBRL-JSON",
+        "OpenAPI 3.1",
+        "Webhook"
+      ],
+      "evidenceRetention": "event log + merkle anchor",
+      "aiRecommendation": {
+        "action": "Expand streaming coverage to all real-time obligations",
+        "confidence": 91,
+        "reasoning": "Streaming adoption at 42% \u2014 concentrated in EMIR/SFTR trade reporting. Other obligations (FINREP, COREP) remain on daily batch. Expand streaming for time-sensitive obligations.",
+        "reviewerAction": "approve_streaming_expansion"
+      }
+    },
+    {
+      "id": "rep_era_2027",
+      "era": "2027-2029",
+      "name": "Continuous Assurance",
+      "format": "continuous-assurance",
+      "description": "Regulator-as-code: firms expose live data via read-only regulator API access. In-line attestations replace periodic submissions. Continuous evidence collection via regulator-managed log streams.",
+      "regulatorsAdopted": [
+        "EBA",
+        "ESMA",
+        "FCA",
+        "MAS"
+      ],
+      "regulatorsCount": 4,
+      "adoptionRate": 18,
+      "submissionLatencyDays": 0.001,
+      "xbrlTaxonomyVersion": "xBRL-JSON + RegTech Data Model",
+      "machineReadable": true,
+      "automationLevel": "continuous",
+      "keyStandards": [
+        "Regulator-as-Code",
+        "Continuous Evidence",
+        "Signed Log Streams"
+      ],
+      "evidenceRetention": "regulator-side continuous log",
+      "aiRecommendation": {
+        "action": "Pilot continuous assurance for two regulator relationships",
+        "confidence": 82,
+        "reasoning": "Continuous assurance reduces submission overhead but requires substantial API infrastructure. Pilot with EBA and FCA before broader rollout.",
+        "reviewerAction": "approve_pilot"
+      }
+    },
+    {
+      "id": "rep_era_2030",
+      "era": "2030+",
+      "name": "Autonomous Compliance",
+      "format": "autonomous",
+      "description": "AI agents negotiate with regulator agents in real-time. Self-executing compliance via smart contracts for standardised obligations. Zero-touch compliance for 80%+ of routine filings.",
+      "regulatorsAdopted": [],
+      "regulatorsCount": 0,
+      "adoptionRate": 0,
+      "submissionLatencyDays": 0.0,
+      "xbrlTaxonomyVersion": "TBD",
+      "machineReadable": true,
+      "automationLevel": "autonomous",
+      "keyStandards": [
+        "AI-to-AI Protocol",
+        "Smart Contracts",
+        "Verifiable Credentials"
+      ],
+      "evidenceRetention": "blockchain-anchored",
+      "aiRecommendation": {
+        "action": "Monitor emerging regulator guidance",
+        "confidence": 68,
+        "reasoning": "Autonomous compliance is conceptual. No regulator has published formal guidance. Monitor Bank of England, MAS, and EU Commission for pilot programs.",
+        "reviewerAction": "acknowledge_horizon_scanning"
+      }
+    }
+  ],
+  "total": 7,
+  "summary": {
+    "eras": 7,
+    "currentEra": "2024-2026",
+    "avgAdoptionRate": 33.7,
+    "currentLatencyMinutes": 15,
+    "machineReadableEras": 6,
+    "streamingAdopters": 3,
+    "trajectory": "Paper \u2192 PDF \u2192 XBRL \u2192 API \u2192 Streaming \u2192 Continuous \u2192 Autonomous"
+  }
+}

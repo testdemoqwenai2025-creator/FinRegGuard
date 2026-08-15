@@ -1,0 +1,113 @@
+{
+  "reports": [
+    {
+      "id": "wb_9dd63a4c8ec34d049c695b",
+      "category": "fraud",
+      "severity": "critical",
+      "description": "Front office desk allegedly concealing losses via offsetting swaps with related party.",
+      "anonymous": true,
+      "status": "received",
+      "triageScore": 89,
+      "assignedTo": "mlro@regco.io",
+      "encryptedHash": "0x4bc4afb08bff46ac9a43db4e658b0f92",
+      "createdAt": "2026-06-15T19:31:39.185116+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Ethics Committee + independent counsel",
+        "confidence": 90,
+        "reasoning": "LLM triage v3 scored 89/100. Multiple corroboration signals detected.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "wb_f67a626c156e4c27bc74d5",
+      "category": "market_abuse",
+      "severity": "high",
+      "description": "Trader reportedly sharing client flow info with external hedge fund.",
+      "anonymous": true,
+      "status": "investigating",
+      "triageScore": 82,
+      "assignedTo": null,
+      "encryptedHash": "0xe5effe5b64c54d1ebcc792fa2e4fbf98",
+      "createdAt": "2026-07-18T00:46:29.185116+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Ethics Committee + independent counsel",
+        "confidence": 92,
+        "reasoning": "LLM triage v3 scored 82/100. Multiple corroboration signals detected.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "wb_49fb7115976e44d6b18c37",
+      "category": "harassment",
+      "severity": "medium",
+      "description": "Repeated inappropriate comments by senior manager in Wealth Mgmt.",
+      "anonymous": true,
+      "status": "resolved",
+      "triageScore": 65,
+      "assignedTo": "ethics@regco.io",
+      "encryptedHash": "0x3097a6cf5c5b4f68aa7dceb3c2279e9b",
+      "createdAt": "2026-07-10T00:34:22.185116+00:00",
+      "aiRecommendation": {
+        "action": "Assign to HR for investigation",
+        "confidence": 90,
+        "reasoning": "LLM triage v3 scored 65/100. Insufficient corroboration \u2014 needs intake interview.",
+        "reviewerAction": "approve_hr_assignment"
+      }
+    },
+    {
+      "id": "wb_078380410e5b479bb53bf7",
+      "category": "safety",
+      "severity": "low",
+      "description": "Hospital wing understaffing leading to HIPAA shortcuts.",
+      "anonymous": true,
+      "status": "resolved",
+      "triageScore": 48,
+      "assignedTo": "ethics@regco.io",
+      "encryptedHash": "0xcbd237450c9c415796396902e7b5bfa4",
+      "createdAt": "2026-06-17T16:29:06.185116+00:00",
+      "aiRecommendation": {
+        "action": "Assign to HR for investigation",
+        "confidence": 90,
+        "reasoning": "LLM triage v3 scored 48/100. Insufficient corroboration \u2014 needs intake interview.",
+        "reviewerAction": "approve_hr_assignment"
+      }
+    },
+    {
+      "id": "wb_161ba6b50b564273b73d0b",
+      "category": "fraud",
+      "severity": "high",
+      "description": "AML analyst pressured to close alerts as false positive to meet SLA.",
+      "anonymous": true,
+      "status": "received",
+      "triageScore": 78,
+      "assignedTo": "mlro@regco.io",
+      "encryptedHash": "0x7ecc9c56f7ab4b1f978f3fa658df88ed",
+      "createdAt": "2026-07-20T15:24:12.185116+00:00",
+      "aiRecommendation": {
+        "action": "Escalate to Ethics Committee + independent counsel",
+        "confidence": 80,
+        "reasoning": "LLM triage v3 scored 78/100. Insufficient corroboration \u2014 needs intake interview.",
+        "reviewerAction": "approve_escalate"
+      }
+    },
+    {
+      "id": "wb_5f5bbdddc4a74682b20aed",
+      "category": "other",
+      "severity": "medium",
+      "description": "Concerns about AI underwriting model showing gender bias in pricing.",
+      "anonymous": true,
+      "status": "received",
+      "triageScore": 72,
+      "assignedTo": "mlro@regco.io",
+      "encryptedHash": "0x7c800ee625be47099caebc8184f15a8f",
+      "createdAt": "2026-07-29T14:18:43.185116+00:00",
+      "aiRecommendation": {
+        "action": "Assign to HR for investigation",
+        "confidence": 90,
+        "reasoning": "LLM triage v3 scored 72/100. Insufficient corroboration \u2014 needs intake interview.",
+        "reviewerAction": "approve_hr_assignment"
+      }
+    }
+  ],
+  "total": 6
+}

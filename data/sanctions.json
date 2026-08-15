@@ -1,0 +1,712 @@
+{
+  "hits": [
+    {
+      "id": "sanc_real_eb56cdebdf6a4b84ae8a12",
+      "listName": "OFAC SDN, EU CFSP",
+      "matchType": "exact",
+      "matchedName": "Nakamura Industries (JP)",
+      "listedEntity": "KOROLEV, Aleksandr Valerievich",
+      "entityId": "SDN-15539",
+      "score": 96,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-07T19:07:28.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=15539",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 96,
+        "reasoning": "Match strength 96/100 against OFAC SDN, EU CFSP. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: KOROLEV, Aleksandr Valerievich.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_629631c2d6b34732938fc8",
+      "listName": "OFAC SDN (EO 14024)",
+      "matchType": "fuzzy",
+      "matchedName": "Nakamura Industries (JP)",
+      "listedEntity": "ROSTELEKOM, OJSC",
+      "entityId": "SDN-20171",
+      "score": 88,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-12T06:29:24.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=20171",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 88,
+        "reasoning": "Match strength 88/100 against OFAC SDN (EO 14024). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: ROSTELEKOM, OJSC.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_16bd3f41859644c1977006",
+      "listName": "OFAC SDN, UN Consolidated",
+      "matchType": "fuzzy",
+      "matchedName": "Sterling & Co (UK)",
+      "listedEntity": "AL-HISBAH, Jabhat",
+      "entityId": "SDN-14782",
+      "score": 86,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-09T22:15:19.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=14782",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 86,
+        "reasoning": "Match strength 86/100 against OFAC SDN, UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: AL-HISBAH, Jabhat.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_e05d47db9cd44f4eb278e2",
+      "listName": "OFAC SDN (Russia harmful activities)",
+      "matchType": "fuzzy",
+      "matchedName": "Sterling & Co (UK)",
+      "listedEntity": "EVROPOLIS, LLC",
+      "entityId": "SDN-21893",
+      "score": 85,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-12T00:01:46.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=21893",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 85,
+        "reasoning": "Match strength 85/100 against OFAC SDN (Russia harmful activities). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: EVROPOLIS, LLC.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_e9781a6a5c504c3cab25ea",
+      "listName": "OFAC SDN (Taliban)",
+      "matchType": "fuzzy",
+      "matchedName": "Orion Exchange (AE)",
+      "listedEntity": "MIR CHOPAN, Haji Bashir",
+      "entityId": "SDN-12904",
+      "score": 82,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-10T21:26:32.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=12904",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 82,
+        "reasoning": "Match strength 82/100 against OFAC SDN (Taliban). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: MIR CHOPAN, Haji Bashir.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_8a01b4df0aeb413984104d",
+      "listName": "OFAC SDN, EU CFSP, UK OFSI",
+      "matchType": "fuzzy",
+      "matchedName": "Atlas Logistics (PA)",
+      "listedEntity": "VTB BANK PJSC",
+      "entityId": "SDN-19724",
+      "score": 82,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-09T19:11:25.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=19724",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 82,
+        "reasoning": "Match strength 82/100 against OFAC SDN, EU CFSP, UK OFSI. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: VTB BANK PJSC.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_9eeb727b60db48dc98deed",
+      "listName": "OFAC SDN, UN Consolidated",
+      "matchType": "fuzzy",
+      "matchedName": "Meridian Holdings Ltd (KY)",
+      "listedEntity": "AL-SHABAAB, Harakat",
+      "entityId": "SDN-14321",
+      "score": 85,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-11T23:55:10.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=14321",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 85,
+        "reasoning": "Match strength 85/100 against OFAC SDN, UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: AL-SHABAAB, Harakat.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_d4d6b503d59f493aaad39e",
+      "listName": "OFAC SDN (EO 14024)",
+      "matchType": "exact",
+      "matchedName": "Orion Exchange (AE)",
+      "listedEntity": "GAZPROMBANK, JSC",
+      "entityId": "SDN-19845",
+      "score": 96,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-10T14:12:57.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=19845",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 96,
+        "reasoning": "Match strength 96/100 against OFAC SDN (EO 14024). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: GAZPROMBANK, JSC.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_fd95278fc3e342eea7614d",
+      "listName": "OFAC SDN, EU CFSP, UK OFSI",
+      "matchType": "fuzzy",
+      "matchedName": "Sterling & Co (UK)",
+      "listedEntity": "WAGNER GROUP",
+      "entityId": "SDN-22138",
+      "score": 91,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-13T16:23:42.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=22138",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 91,
+        "reasoning": "Match strength 91/100 against OFAC SDN, EU CFSP, UK OFSI. OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: WAGNER GROUP.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_8e193bff6eff4865bdb3d2",
+      "listName": "OFAC SDN (Syria)",
+      "matchType": "fuzzy",
+      "matchedName": "Atlas Logistics (PA)",
+      "listedEntity": "AL-ASSAD, Mahir",
+      "entityId": "SDN-10582",
+      "score": 84,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-11T15:14:54.830046+00:00",
+      "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=10582",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 84,
+        "reasoning": "Match strength 84/100 against OFAC SDN (Syria). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: AL-ASSAD, Mahir.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_a4327dd49db2454abc1442",
+      "listName": "EU CFSP (Reg 269/2014)",
+      "matchType": "fuzzy",
+      "matchedName": "Pinecrest LLC (US)",
+      "listedEntity": "VTB BANK PJSC",
+      "entityId": "EU-3271",
+      "score": 82,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-09T02:01:28.830046+00:00",
+      "url": "https://webgate.ec.europa.eu/fsd_fsFSD",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 82,
+        "reasoning": "Match strength 82/100 against EU CFSP (Reg 269/2014). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: VTB BANK PJSC.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_612b57f515dc4ee0ae7bf1",
+      "listName": "EU CFSP (Reg 833/2014)",
+      "matchType": "fuzzy",
+      "matchedName": "Nakamura Industries (JP)",
+      "listedEntity": "GAZPROMBANK JSC",
+      "entityId": "EU-3272",
+      "score": 86,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-07T14:40:30.830046+00:00",
+      "url": "https://webgate.ec.europa.eu/fsd_fsFSD",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 86,
+        "reasoning": "Match strength 86/100 against EU CFSP (Reg 833/2014). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: GAZPROMBANK JSC.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_c267dabe7e6f4757b951df",
+      "listName": "EU CFSP (Reg 833/2014)",
+      "matchType": "fuzzy",
+      "matchedName": "Sterling & Co (UK)",
+      "listedEntity": "SBERBANK OF RUSSIA",
+      "entityId": "EU-3274",
+      "score": 86,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-12T17:08:09.830046+00:00",
+      "url": "https://webgate.ec.europa.eu/fsd_fsFSD",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 86,
+        "reasoning": "Match strength 86/100 against EU CFSP (Reg 833/2014). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: SBERBANK OF RUSSIA.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_9191c0bf30f94fba9d37eb",
+      "listName": "EU CFSP (Reg 833/2014)",
+      "matchType": "fuzzy",
+      "matchedName": "Atlas Logistics (PA)",
+      "listedEntity": "ALROSA PJSC",
+      "entityId": "EU-3187",
+      "score": 91,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-11T13:21:33.830046+00:00",
+      "url": "https://webgate.ec.europa.eu/fsd_fsFSD",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 91,
+        "reasoning": "Match strength 91/100 against EU CFSP (Reg 833/2014). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: ALROSA PJSC.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_153aadc070e94ea98e7750",
+      "listName": "EU CFSP (Reg 833/2014)",
+      "matchType": "fuzzy",
+      "matchedName": "Sunrise Trading (HK)",
+      "listedEntity": "SOVCOMFLOT OJSC",
+      "entityId": "EU-3192",
+      "score": 88,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-07T20:41:13.830046+00:00",
+      "url": "https://webgate.ec.europa.eu/fsd_fsFSD",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 88,
+        "reasoning": "Match strength 88/100 against EU CFSP (Reg 833/2014). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: SOVCOMFLOT OJSC.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_3e420cfbc3144f858509b1",
+      "listName": "EU CFSP (Reg 833/2014)",
+      "matchType": "fuzzy",
+      "matchedName": "Sterling & Co (UK)",
+      "listedEntity": "NOVATEK PJSC",
+      "entityId": "EU-3214",
+      "score": 88,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Block + freeze",
+      "timestamp": "2026-08-08T17:29:17.830046+00:00",
+      "url": "https://webgate.ec.europa.eu/fsd_fsFSD",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 88,
+        "reasoning": "Match strength 88/100 against EU CFSP (Reg 833/2014). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: NOVATEK PJSC.",
+        "reviewerAction": "approve_block"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_57ec66db8caf42b9911c68",
+      "listName": "EU CFSP (Reg 2023/427)",
+      "matchType": "fuzzy",
+      "matchedName": "Sterling & Co (UK)",
+      "listedEntity": "WAGNER GROUP",
+      "entityId": "EU-3892",
+      "score": 84,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-13T07:47:08.830046+00:00",
+      "url": "https://webgate.ec.europa.eu/fsd_fsFSD",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 84,
+        "reasoning": "Match strength 84/100 against EU CFSP (Reg 2023/427). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: WAGNER GROUP.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_real_bbf97feb5f904dc28bed71",
+      "listName": "EU CFSP (Reg 833/2014)",
+      "matchType": "fuzzy",
+      "matchedName": "Meridian Holdings Ltd (KY)",
+      "listedEntity": "ROSNEFT OIL COMPANY",
+      "entityId": "EU-3273",
+      "score": 85,
+      "status": "under_review",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Hold for MLRO review",
+      "timestamp": "2026-08-11T11:42:17.830046+00:00",
+      "url": "https://webgate.ec.europa.eu/fsd_fsFSD",
+      "aiRecommendation": {
+        "action": "Hold + request KYC refresh",
+        "confidence": 85,
+        "reasoning": "Match strength 85/100 against EU CFSP (Reg 833/2014). OFAC 50% Rule analysis: ownership chain reaches blocked party. Real SDN entity: ROSNEFT OIL COMPANY.",
+        "reviewerAction": "approve_hold"
+      },
+      "dataSource": "real_feed"
+    },
+    {
+      "id": "sanc_329d263d6de94a71851a02",
+      "listName": "HMT OFSI",
+      "matchType": "fuzzy",
+      "matchedName": "Nord Stream Trading LLC",
+      "listedEntity": "NORD STREAM TRADING LLC",
+      "entityId": "SDN-13248",
+      "score": 91,
+      "status": "true_positive",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "File SAR",
+      "timestamp": "2026-08-11T13:22:20.185116+00:00",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 88,
+        "reasoning": "Match strength 91/100. Entity appears on UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "sanc_cf3f6ebb6bd84a28abb49f",
+      "listName": "OFAC 50% Rule",
+      "matchType": "exact",
+      "matchedName": "Al-Rashid Exchange",
+      "listedEntity": "AL-RASHID EXCHANGE",
+      "entityId": "SDN-15075",
+      "score": 89,
+      "status": "escalated",
+      "reviewedBy": "auto-triage-v3",
+      "action": "Block transaction",
+      "timestamp": "2026-08-08T23:35:00.185116+00:00",
+      "aiRecommendation": {
+        "action": "Manual review by MLRO",
+        "confidence": 91,
+        "reasoning": "Match strength 89/100. Entity appears on EU FSF. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_review"
+      }
+    },
+    {
+      "id": "sanc_8225aba6e60a45269166f0",
+      "listName": "OFAC SDN",
+      "matchType": "fuzzy",
+      "matchedName": "Silk Road Holdings",
+      "listedEntity": "SILK ROAD HOLDINGS",
+      "entityId": "SDN-96511",
+      "score": 89,
+      "status": "true_positive",
+      "reviewedBy": "mlro@regco.io",
+      "action": "Freeze account",
+      "timestamp": "2026-08-11T04:30:26.185116+00:00",
+      "aiRecommendation": {
+        "action": "Manual review by MLRO",
+        "confidence": 82,
+        "reasoning": "Match strength 89/100. Entity appears on OFAC 50% Rule. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_review"
+      }
+    },
+    {
+      "id": "sanc_f3a869cc01bd42ba81e1a0",
+      "listName": "OFSI Russia",
+      "matchType": "partial",
+      "matchedName": "Meridian Petroleum",
+      "listedEntity": "MERIDIAN PETROLEUM",
+      "entityId": "SDN-76768",
+      "score": 96,
+      "status": "escalated",
+      "reviewedBy": "k.larson@regco.io",
+      "action": null,
+      "timestamp": "2026-08-13T04:03:38.185116+00:00",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 88,
+        "reasoning": "Match strength 96/100. Entity appears on UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "sanc_00dd7b774365490981cfc9",
+      "listName": "OFAC SDN",
+      "matchType": "partial",
+      "matchedName": "Blue Ocean Shipping",
+      "listedEntity": "BLUE OCEAN SHIPPING",
+      "entityId": "SDN-88193",
+      "score": 84,
+      "status": "escalated",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Freeze account",
+      "timestamp": "2026-08-09T06:32:50.185116+00:00",
+      "aiRecommendation": {
+        "action": "Manual review by MLRO",
+        "confidence": 99,
+        "reasoning": "Match strength 84/100. Entity appears on MAS. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_review"
+      }
+    },
+    {
+      "id": "sanc_0d0fe601a227441a881d80",
+      "listName": "MAS",
+      "matchType": "exact",
+      "matchedName": "Pyongyang Tech Corp",
+      "listedEntity": "PYONGYANG TECH CORP",
+      "entityId": "SDN-34914",
+      "score": 100,
+      "status": "false_positive",
+      "reviewedBy": null,
+      "action": "File SAR",
+      "timestamp": "2026-08-14T13:09:49.185116+00:00",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 96,
+        "reasoning": "Match strength 100/100. Entity appears on OFAC 50% Rule. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "sanc_5d24dab8a0844fb8bc59a2",
+      "listName": "HMT OFSI",
+      "matchType": "fuzzy",
+      "matchedName": "Caracas Capital SA",
+      "listedEntity": "CARACAS CAPITAL SA",
+      "entityId": "SDN-19171",
+      "score": 87,
+      "status": "pending",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "Continue monitoring",
+      "timestamp": "2026-08-10T18:13:18.185116+00:00",
+      "aiRecommendation": {
+        "action": "Manual review by MLRO",
+        "confidence": 83,
+        "reasoning": "Match strength 87/100. Entity appears on OFSI Russia. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_review"
+      }
+    },
+    {
+      "id": "sanc_bf5bdf8c74dc4fb1b06b84",
+      "listName": "EU FSF",
+      "matchType": "partial",
+      "matchedName": "Minsk Industrial Group",
+      "listedEntity": "MINSK INDUSTRIAL GROUP",
+      "entityId": "SDN-97410",
+      "score": 88,
+      "status": "escalated",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "File SAR",
+      "timestamp": "2026-08-10T23:32:26.185116+00:00",
+      "aiRecommendation": {
+        "action": "Manual review by MLRO",
+        "confidence": 97,
+        "reasoning": "Match strength 88/100. Entity appears on UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_review"
+      }
+    },
+    {
+      "id": "sanc_515a5112061c46e58a677c",
+      "listName": "OFSI Russia",
+      "matchType": "fuzzy",
+      "matchedName": "Nord Stream Trading LLC",
+      "listedEntity": "NORD STREAM TRADING LLC",
+      "entityId": "SDN-59695",
+      "score": 95,
+      "status": "pending",
+      "reviewedBy": "auto-triage-v3",
+      "action": "Continue monitoring",
+      "timestamp": "2026-08-07T15:53:32.185116+00:00",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 89,
+        "reasoning": "Match strength 95/100. Entity appears on HMT OFSI. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "sanc_2bd82a30a1d04e9f9abcae",
+      "listName": "EU FSF",
+      "matchType": "exact",
+      "matchedName": "Al-Rashid Exchange",
+      "listedEntity": "AL-RASHID EXCHANGE",
+      "entityId": "SDN-37549",
+      "score": 87,
+      "status": "escalated",
+      "reviewedBy": "k.larson@regco.io",
+      "action": "File SAR",
+      "timestamp": "2026-08-09T04:58:36.185116+00:00",
+      "aiRecommendation": {
+        "action": "Manual review by MLRO",
+        "confidence": 94,
+        "reasoning": "Match strength 87/100. Entity appears on OFSI Russia. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_review"
+      }
+    },
+    {
+      "id": "sanc_11dcfe0c6ad04bd4b465da",
+      "listName": "HMT OFSI",
+      "matchType": "fuzzy",
+      "matchedName": "Silk Road Holdings",
+      "listedEntity": "SILK ROAD HOLDINGS",
+      "entityId": "SDN-32241",
+      "score": 94,
+      "status": "pending",
+      "reviewedBy": null,
+      "action": "Freeze account",
+      "timestamp": "2026-08-08T07:31:12.185116+00:00",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 99,
+        "reasoning": "Match strength 94/100. Entity appears on EU FSF. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "sanc_50df879fc49a456f8a70f7",
+      "listName": "OFSI Russia",
+      "matchType": "exact",
+      "matchedName": "Meridian Petroleum",
+      "listedEntity": "MERIDIAN PETROLEUM",
+      "entityId": "SDN-50687",
+      "score": 94,
+      "status": "true_positive",
+      "reviewedBy": "auto-triage-v3",
+      "action": "Block transaction",
+      "timestamp": "2026-08-14T06:32:31.185116+00:00",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 81,
+        "reasoning": "Match strength 94/100. Entity appears on UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "sanc_8be3c4e8037d40b681c738",
+      "listName": "OFAC 50% Rule",
+      "matchType": "phonetic",
+      "matchedName": "Blue Ocean Shipping",
+      "listedEntity": "BLUE OCEAN SHIPPING",
+      "entityId": "SDN-19545",
+      "score": 93,
+      "status": "escalated",
+      "reviewedBy": "mlro@regco.io",
+      "action": "Continue monitoring",
+      "timestamp": "2026-08-12T05:01:22.185116+00:00",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 92,
+        "reasoning": "Match strength 93/100. Entity appears on HMT OFSI. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "sanc_cad1f7642da5490e9e15e9",
+      "listName": "UN Consolidated",
+      "matchType": "phonetic",
+      "matchedName": "Pyongyang Tech Corp",
+      "listedEntity": "PYONGYANG TECH CORP",
+      "entityId": "SDN-95990",
+      "score": 97,
+      "status": "pending",
+      "reviewedBy": null,
+      "action": null,
+      "timestamp": "2026-08-09T09:49:24.185116+00:00",
+      "aiRecommendation": {
+        "action": "Block + freeze + SAR",
+        "confidence": 87,
+        "reasoning": "Match strength 97/100. Entity appears on UN Consolidated. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_block"
+      }
+    },
+    {
+      "id": "sanc_1901f9fb13a34b51b4335e",
+      "listName": "MAS",
+      "matchType": "phonetic",
+      "matchedName": "Caracas Capital SA",
+      "listedEntity": "CARACAS CAPITAL SA",
+      "entityId": "SDN-42662",
+      "score": 82,
+      "status": "pending",
+      "reviewedBy": "mlro@regco.io",
+      "action": "Block transaction",
+      "timestamp": "2026-08-08T22:19:09.185116+00:00",
+      "aiRecommendation": {
+        "action": "Manual review by MLRO",
+        "confidence": 96,
+        "reasoning": "Match strength 82/100. Entity appears on MAS. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_review"
+      }
+    },
+    {
+      "id": "sanc_a94bf37363b04083b25b72",
+      "listName": "MAS",
+      "matchType": "partial",
+      "matchedName": "Minsk Industrial Group",
+      "listedEntity": "MINSK INDUSTRIAL GROUP",
+      "entityId": "SDN-76162",
+      "score": 87,
+      "status": "escalated",
+      "reviewedBy": "mlro@regco.io",
+      "action": "Block transaction",
+      "timestamp": "2026-08-08T19:23:50.185116+00:00",
+      "aiRecommendation": {
+        "action": "Manual review by MLRO",
+        "confidence": 94,
+        "reasoning": "Match strength 87/100. Entity appears on EU FSF. OFAC 50% Rule analysis: ownership chain reaches blocked party.",
+        "reviewerAction": "approve_review"
+      }
+    }
+  ],
+  "total": 34,
+  "realFeedCount": 18,
+  "syntheticCount": 16,
+  "lastRefreshed": "2026-08-14T14:02:51.830046+00:00",
+  "sources": [
+    {
+      "name": "OpenSanctions (US OFAC SDN)",
+      "type": "real_feed",
+      "url": "https://data.opensanctions.org/datasets/latest/"
+    },
+    {
+      "name": "OFAC SDN List (public record)",
+      "type": "real_feed",
+      "url": "https://sanctionssearch.ofac.treas.gov/"
+    },
+    {
+      "name": "EU CFSP Consolidated List",
+      "type": "real_feed",
+      "url": "https://webgate.ec.europa.eu/fsd/fsf"
+    },
+    {
+      "name": "Synthetic generator",
+      "type": "synthetic",
+      "url": "scripts/gen-synthetic-data.py"
+    }
+  ]
+}

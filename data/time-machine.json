@@ -1,0 +1,113 @@
+{
+  "snapshots": [
+    {
+      "id": "tm_1ced1b37fcc64f32b53126",
+      "timestamp": "2026-08-13T13:40:22.185116+00:00",
+      "complianceScore": 72,
+      "openFindings": 33,
+      "activePolicies": 7,
+      "trackedRegulations": 14,
+      "riskItems": 9,
+      "auditEvents": 1804,
+      "activeCases": 7,
+      "blockchainAnchors": 330,
+      "aiRecommendation": {
+        "action": "Replay point-in-time query for examiner request",
+        "confidence": 100,
+        "reasoning": "Snapshot reconstructs full state as of 2026-08-13 13:40 UTC. Defensible in examination.",
+        "reviewerAction": "approve_replay"
+      }
+    },
+    {
+      "id": "tm_d266a0735246433d9cf334",
+      "timestamp": "2026-08-07T13:40:22.185116+00:00",
+      "complianceScore": 69,
+      "openFindings": 49,
+      "activePolicies": 8,
+      "trackedRegulations": 11,
+      "riskItems": 11,
+      "auditEvents": 574,
+      "activeCases": 2,
+      "blockchainAnchors": 286,
+      "aiRecommendation": {
+        "action": "Replay point-in-time query for examiner request",
+        "confidence": 100,
+        "reasoning": "Snapshot reconstructs full state as of 2026-08-07 13:40 UTC. Defensible in examination.",
+        "reviewerAction": "approve_replay"
+      }
+    },
+    {
+      "id": "tm_b25893c13bbf4a599ec235",
+      "timestamp": "2026-07-15T13:40:22.185116+00:00",
+      "complianceScore": 81,
+      "openFindings": 50,
+      "activePolicies": 7,
+      "trackedRegulations": 11,
+      "riskItems": 11,
+      "auditEvents": 1090,
+      "activeCases": 1,
+      "blockchainAnchors": 455,
+      "aiRecommendation": {
+        "action": "Replay point-in-time query for examiner request",
+        "confidence": 100,
+        "reasoning": "Snapshot reconstructs full state as of 2026-07-15 13:40 UTC. Defensible in examination.",
+        "reviewerAction": "approve_replay"
+      }
+    },
+    {
+      "id": "tm_8f03622849cc4868911237",
+      "timestamp": "2026-05-16T13:40:22.185116+00:00",
+      "complianceScore": 67,
+      "openFindings": 73,
+      "activePolicies": 7,
+      "trackedRegulations": 14,
+      "riskItems": 8,
+      "auditEvents": 1514,
+      "activeCases": 7,
+      "blockchainAnchors": 191,
+      "aiRecommendation": {
+        "action": "Replay point-in-time query for examiner request",
+        "confidence": 100,
+        "reasoning": "Snapshot reconstructs full state as of 2026-05-16 13:40 UTC. Defensible in examination.",
+        "reviewerAction": "approve_replay"
+      }
+    },
+    {
+      "id": "tm_db5c55c18a0b4ab5bf5ad0",
+      "timestamp": "2026-02-15T13:40:22.185116+00:00",
+      "complianceScore": 78,
+      "openFindings": 42,
+      "activePolicies": 8,
+      "trackedRegulations": 10,
+      "riskItems": 10,
+      "auditEvents": 1000,
+      "activeCases": 6,
+      "blockchainAnchors": 360,
+      "aiRecommendation": {
+        "action": "Replay point-in-time query for examiner request",
+        "confidence": 100,
+        "reasoning": "Snapshot reconstructs full state as of 2026-02-15 13:40 UTC. Defensible in examination.",
+        "reviewerAction": "approve_replay"
+      }
+    },
+    {
+      "id": "tm_faf59bcab31348669477ec",
+      "timestamp": "2025-08-14T13:40:22.185116+00:00",
+      "complianceScore": 83,
+      "openFindings": 31,
+      "activePolicies": 9,
+      "trackedRegulations": 14,
+      "riskItems": 11,
+      "auditEvents": 1123,
+      "activeCases": 1,
+      "blockchainAnchors": 103,
+      "aiRecommendation": {
+        "action": "Replay point-in-time query for examiner request",
+        "confidence": 100,
+        "reasoning": "Snapshot reconstructs full state as of 2025-08-14 13:40 UTC. Defensible in examination.",
+        "reviewerAction": "approve_replay"
+      }
+    }
+  ],
+  "total": 6
+}

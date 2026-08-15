@@ -1,0 +1,949 @@
+{
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "Orion Exchange #0",
+      "type": "company",
+      "riskScore": 91,
+      "jurisdiction": "CN",
+      "isFlagged": true
+    },
+    {
+      "id": "n1",
+      "label": "R. Patel #1",
+      "type": "company",
+      "riskScore": 45,
+      "jurisdiction": "EU",
+      "isFlagged": false
+    },
+    {
+      "id": "n2",
+      "label": "Orion Exchange #2",
+      "type": "account",
+      "riskScore": 40,
+      "jurisdiction": "KY",
+      "isFlagged": false
+    },
+    {
+      "id": "n3",
+      "label": "BluePeak Capital #3",
+      "type": "account",
+      "riskScore": 79,
+      "jurisdiction": "UK",
+      "isFlagged": true
+    },
+    {
+      "id": "n4",
+      "label": "K. Chen #4",
+      "type": "company",
+      "riskScore": 39,
+      "jurisdiction": "UK",
+      "isFlagged": false
+    },
+    {
+      "id": "n5",
+      "label": "K. Chen #5",
+      "type": "company",
+      "riskScore": 18,
+      "jurisdiction": "PA",
+      "isFlagged": false
+    },
+    {
+      "id": "n6",
+      "label": "R. Patel #6",
+      "type": "account",
+      "riskScore": 79,
+      "jurisdiction": "PA",
+      "isFlagged": true
+    },
+    {
+      "id": "n7",
+      "label": "Nakamura Ind. #7",
+      "type": "person",
+      "riskScore": 36,
+      "jurisdiction": "PA",
+      "isFlagged": false
+    },
+    {
+      "id": "n8",
+      "label": "Pinecrest LLC #8",
+      "type": "address",
+      "riskScore": 85,
+      "jurisdiction": "US",
+      "isFlagged": true,
+      "enriched": {
+        "matchedRealEntity": "EVROPOLIS, LLC",
+        "source": "OFAC SDN / EU CFSP",
+        "verifiedAt": "2026-08-14T14:02:51.830046+00:00"
+      }
+    },
+    {
+      "id": "n9",
+      "label": "R. Patel #9",
+      "type": "crypto_wallet",
+      "riskScore": 58,
+      "jurisdiction": "US",
+      "isFlagged": false
+    },
+    {
+      "id": "n10",
+      "label": "Sterling & Co #10",
+      "type": "account",
+      "riskScore": 48,
+      "jurisdiction": "PA",
+      "isFlagged": false
+    },
+    {
+      "id": "n11",
+      "label": "Pinecrest LLC #11",
+      "type": "address",
+      "riskScore": 85,
+      "jurisdiction": "SG",
+      "isFlagged": true,
+      "enriched": {
+        "matchedRealEntity": "EVROPOLIS, LLC",
+        "source": "OFAC SDN / EU CFSP",
+        "verifiedAt": "2026-08-14T14:02:51.830046+00:00"
+      }
+    },
+    {
+      "id": "n12",
+      "label": "Orion Exchange #12",
+      "type": "address",
+      "riskScore": 38,
+      "jurisdiction": "PA",
+      "isFlagged": false
+    },
+    {
+      "id": "n13",
+      "label": "K. Chen #13",
+      "type": "address",
+      "riskScore": 13,
+      "jurisdiction": "KY",
+      "isFlagged": false
+    },
+    {
+      "id": "n14",
+      "label": "Nakamura Ind. #14",
+      "type": "address",
+      "riskScore": 31,
+      "jurisdiction": "CN",
+      "isFlagged": false
+    },
+    {
+      "id": "n15",
+      "label": "Account 4421 #15",
+      "type": "company",
+      "riskScore": 89,
+      "jurisdiction": "US",
+      "isFlagged": true
+    },
+    {
+      "id": "n16",
+      "label": "Wallet 0x4a\u2026b3 #16",
+      "type": "address",
+      "riskScore": 85,
+      "jurisdiction": "US",
+      "isFlagged": true
+    },
+    {
+      "id": "n17",
+      "label": "K. Chen #17",
+      "type": "person",
+      "riskScore": 92,
+      "jurisdiction": "UK",
+      "isFlagged": true
+    },
+    {
+      "id": "n18",
+      "label": "Meridian Holdings #18",
+      "type": "address",
+      "riskScore": 33,
+      "jurisdiction": "AE",
+      "isFlagged": false
+    },
+    {
+      "id": "n19",
+      "label": "Atlas Logistics #19",
+      "type": "address",
+      "riskScore": 51,
+      "jurisdiction": "CN",
+      "isFlagged": false
+    },
+    {
+      "id": "n20",
+      "label": "Sterling & Co #20",
+      "type": "account",
+      "riskScore": 53,
+      "jurisdiction": "PA",
+      "isFlagged": false
+    },
+    {
+      "id": "n21",
+      "label": "Orion Exchange #21",
+      "type": "account",
+      "riskScore": 63,
+      "jurisdiction": "EU",
+      "isFlagged": false
+    },
+    {
+      "id": "n22",
+      "label": "Pinecrest LLC #22",
+      "type": "address",
+      "riskScore": 85,
+      "jurisdiction": "US",
+      "isFlagged": true,
+      "enriched": {
+        "matchedRealEntity": "EVROPOLIS, LLC",
+        "source": "OFAC SDN / EU CFSP",
+        "verifiedAt": "2026-08-14T14:02:51.830046+00:00"
+      }
+    },
+    {
+      "id": "n23",
+      "label": "Account 7788 #23",
+      "type": "account",
+      "riskScore": 38,
+      "jurisdiction": "EU",
+      "isFlagged": false
+    },
+    {
+      "id": "n24",
+      "label": "Atlas Logistics #24",
+      "type": "person",
+      "riskScore": 13,
+      "jurisdiction": "SG",
+      "isFlagged": false
+    },
+    {
+      "id": "n25",
+      "label": "Sunrise Trading #25",
+      "type": "person",
+      "riskScore": 89,
+      "jurisdiction": "SG",
+      "isFlagged": true
+    },
+    {
+      "id": "n26",
+      "label": "Account 7788 #26",
+      "type": "company",
+      "riskScore": 70,
+      "jurisdiction": "EU",
+      "isFlagged": false
+    },
+    {
+      "id": "n27",
+      "label": "R. Patel #27",
+      "type": "crypto_wallet",
+      "riskScore": 37,
+      "jurisdiction": "AE",
+      "isFlagged": false
+    },
+    {
+      "id": "n28",
+      "label": "Wallet 0x4a\u2026b3 #28",
+      "type": "account",
+      "riskScore": 31,
+      "jurisdiction": "EU",
+      "isFlagged": false
+    },
+    {
+      "id": "n29",
+      "label": "BluePeak Capital #29",
+      "type": "company",
+      "riskScore": 49,
+      "jurisdiction": "US",
+      "isFlagged": false
+    },
+    {
+      "id": "n30",
+      "label": "Account 7788 #30",
+      "type": "account",
+      "riskScore": 83,
+      "jurisdiction": "PA",
+      "isFlagged": true
+    },
+    {
+      "id": "n31",
+      "label": "BluePeak Capital #31",
+      "type": "address",
+      "riskScore": 35,
+      "jurisdiction": "SG",
+      "isFlagged": false
+    },
+    {
+      "id": "n32",
+      "label": "Sterling & Co #32",
+      "type": "person",
+      "riskScore": 99,
+      "jurisdiction": "AE",
+      "isFlagged": true
+    },
+    {
+      "id": "n33",
+      "label": "Sterling & Co #33",
+      "type": "crypto_wallet",
+      "riskScore": 25,
+      "jurisdiction": "US",
+      "isFlagged": false
+    },
+    {
+      "id": "n34",
+      "label": "K. Chen #34",
+      "type": "account",
+      "riskScore": 78,
+      "jurisdiction": "KY",
+      "isFlagged": true
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "source": "n4",
+      "target": "n32",
+      "type": "beneficial_owner",
+      "weight": 64248.1,
+      "currency": "EUR",
+      "timestamp": "2026-08-08T13:53:29.185116+00:00"
+    },
+    {
+      "id": "e1",
+      "source": "n6",
+      "target": "n27",
+      "type": "beneficial_owner",
+      "weight": 3178289.95,
+      "currency": "EUR",
+      "timestamp": "2026-08-12T16:06:40.185116+00:00"
+    },
+    {
+      "id": "e2",
+      "source": "n27",
+      "target": "n11",
+      "type": "shared_phone",
+      "weight": 4827403.18,
+      "currency": "EUR",
+      "timestamp": "2026-08-07T23:55:07.185116+00:00"
+    },
+    {
+      "id": "e3",
+      "source": "n30",
+      "target": "n29",
+      "type": "shared_address",
+      "weight": 4128847.26,
+      "currency": "USDT",
+      "timestamp": "2026-08-11T06:29:49.185116+00:00"
+    },
+    {
+      "id": "e4",
+      "source": "n20",
+      "target": "n15",
+      "type": "ownership",
+      "weight": 1395362.32,
+      "currency": "EUR",
+      "timestamp": "2026-08-11T13:38:33.185116+00:00"
+    },
+    {
+      "id": "e5",
+      "source": "n29",
+      "target": "n24",
+      "type": "beneficial_owner",
+      "weight": 144471.29,
+      "currency": "EUR",
+      "timestamp": "2026-08-12T07:42:30.185116+00:00"
+    },
+    {
+      "id": "e6",
+      "source": "n31",
+      "target": "n13",
+      "type": "beneficial_owner",
+      "weight": 3989363.95,
+      "currency": "EUR",
+      "timestamp": "2026-08-11T03:12:59.185116+00:00"
+    },
+    {
+      "id": "e7",
+      "source": "n17",
+      "target": "n0",
+      "type": "shared_phone",
+      "weight": 4740364.83,
+      "currency": "USD",
+      "timestamp": "2026-08-11T14:22:22.185116+00:00"
+    },
+    {
+      "id": "e8",
+      "source": "n26",
+      "target": "n31",
+      "type": "shared_phone",
+      "weight": 3791065.1,
+      "currency": "USDT",
+      "timestamp": "2026-08-08T18:00:03.185116+00:00"
+    },
+    {
+      "id": "e9",
+      "source": "n31",
+      "target": "n28",
+      "type": "ownership",
+      "weight": 466173.7,
+      "currency": "USD",
+      "timestamp": "2026-08-09T14:52:57.185116+00:00"
+    },
+    {
+      "id": "e10",
+      "source": "n15",
+      "target": "n19",
+      "type": "shared_phone",
+      "weight": 1845733.23,
+      "currency": "USDT",
+      "timestamp": "2026-08-08T02:01:51.185116+00:00"
+    },
+    {
+      "id": "e11",
+      "source": "n22",
+      "target": "n27",
+      "type": "shared_phone",
+      "weight": 1654625.69,
+      "currency": "USDT",
+      "timestamp": "2026-08-09T00:30:36.185116+00:00"
+    },
+    {
+      "id": "e12",
+      "source": "n17",
+      "target": "n19",
+      "type": "beneficial_owner",
+      "weight": 1153459.67,
+      "currency": "USDT",
+      "timestamp": "2026-08-12T04:34:43.185116+00:00"
+    },
+    {
+      "id": "e13",
+      "source": "n20",
+      "target": "n7",
+      "type": "shared_phone",
+      "weight": 4754436.92,
+      "currency": "USDT",
+      "timestamp": "2026-08-12T06:44:39.185116+00:00"
+    },
+    {
+      "id": "e14",
+      "source": "n12",
+      "target": "n13",
+      "type": "shared_address",
+      "weight": 1383221.64,
+      "currency": "USDT",
+      "timestamp": "2026-08-08T03:51:41.185116+00:00"
+    },
+    {
+      "id": "e15",
+      "source": "n18",
+      "target": "n6",
+      "type": "transaction",
+      "weight": 1481936.07,
+      "currency": "EUR",
+      "timestamp": "2026-08-12T08:24:24.185116+00:00"
+    },
+    {
+      "id": "e16",
+      "source": "n19",
+      "target": "n0",
+      "type": "shared_phone",
+      "weight": 633788.22,
+      "currency": "USD",
+      "timestamp": "2026-08-13T20:47:28.185116+00:00"
+    },
+    {
+      "id": "e17",
+      "source": "n18",
+      "target": "n8",
+      "type": "shared_address",
+      "weight": 513835.65,
+      "currency": "USD",
+      "timestamp": "2026-08-11T01:51:11.185116+00:00"
+    },
+    {
+      "id": "e19",
+      "source": "n28",
+      "target": "n21",
+      "type": "transaction",
+      "weight": 4827522.72,
+      "currency": "EUR",
+      "timestamp": "2026-08-08T17:31:27.185116+00:00"
+    },
+    {
+      "id": "e20",
+      "source": "n7",
+      "target": "n4",
+      "type": "shared_address",
+      "weight": 2459241.05,
+      "currency": "USDT",
+      "timestamp": "2026-08-13T21:03:29.185116+00:00"
+    },
+    {
+      "id": "e22",
+      "source": "n19",
+      "target": "n5",
+      "type": "transaction",
+      "weight": 593139.36,
+      "currency": "EUR",
+      "timestamp": "2026-08-11T18:56:12.185116+00:00"
+    },
+    {
+      "id": "e23",
+      "source": "n33",
+      "target": "n24",
+      "type": "shared_address",
+      "weight": 4542613.38,
+      "currency": "EUR",
+      "timestamp": "2026-08-09T07:46:02.185116+00:00"
+    },
+    {
+      "id": "e24",
+      "source": "n19",
+      "target": "n3",
+      "type": "shared_phone",
+      "weight": 4800583.78,
+      "currency": "USD",
+      "timestamp": "2026-08-12T00:09:01.185116+00:00"
+    },
+    {
+      "id": "e25",
+      "source": "n13",
+      "target": "n16",
+      "type": "ownership",
+      "weight": 786128.41,
+      "currency": "USD",
+      "timestamp": "2026-08-07T19:53:37.185116+00:00"
+    },
+    {
+      "id": "e26",
+      "source": "n4",
+      "target": "n10",
+      "type": "ownership",
+      "weight": 2043179.35,
+      "currency": "USDT",
+      "timestamp": "2026-08-08T19:48:04.185116+00:00"
+    },
+    {
+      "id": "e27",
+      "source": "n18",
+      "target": "n2",
+      "type": "transaction",
+      "weight": 1441236.34,
+      "currency": "EUR",
+      "timestamp": "2026-08-09T00:25:36.185116+00:00"
+    },
+    {
+      "id": "e28",
+      "source": "n4",
+      "target": "n14",
+      "type": "beneficial_owner",
+      "weight": 3939352.31,
+      "currency": "USDT",
+      "timestamp": "2026-08-12T03:03:14.185116+00:00"
+    },
+    {
+      "id": "e29",
+      "source": "n27",
+      "target": "n7",
+      "type": "shared_phone",
+      "weight": 1124822.44,
+      "currency": "USD",
+      "timestamp": "2026-08-11T07:18:07.185116+00:00"
+    },
+    {
+      "id": "e30",
+      "source": "n9",
+      "target": "n4",
+      "type": "ownership",
+      "weight": 830448.02,
+      "currency": "EUR",
+      "timestamp": "2026-08-07T14:52:46.185116+00:00"
+    },
+    {
+      "id": "e31",
+      "source": "n18",
+      "target": "n28",
+      "type": "ownership",
+      "weight": 2344021.15,
+      "currency": "EUR",
+      "timestamp": "2026-08-09T15:26:02.185116+00:00"
+    },
+    {
+      "id": "e32",
+      "source": "n17",
+      "target": "n32",
+      "type": "shared_phone",
+      "weight": 2469482.3,
+      "currency": "USD",
+      "timestamp": "2026-08-14T01:03:45.185116+00:00"
+    },
+    {
+      "id": "e33",
+      "source": "n27",
+      "target": "n20",
+      "type": "shared_phone",
+      "weight": 1252589.14,
+      "currency": "USD",
+      "timestamp": "2026-08-11T17:59:38.185116+00:00"
+    },
+    {
+      "id": "e34",
+      "source": "n1",
+      "target": "n17",
+      "type": "shared_phone",
+      "weight": 202118.13,
+      "currency": "USD",
+      "timestamp": "2026-08-08T19:37:47.185116+00:00"
+    },
+    {
+      "id": "e35",
+      "source": "n33",
+      "target": "n28",
+      "type": "beneficial_owner",
+      "weight": 908264.25,
+      "currency": "USDT",
+      "timestamp": "2026-08-09T05:42:44.185116+00:00"
+    },
+    {
+      "id": "e36",
+      "source": "n31",
+      "target": "n5",
+      "type": "shared_address",
+      "weight": 1740457.32,
+      "currency": "EUR",
+      "timestamp": "2026-08-10T15:09:29.185116+00:00"
+    },
+    {
+      "id": "e37",
+      "source": "n6",
+      "target": "n10",
+      "type": "beneficial_owner",
+      "weight": 2058813.8,
+      "currency": "EUR",
+      "timestamp": "2026-08-11T00:43:24.185116+00:00"
+    },
+    {
+      "id": "e38",
+      "source": "n25",
+      "target": "n2",
+      "type": "shared_address",
+      "weight": 441210.9,
+      "currency": "EUR",
+      "timestamp": "2026-08-10T14:30:45.185116+00:00"
+    },
+    {
+      "id": "e39",
+      "source": "n7",
+      "target": "n25",
+      "type": "shared_phone",
+      "weight": 4124811.09,
+      "currency": "USD",
+      "timestamp": "2026-08-07T22:37:52.185116+00:00"
+    },
+    {
+      "id": "e40",
+      "source": "n29",
+      "target": "n26",
+      "type": "ownership",
+      "weight": 938725.12,
+      "currency": "EUR",
+      "timestamp": "2026-08-08T11:28:35.185116+00:00"
+    },
+    {
+      "id": "e41",
+      "source": "n28",
+      "target": "n3",
+      "type": "transaction",
+      "weight": 1336014.14,
+      "currency": "USD",
+      "timestamp": "2026-08-11T00:46:42.185116+00:00"
+    },
+    {
+      "id": "e42",
+      "source": "n28",
+      "target": "n31",
+      "type": "ownership",
+      "weight": 145318.34,
+      "currency": "USDT",
+      "timestamp": "2026-08-11T14:58:21.185116+00:00"
+    },
+    {
+      "id": "e43",
+      "source": "n10",
+      "target": "n19",
+      "type": "shared_phone",
+      "weight": 69358.65,
+      "currency": "EUR",
+      "timestamp": "2026-08-13T09:31:26.185116+00:00"
+    },
+    {
+      "id": "e44",
+      "source": "n14",
+      "target": "n7",
+      "type": "shared_address",
+      "weight": 4735356.65,
+      "currency": "USDT",
+      "timestamp": "2026-08-12T15:49:32.185116+00:00"
+    },
+    {
+      "id": "e45",
+      "source": "n31",
+      "target": "n18",
+      "type": "shared_phone",
+      "weight": 3527352.74,
+      "currency": "EUR",
+      "timestamp": "2026-08-08T16:08:05.185116+00:00"
+    },
+    {
+      "id": "e46",
+      "source": "n30",
+      "target": "n15",
+      "type": "shared_address",
+      "weight": 2756774.12,
+      "currency": "EUR",
+      "timestamp": "2026-08-12T05:09:13.185116+00:00"
+    },
+    {
+      "id": "e47",
+      "source": "n32",
+      "target": "n8",
+      "type": "ownership",
+      "weight": 1381960.77,
+      "currency": "EUR",
+      "timestamp": "2026-08-10T09:40:37.185116+00:00"
+    },
+    {
+      "id": "e48",
+      "source": "n32",
+      "target": "n17",
+      "type": "ownership",
+      "weight": 1414912.08,
+      "currency": "EUR",
+      "timestamp": "2026-08-08T14:03:17.185116+00:00"
+    },
+    {
+      "id": "e49",
+      "source": "n9",
+      "target": "n28",
+      "type": "shared_phone",
+      "weight": 2422222.59,
+      "currency": "EUR",
+      "timestamp": "2026-08-07T19:54:55.185116+00:00"
+    },
+    {
+      "id": "e50",
+      "source": "n34",
+      "target": "n24",
+      "type": "shared_address",
+      "weight": 4664328.43,
+      "currency": "USD",
+      "timestamp": "2026-08-11T15:06:57.185116+00:00"
+    },
+    {
+      "id": "e51",
+      "source": "n24",
+      "target": "n14",
+      "type": "shared_address",
+      "weight": 219192.85,
+      "currency": "USDT",
+      "timestamp": "2026-08-08T18:54:31.185116+00:00"
+    },
+    {
+      "id": "e53",
+      "source": "n9",
+      "target": "n31",
+      "type": "ownership",
+      "weight": 632105.1,
+      "currency": "USDT",
+      "timestamp": "2026-08-10T11:58:21.185116+00:00"
+    },
+    {
+      "id": "e54",
+      "source": "n6",
+      "target": "n28",
+      "type": "ownership",
+      "weight": 2630229.48,
+      "currency": "EUR",
+      "timestamp": "2026-08-14T08:12:09.185116+00:00"
+    },
+    {
+      "id": "e55",
+      "source": "n9",
+      "target": "n26",
+      "type": "transaction",
+      "weight": 375066.41,
+      "currency": "EUR",
+      "timestamp": "2026-08-10T10:03:35.185116+00:00"
+    },
+    {
+      "id": "e56",
+      "source": "n25",
+      "target": "n5",
+      "type": "beneficial_owner",
+      "weight": 4261854.34,
+      "currency": "USDT",
+      "timestamp": "2026-08-09T21:59:14.185116+00:00"
+    },
+    {
+      "id": "e57",
+      "source": "n20",
+      "target": "n31",
+      "type": "shared_phone",
+      "weight": 180459.6,
+      "currency": "USD",
+      "timestamp": "2026-08-11T16:17:28.185116+00:00"
+    },
+    {
+      "id": "e58",
+      "source": "n18",
+      "target": "n14",
+      "type": "ownership",
+      "weight": 2170423.39,
+      "currency": "USD",
+      "timestamp": "2026-08-13T07:23:53.185116+00:00"
+    },
+    {
+      "id": "e59",
+      "source": "n28",
+      "target": "n10",
+      "type": "beneficial_owner",
+      "weight": 4517216.89,
+      "currency": "USD",
+      "timestamp": "2026-08-10T14:11:31.185116+00:00"
+    },
+    {
+      "id": "e60",
+      "source": "n3",
+      "target": "n18",
+      "type": "beneficial_owner",
+      "weight": 1874830.61,
+      "currency": "USD",
+      "timestamp": "2026-08-11T13:32:43.185116+00:00"
+    },
+    {
+      "id": "e61",
+      "source": "n33",
+      "target": "n26",
+      "type": "shared_phone",
+      "weight": 3409320.06,
+      "currency": "USD",
+      "timestamp": "2026-08-12T11:09:42.185116+00:00"
+    },
+    {
+      "id": "e62",
+      "source": "n11",
+      "target": "n5",
+      "type": "shared_phone",
+      "weight": 4354327.15,
+      "currency": "USDT",
+      "timestamp": "2026-08-11T14:31:34.185116+00:00"
+    },
+    {
+      "id": "e63",
+      "source": "n31",
+      "target": "n9",
+      "type": "transaction",
+      "weight": 2306288.42,
+      "currency": "EUR",
+      "timestamp": "2026-08-08T22:48:48.185116+00:00"
+    },
+    {
+      "id": "e64",
+      "source": "n16",
+      "target": "n0",
+      "type": "shared_address",
+      "weight": 4506145.91,
+      "currency": "USDT",
+      "timestamp": "2026-08-07T21:27:53.185116+00:00"
+    },
+    {
+      "id": "e65",
+      "source": "n10",
+      "target": "n4",
+      "type": "shared_address",
+      "weight": 4726232.94,
+      "currency": "USDT",
+      "timestamp": "2026-08-10T21:32:17.185116+00:00"
+    },
+    {
+      "id": "e66",
+      "source": "n27",
+      "target": "n16",
+      "type": "shared_address",
+      "weight": 4226674.32,
+      "currency": "USD",
+      "timestamp": "2026-08-09T20:37:22.185116+00:00"
+    },
+    {
+      "id": "e67",
+      "source": "n30",
+      "target": "n6",
+      "type": "transaction",
+      "weight": 1907440.12,
+      "currency": "EUR",
+      "timestamp": "2026-08-10T22:29:38.185116+00:00"
+    },
+    {
+      "id": "e68",
+      "source": "n18",
+      "target": "n1",
+      "type": "shared_address",
+      "weight": 1373127.42,
+      "currency": "USDT",
+      "timestamp": "2026-08-13T22:23:16.185116+00:00"
+    },
+    {
+      "id": "e69",
+      "source": "n31",
+      "target": "n18",
+      "type": "transaction",
+      "weight": 3035717.93,
+      "currency": "EUR",
+      "timestamp": "2026-08-11T20:53:00.185116+00:00"
+    }
+  ],
+  "clusters": [
+    {
+      "id": "c1",
+      "label": "Meridian cluster (3 shells)",
+      "risk": 89,
+      "nodeCount": 8
+    },
+    {
+      "id": "c2",
+      "label": "BluePeak \u2014 Orion bridge",
+      "risk": 76,
+      "nodeCount": 5
+    },
+    {
+      "id": "c3",
+      "label": "Sunrise rapid-movement ring",
+      "risk": 82,
+      "nodeCount": 6
+    }
+  ],
+  "aiRecommendation": {
+    "action": "Open 3 new cases from top-risk clusters; submit 2 to FIU",
+    "confidence": 87,
+    "reasoning": "Graph community detection (Louvain) isolated 3 sub-networks with above-threshold Money Laundering Typology scores.",
+    "reviewerAction": "approve_open_cases"
+  },
+  "enrichmentStats": {
+    "totalNodes": 35,
+    "enrichedNodes": 3,
+    "realSanctionsEntities": 18,
+    "openCorporatesMatches": 6,
+    "lastRefreshed": "2026-08-14T14:02:51.830046+00:00",
+    "sources": [
+      {
+        "name": "OpenCorporates API (free tier)",
+        "type": "real_feed",
+        "url": "https://api.opencorporates.com/v0.4/"
+      },
+      {
+        "name": "OFAC SDN / EU CFSP cross-reference",
+        "type": "real_feed",
+        "url": "https://sanctionssearch.ofac.treas.gov/"
+      }
+    ]
+  }
+}

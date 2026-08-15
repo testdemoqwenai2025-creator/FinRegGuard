@@ -1,0 +1,209 @@
+{
+  "tests": [
+    {
+      "id": "rt_a22c6daf3b224863b66aac",
+      "testName": "Smurfing via 7 branches",
+      "attackVector": "smurfing",
+      "target": "AML engine v4.2",
+      "result": "blocked",
+      "severity": "low",
+      "evidence": "Captured 20 indicators of compromise. Replay packet at /evidence/4da34b79",
+      "remediation": null,
+      "timestamp": "2026-08-01T17:59:24.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 89,
+        "reasoning": "Attack blocked. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_9c8a656068824a308b4704",
+      "testName": "Sanctions evasion via crypto mixer",
+      "attackVector": "sanctions_evasion",
+      "target": "Chainalysis integration",
+      "result": "detected",
+      "severity": "medium",
+      "evidence": "Captured 30 indicators of compromise. Replay packet at /evidence/7d333700",
+      "remediation": null,
+      "timestamp": "2026-08-08T00:56:42.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 97,
+        "reasoning": "Attack detected. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_c9feb09415314d42b9612f",
+      "testName": "Layering through 4 shells",
+      "attackVector": "structuring",
+      "target": "AML engine v4.2",
+      "result": "bypassed",
+      "severity": "critical",
+      "evidence": "Captured 33 indicators of compromise. Replay packet at /evidence/e2cafaae",
+      "remediation": "Patch rule AML-027 to include sub-branch aggregation",
+      "timestamp": "2026-08-12T14:38:27.185116+00:00",
+      "aiRecommendation": {
+        "action": "Apply remediation patch immediately",
+        "confidence": 90,
+        "reasoning": "Attack bypassed. Control gap identified.",
+        "reviewerAction": "approve_patch"
+      }
+    },
+    {
+      "id": "rt_ac7277bda9c8423e9c4b3b",
+      "testName": "Prompt injection on AI Assistant",
+      "attackVector": "prompt_injection",
+      "target": "AI Assistant v1.0",
+      "result": "blocked",
+      "severity": "high",
+      "evidence": "Captured 33 indicators of compromise. Replay packet at /evidence/9439b710",
+      "remediation": null,
+      "timestamp": "2026-08-03T09:17:14.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 94,
+        "reasoning": "Attack blocked. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_feff460178ed424bb18518",
+      "testName": "Insider trading \u2014 collusion NLP",
+      "attackVector": "market_abuse",
+      "target": "Comms surveillance v3",
+      "result": "detected",
+      "severity": "medium",
+      "evidence": "Captured 23 indicators of compromise. Replay packet at /evidence/941315c8",
+      "remediation": null,
+      "timestamp": "2026-08-09T01:06:06.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 89,
+        "reasoning": "Attack detected. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_58df2423722049be86b155",
+      "testName": "OFAC 50% Rule bypass",
+      "attackVector": "sanctions_evasion",
+      "target": "Ownership graph engine",
+      "result": "detected",
+      "severity": "medium",
+      "evidence": "Captured 13 indicators of compromise. Replay packet at /evidence/60be5349",
+      "remediation": null,
+      "timestamp": "2026-08-13T18:12:55.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 86,
+        "reasoning": "Attack detected. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_a85b732f86b446ff8e8020",
+      "testName": "Trade-based money laundering",
+      "attackVector": "structuring",
+      "target": "TBML detector v2",
+      "result": "bypassed",
+      "severity": "high",
+      "evidence": "Captured 33 indicators of compromise. Replay packet at /evidence/1d160ce6",
+      "remediation": "Patch rule AML-027 to include sub-branch aggregation",
+      "timestamp": "2026-08-05T07:44:08.185116+00:00",
+      "aiRecommendation": {
+        "action": "Apply remediation patch immediately",
+        "confidence": 91,
+        "reasoning": "Attack bypassed. Control gap identified.",
+        "reviewerAction": "approve_patch"
+      }
+    },
+    {
+      "id": "rt_2c20e962d57c4e1cab3dc6",
+      "testName": "Deepfake voice \u2014 client verification",
+      "attackVector": "spoofing",
+      "target": "Voice biometric v2",
+      "result": "detected",
+      "severity": "high",
+      "evidence": "Captured 43 indicators of compromise. Replay packet at /evidence/a154a3e0",
+      "remediation": null,
+      "timestamp": "2026-08-02T23:22:47.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 85,
+        "reasoning": "Attack detected. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_c9ba771526a74aea8616eb",
+      "testName": "Wash trading \u2014 same desk accounts",
+      "attackVector": "market_abuse",
+      "target": "Order surveillance v3",
+      "result": "blocked",
+      "severity": "low",
+      "evidence": "Captured 8 indicators of compromise. Replay packet at /evidence/d2089f81",
+      "remediation": null,
+      "timestamp": "2026-08-10T08:50:05.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 86,
+        "reasoning": "Attack blocked. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_5bd3194e9cf0439e8e0bba",
+      "testName": "Adversarial ML on credit scoring",
+      "attackVector": "model_attack",
+      "target": "Model monitoring v2",
+      "result": "detected",
+      "severity": "high",
+      "evidence": "Captured 39 indicators of compromise. Replay packet at /evidence/282724dc",
+      "remediation": null,
+      "timestamp": "2026-08-03T23:54:08.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 95,
+        "reasoning": "Attack detected. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_18b379fae76f47b49bbdbb",
+      "testName": "BEC attack on payments",
+      "attackVector": "spoofing",
+      "target": "Email security v4",
+      "result": "blocked",
+      "severity": "low",
+      "evidence": "Captured 29 indicators of compromise. Replay packet at /evidence/c6fd758a",
+      "remediation": null,
+      "timestamp": "2026-07-31T19:02:15.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 98,
+        "reasoning": "Attack blocked. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    },
+    {
+      "id": "rt_e373bd14df454fcc8e91bb",
+      "testName": "Data exfiltration via DNS tunnel",
+      "attackVector": "data_exfiltration",
+      "target": "Network monitoring v3",
+      "result": "detected",
+      "severity": "medium",
+      "evidence": "Captured 14 indicators of compromise. Replay packet at /evidence/1c8b2185",
+      "remediation": null,
+      "timestamp": "2026-08-01T16:59:52.185116+00:00",
+      "aiRecommendation": {
+        "action": "Log + monitor",
+        "confidence": 99,
+        "reasoning": "Attack detected. Control functioned as designed.",
+        "reviewerAction": "acknowledge_log"
+      }
+    }
+  ],
+  "total": 12
+}

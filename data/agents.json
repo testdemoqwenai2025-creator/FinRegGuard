@@ -1,0 +1,385 @@
+{
+  "runs": [
+    {
+      "id": "agent_892b5b46c50c45dc8f43cf",
+      "agentName": "knowledge_curator",
+      "agentDescription": "Maintains regulation\u2192policy\u2192control graph",
+      "task": "Draft MiFID II Article 16(7) policy update v3.2",
+      "status": "awaiting_approval",
+      "inputs": "source feeds \u00d75, context window 32k tokens",
+      "outputs": "43 artifacts, 245 tokens",
+      "toolsUsed": "sanctions_api, blockchain_anchor, smtp",
+      "approvedBy": "sarah.chen@regco.io",
+      "startedAt": "2026-08-13T13:46:38.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Approve to publish",
+        "confidence": 82,
+        "reasoning": "Agent followed approved playbook knowledge_curator_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "approve_publish"
+      }
+    },
+    {
+      "id": "agent_f9a54afae31d45a4a906ef",
+      "agentName": "sanctions_screener",
+      "agentDescription": "Triage sanctions hits with OFAC 50% Rule analysis",
+      "task": "Triage 89 OFAC hits; apply 50% Rule ownership chain",
+      "status": "running",
+      "inputs": "source feeds \u00d78, context window 32k tokens",
+      "outputs": "18 artifacts, 725 tokens",
+      "toolsUsed": "web_search, sanctions_api, policy_diff, knowledge_graph",
+      "approvedBy": "sarah.chen@regco.io",
+      "startedAt": "2026-08-13T20:30:22.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 83,
+        "reasoning": "Agent followed approved playbook sanctions_screener_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_a49477f3d8884075a1cc8c",
+      "agentName": "policy_drafter",
+      "agentDescription": "Drafts policy updates in response to regulatory changes",
+      "task": "Execute 47 sanctions screening controls; evidence to ChainAnchor",
+      "status": "running",
+      "inputs": "source feeds \u00d75, context window 32k tokens",
+      "outputs": "44 artifacts, 1079 tokens",
+      "toolsUsed": "vector_rag, policy_diff, sanctions_api, knowledge_graph",
+      "approvedBy": "sarah.chen@regco.io",
+      "startedAt": "2026-08-13T15:18:55.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 89,
+        "reasoning": "Agent followed approved playbook policy_drafter_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_00a78cb5e3b84dd99d5012",
+      "agentName": "control_tester",
+      "agentDescription": "Executes automated control tests and logs evidence",
+      "task": "Triage 89 OFAC hits; apply 50% Rule ownership chain",
+      "status": "running",
+      "inputs": "source feeds \u00d77, context window 32k tokens",
+      "outputs": "39 artifacts, 815 tokens",
+      "toolsUsed": "smtp, knowledge_graph, pdf_parser, vector_rag, policy_diff",
+      "approvedBy": null,
+      "startedAt": "2026-08-14T02:30:06.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 98,
+        "reasoning": "Agent followed approved playbook control_tester_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_b6c090d0b82e4b7082a7eb",
+      "agentName": "report_generator",
+      "agentDescription": "Auto-generates board / examiner reports",
+      "task": "Curate 23 new edges in regulation\u2192control graph",
+      "status": "awaiting_approval",
+      "inputs": "source feeds \u00d72, context window 32k tokens",
+      "outputs": "37 artifacts, 279 tokens",
+      "toolsUsed": "blockchain_anchor, pdf_parser",
+      "approvedBy": "sarah.chen@regco.io",
+      "startedAt": "2026-08-12T10:24:34.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Approve to publish",
+        "confidence": 87,
+        "reasoning": "Agent followed approved playbook report_generator_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "approve_publish"
+      }
+    },
+    {
+      "id": "agent_7e43dd6c8f5e4e15b532af",
+      "agentName": "red_team",
+      "agentDescription": "Adversarial attacks against own controls",
+      "task": "Triage 89 OFAC hits; apply 50% Rule ownership chain",
+      "status": "queued",
+      "inputs": "source feeds \u00d72, context window 32k tokens",
+      "outputs": "44 artifacts, 470 tokens",
+      "toolsUsed": "vector_rag, pdf_parser, blockchain_anchor, web_search, policy_diff",
+      "approvedBy": "sarah.chen@regco.io",
+      "startedAt": "2026-08-12T23:45:58.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 98,
+        "reasoning": "Agent followed approved playbook red_team_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_43e76384dba94ac2a77812",
+      "agentName": "knowledge_curator",
+      "agentDescription": "Maintains regulation\u2192policy\u2192control graph",
+      "task": "Parse 14 new ESMA publications; classify by impact score",
+      "status": "running",
+      "inputs": "source feeds \u00d76, context window 32k tokens",
+      "outputs": "30 artifacts, 1427 tokens",
+      "toolsUsed": "web_search, blockchain_anchor, sanctions_api, smtp",
+      "approvedBy": "sarah.chen@regco.io",
+      "startedAt": "2026-08-12T20:35:37.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 84,
+        "reasoning": "Agent followed approved playbook knowledge_curator_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_65456e8a2bdc49b793ed77",
+      "agentName": "regulatory_watcher",
+      "agentDescription": "Monitors Federal Register / ESMA / FCA / MAS for new rules",
+      "task": "Draft MiFID II Article 16(7) policy update v3.2",
+      "status": "running",
+      "inputs": "source feeds \u00d76, context window 32k tokens",
+      "outputs": "4 artifacts, 1964 tokens",
+      "toolsUsed": "smtp, web_search",
+      "approvedBy": "mlro@regco.io",
+      "startedAt": "2026-08-13T12:34:06.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 95,
+        "reasoning": "Agent followed approved playbook regulatory_watcher_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_b9ee8fd535d24db2b6390d",
+      "agentName": "control_tester",
+      "agentDescription": "Executes automated control tests and logs evidence",
+      "task": "Generate Q3 Board Risk Committee pack (47 slides)",
+      "status": "queued",
+      "inputs": "source feeds \u00d74, context window 32k tokens",
+      "outputs": "25 artifacts, 968 tokens",
+      "toolsUsed": "knowledge_graph, web_search, policy_diff, pdf_parser, vector_rag",
+      "approvedBy": "mlro@regco.io",
+      "startedAt": "2026-08-14T03:47:41.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 85,
+        "reasoning": "Agent followed approved playbook control_tester_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_582592124d2b4e5cb676da",
+      "agentName": "control_tester",
+      "agentDescription": "Executes automated control tests and logs evidence",
+      "task": "Execute 47 sanctions screening controls; evidence to ChainAnchor",
+      "status": "awaiting_approval",
+      "inputs": "source feeds \u00d77, context window 32k tokens",
+      "outputs": "15 artifacts, 1759 tokens",
+      "toolsUsed": "web_search, sanctions_api",
+      "approvedBy": "cRO@regco.io",
+      "startedAt": "2026-08-13T09:02:05.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Approve to publish",
+        "confidence": 99,
+        "reasoning": "Agent followed approved playbook control_tester_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "approve_publish"
+      }
+    },
+    {
+      "id": "agent_c52241e2038b44c981287b",
+      "agentName": "knowledge_curator",
+      "agentDescription": "Maintains regulation\u2192policy\u2192control graph",
+      "task": "Package Q3 SAR filing for FinCEN submission",
+      "status": "awaiting_approval",
+      "inputs": "source feeds \u00d73, context window 32k tokens",
+      "outputs": "30 artifacts, 758 tokens",
+      "toolsUsed": "pdf_parser, vector_rag, policy_diff",
+      "approvedBy": null,
+      "startedAt": "2026-08-13T10:02:17.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Approve to publish",
+        "confidence": 83,
+        "reasoning": "Agent followed approved playbook knowledge_curator_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "approve_publish"
+      }
+    },
+    {
+      "id": "agent_4768efdf84c94872b8d721",
+      "agentName": "knowledge_curator",
+      "agentDescription": "Maintains regulation\u2192policy\u2192control graph",
+      "task": "Parse 14 new ESMA publications; classify by impact score",
+      "status": "awaiting_approval",
+      "inputs": "source feeds \u00d73, context window 32k tokens",
+      "outputs": "14 artifacts, 187 tokens",
+      "toolsUsed": "web_search, blockchain_anchor",
+      "approvedBy": null,
+      "startedAt": "2026-08-12T05:52:26.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Approve to publish",
+        "confidence": 89,
+        "reasoning": "Agent followed approved playbook knowledge_curator_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "approve_publish"
+      }
+    },
+    {
+      "id": "agent_4e8433acf2b645288496de",
+      "agentName": "regulatory_watcher",
+      "agentDescription": "Monitors Federal Register / ESMA / FCA / MAS for new rules",
+      "task": "Package Q3 SAR filing for FinCEN submission",
+      "status": "running",
+      "inputs": "source feeds \u00d76, context window 32k tokens",
+      "outputs": "14 artifacts, 1594 tokens",
+      "toolsUsed": "sanctions_api, pdf_parser",
+      "approvedBy": "mlro@regco.io",
+      "startedAt": "2026-08-13T05:41:31.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 89,
+        "reasoning": "Agent followed approved playbook regulatory_watcher_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_30a534b915ca467796771d",
+      "agentName": "red_team",
+      "agentDescription": "Adversarial attacks against own controls",
+      "task": "Curate 23 new edges in regulation\u2192control graph",
+      "status": "awaiting_approval",
+      "inputs": "source feeds \u00d73, context window 32k tokens",
+      "outputs": "20 artifacts, 1844 tokens",
+      "toolsUsed": "blockchain_anchor, smtp, sanctions_api",
+      "approvedBy": "mlro@regco.io",
+      "startedAt": "2026-08-12T18:07:02.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Approve to publish",
+        "confidence": 83,
+        "reasoning": "Agent followed approved playbook red_team_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "approve_publish"
+      }
+    },
+    {
+      "id": "agent_8d89314241134a038736b6",
+      "agentName": "control_tester",
+      "agentDescription": "Executes automated control tests and logs evidence",
+      "task": "Generate Q3 Board Risk Committee pack (47 slides)",
+      "status": "awaiting_approval",
+      "inputs": "source feeds \u00d76, context window 32k tokens",
+      "outputs": "32 artifacts, 146 tokens",
+      "toolsUsed": "knowledge_graph, smtp, pdf_parser, sanctions_api",
+      "approvedBy": "cRO@regco.io",
+      "startedAt": "2026-08-12T12:13:52.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Approve to publish",
+        "confidence": 95,
+        "reasoning": "Agent followed approved playbook control_tester_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "approve_publish"
+      }
+    },
+    {
+      "id": "agent_b69c1dff00594c9e9d43e9",
+      "agentName": "control_tester",
+      "agentDescription": "Executes automated control tests and logs evidence",
+      "task": "Triage 89 OFAC hits; apply 50% Rule ownership chain",
+      "status": "complete",
+      "inputs": "source feeds \u00d73, context window 32k tokens",
+      "outputs": "15 artifacts, 665 tokens",
+      "toolsUsed": "smtp, web_search, pdf_parser",
+      "approvedBy": "cRO@regco.io",
+      "startedAt": "2026-08-13T10:14:36.185116+00:00",
+      "completedAt": "2026-08-13T20:22:03.185116+00:00",
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 95,
+        "reasoning": "Agent followed approved playbook control_tester_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_3089852b5141429cad990d",
+      "agentName": "control_tester",
+      "agentDescription": "Executes automated control tests and logs evidence",
+      "task": "Run 12 red-team adversarial scenarios against AML engine",
+      "status": "running",
+      "inputs": "source feeds \u00d73, context window 32k tokens",
+      "outputs": "22 artifacts, 1374 tokens",
+      "toolsUsed": "smtp, knowledge_graph",
+      "approvedBy": "mlro@regco.io",
+      "startedAt": "2026-08-13T19:58:19.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 84,
+        "reasoning": "Agent followed approved playbook control_tester_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_1251e642445644589141d0",
+      "agentName": "regulator_liaison",
+      "agentDescription": "Manages examiner requests and response packets",
+      "task": "Parse 14 new ESMA publications; classify by impact score",
+      "status": "complete",
+      "inputs": "source feeds \u00d78, context window 32k tokens",
+      "outputs": "5 artifacts, 435 tokens",
+      "toolsUsed": "smtp, vector_rag, sanctions_api",
+      "approvedBy": "mlro@regco.io",
+      "startedAt": "2026-08-13T18:06:27.185116+00:00",
+      "completedAt": "2026-08-14T03:24:18.185116+00:00",
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 82,
+        "reasoning": "Agent followed approved playbook regulator_liaison_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_3e62c2f936714231b2bf2b",
+      "agentName": "regulator_liaison",
+      "agentDescription": "Manages examiner requests and response packets",
+      "task": "Triage 89 OFAC hits; apply 50% Rule ownership chain",
+      "status": "failed",
+      "inputs": "source feeds \u00d73, context window 32k tokens",
+      "outputs": "45 artifacts, 1287 tokens",
+      "toolsUsed": "knowledge_graph, vector_rag, pdf_parser",
+      "approvedBy": "mlro@regco.io",
+      "startedAt": "2026-08-13T23:49:09.185116+00:00",
+      "completedAt": "2026-08-13T17:56:38.185116+00:00",
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 91,
+        "reasoning": "Agent followed approved playbook regulator_liaison_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    },
+    {
+      "id": "agent_527eb47762a44af68b673e",
+      "agentName": "knowledge_curator",
+      "agentDescription": "Maintains regulation\u2192policy\u2192control graph",
+      "task": "Curate 23 new edges in regulation\u2192control graph",
+      "status": "running",
+      "inputs": "source feeds \u00d74, context window 32k tokens",
+      "outputs": "17 artifacts, 786 tokens",
+      "toolsUsed": "smtp, web_search, policy_diff, blockchain_anchor, sanctions_api",
+      "approvedBy": "sarah.chen@regco.io",
+      "startedAt": "2026-08-12T22:47:49.185116+00:00",
+      "completedAt": null,
+      "aiRecommendation": {
+        "action": "Acknowledge",
+        "confidence": 93,
+        "reasoning": "Agent followed approved playbook knowledge_curator_v2.3. No anomalies in tool usage. Outputs within scope.",
+        "reviewerAction": "acknowledge"
+      }
+    }
+  ],
+  "total": 20
+}

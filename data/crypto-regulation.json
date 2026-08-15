@@ -1,0 +1,380 @@
+{
+  "micaCasps": [
+    {
+      "id": "casp_001",
+      "applicantName": "EuroVault Custody GmbH",
+      "applicantLei": "529900EUROVAULT001",
+      "registeredOffice": "Frankfurt am Main, Germany",
+      "homeNca": "BaFin",
+      "serviceClasses": [
+        "custody_administration"
+      ],
+      "capitalRequirementEur": 125000,
+      "capitalBufferEur": 875000,
+      "clientCryptoUnderCustodyEur": 3500000000,
+      "whitePaperPublished": false,
+      "conflictOfInterestDisclosed": true,
+      "parentUndertaking": "EuroVault Holding AG",
+      "intendedPassportingStates": [
+        "FR",
+        "NL",
+        "IE",
+        "ES",
+        "IT"
+      ],
+      "submissionDate": "2026-04-16T22:32:00Z",
+      "acknowledgementDate": "2026-04-21T22:32:00Z",
+      "decisionDate": "2026-06-15T22:32:00Z",
+      "status": "authorized",
+      "authorizationNumber": "BaFin-MiCA-CASP-2026-001",
+      "esmaRegisterListed": true,
+      "aiRecommendation": {
+        "action": "Continue routine supervision",
+        "confidence": 95,
+        "reasoning": "CASP authorized 60 days ago. Custody-only service class. Capital buffer 7x minimum (EUR 875k buffer on top of EUR 125k floor). Passporting notifications filed in 5 member states.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "casp_002",
+      "applicantName": "Iberia Crypto Exchange S.L.",
+      "applicantLei": "529900IBERIACRYPTO01",
+      "registeredOffice": "Madrid, Spain",
+      "homeNca": "CNMV",
+      "serviceClasses": [
+        "exchange_platform",
+        "exchange_fiat_crypto",
+        "exchange_crypto_crypto"
+      ],
+      "capitalRequirementEur": 125000,
+      "capitalBufferEur": 280000,
+      "whitePaperPublished": false,
+      "conflictOfInterestDisclosed": true,
+      "intendedPassportingStates": [
+        "PT",
+        "FR",
+        "DE"
+      ],
+      "submissionDate": "2026-05-11T22:32:00Z",
+      "acknowledgementDate": "2026-05-16T22:32:00Z",
+      "decisionDate": null,
+      "status": "in_review",
+      "authorizationNumber": null,
+      "esmaRegisterListed": false,
+      "aiRecommendation": {
+        "action": "Await NCA decision — 25 working days remaining",
+        "confidence": 78,
+        "reasoning": "Application submitted 95 days ago. Acknowledgement complete. NCA has 60 working days from acknowledgement to decide — 25 working days remaining. Capital buffer 2.2x minimum.",
+        "reviewerAction": "acknowledge_pending"
+      }
+    },
+    {
+      "id": "casp_003",
+      "applicantName": "Benelux Digital Assets B.V.",
+      "applicantLei": "529900BENELUXDIG002",
+      "registeredOffice": "Amsterdam, Netherlands",
+      "homeNca": "AFM",
+      "serviceClasses": [
+        "custody_administration",
+        "exchange_platform",
+        "exchange_fiat_crypto",
+        "exchange_crypto_crypto",
+        "placement_of_crypto_assets"
+      ],
+      "capitalRequirementEur": 150000,
+      "capitalBufferEur": 1850000,
+      "whitePaperPublished": true,
+      "conflictOfInterestDisclosed": true,
+      "parentUndertaking": "Benelux Financial Group N.V.",
+      "intendedPassportingStates": [
+        "BE",
+        "LU",
+        "DE",
+        "FR"
+      ],
+      "submissionDate": "2026-06-30T22:32:00Z",
+      "acknowledgementDate": "2026-07-05T22:32:00Z",
+      "decisionDate": null,
+      "status": "in_review",
+      "authorizationNumber": null,
+      "esmaRegisterListed": false,
+      "aiRecommendation": {
+        "action": "Await NCA decision — 50 working days remaining",
+        "confidence": 81,
+        "reasoning": "Full-service CASP (all 5 service classes). Highest capital tier (EUR 150k minimum + EUR 1.85M buffer). White paper published for placement service. ESMA may issue no-objection opinion due to cross-border scope.",
+        "reviewerAction": "acknowledge_pending"
+      }
+    },
+    {
+      "id": "casp_004",
+      "applicantName": "Prague Crypto Solutions s.r.o.",
+      "applicantLei": "529900PRAGUECRYPT003",
+      "registeredOffice": "Prague, Czech Republic",
+      "homeNca": "CNB",
+      "serviceClasses": [
+        "exchange_fiat_crypto"
+      ],
+      "capitalRequirementEur": 125000,
+      "capitalBufferEur": 0,
+      "whitePaperPublished": false,
+      "conflictOfInterestDisclosed": false,
+      "submissionDate": "2026-07-15T22:32:00Z",
+      "acknowledgementDate": null,
+      "decisionDate": null,
+      "status": "deficient",
+      "authorizationNumber": null,
+      "esmaRegisterListed": false,
+      "aiRecommendation": {
+        "action": "REMEDIATION REQUIRED — application deficient on 3 items",
+        "confidence": 76,
+        "reasoning": "NCA returned application with 3 deficiencies: (1) conflict-of-interest disclosure missing, (2) capital buffer below prudential minimum (no buffer above EUR 125k floor), (3) IT systems description incomplete. Applicant has 30 working days to remedy.",
+        "reviewerAction": "approve_remediation_request"
+      }
+    }
+  ],
+  "travelRuleMessages": [
+    {
+      "id": "tr_001",
+      "messageId": "ov-msg-9f3a-001",
+      "messageType": "transfer_request",
+      "originatorVaspName": "EuroVault Custody GmbH",
+      "originatorVaspLei": "529900EUROVAULT001",
+      "originatorWalletAddress": "0x7a3b...4f2c",
+      "originatorName": "Alice Schmidt",
+      "originatorPhysicalAddress": "Hauptstrasse 12, Berlin, DE",
+      "originatorNationalId": "DE-PASS-AB1234567",
+      "originatorDateOfBirth": "1985-04-12",
+      "beneficiaryVaspName": "Iberia Crypto Exchange S.L.",
+      "beneficiaryVaspLei": "529900IBERIACRYPTO01",
+      "beneficiaryWalletAddress": "0x9d1e...8b7a",
+      "beneficiaryName": "Carlos Ruiz",
+      "transactionAmount": 42500.0,
+      "transactionCurrency": "EUR",
+      "transactionHash": "0xab12cd34ef56...7890",
+      "transactionChain": "ethereum",
+      "openvaspaPayloadVersion": "1.0.0",
+      "timestamp": "2026-08-14T20:32:00Z",
+      "preCheckStatus": "passed",
+      "sanctionsScreeningStatus": "clear",
+      "beneficiaryConfirmationStatus": "pending",
+      "sunrisePeriodApplicable": false,
+      "aiRecommendation": {
+        "action": "Auto-approve transfer — all checks passed",
+        "confidence": 96,
+        "reasoning": "Pre-check passed: beneficiary name matches wallet holder at Iberia Crypto Exchange. Sanctions screening clear for both originator and beneficiary. Amount EUR 42,500 above EUR 1,000 threshold, full Travel Rule applies. Awaiting beneficiary VASP confirmation.",
+        "reviewerAction": "approve_transfer"
+      }
+    },
+    {
+      "id": "tr_002",
+      "messageId": "ov-msg-9f3a-002",
+      "messageType": "transfer_pre_check",
+      "originatorVaspName": "EuroVault Custody GmbH",
+      "originatorVaspLei": "529900EUROVAULT001",
+      "originatorWalletAddress": "0x4f8c...1a3b",
+      "originatorName": "Bob Mueller",
+      "beneficiaryVaspName": "Singapore Digital Pte Ltd",
+      "beneficiaryVaspLei": "529900SINGAPOREDIG001",
+      "beneficiaryWalletAddress": "0x2e5f...9c4d",
+      "beneficiaryName": "Wei Tan",
+      "transactionAmount": 8750.0,
+      "transactionCurrency": "USD",
+      "openvaspaPayloadVersion": "1.0.0",
+      "timestamp": "2026-08-14T21:32:00Z",
+      "preCheckStatus": "passed",
+      "sanctionsScreeningStatus": "clear",
+      "beneficiaryConfirmationStatus": "n/a",
+      "sunrisePeriodApplicable": true,
+      "sunrisePeriodStrategy": "accept_with_edd",
+      "aiRecommendation": {
+        "action": "Approve transfer with EDD — sunrise period strategy applied",
+        "confidence": 84,
+        "reasoning": "Beneficiary VASP in Singapore (MAS PSN02 jurisdiction — Travel Rule implemented Jan 2022). Sunrise period NOT applicable (Singapore is Travel Rule compliant). Pre-check passed, sanctions clear. Approve transfer.",
+        "reviewerAction": "approve_transfer_with_edd"
+      }
+    },
+    {
+      "id": "tr_003",
+      "messageId": "ov-msg-9f3a-003",
+      "messageType": "transfer_request",
+      "originatorVaspName": "EuroVault Custody GmbH",
+      "originatorVaspLei": "529900EUROVAULT001",
+      "originatorWalletAddress": "0x1a2b...3c4d",
+      "originatorName": "Charlie Dubois",
+      "beneficiaryVaspName": "Unknown VASP",
+      "beneficiaryVaspLei": null,
+      "beneficiaryWalletAddress": "0x5e6f...7g8h",
+      "beneficiaryName": "Unknown",
+      "transactionAmount": 125000.0,
+      "transactionCurrency": "USDT",
+      "openvaspaPayloadVersion": "1.0.0",
+      "timestamp": "2026-08-14T22:02:00Z",
+      "preCheckStatus": "failed",
+      "sanctionsScreeningStatus": "hit",
+      "sanctionsHitDetail": "Beneficiary wallet 0x5e6f...7g8h matches OFAC SDN entry (Tornado Cash associated address)",
+      "beneficiaryConfirmationStatus": "blocked",
+      "sunrisePeriodApplicable": false,
+      "aiRecommendation": {
+        "action": "BLOCK TRANSFER + FILE SAR — OFAC sanctions hit",
+        "confidence": 99,
+        "reasoning": "Beneficiary wallet matched OFAC SDN list (Tornado Cash associated address). Transfer of USD 125,000 in USDT blocked. SAR filing required within 30 days. Funds held pending OFAC license application.",
+        "reviewerAction": "approve_block_and_sar"
+      }
+    },
+    {
+      "id": "tr_004",
+      "messageId": "ov-msg-9f3a-004",
+      "messageType": "transfer_cancellation",
+      "originatorVaspName": "Iberia Crypto Exchange S.L.",
+      "originatorVaspLei": "529900IBERIACRYPTO01",
+      "originatorWalletAddress": "0x9d1e...8b7a",
+      "originatorName": "Carlos Ruiz",
+      "beneficiaryVaspName": "EuroVault Custody GmbH",
+      "beneficiaryVaspLei": "529900EUROVAULT001",
+      "beneficiaryWalletAddress": "0x7a3b...4f2c",
+      "beneficiaryName": "Alice Schmidt",
+      "transactionAmount": 42500.0,
+      "transactionCurrency": "EUR",
+      "transactionHash": "0xab12cd34ef56...7890",
+      "transactionChain": "ethereum",
+      "openvaspaPayloadVersion": "1.0.0",
+      "timestamp": "2026-08-14T22:20:00Z",
+      "cancellationReason": "beneficiary_rejected",
+      "cancellationDetail": "Beneficiary VASP reported name mismatch on confirmation — wallet holder name 'A. Schmidt' did not exactly match 'Alice Schmidt'",
+      "aiRecommendation": {
+        "action": "Acknowledge cancellation — return funds to originator",
+        "confidence": 92,
+        "reasoning": "Beneficiary VASP cancelled transfer due to name mismatch on confirmation. Funds to be returned to originator wallet within 24 hours. Originator should re-initiate with exact name match.",
+        "reviewerAction": "approve_return_funds"
+      }
+    }
+  ],
+  "defiPillars": [
+    {
+      "id": "dp_001",
+      "pillar": "front_end_regulation",
+      "pillarIndex": 1,
+      "responsibleParty": "front_end_operator",
+      "protocolName": "Uniswap Labs Interface",
+      "protocolType": "decentralized_exchange",
+      "daoLegalPersonality": false,
+      "riskSeverity": "high",
+      "kycImplemented": true,
+      "sanctionsScreeningImplemented": true,
+      "travelRuleImplemented": true,
+      "transactionMonitoringImplemented": true,
+      "regulatoryReference": "FATF R.15 + 2024 DeFi Guidance paras 47-58; MiCA Recital 16; MAS PSN02",
+      "aiRecommendation": {
+        "action": "Continue front-end compliance regime",
+        "confidence": 91,
+        "reasoning": "Front-end operator Uniswap Labs has implemented KYC, sanctions screening, Travel Rule, and transaction monitoring. Smart contracts remain decentralised (no admin key, no operator), but the front-end interface is treated as VASP per FATF 2024 Guidance.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "dp_002",
+      "pillar": "treasury_sanctions",
+      "pillarIndex": 2,
+      "responsibleParty": "dao",
+      "protocolName": "Compound Governance",
+      "protocolType": "lending_protocol",
+      "daoLegalPersonality": true,
+      "daoLegalForm": "Cayman Islands Foundation Company",
+      "treasuryValueUsd": 285000000,
+      "treasuryAssetBreakdown": {
+        "COMP": 45,
+        "USDC": 32,
+        "ETH": 18,
+        "DAI": 5
+      },
+      "riskSeverity": "critical",
+      "sanctionsScreeningTreasuryInflows": true,
+      "sanctionsScreeningTreasuryOutflows": true,
+      "daoSanctionsPolicyDocumented": true,
+      "sanctionedListStatus": "not_sanctioned",
+      "regulatoryReference": "OFAC EO 14117 + Tornado Cash designation precedent; FATF 2024 DeFi Guidance paras 71-83",
+      "aiRecommendation": {
+        "action": "Continue treasury sanctions monitoring",
+        "confidence": 88,
+        "reasoning": "Compound DAO has Cayman Islands legal personality. Treasury of USD 285M screened on inflows and outflows. DAO sanctions policy documented and approved by governance. Not on OFAC SDN list. Governance token holders NOT individually liable (conservative interpretation voluntarily adopted).",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "dp_003",
+      "pillar": "oracle_oversight",
+      "pillarIndex": 3,
+      "responsibleParty": "oracle_provider",
+      "protocolName": "Aave V3",
+      "protocolType": "lending_protocol",
+      "oracleProvider": "Chainlink",
+      "oracleBackupProvider": "Pyth Network",
+      "circuitBreakerThresholdPct": 8,
+      "twapWindowSeconds": 1800,
+      "historicalAccuracyPct": 99.97,
+      "slaInPlace": true,
+      "slaUptimePct": 99.9,
+      "slaAccuracyBps": 5,
+      "userDisclosureProvided": true,
+      "riskSeverity": "high",
+      "regulatoryReference": "FATF 2024 DeFi Guidance paras 95-103; MAS PSN02 Annex on DeFi protocols",
+      "lastOracleIncidentAt": "2026-02-15T22:32:00Z",
+      "lastOracleIncidentDetail": "Chainlink ETH/USD feed divergence of 4.2% from Pyth — circuit breaker triggered, market operations paused for 18 minutes until Chainlink feed recovered",
+      "aiRecommendation": {
+        "action": "Continue dual-oracle monitoring",
+        "confidence": 89,
+        "reasoning": "Aave V3 uses Chainlink as primary with Pyth as fallback. Circuit breaker at 8% divergence. Last incident 180 days ago handled correctly (18-minute pause, no user losses). SLA with Chainlink specifies 99.9% uptime and 5bps accuracy. User disclosure in protocol docs.",
+        "reviewerAction": "acknowledge_healthy"
+      }
+    },
+    {
+      "id": "dp_004",
+      "pillar": "treasury_sanctions",
+      "pillarIndex": 2,
+      "responsibleParty": "dao",
+      "protocolName": "Tornado Cash DAO",
+      "protocolType": "mixer",
+      "daoLegalPersonality": false,
+      "treasuryValueUsd": 0,
+      "riskSeverity": "critical",
+      "sanctionsScreeningTreasuryInflows": false,
+      "sanctionsScreeningTreasuryOutflows": false,
+      "daoSanctionsPolicyDocumented": false,
+      "sanctionedListStatus": "sanctioned",
+      "sanctionedAt": "2022-08-08T00:00:00Z",
+      "sanctioningAuthority": "OFAC",
+      "sanctionsProgram": "SDN List - North Korea / WMD Proliferation",
+      "regulatoryReference": "OFAC EO 14117 + Tornado Cash designation (Aug 8, 2022); FATF 2024 DeFi Guidance paras 71-83",
+      "aiRecommendation": {
+        "action": "BLOCKED — sanctioned DAO, no transactions permitted",
+        "confidence": 99,
+        "reasoning": "Tornado Cash DAO designated by OFAC on August 8, 2022. All US persons and US- touchpoint institutions prohibited from transacting with the DAO, its treasury, or its smart contracts. Civil penalty up to USD 356,000 per violation; criminal penalty up to USD 1,000,000 + 20 years imprisonment under IEEPA.",
+        "reviewerAction": "acknowledge_blocked"
+      }
+    }
+  ],
+  "summary": {
+    "totalCaspApplications": 4,
+    "authorizedCasps": 1,
+    "caspsInReview": 2,
+    "caspsDeficient": 1,
+    "totalTravelRuleMessages": 4,
+    "travelRuleBlocked": 1,
+    "travelRuleSunrisePeriod": 1,
+    "totalDefiPillars": 4,
+    "sanctionedDaos": 1,
+    "caspsWithWhitePaper": 1,
+    "pillarLabels": [
+      "front_end_regulation",
+      "treasury_sanctions",
+      "oracle_oversight"
+    ],
+    "caspServiceClasses": [
+      "custody_administration",
+      "exchange_platform",
+      "exchange_fiat_crypto",
+      "exchange_crypto_crypto",
+      "placement_of_crypto_assets"
+    ]
+  }
+}
