@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 // ─── Types ──────────────────────────────────────────────────────────────
 type MicaCasp = {
@@ -191,7 +192,7 @@ export function CryptoRegulationView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/crypto-regulation.json')
+    fetch(dataUrl('crypto-regulation'))
       .then(r => r.json())
       .then(d => {
         setData(d)

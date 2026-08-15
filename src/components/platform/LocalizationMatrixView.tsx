@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Globe2, MapPin, ArrowRight, CheckCircle2, AlertTriangle, XCircle, Lock } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type TransferRule = {
   destination: string
@@ -63,7 +64,7 @@ export function LocalizationMatrixView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/localization.json')
+    fetch(dataUrl('localization'))
       .then(r => r.json())
       .then(d => {
         setData(d)

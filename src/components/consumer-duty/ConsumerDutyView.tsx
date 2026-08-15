@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { HeartHandshake, CheckCircle2, AlertTriangle, XCircle, FileText, Layers, BrainCircuit, UserCheck, Clock, FileBarChart2 } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 // ─── Types ──────────────────────────────────────────────────────────────
 type Outcome = {
@@ -98,7 +99,7 @@ export function ConsumerDutyView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/consumer-duty.json')
+    fetch(dataUrl('consumer-duty'))
       .then(r => r.json())
       .then(d => {
         setData(d)

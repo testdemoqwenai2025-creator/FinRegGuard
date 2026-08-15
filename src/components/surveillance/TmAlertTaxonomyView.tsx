@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Radar, AlertTriangle, ShieldAlert, Cpu, Filter } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type Category = {
   id: string
@@ -67,7 +68,7 @@ export function TmAlertTaxonomyView() {
   const [filter, setFilter] = useState<'all' | 'auto-escalate' | 'high-fp'>('all')
 
   useEffect(() => {
-    fetch('/data/tm-alert-taxonomy.json')
+    fetch(dataUrl('tm-alert-taxonomy'))
       .then(r => r.json())
       .then(d => {
         setData(d)

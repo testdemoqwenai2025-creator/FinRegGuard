@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { ShieldCheck, Lock, Globe, AlertTriangle, FileLock, Database, Trash2 } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type Tier = {
   tier: string
@@ -110,7 +111,7 @@ export function DataSensitivityView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/data-sensitivity.json')
+    fetch(dataUrl('data-sensitivity'))
       .then(r => r.json())
       .then(d => {
         setData(d)

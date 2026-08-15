@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Scale, CheckCircle2, AlertTriangle, XCircle, Users, BrainCircuit, ShieldAlert } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type FairnessMetrics = {
   disparateImpactRatio: number
@@ -77,7 +78,7 @@ export function FairnessTestingView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/fairness.json')
+    fetch(dataUrl('fairness'))
       .then(r => r.json())
       .then(d => {
         setData(d)

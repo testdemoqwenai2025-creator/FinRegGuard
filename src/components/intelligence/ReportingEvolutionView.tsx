@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { FileText, TrendingUp, Activity, Cpu, ArrowRight } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type Era = {
   id: string
@@ -73,7 +74,7 @@ export function ReportingEvolutionView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/reporting-evolution.json')
+    fetch(dataUrl('reporting-evolution'))
       .then(r => r.json())
       .then(d => {
         setData(d)

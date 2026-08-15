@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Landmark, Radio, CheckCircle2, AlertTriangle, XCircle, Globe2, Activity } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type Feed = {
   id: string
@@ -61,7 +62,7 @@ export function RegtechFeedsView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/regtech-feeds.json')
+    fetch(dataUrl('regtech-feeds'))
       .then(r => r.json())
       .then(d => {
         setData(d)

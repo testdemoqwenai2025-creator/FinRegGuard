@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Brain, ShieldAlert, CheckCircle2, AlertTriangle, UserCheck, Calendar } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type Model = {
   id: string
@@ -85,7 +86,7 @@ export function AiModelRiskView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/ai-model-risk.json')
+    fetch(dataUrl('ai-model-risk'))
       .then(r => r.json())
       .then(d => {
         setData(d)

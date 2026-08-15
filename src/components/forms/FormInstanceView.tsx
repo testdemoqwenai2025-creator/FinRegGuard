@@ -281,7 +281,55 @@ export function FormInstanceView() {
   const triggerAutofill = useCallback(async () => {
     if (!entityId.trim() || !formSlug) return
     if (IS_STATIC_BUILD) {
-      setError('Auto-fill is disabled on the static GitHub Pages preview — the orchestrator needs the live dev server (which has the Prisma DB + 5 connectors wired up). To try it: run `bun run dev` locally and open http://localhost:3000, or ask Alex for a live demo.')
+      // Static GitHub Pages preview — simulate the autofill using the
+      // bundled smoke-test data so the user gets the full demo UX without
+      // needing the live dev server. We pretend the orchestrator just ran
+      // against the entered entity ID and produce a realistic-looking
+      // result object that matches what the live API would have returned.
+      setAutofilling(true)
+      setAutofillResult(null)
+      setError(null)
+      // Simulate connector latency — OFAC alone takes ~20s on the live site.
+      await new Promise((r) => setTimeout(r, 1800))
+      try {
+        const r = await fetch(dataUrl('forms/instances'))
+        const arr = await r.json()
+        const instance = Array.isArray(arr) ? arr[0] : null
+        if (!instance) {
+          setError('No demo instance available in the static preview. Try the live dev server at http://localhost:3000 for the full autofill experience.')
+          setAutofilling(false)
+          return
+        }
+        const durationMs = 23400 + Math.floor(Math.random() * 800)
+        const connectorRuns = [
+          { connectorSlug: 'lei',            connectorName: 'GLEIF LEI Registry',  success: false, status: 'failure', httpStatus: 404, latencyMs: 874,  recordsPulled: 0, fieldsReturned: 0, errorMessage: 'GLEIF API unreachable from sandbox', endpointCalled: 'https://api.gleif.org/api/v1/lei-records?filter[lei]=HWUPKR0MPOU8FGXBT394' },
+          { connectorSlug: 'companies_house', connectorName: 'UK Companies House', success: false, status: 'skipped', httpStatus: 0,   latencyMs: 0,    recordsPulled: 0, fieldsReturned: 0, errorMessage: 'Entity not in UK registry', endpointCalled: 'https://api.company-information.service.gov.uk/company/{crn}' },
+          { connectorSlug: 'edgar',          connectorName: 'SEC EDGAR',           success: false, status: 'partial', httpStatus: 200, latencyMs: 334,  recordsPulled: 0, fieldsReturned: 0, errorMessage: 'CIK not found in EDGAR submissions', endpointCalled: 'https://data.sec.gov/submissions/CIK={cik}.json' },
+          { connectorSlug: 'ofac',           connectorName: 'OFAC SDN List',       success: true,  status: 'success', httpStatus: 200, latencyMs: 20286, recordsPulled: 2, fieldsReturned: 2, errorMessage: null, endpointCalled: 'https://www.treasury.gov/ofac/downloads/sdn.csv' },
+          { connectorSlug: 'opencorporates', connectorName: 'OpenCorporates',      success: false, status: 'failure', httpStatus: 404, latencyMs: 0,    recordsPulled: 0, fieldsReturned: 0, errorMessage: 'API rate limit (free tier)', endpointCalled: 'https://api.opencorporates.com/v0.4/companies/search?q={name}' },
+        ]
+        const totalFields = instance.fieldValues?.length ?? 13
+        const autoFilledFields = instance.fieldValues?.filter((fv: any) => fv.autoFilled).length ?? 2
+        const simulatedResult = {
+          instanceId: instance.id,
+          entityId: entityId.trim(),
+          entityName: instance.entityName || 'Apple Inc.',
+          status: instance.status || 'partial',
+          durationMs,
+          autoFilledFields,
+          totalFields,
+          reviewQueueItems: instance.reviewQueueCount ?? 9,
+          overallConfidence: instance.overallConfidence ?? 0.15,
+          connectorRuns,
+          note: 'Static preview — simulated result. Run `bun run dev` locally to trigger a real autofill against live LEI/EDGAR/OFAC/OpenCorporates APIs.',
+        }
+        setAutofillResult(simulatedResult)
+        setSelectedId(instance.id)
+      } catch (e) {
+        setError((e as Error).message)
+      } finally {
+        setAutofilling(false)
+      }
       return
     }
     setAutofilling(true)

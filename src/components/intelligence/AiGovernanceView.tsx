@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 // ─── Types ──────────────────────────────────────────────────────────────
 type LifecyclePhase = {
@@ -146,7 +147,7 @@ export function AiGovernanceView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/ai-governance.json')
+    fetch(dataUrl('ai-governance'))
       .then(r => r.json())
       .then(d => {
         setData(d)

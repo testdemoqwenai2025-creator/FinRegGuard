@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Activity, TrendingUp, TrendingDown, AlertTriangle, CheckCircle2, BrainCircuit, Gauge } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type Metric = {
   id: string
@@ -58,7 +59,7 @@ export function AdaptiveThresholdsView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/adaptive-thresholds.json')
+    fetch(dataUrl('adaptive-thresholds'))
       .then(r => r.json())
       .then(d => {
         setData(d)

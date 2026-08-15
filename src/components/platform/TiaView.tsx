@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { FileCheck2, ArrowRight, CheckCircle2, AlertTriangle, XCircle, Clock, ShieldCheck } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type SchremsFactors = {
   destinationSurveillance: 'low' | 'medium' | 'high'
@@ -76,7 +77,7 @@ export function TiaView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/tia.json')
+    fetch(dataUrl('tia'))
       .then(r => r.json())
       .then(d => {
         setData(d)

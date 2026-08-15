@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Activity, Zap, Clock, CheckCircle2, AlertTriangle, XCircle, FileCheck2 } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
+import { dataUrl } from '@/lib/data'
 
 type ControlRun = {
   runAt: string
@@ -79,7 +80,7 @@ export function ControlMonitorView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/data/ccm.json')
+    fetch(dataUrl('ccm'))
       .then(r => r.json())
       .then(d => {
         setData(d)
