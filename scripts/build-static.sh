@@ -26,7 +26,7 @@ fi
 echo "→ Running static export build"
 BUILD_STATIC=true \
 NEXT_PUBLIC_STATIC_BUILD=true \
-NEXT_PUBLIC_BASE_PATH=/FinRegGTP.BoT \
+NEXT_PUBLIC_BASE_PATH=/FinRegGuard \
 bunx next build 2>&1 | tail -60
 
 BUILD_RC=${PIPESTATUS[0]}

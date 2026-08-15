@@ -28,6 +28,7 @@ import {
   Database, Zap, CheckCircle2, XCircle, Eye, Activity, Link2, Sparkles, Lock,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { dataUrl, IS_STATIC_BUILD } from '@/lib/data'
 
 // ─────────────────────────────────────────────────────────────
 // Types (mirror Prisma models)
@@ -209,9 +210,16 @@ export function FormInstanceView() {
     setLoadingList(true)
     setError(null)
     try {
-      const r = await fetch('/api/forms/instances?limit=50')
-      const data = await r.json()
-      setInstances(data.instances || [])
+      if (IS_STATIC_BUILD) {
+        // Static GitHub Pages build — read from /data/forms/instances.json
+        const r = await fetch(dataUrl('forms/instances'))
+        const arr = await r.json()
+        setInstances(Array.isArray(arr) ? arr : [])
+      } else {
+        const r = await fetch('/api/forms/instances?limit=50')
+        const data = await r.json()
+        setInstances(data.instances || [])
+      }
     } catch (e) {
       setError((e as Error).message)
     } finally {
@@ -222,9 +230,17 @@ export function FormInstanceView() {
   const fetchDetail = useCallback(async (id: string) => {
     setLoadingDetail(true)
     try {
-      const r = await fetch(`/api/forms/instances/${id}`)
-      const data = await r.json()
-      setDetail(data.instance)
+      if (IS_STATIC_BUILD) {
+        // Static build — find the requested instance in the bundled JSON.
+        const r = await fetch(dataUrl('forms/instances'))
+        const arr = await r.json()
+        const found = Array.isArray(arr) ? arr.find((i: any) => i.id === id) : null
+        setDetail(found || null)
+      } else {
+        const r = await fetch(`/api/forms/instances/${id}`)
+        const data = await r.json()
+        setDetail(data.instance)
+      }
     } catch (e) {
       setError((e as Error).message)
     } finally {
@@ -235,9 +251,15 @@ export function FormInstanceView() {
   const fetchReviewQueue = useCallback(async () => {
     setLoadingReview(true)
     try {
-      const r = await fetch('/api/forms/review-queue?limit=50')
-      const data = await r.json()
-      setReviewQueue(data.items || [])
+      if (IS_STATIC_BUILD) {
+        const r = await fetch(dataUrl('forms/review-queue'))
+        const arr = await r.json()
+        setReviewQueue(Array.isArray(arr) ? arr : [])
+      } else {
+        const r = await fetch('/api/forms/review-queue?limit=50')
+        const data = await r.json()
+        setReviewQueue(data.items || [])
+      }
     } catch (e) {
       // Non-fatal
       console.error('Review queue fetch failed:', e)
@@ -258,6 +280,10 @@ export function FormInstanceView() {
 
   const triggerAutofill = useCallback(async () => {
     if (!entityId.trim() || !formSlug) return
+    if (IS_STATIC_BUILD) {
+      setError('Auto-fill is disabled on the static GitHub Pages preview — the orchestrator needs the live dev server (which has the Prisma DB + 5 connectors wired up). To try it: run `bun run dev` locally and open http://localhost:3000, or ask Alex for a live demo.')
+      return
+    }
     setAutofilling(true)
     setAutofillResult(null)
     setError(null)

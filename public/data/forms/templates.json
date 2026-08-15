@@ -1,0 +1,33 @@
+[
+  {
+    "id": "cmstwy73r0005ttcrutoou4wu",
+    "slug": "edd-form-framework",
+    "name": "Enhanced Due Diligence (EDD) Form",
+    "fieldSchemaJson": "{\"fields\":[{\"name\":\"legal_name\",\"type\":\"string\",\"required\":true,\"autofill_field\":\"legal_name\",\"description\":\"Legal entity name as registered with the primary corporate registry\"},{\"name\":\"jurisdiction\",\"type\":\"country_code_iso3166\",\"required\":true,\"autofill_field\":\"jurisdiction\",\"description\":\"ISO 3166-1 alpha-2 country code of incorporation\"},{\"name\":\"incorporation_date\",\"type\":\"date\",\"required\":true,\"autofill_field\":\"incorporation_date\",\"description\":\"Date of incorporation (ISO 8601)\"},{\"name\":\"company_status\",\"type\":\"string\",\"required\":true,\"autofill_field\":\"company_status\",\"description\":\"Active / dissolved / liquidation / etc.\"},{\"name\":\"company_type\",\"type\":\"string\",\"required\":false,\"autofill_field\":\"company_type\",\"description\":\"ltd / plc / llp / etc.\"},{\"name\":\"registered_address\",\"type\":\"json_object\",\"required\":true,\"autofill_field\":\"registered_address\",\"description\":\"Full registered office address\"},{\"name\":\"cik\",\"type\":\"string\",\"required\":false,\"autofill_field\":\"cik\",\"description\":\"SEC Central Index Key (US entities only)\"},{\"name\":\"sic_code\",\"type\":\"string\",\"required\":false,\"autofill_field\":\"sic_code\",\"description\":\"Standard Industrial Classification code (US entities only)\"},{\"name\":\"beneficial_owners\",\"type\":\"json_array\",\"required\":true,\"autofill_field\":\"beneficial_owners\",\"description\":\"Array of PSC records — name, role, appointed_on, nationality, threshold_pct. Cascading to 25% threshold per FinCEN CDD Rule.\"},{\"name\":\"sanctions_screening_result\",\"type\":\"json_object\",\"required\":true,\"autofill_field\":\"sanctions_screening_result\",\"description\":\"OFAC SDN screen result — hit bool, match list, list hash, checked_at\"},{\"name\":\"sanctions_match_count\",\"type\":\"integer\",\"required\":true,\"autofill_field\":\"sanctions_match_count\",\"description\":\"Number of OFAC SDN matches (0 = clean)\"},{\"name\":\"source_of_funds_evidence\",\"type\":\"json_object\",\"required\":true,\"autofill_field\":null,\"description\":\"Chainalysis / TRM / Elliptic cluster analysis — mixer exposure %, cluster IDs, 90-day freshness window. NOT auto-filled by Phase 1 connectors (requires chainalysis connector — Phase 2).\"},{\"name\":\"onchain_cluster_ids\",\"type\":\"json_array\",\"required\":false,\"autofill_field\":null,\"description\":\"Blockchain cluster IDs associated with the entity. NOT auto-filled by Phase 1 connectors.\"}]}",
+    "formType": "EDD",
+    "regulator": "FinCEN",
+    "jurisdiction": "GLOBAL",
+    "version": "1.0.0",
+    "description": "EDD form framework with 3 layers: (1) dynamic KYC with biometric matching, (2) beneficial ownership cascading to 25% thresholds, (3) source-of-funds blockchain verification. Auto-fills from LEI / Companies House / SEC EDGAR / OFAC / OpenCorporates connectors. Low-confidence fields are routed to the KYC review queue.",
+    "createdAt": "2026-08-15T05:06:17.847Z",
+    "updatedAt": "2026-08-15T05:06:17.847Z",
+    "instances": [
+      {
+        "id": "cmsu0e2pk0001ttv8w6yy8wmj",
+        "templateId": "cmstwy73r0005ttcrutoou4wu",
+        "entityId": "LEI:HWUPKR0MPOU8FGXBT394",
+        "entityType": "counterparty",
+        "entityName": "HWUPKR0MPOU8FGXBT394",
+        "status": "in_review",
+        "overallConfidence": 0.1461538461538461,
+        "autoFilledFieldCount": 2,
+        "reviewQueueCount": 9,
+        "createdBy": "smoke-test",
+        "submittedAt": null,
+        "submittedBy": null,
+        "createdAt": "2026-08-15T06:42:37.496Z",
+        "updatedAt": "2026-08-15T06:42:58.106Z"
+      }
+    ]
+  }
+]
