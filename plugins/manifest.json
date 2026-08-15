@@ -1,0 +1,757 @@
+{
+  "$schema": "./plugin-manifest.schema.json",
+  "version": "1.0.0",
+  "updatedAt": "2026-08-15T00:00:00Z",
+  "plugins": [
+    {
+      "key": "dashboard",
+      "name": "Dashboard",
+      "description": "Compliance overview with KPI tiles and recent activity.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "dashboard",
+        "staticData": "public/data/dashboard.json"
+      },
+      "audit": {
+        "minContentLength": 500,
+        "expectedHeading": "Dashboard",
+        "requiresBackButton": false
+      }
+    },
+    {
+      "key": "regulations",
+      "name": "Regulations",
+      "description": "Multi-jurisdiction regulation tracker.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "regulations",
+        "apiRoute": "/api/regulations",
+        "staticData": "public/data/regulations.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Regulation"
+      }
+    },
+    {
+      "key": "policies",
+      "name": "Policies",
+      "description": "Policy versioning with AI suggestions.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "policies",
+        "apiRoute": "/api/policies",
+        "staticData": "public/data/policies.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Polic"
+      }
+    },
+    {
+      "key": "audit",
+      "name": "Audit Trail",
+      "description": "Immutable activity log with filter and export.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "audit",
+        "apiRoute": "/api/audit",
+        "staticData": "public/data/audit.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Audit"
+      }
+    },
+    {
+      "key": "risk",
+      "name": "Risk Matrix",
+      "description": "Risk heatmap by business unit and category.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "risk",
+        "apiRoute": "/api/risk",
+        "staticData": "public/data/risk.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Risk"
+      }
+    },
+    {
+      "key": "assistant",
+      "name": "AI Assistant",
+      "description": "Compliance copilot chat with provenance.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "assistant",
+        "apiRoute": "/api/chat",
+        "requiresLiveRuntime": true
+      },
+      "audit": {
+        "minContentLength": 200,
+        "expectedHeading": "Assistant",
+        "requiresLiveRuntime": true
+      }
+    },
+    {
+      "key": "reports",
+      "name": "Reports",
+      "description": "Trends and analytics dashboard.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "reports",
+        "staticData": "public/data/reports.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Report"
+      }
+    },
+    {
+      "key": "control-monitor",
+      "name": "Control Monitor",
+      "description": "Continuous control testing with status tracking.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "control-monitor",
+        "staticData": "public/data/control-monitor.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Control"
+      }
+    },
+    {
+      "key": "consumer-duty",
+      "name": "Consumer Duty & AI Rights",
+      "description": "Consumer Duty outcomes, ADM disclosures, AI rights.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "core",
+      "implementation": {
+        "viewKey": "consumer-duty",
+        "staticData": "public/data/consumer-duty.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Consumer"
+      }
+    },
+    {
+      "key": "form-instance",
+      "name": "Form Auto-Fill",
+      "description": "L5/L6/L7 orchestrator with provenance and review queue.",
+      "category": "core-compliance",
+      "status": "ready",
+      "owner": "forms",
+      "implementation": {
+        "viewKey": "form-instance",
+        "apiRoute": "/api/forms",
+        "staticData": "public/data/forms/instances.json",
+        "component": "src/components/forms/FormInstanceView.tsx"
+      },
+      "capabilities": ["create-instance", "run-autofill", "view-provenance", "review-queue-action"],
+      "audit": {
+        "minContentLength": 400,
+        "expectedHeading": "Form",
+        "requiresLiveRuntime": true
+      }
+    },
+    {
+      "key": "transaction-surveillance",
+      "name": "Transaction Surveillance",
+      "description": "Real-time AML/CFT alert monitoring.",
+      "category": "surveillance",
+      "status": "ready",
+      "owner": "surveillance",
+      "implementation": {
+        "viewKey": "transaction-surveillance",
+        "staticData": "public/data/transaction-surveillance.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Transaction"
+      }
+    },
+    {
+      "key": "comms-surveillance",
+      "name": "Comms Surveillance",
+      "description": "Voice / chat / email NLP surveillance.",
+      "category": "surveillance",
+      "status": "ready",
+      "owner": "surveillance",
+      "implementation": {
+        "viewKey": "comms-surveillance",
+        "staticData": "public/data/comms-surveillance.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Comms"
+      }
+    },
+    {
+      "key": "sanctions-screening",
+      "name": "Sanctions Screening",
+      "description": "OFAC / UN / EU / HMT live screening.",
+      "category": "surveillance",
+      "status": "ready",
+      "owner": "surveillance",
+      "implementation": {
+        "viewKey": "sanctions-screening",
+        "staticData": "public/data/sanctions-screening.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Sanction"
+      }
+    },
+    {
+      "key": "network-graph",
+      "name": "Network Graph",
+      "description": "Entity resolution graph visualization.",
+      "category": "surveillance",
+      "status": "ready",
+      "owner": "surveillance",
+      "implementation": {
+        "viewKey": "network-graph",
+        "staticData": "public/data/network-graph.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Network"
+      }
+    },
+    {
+      "key": "adaptive-thresholds",
+      "name": "Adaptive Thresholds",
+      "description": "ML-based anomaly detection thresholds.",
+      "category": "surveillance",
+      "status": "ready",
+      "owner": "surveillance",
+      "implementation": {
+        "viewKey": "adaptive-thresholds",
+        "staticData": "public/data/adaptive-thresholds.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Adaptive"
+      }
+    },
+    {
+      "key": "tm-alert-taxonomy",
+      "name": "TM Alert Taxonomy",
+      "description": "20-category FATF typology classification.",
+      "category": "surveillance",
+      "status": "ready",
+      "owner": "surveillance",
+      "implementation": {
+        "viewKey": "tm-alert-taxonomy",
+        "staticData": "public/data/tm-alert-taxonomy.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Taxonomy"
+      }
+    },
+    {
+      "key": "quant-lab",
+      "name": "Quant Lab",
+      "description": "Monte Carlo / FRTB / CCAR simulations.",
+      "category": "quant-computational",
+      "status": "ready",
+      "owner": "quant",
+      "implementation": {
+        "viewKey": "quant-lab",
+        "staticData": "public/data/quant-lab.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Quant"
+      }
+    },
+    {
+      "key": "climate-esg",
+      "name": "Climate & ESG",
+      "description": "PCAF / NGFS / Taxonomy alignment.",
+      "category": "quant-computational",
+      "status": "ready",
+      "owner": "quant",
+      "implementation": {
+        "viewKey": "climate-esg",
+        "staticData": "public/data/climate-esg.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Climate"
+      }
+    },
+    {
+      "key": "counterfactual",
+      "name": "Counterfactual Simulator",
+      "description": "What-if scenario engine for stress testing.",
+      "category": "quant-computational",
+      "status": "ready",
+      "owner": "quant",
+      "implementation": {
+        "viewKey": "counterfactual",
+        "staticData": "public/data/counterfactual.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Counterfactual"
+      }
+    },
+    {
+      "key": "systemic-risk",
+      "name": "Systemic Risk",
+      "description": "Contagion and DebtRank analysis.",
+      "category": "quant-computational",
+      "status": "ready",
+      "owner": "quant",
+      "implementation": {
+        "viewKey": "systemic-risk",
+        "staticData": "public/data/systemic-risk.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Systemic"
+      }
+    },
+    {
+      "key": "esg-reporting",
+      "name": "ESG Reporting",
+      "description": "ISSB / ESRS / SEC + NGFS scenarios.",
+      "category": "quant-computational",
+      "status": "ready",
+      "owner": "quant",
+      "implementation": {
+        "viewKey": "esg-reporting",
+        "staticData": "public/data/esg-reporting.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "ESG"
+      }
+    },
+    {
+      "key": "agent-console",
+      "name": "Multi-Agent Console",
+      "description": "Agentic AI orchestration and monitoring.",
+      "category": "intelligence-automation",
+      "status": "ready",
+      "owner": "ai",
+      "implementation": {
+        "viewKey": "agent-console",
+        "staticData": "public/data/agent-console.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Agent"
+      }
+    },
+    {
+      "key": "regulatory-watch",
+      "name": "Regulatory Watch",
+      "description": "Automatic rule change detection across jurisdictions.",
+      "category": "intelligence-automation",
+      "status": "ready",
+      "owner": "ai",
+      "implementation": {
+        "viewKey": "regulatory-watch",
+        "staticData": "public/data/regulatory-watch.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Regulatory"
+      }
+    },
+    {
+      "key": "red-team",
+      "name": "Red Team Engine",
+      "description": "Adversarial control testing against the platform.",
+      "category": "intelligence-automation",
+      "status": "ready",
+      "owner": "ai",
+      "implementation": {
+        "viewKey": "red-team",
+        "staticData": "public/data/red-team.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Red Team"
+      }
+    },
+    {
+      "key": "knowledge-graph",
+      "name": "Knowledge Graph",
+      "description": "Vector-RAG graph store for regulatory knowledge.",
+      "category": "intelligence-automation",
+      "status": "ready",
+      "owner": "ai",
+      "implementation": {
+        "viewKey": "knowledge-graph",
+        "staticData": "public/data/knowledge-graph.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Knowledge"
+      }
+    },
+    {
+      "key": "fairness-testing",
+      "name": "Fairness Testing",
+      "description": "Algorithmic discrimination testing framework.",
+      "category": "intelligence-automation",
+      "status": "ready",
+      "owner": "ai",
+      "implementation": {
+        "viewKey": "fairness-testing",
+        "staticData": "public/data/fairness-testing.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Fairness"
+      }
+    },
+    {
+      "key": "reporting-evolution",
+      "name": "Reporting Evolution",
+      "description": "Paper to streaming reporting timeline 2010-2030.",
+      "category": "intelligence-automation",
+      "status": "ready",
+      "owner": "ai",
+      "implementation": {
+        "viewKey": "reporting-evolution",
+        "staticData": "public/data/reporting-evolution.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Reporting"
+      }
+    },
+    {
+      "key": "ai-model-risk",
+      "name": "AI/ML Model Risk Tiers",
+      "description": "SR 11-7 tiered governance for AI models.",
+      "category": "intelligence-automation",
+      "status": "ready",
+      "owner": "ai",
+      "implementation": {
+        "viewKey": "ai-model-risk",
+        "staticData": "public/data/ai-model-risk.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Model Risk"
+      }
+    },
+    {
+      "key": "ai-governance",
+      "name": "AI/ML Governance",
+      "description": "Lifecycle, XAI, and fairness matrix for AI systems.",
+      "category": "intelligence-automation",
+      "status": "ready",
+      "owner": "ai",
+      "implementation": {
+        "viewKey": "ai-governance",
+        "staticData": "public/data/ai-governance.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Governance"
+      }
+    },
+    {
+      "key": "case-management",
+      "name": "Case Management",
+      "description": "Examination and investigation workflows.",
+      "category": "collaboration-trust",
+      "status": "ready",
+      "owner": "collab",
+      "implementation": {
+        "viewKey": "case-management",
+        "apiRoute": "/api/cases",
+        "staticData": "public/data/cases.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Case"
+      }
+    },
+    {
+      "key": "regulator-portal",
+      "name": "Regulator Portal",
+      "description": "Read-only examiner access mode.",
+      "category": "collaboration-trust",
+      "status": "in_progress",
+      "owner": "collab",
+      "expectedDelivery": "2026-09-30",
+      "implementation": {
+        "viewKey": "regulator-portal"
+      },
+      "audit": {
+        "minContentLength": 100,
+        "expectedHeading": "Regulator"
+      }
+    },
+    {
+      "key": "whistleblower",
+      "name": "Whistleblower",
+      "description": "Encrypted anonymous intake channel.",
+      "category": "collaboration-trust",
+      "status": "ready",
+      "owner": "collab",
+      "implementation": {
+        "viewKey": "whistleblower",
+        "staticData": "public/data/whistleblower.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Whistleblower"
+      }
+    },
+    {
+      "key": "chain-evidence",
+      "name": "Chain Evidence",
+      "description": "Blockchain-anchored audit trail.",
+      "category": "collaboration-trust",
+      "status": "ready",
+      "owner": "collab",
+      "implementation": {
+        "viewKey": "chain-evidence",
+        "staticData": "public/data/chain-evidence.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Chain"
+      }
+    },
+    {
+      "key": "digital-assets",
+      "name": "Digital Assets",
+      "description": "Travel Rule and on-chain analytics.",
+      "category": "collaboration-trust",
+      "status": "ready",
+      "owner": "collab",
+      "implementation": {
+        "viewKey": "digital-assets",
+        "staticData": "public/data/digital-assets.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Digital"
+      }
+    },
+    {
+      "key": "regtech-feeds",
+      "name": "RegTech Feeds",
+      "description": "FCA / MAS / ESMA API integrations.",
+      "category": "collaboration-trust",
+      "status": "ready",
+      "owner": "collab",
+      "implementation": {
+        "viewKey": "regtech-feeds",
+        "staticData": "public/data/regtech-feeds.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "RegTech"
+      }
+    },
+    {
+      "key": "crypto-regulation",
+      "name": "Crypto Regulation",
+      "description": "MiCA + Travel Rule + DeFi compliance.",
+      "category": "collaboration-trust",
+      "status": "ready",
+      "owner": "collab",
+      "implementation": {
+        "viewKey": "crypto-regulation",
+        "staticData": "public/data/crypto-regulation.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Crypto"
+      }
+    },
+    {
+      "key": "privacy-pets",
+      "name": "Privacy & PETs",
+      "description": "Federated learning, HE, DP, SGX.",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "privacy-pets",
+        "staticData": "public/data/privacy-pets.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Privacy"
+      }
+    },
+    {
+      "key": "developer-hub",
+      "name": "Developer Hub",
+      "description": "API keys and webhook management.",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "developer-hub",
+        "staticData": "public/data/developer-hub.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Developer"
+      }
+    },
+    {
+      "key": "time-machine",
+      "name": "Time Machine",
+      "description": "Point-in-time queries for historical state.",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "time-machine",
+        "staticData": "public/data/time-machine.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Time"
+      }
+    },
+    {
+      "key": "rule-harmonizer",
+      "name": "Rule Harmonizer",
+      "description": "Cross-jurisdiction rule diff.",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "rule-harmonizer",
+        "staticData": "public/data/rule-harmonizer.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Harmoniz"
+      }
+    },
+    {
+      "key": "xcc",
+      "name": "Compliance Cards",
+      "description": "Explainable compliance decisions (XCC).",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "xcc",
+        "staticData": "public/data/xcc.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Compliance"
+      }
+    },
+    {
+      "key": "plugin-manager",
+      "name": "Plugin Manager",
+      "description": "Toggle forms, labels, features, and docs.",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "plugin-manager",
+        "apiRoute": "/api/plugins",
+        "staticData": "public/data/plugins.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Plugin"
+      }
+    },
+    {
+      "key": "marketplace",
+      "name": "Marketplace",
+      "description": "Install plugins from any URL.",
+      "category": "platform-governance",
+      "status": "in_progress",
+      "owner": "platform",
+      "expectedDelivery": "2026-10-15",
+      "implementation": {
+        "viewKey": "marketplace",
+        "apiRoute": "/api/plugins/marketplace"
+      },
+      "audit": {
+        "minContentLength": 100,
+        "expectedHeading": "Marketplace"
+      }
+    },
+    {
+      "key": "localization-matrix",
+      "name": "Localization Matrix",
+      "description": "Cross-border data flow mapping.",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "localization-matrix",
+        "staticData": "public/data/localization-matrix.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Localization"
+      }
+    },
+    {
+      "key": "tia",
+      "name": "Transfer Impact (TIA)",
+      "description": "Schrems II transfer impact assessments.",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "tia",
+        "staticData": "public/data/tia.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Transfer"
+      }
+    },
+    {
+      "key": "data-sensitivity",
+      "name": "Data Sensitivity",
+      "description": "GDPR/PIPL tiered data controls.",
+      "category": "platform-governance",
+      "status": "ready",
+      "owner": "platform",
+      "implementation": {
+        "viewKey": "data-sensitivity",
+        "staticData": "public/data/data-sensitivity.json"
+      },
+      "audit": {
+        "minContentLength": 300,
+        "expectedHeading": "Data"
+      }
+    }
+  ]
+}
