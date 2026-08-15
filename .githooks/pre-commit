@@ -34,8 +34,14 @@ fi
 echo "→ Running plugin manifest audit (pre-commit)..."
 
 # Capture output for display on failure; suppress on success.
-OUTPUT=$(bun scripts/audit-plugins.ts 2>&1) || true
+# CRITICAL: do NOT use `|| true` here — it masks the real exit code and
+# `$?` then returns 0 regardless of whether the audit passed or failed.
+# That bug silently let drift commits through from ef815ee until 2026-08-15.
+# Use `set +e` around the command instead, then re-enable.
+set +e
+OUTPUT=$(bun scripts/audit-plugins.ts 2>&1)
 EXIT_CODE=$?
+set -e
 
 if [ $EXIT_CODE -ne 0 ]; then
   echo ""
