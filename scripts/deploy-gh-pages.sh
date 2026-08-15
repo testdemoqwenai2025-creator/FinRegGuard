@@ -4,7 +4,7 @@
 # the root of `main`, so we orphan-commit the build artifacts directly.
 set -euo pipefail
 
-REPO_URL="https://github.com/testdemoqwenai2025-creator/FinRegGuard.git"
+REPO_URL="${DEPLOY_GIT_URL:?Set DEPLOY_GIT_URL env var with the git remote URL including credentials}"
 REPO_NAME="FinRegGuard"
 PROJECT_ROOT="/home/z/my-project"
 OUT_DIR="${PROJECT_ROOT}/out"
