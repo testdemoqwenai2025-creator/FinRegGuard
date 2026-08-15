@@ -12,11 +12,11 @@
       "owner": "core",
       "implementation": {
         "viewKey": "dashboard",
-        "staticData": "public/data/dashboard.json"
+        "staticData": "public/data/metrics.json"
       },
       "audit": {
         "minContentLength": 500,
-        "expectedHeading": "Dashboard",
+        "expectedHeading": "Command Center",
         "requiresBackButton": false
       }
     },
@@ -115,7 +115,7 @@
       "owner": "core",
       "implementation": {
         "viewKey": "reports",
-        "staticData": "public/data/reports.json"
+        "staticData": "public/data/metrics.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -131,7 +131,7 @@
       "owner": "core",
       "implementation": {
         "viewKey": "control-monitor",
-        "staticData": "public/data/control-monitor.json"
+        "staticData": "public/data/ccm.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -183,7 +183,7 @@
       "owner": "surveillance",
       "implementation": {
         "viewKey": "transaction-surveillance",
-        "staticData": "public/data/transaction-surveillance.json"
+        "staticData": "public/data/surveillance.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -199,11 +199,11 @@
       "owner": "surveillance",
       "implementation": {
         "viewKey": "comms-surveillance",
-        "staticData": "public/data/comms-surveillance.json"
+        "staticData": "public/data/comms.json"
       },
       "audit": {
         "minContentLength": 300,
-        "expectedHeading": "Comms"
+        "expectedHeading": "Communications"
       }
     },
     {
@@ -215,7 +215,7 @@
       "owner": "surveillance",
       "implementation": {
         "viewKey": "sanctions-screening",
-        "staticData": "public/data/sanctions-screening.json"
+        "staticData": "public/data/sanctions.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -231,7 +231,7 @@
       "owner": "surveillance",
       "implementation": {
         "viewKey": "network-graph",
-        "staticData": "public/data/network-graph.json"
+        "staticData": "public/data/network.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -279,7 +279,7 @@
       "owner": "quant",
       "implementation": {
         "viewKey": "quant-lab",
-        "staticData": "public/data/quant-lab.json"
+        "staticData": "public/data/quant.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -295,7 +295,7 @@
       "owner": "quant",
       "implementation": {
         "viewKey": "climate-esg",
-        "staticData": "public/data/climate-esg.json"
+        "staticData": "public/data/climate.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -327,7 +327,7 @@
       "owner": "quant",
       "implementation": {
         "viewKey": "systemic-risk",
-        "staticData": "public/data/systemic-risk.json"
+        "staticData": "public/data/systemic.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -359,7 +359,7 @@
       "owner": "ai",
       "implementation": {
         "viewKey": "agent-console",
-        "staticData": "public/data/agent-console.json"
+        "staticData": "public/data/agents.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -375,7 +375,7 @@
       "owner": "ai",
       "implementation": {
         "viewKey": "regulatory-watch",
-        "staticData": "public/data/regulatory-watch.json"
+        "staticData": "public/data/regwatch.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -391,7 +391,7 @@
       "owner": "ai",
       "implementation": {
         "viewKey": "red-team",
-        "staticData": "public/data/red-team.json"
+        "staticData": "public/data/redteam.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -423,11 +423,11 @@
       "owner": "ai",
       "implementation": {
         "viewKey": "fairness-testing",
-        "staticData": "public/data/fairness-testing.json"
+        "staticData": "public/data/fairness.json"
       },
       "audit": {
         "minContentLength": 300,
-        "expectedHeading": "Fairness"
+        "expectedHeading": "Discrimination"
       }
     },
     {
@@ -536,7 +536,7 @@
       "owner": "collab",
       "implementation": {
         "viewKey": "chain-evidence",
-        "staticData": "public/data/chain-evidence.json"
+        "staticData": "public/data/chain.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -600,7 +600,7 @@
       "owner": "platform",
       "implementation": {
         "viewKey": "privacy-pets",
-        "staticData": "public/data/privacy-pets.json"
+        "staticData": "public/data/pets.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -616,7 +616,7 @@
       "owner": "platform",
       "implementation": {
         "viewKey": "developer-hub",
-        "staticData": "public/data/developer-hub.json"
+        "staticData": "public/data/developer.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -648,7 +648,7 @@
       "owner": "platform",
       "implementation": {
         "viewKey": "rule-harmonizer",
-        "staticData": "public/data/rule-harmonizer.json"
+        "staticData": "public/data/harmonizer.json"
       },
       "audit": {
         "minContentLength": 300,
@@ -714,7 +714,7 @@
       "owner": "platform",
       "implementation": {
         "viewKey": "localization-matrix",
-        "staticData": "public/data/localization-matrix.json"
+        "staticData": "public/data/localization.json"
       },
       "audit": {
         "minContentLength": 300,
