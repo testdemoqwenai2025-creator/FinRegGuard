@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Link2, Blocks, CheckCircle2, AlertCircle, Anchor } from 'lucide-react'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
 
@@ -41,18 +41,18 @@ const typeColor: Record<string, string> = {
 }
 
 export function ChainEvidenceView() {
-  const [items, setItems] = useState<Anchor[]>([])
+  const { data: items, loading, error } = usePluginData<Anchor[]>('chain', {
+    select: (raw) => (raw as { anchors?: Anchor[] }).anchors ?? [],
+  })
   const [selected, setSelected] = useState<Anchor | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(dataUrl('chain'))
-      .then(r => r.json())
-      .then(d => { setItems(d.anchors ?? []); setSelected(d.anchors?.[0] ?? null) })
-      .finally(() => setLoading(false))
-  }, [])
+    if (items && items.length > 0 && !selected) setSelected(items[0])
+  }, [items, selected])
 
   if (loading) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load chain evidence: {error.message}</div>
+  if (!items) return null
 
   const verified = items.filter(a => a.verified).length
   const pending = items.filter(a => !a.verified).length

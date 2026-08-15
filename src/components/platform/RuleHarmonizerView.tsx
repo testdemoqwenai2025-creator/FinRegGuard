@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Scale, Globe2, GitCompare, CheckCircle2 } from 'lucide-react'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
 
@@ -16,18 +16,18 @@ type Comparison = {
 }
 
 export function RuleHarmonizerView() {
-  const [items, setItems] = useState<Comparison[]>([])
+  const { data: items, loading, error } = usePluginData<Comparison[]>('harmonizer', {
+    select: (raw) => (raw as { comparisons?: Comparison[] }).comparisons ?? [],
+  })
   const [selected, setSelected] = useState<Comparison | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(dataUrl('harmonizer'))
-      .then(r => r.json())
-      .then(d => { setItems(d.comparisons ?? []); setSelected(d.comparisons?.[0] ?? null) })
-      .finally(() => setLoading(false))
-  }, [])
+    if (items && items.length > 0 && !selected) setSelected(items[0])
+  }, [items, selected])
 
   if (loading) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load comparisons: {error.message}</div>
+  if (!items) return null
 
   return (
     <div className="p-4 sm:p-6 space-y-6">

@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
@@ -32,7 +31,7 @@ import {
 } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
 import type { DashboardData, AuditLog } from '@/lib/types'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 
 const fmtMonth = (s: string) => {
   try {
@@ -43,21 +42,17 @@ const fmtMonth = (s: string) => {
 }
 
 export function DashboardView() {
-  const [data, setData] = useState<DashboardData | null>(null)
-  const [logs, setLogs] = useState<AuditLog[]>([])
-  const [loading, setLoading] = useState(true)
+  // Two parallel hooks replace the Promise.all pattern. Each hook manages
+  // its own loading/error state; the combined loading state is the AND of
+  // the two. The `select` on the audit hook extracts the logs array and
+  // truncates to the 8 most recent (matching the original `.slice(0, 8)`).
+  const { data, loading: loadingMetrics, error: metricsError } = usePluginData<DashboardData>('metrics')
+  const { data: logs, loading: loadingLogs, error: logsError } = usePluginData<AuditLog[]>('audit', {
+    select: (raw) => (raw as { logs?: AuditLog[] }).logs?.slice(0, 8) ?? [],
+  })
 
-  useEffect(() => {
-    Promise.all([
-      fetch(dataUrl('metrics')).then((r) => r.json()),
-      fetch(dataUrl('audit')).then((r) => r.json()),
-    ])
-      .then(([d, l]) => {
-        setData(d)
-        setLogs((l.logs ?? []).slice(0, 8))
-      })
-      .finally(() => setLoading(false))
-  }, [])
+  const loading = loadingMetrics || loadingLogs
+  const error = metricsError ?? logsError
 
   if (loading || !data) {
     return (
@@ -351,7 +346,7 @@ export function DashboardView() {
           <CardContent className="p-0">
             <ScrollArea className="max-h-80">
               <ol className="relative px-6 py-2">
-                {logs.map((log) => (
+                {(logs ?? []).map((log) => (
                   <li key={log.id} className="relative flex gap-3 pb-4 pl-5 last:pb-0">
                     <span
                       className={`absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full ring-2 ring-white ${

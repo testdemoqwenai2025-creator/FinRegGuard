@@ -381,3 +381,35 @@ Stage Summary:
 - Token scrubbed from file and history (security fix)
 - Branch separation: main=source, gh-pages=deployed build
 - USER ACTION REQUIRED: change GitHub Pages settings to serve from `gh-pages` branch (Settings → Pages → Source → gh-pages)
+
+---
+Task ID: use-plugin-data-hook
+Agent: main
+Task: Extract usePluginData hook to unify the try-API-then-fallback-to-static pattern across all plugin views. Step 3 of the agreed plan (also serves as step 1's PR vehicle — the PR run validates plugin-audit.yml CI).
+
+Work Log:
+- Audited all 16 fetch(dataUrl(...)) call sites in src/components/. Pattern is uniform: fetch + r.json() + setState + finally(setLoading(false)). NO error handling anywhere — silent skeleton-forever on failure.
+- Designed hook API: usePluginData<T>(endpoint, { select?, enabled?, deps? }) → { data, loading, error, refetch }. select transform supports sub-field extraction (e.g. d => d.logs ?? []). enabled supports conditional loads. deps supports refetch on dep change.
+- Wrote src/hooks/use-plugin-data.ts with full JSDoc explaining the try-API-then-fallback-to-static pattern and how the "static shell + dynamic slot" L2 pattern is automatically honored (dataUrl routes to /api/X in dev, /data/X.json in export; route handler returns merged payload).
+- Refactored 15 view components to use the hook:
+  - ControlMonitorView (L2 plugin, mentioned in route comments)
+  - AuditView (uses select transform)
+  - RiskView (single fetch, two derived arrays via select)
+  - DashboardView (parallel Promise.all → two hooks)
+  - PrivacyPetsView, TimeMachineView, RuleHarmonizerView, XccView (select + derived selected state)
+  - TiaView, DataSensitivityView, LocalizationMatrixView, RegtechFeedsView (full payload + derived selected)
+  - ChainEvidenceView, CryptoRegulationView (3 derived selections from one payload)
+  - DeveloperHubView (select splits into keys + endpoints)
+- Each refactored view now has: (a) error state — renders "Failed to load X: {message}" instead of infinite skeleton; (b) refetch capability via the hook's returned function.
+- Left PluginManagerView and MarketplaceView's initial fetch as-is — they have proper error handling + refetch logic already and wrap fetch in useCallback for mutation-triggered reloads. Refactoring them would be a larger change with no clear benefit.
+- Type-checks clean: 0 TS errors in any refactored file or the hook.
+- Static audit (audit-plugins.ts): PASS, 0 drift.
+- Live headless-browser audit (audit-plugins-live.ts) against static build: 46/46 PASS, 0 console errors. Every page renders 883-13072 chars of real content through the hook.
+
+Stage Summary:
+- New artifact: src/hooks/use-plugin-data.ts (179 lines, full JSDoc, 3 examples)
+- 15 view components refactored (ControlMonitorView, AuditView, RiskView, DashboardView, PrivacyPetsView, TimeMachineView, RuleHarmonizerView, XccView, TiaView, DataSensitivityView, LocalizationMatrixView, RegtechFeedsView, ChainEvidenceView, CryptoRegulationView, DeveloperHubView)
+- All views now have proper error handling (was: silent skeleton-forever; now: visible error message)
+- The hook is the single place that knows the try-API-then-fallback-to-static pattern
+- The "static shell + dynamic slot" L2 pattern (control-monitor) works automatically — no special merge logic needed in the hook
+- Next: push to feat/use-plugin-data-hook branch, open PR, verify plugin-audit.yml runs green

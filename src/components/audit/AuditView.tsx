@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -24,7 +24,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Search, Download, Shield, Filter, Hash } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
 import type { AuditLog } from '@/lib/types'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 import { BackToDashboard } from '@/components/shared/BackToDashboard'
 
 const SEVERITIES = ['ALL', 'info', 'warning', 'critical']
@@ -62,21 +62,17 @@ const targetTypeColor: Record<string, string> = {
 }
 
 export function AuditView() {
-  const [logs, setLogs] = useState<AuditLog[]>([])
-  const [loading, setLoading] = useState(true)
+  // `select` extracts the `logs` array from the response envelope so the
+  // rest of the component can work directly with `AuditLog[]`.
+  const { data: logs, loading, error } = usePluginData<AuditLog[]>('audit', {
+    select: (raw) => (raw as { logs?: AuditLog[] }).logs ?? [],
+  })
   const [search, setSearch] = useState('')
   const [severity, setSeverity] = useState('ALL')
   const [action, setAction] = useState('ALL')
 
-  useEffect(() => {
-    fetch(dataUrl('audit'))
-      .then((r) => r.json())
-      .then((d) => setLogs(d.logs ?? []))
-      .finally(() => setLoading(false))
-  }, [])
-
   const filtered = useMemo(() => {
-    return logs.filter((l) => {
+    return (logs ?? []).filter((l) => {
       if (severity !== 'ALL' && l.severity !== severity) return false
       if (action !== 'ALL' && l.action !== action) return false
       if (search) {
@@ -94,7 +90,7 @@ export function AuditView() {
   // Quick stats
   const bySeverity = useMemo(() => {
     const map = { info: 0, warning: 0, critical: 0 }
-    logs.forEach((l) => {
+    ;(logs ?? []).forEach((l) => {
       map[l.severity as keyof typeof map] = (map[l.severity as keyof typeof map] ?? 0) + 1
     })
     return map
@@ -127,6 +123,9 @@ export function AuditView() {
   if (loading) {
     return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
   }
+  if (error) {
+    return <div className="p-6 text-rose-700">Failed to load audit trail: {error.message}</div>
+  }
 
   return (
     <div className="p-4 sm:p-6 space-y-6">
@@ -158,7 +157,7 @@ export function AuditView() {
                 Audit trail integrity verified — 0 hash mismatches
               </p>
               <p className="text-xs text-emerald-700/80">
-                Last integrity check {format(new Date(), 'MMM d, HH:mm')} · {logs.length} entries
+                Last integrity check {format(new Date(), 'MMM d, HH:mm')} · {(logs ?? []).length} entries
                 chained · SHA-256
               </p>
             </div>
@@ -178,7 +177,7 @@ export function AuditView() {
             <div>
               <CardTitle className="text-base">Event Log</CardTitle>
               <CardDescription>
-                Showing {filtered.length} of {logs.length} entries
+                Showing {filtered.length} of {(logs ?? []).length} entries
               </CardDescription>
             </div>
             <div className="flex flex-wrap items-center gap-2">

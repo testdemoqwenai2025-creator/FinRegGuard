@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Activity, Zap, Clock, CheckCircle2, AlertTriangle, XCircle, FileCheck2 } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 
 type ControlRun = {
   runAt: string
@@ -75,23 +75,22 @@ function relTime(iso: string) {
 }
 
 export function ControlMonitorView() {
-  const [data, setData] = useState<CcmData | null>(null)
+  const { data, loading, error } = usePluginData<CcmData>('ccm')
   const [selected, setSelected] = useState<Control | null>(null)
-  const [loading, setLoading] = useState(true)
 
+  // Derive the default selection once data arrives — pick the most at-risk
+  // control (failing > degraded > first), so the detail panel shows
+  // something actionable on first render. This is UI state derived from
+  // data, not a separate fetch, so it lives here rather than in the hook.
   useEffect(() => {
-    fetch(dataUrl('ccm'))
-      .then(r => r.json())
-      .then(d => {
-        setData(d)
-        const firstFail = d.controls?.find((c: Control) => c.status === 'failing')
-        const firstDegraded = d.controls?.find((c: Control) => c.status === 'degraded')
-        setSelected(firstFail ?? firstDegraded ?? d.controls?.[0] ?? null)
-      })
-      .finally(() => setLoading(false))
-  }, [])
+    if (!data) return
+    const firstFail = data.controls?.find((c) => c.status === 'failing')
+    const firstDegraded = data.controls?.find((c) => c.status === 'degraded')
+    setSelected(firstFail ?? firstDegraded ?? data.controls?.[0] ?? null)
+  }, [data])
 
   if (loading || !data) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load control data: {error.message}</div>
 
   const s = data.summary
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Lock, Cpu, Shield, Eye, KeyRound } from 'lucide-react'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
 
@@ -22,18 +22,18 @@ const techConfig: Record<string, { color: string; icon: typeof Lock; desc: strin
 }
 
 export function PrivacyPetsView() {
-  const [items, setItems] = useState<Config[]>([])
+  const { data: items, loading, error } = usePluginData<Config[]>('pets', {
+    select: (raw) => (raw as { configs?: Config[] }).configs ?? [],
+  })
   const [selected, setSelected] = useState<Config | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(dataUrl('pets'))
-      .then(r => r.json())
-      .then(d => { setItems(d.configs ?? []); setSelected(d.configs?.[0] ?? null) })
-      .finally(() => setLoading(false))
-  }, [])
+    if (items && items.length > 0 && !selected) setSelected(items[0])
+  }, [items, selected])
 
   if (loading) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load PETs config: {error.message}</div>
+  if (!items) return null
 
   const enabled = items.filter(c => c.enabled).length
   const pending = items.filter(c => !c.enabled).length

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { History as TimeIcon, Clock, Database, Rewind } from 'lucide-react'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
 
@@ -17,18 +17,18 @@ type Snapshot = {
 }
 
 export function TimeMachineView() {
-  const [items, setItems] = useState<Snapshot[]>([])
+  const { data: items, loading, error } = usePluginData<Snapshot[]>('time-machine', {
+    select: (raw) => (raw as { snapshots?: Snapshot[] }).snapshots ?? [],
+  })
   const [selected, setSelected] = useState<Snapshot | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(dataUrl('time-machine'))
-      .then(r => r.json())
-      .then(d => { setItems(d.snapshots ?? []); setSelected(d.snapshots?.[0] ?? null) })
-      .finally(() => setLoading(false))
-  }, [])
+    if (items && items.length > 0 && !selected) setSelected(items[0])
+  }, [items, selected])
 
   if (loading) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load snapshots: {error.message}</div>
+  if (!items) return null
 
   return (
     <div className="p-4 sm:p-6 space-y-6">

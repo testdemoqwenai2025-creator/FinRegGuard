@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Landmark, Radio, CheckCircle2, AlertTriangle, XCircle, Globe2, Activity } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 
 type Feed = {
   id: string
@@ -57,23 +57,19 @@ function relTime(iso: string) {
 }
 
 export function RegtechFeedsView() {
-  const [data, setData] = useState<FeedsData | null>(null)
+  const { data, loading, error } = usePluginData<FeedsData>('regtech-feeds')
   const [selected, setSelected] = useState<Feed | null>(null)
-  const [loading, setLoading] = useState(true)
 
+  // Default-select the most at-risk feed (unhealthy > degraded > first).
   useEffect(() => {
-    fetch(dataUrl('regtech-feeds'))
-      .then(r => r.json())
-      .then(d => {
-        setData(d)
-        const firstUnhealthy = d.feeds?.find((f: Feed) => f.status === 'unhealthy')
-        const firstDegraded = d.feeds?.find((f: Feed) => f.status === 'degraded')
-        setSelected(firstUnhealthy ?? firstDegraded ?? d.feeds?.[0] ?? null)
-      })
-      .finally(() => setLoading(false))
-  }, [])
+    if (!data) return
+    const firstUnhealthy = data.feeds?.find((f) => f.status === 'unhealthy')
+    const firstDegraded = data.feeds?.find((f) => f.status === 'degraded')
+    setSelected(firstUnhealthy ?? firstDegraded ?? data.feeds?.[0] ?? null)
+  }, [data])
 
   if (loading || !data) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load RegTech feeds: {error.message}</div>
 
   const s = data.summary
 

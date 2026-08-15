@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { FileCheck2, CheckCircle2, XCircle, AlertCircle } from 'lucide-react'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
 
@@ -23,18 +23,18 @@ const decisionConfig: Record<string, { color: string; icon: typeof CheckCircle2 
 }
 
 export function XccView() {
-  const [items, setItems] = useState<Card_[]>([])
+  const { data: items, loading, error } = usePluginData<Card_[]>('xcc', {
+    select: (raw) => (raw as { cards?: Card_[] }).cards ?? [],
+  })
   const [selected, setSelected] = useState<Card_ | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(dataUrl('xcc'))
-      .then(r => r.json())
-      .then(d => { setItems(d.cards ?? []); setSelected(d.cards?.[0] ?? null) })
-      .finally(() => setLoading(false))
-  }, [])
+    if (items && items.length > 0 && !selected) setSelected(items[0])
+  }, [items, selected])
 
   if (loading) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load XCC cards: {error.message}</div>
+  if (!items) return null
 
   const approved = items.filter(c => c.decision === 'approved').length
   const declined = items.filter(c => c.decision === 'declined').length
