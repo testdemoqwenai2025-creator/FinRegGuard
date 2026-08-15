@@ -67,4 +67,4 @@ server.log
 /db/*.db-journal
 
 # Worklog is internal agent coordination
-/worklog.md
+/worklog.mdtest-clone/

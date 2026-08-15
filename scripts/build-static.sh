@@ -23,10 +23,17 @@ if [ -d "${APP_API_DIR}" ]; then
 fi
 
 # 2. Build static export
-echo "→ Running static export build"
+# NEXT_PUBLIC_BASE_PATH controls where the static assets are served from.
+# Default: /FinRegGuard (for GitHub Pages at https://<user>.github.io/FinRegGuard/)
+# Override: set BASE_PATH="" for CI testing (serves from root, no prefix)
+# Note: use ${BASE_PATH-default} (without colon) so empty string is respected.
+#   ${BASE_PATH:-default} would substitute default for empty string, which is
+#   NOT what we want when CI explicitly passes BASE_PATH="".
+BASE_PATH="${BASE_PATH-/FinRegGuard}"
+echo "→ Running static export build (basePath: '${BASE_PATH}')"
 BUILD_STATIC=true \
 NEXT_PUBLIC_STATIC_BUILD=true \
-NEXT_PUBLIC_BASE_PATH=/FinRegGuard \
+NEXT_PUBLIC_BASE_PATH="${BASE_PATH}" \
 bunx next build 2>&1 | tail -60
 
 BUILD_RC=${PIPESTATUS[0]}

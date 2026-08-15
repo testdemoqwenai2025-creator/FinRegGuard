@@ -1,9 +1,22 @@
 # .github/workflows/plugin-audit.yml
 #
-# Runs the plugin manifest audit on every PR to main, and on every push to main.
-# Blocks merge if any drift is detected between plugins/manifest.json and the
-# actual codebase (missing files, missing API routes, missing static data,
-# dynamicSlots not properly reserved as null in static JSON).
+# Two-gate CI enforcement of the plugin manifest contract:
+#
+#   1. STATIC AUDIT (fast, ~30s) — verifies files, routes, and dynamism slots
+#      exist as declared in plugins/manifest.json. Catches drift between the
+#      manifest and the codebase (missing files, missing API routes, missing
+#      static data, dynamicSlots not properly reserved as null in static JSON).
+#
+#   2. LIVE AUDIT (slower, ~2min) — builds the static export, serves it via
+#      python http.server, launches Playwright Chromium, navigates to every
+#      plugin view, and verifies real rendered content (content length,
+#      heading text, back button presence, console error count). Catches
+#      regressions the static audit cannot reach: empty pages, broken
+#      hydration, runtime crashes, missing UX patterns.
+#
+# Both gates block merge on failure. There is NO soft-fail — if Playwright
+# or Chromium can't be installed, the job fails loudly rather than silently
+# skipping the live audit.
 #
 # This is the CI enforcement of the contract defined in
 # plugins/plugin-manifest.schema.json. See AGENTIC-WORKFLOW-LESSONS.txt for
@@ -68,19 +81,12 @@ jobs:
 
       - name: Build static export
         env:
-          BUILD_STATIC: "true"
-          NEXT_PUBLIC_STATIC_BUILD: "true"
-          NEXT_PUBLIC_BASE_PATH: ""
-        run: |
-          # Temporarily move /api routes out — they're incompatible with output: export
-          if [ -d src/app/api ]; then
-            mv src/app/api src/app/__api_static_backup
-          fi
-          bunx next build
-          # Restore /api routes for any subsequent steps
-          if [ -d src/app/__api_static_backup ]; then
-            mv src/app/__api_static_backup src/app/api
-          fi
+          # BASE_PATH="" serves from root — required for the audit to find
+          # assets at /_next/... instead of /FinRegGuard/_next/...
+          # The production GitHub Pages build uses BASE_PATH=/FinRegGuard
+          # (see scripts/build-static.sh). CI tests the code, not the deploy.
+          BASE_PATH: ""
+        run: bash scripts/build-static.sh
 
       - name: Serve static build
         run: |
@@ -90,21 +96,18 @@ jobs:
           sleep 3
           curl -s -o /dev/null -w "Static server: %{http_code}\n" http://localhost:3001/
 
-      - name: Install agent-browser
+      - name: Install Playwright Chromium
+        # Hard enforcement: if this step fails, the whole job fails.
+        # No soft-fail, no skip. The live audit CANNOT run without a browser.
         run: |
-          # agent-browser is a Rust-based headless browser CLI
-          # Install via npm global or download the binary
-          npm install -g agent-browser 2>/dev/null || true
-          which agent-browser && agent-browser --version || echo "agent-browser not available — live audit will be skipped"
+          bunx playwright install --with-deps chromium
+          echo "Playwright Chromium installed."
 
       - name: Run live plugin audit
-        run: |
-          if command -v agent-browser &> /dev/null; then
-            bun scripts/audit-plugins-live.ts --url http://localhost:3001
-          else
-            echo "⚠️  agent-browser not available — skipping live audit"
-            echo "To enable live audit in CI, install agent-browser in the workflow."
-          fi
+        # Hard enforcement: if any page fails (content too short, wrong
+        # heading, missing back button, console errors), the audit exits
+        # non-zero and the PR is blocked. No soft-fail escape hatch.
+        run: bun scripts/audit-plugins-live.ts --url http://localhost:3001
 
       - name: Upload live audit report on failure
         if: failure()
