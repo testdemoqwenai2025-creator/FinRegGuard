@@ -26,7 +26,7 @@ cd "${DEPLOY_WORK}"
 # 2. Initialise a brand-new orphan git repo pointing at the GitHub remote
 #    (Pages is configured to serve from the root of `main`, so we orphan-
 #     commit the build artifacts directly onto main.)
-git init -q -b main
+git init -q -b gh-pages
 git config user.name "RegGuard AI Builder"
 git config user.email "builder@regguard.ai"
 git remote add origin "${REPO_URL}"
@@ -50,8 +50,8 @@ basePath: /FinRegGuard
 Total files: $(find . -type f -not -path './.git/*' | wc -l)
 Total size: $(du -sh . | cut -f1)"
 
-echo "→ Pushing to main branch (force)..."
-git push -f origin main 2>&1 | tail -20
+echo "→ Pushing to gh-pages branch (force)..."
+git push -f origin gh-pages 2>&1 | tail -20
 
-echo "✓ Deployed to main branch"
+echo "✓ Deployed to gh-pages branch"
 echo "  Preview URL: https://testdemoqwenai2025-creator.github.io/${REPO_NAME}/"
