@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react'
 import { Sidebar, MobileNav } from '@/components/layout/Sidebar'
 import { Header } from '@/components/layout/Header'
 import { HomeContext } from '@/lib/home-context'
+import { NavContext } from '@/lib/nav-context'
 import { DashboardView } from '@/components/dashboard/DashboardView'
 import { RegulationsView } from '@/components/regulations/RegulationsView'
 import { PoliciesView } from '@/components/policies/PoliciesView'
@@ -121,6 +122,10 @@ export default function Home() {
   const goToDashboard = useCallback(() => setView('dashboard'), [])
   const goHome = view === 'dashboard' ? null : goToDashboard
 
+  // NavContext — allows any component (e.g. Header search box) to switch
+  // the active view without prop-drilling the setView setter.
+  const navigate = useCallback((next: ViewKey) => setView(next), [])
+
   const render = () => {
     switch (view) {
       case 'dashboard': return <DashboardView />
@@ -186,15 +191,16 @@ export default function Home() {
 
   return (
     <HomeContext.Provider value={goHome}>
-      <div className="min-h-screen flex flex-col bg-background text-foreground">
-        <Header />
-        <div className="flex flex-1 w-full flex-col lg:flex-row">
-          <MobileNav current={view} onChange={setView} />
-          <Sidebar current={view} onChange={setView} />
-          <main className="flex-1 min-w-0 overflow-x-hidden">
-            {render()}
-          </main>
-        </div>
+      <NavContext.Provider value={navigate}>
+        <div className="min-h-screen flex flex-col bg-background text-foreground">
+          <Header />
+          <div className="flex flex-1 w-full flex-col lg:flex-row">
+            <MobileNav current={view} onChange={setView} />
+            <Sidebar current={view} onChange={setView} />
+            <main className="flex-1 min-w-0 overflow-x-hidden">
+              {render()}
+            </main>
+          </div>
         <footer className="mt-auto border-t border-border bg-background px-6 py-4 text-xs text-muted-foreground">
           <div className="mx-auto flex max-w-[1400px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2">
@@ -231,7 +237,8 @@ export default function Home() {
             </div>
           </div>
         </footer>
-      </div>
+        </div>
+      </NavContext.Provider>
     </HomeContext.Provider>
   )
 }
