@@ -1,0 +1,109 @@
+# .github/workflows/deploy-pages.yml
+#
+# Auto-deploys the static build to the `gh-pages` branch on every push to main.
+# GitHub Pages should be configured to serve from `gh-pages` branch / root.
+#
+# This replaces the manual `npm run deploy:preview` script for routine deploys.
+# The manual script still works and can be used for ad-hoc deploys from a
+# developer machine (e.g. deploying a feature branch's build for review).
+#
+# What this workflow does:
+#   1. Checks out the source code (main branch)
+#   2. Installs dependencies with Bun
+#   3. Runs the plugin manifest audit (static gate — fails the deploy if drift)
+#   4. Builds the static export with BASE_PATH=/FinRegGuard (project page URL)
+#   5. Pushes the build to the gh-pages branch (force-with-lease — replaces
+#      the entire branch content with the fresh build)
+#
+# The deploy uses a dedicated bot token (GITHUB_TOKEN won't work for triggering
+# downstream Pages builds in some configs, but for `gh-pages` branch deploys
+# the default GITHUB_TOKEN is fine).
+#
+# Once enabled, GitHub Pages will auto-redeploy ~30-60s after this workflow
+# completes. The first time, you may need to manually trigger Pages in the
+# repo settings (Settings → Pages → Source: gh-pages branch / root).
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Allow manual triggers from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to push to gh-pages branch
+  pages: write      # needed to write Pages deployment status
+  id-token: write   # needed for OIDC token exchange (if using pages-deploy-action)
+
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false  # don't cancel mid-deploy; could leave gh-pages half-written
+
+jobs:
+  build-and-deploy:
+    name: Build static export and deploy to gh-pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # need full history for gh-pages branch operations
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run plugin manifest audit (static gate)
+        # Fail the deploy if the manifest has drifted from the codebase.
+        # This is the same gate that runs on PRs — don't deploy a broken build.
+        run: bun scripts/audit-plugins.ts
+
+      - name: Build static export
+        # BASE_PATH=/FinRegGuard matches the GitHub Pages project URL
+        # (https://<owner>.github.io/FinRegGuard/). If the repo is renamed,
+        # update PUBLIC_REPO_NAME in scripts/deploy-preview.sh and this env.
+        env:
+          BASE_PATH: "/FinRegGuard"
+        run: bash scripts/build-static.sh
+
+      - name: Deploy to gh-pages branch
+        # Uses peaceiris/actions-gh-pages — the de-facto standard action for
+        # pushing a directory to a gh-pages branch. Handles the orphan-branch
+        # creation, force-push, and .nojekyll file automatically.
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          keep_files: false          # replace entire branch content
+          force_orphan: false        # keep history (commit per deploy)
+          user_name: 'RegGuard AI Builder'
+          user_email: 'builder@regguard.ai'
+          commit_message: |
+            Deploy RegGuard AI static preview
+
+            Source commit: ${{ github.sha }}
+            Source branch: ${{ github.ref_name }}
+            Triggered by: ${{ github.actor }}
+            Workflow: ${{ github.run_id }}
+
+      - name: Summary
+        run: |
+          echo "## Deploy Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Static build pushed to \`gh-pages\` branch." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "GitHub Pages will redeploy in ~30-60s at:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "  https://testdemoqwenai2025-creator.github.io/FinRegGuard/" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "If the URL still 404s, configure Pages at:" >> $GITHUB_STEP_SUMMARY
+          echo "  https://github.com/testdemoqwenai2025-creator/FinRegGuard/settings/pages" >> $GITHUB_STEP_SUMMARY
+          echo "  Source: Deploy from a branch → Branch: gh-pages / (root)" >> $GITHUB_STEP_SUMMARY

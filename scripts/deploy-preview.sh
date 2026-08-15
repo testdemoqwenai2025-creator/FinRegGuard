@@ -14,8 +14,15 @@
 #      (API routes are temporarily moved out so `output: 'export'` succeeds)
 #   4. Syncs out/ -> .finregguard-staging/ (preserves .git/)
 #   5. Writes fresh README.md with deploy metadata + .nojekyll
-#   6. Commits & pushes to FinRegGuard main branch
-#   7. GitHub Pages auto-redeploys in ~30-60s
+#   6. Commits & pushes to FinRegGuard **gh-pages** branch
+#   7. GitHub Pages auto-redeploys in ~30-60s (if Pages is configured for gh-pages)
+#
+# IMPORTANT: deploys go to the `gh-pages` branch, NOT `main`. The `main` branch
+# holds the source code; `gh-pages` holds the static build that GitHub Pages
+# serves. Pushing the static build to `main` would clobber the source code.
+# Configure Pages at: https://github.com/<owner>/FinRegGuard/settings/pages
+#   Source: Deploy from a branch
+#   Branch: gh-pages / (root)
 #
 # Prerequisites:
 #   - .gh-pages-deploy/ must exist with token in its remote URL (one-time setup)
@@ -68,6 +75,8 @@ ok "GitHub token resolved (length: ${#GH_TOKEN})"
 AUTH_URL="https://${PUBLIC_REPO_OWNER}:${GH_TOKEN}@github.com/${PUBLIC_REPO_OWNER}/${PUBLIC_REPO_NAME}.git"
 
 # ─── Step 2: Clone or refresh staging dir ───────────────────────────────────
+# Clone with --no-checkout initially, then checkout gh-pages branch explicitly.
+# This ensures we're always on gh-pages (the deploy target), never main.
 if [ ! -d "$STAGING_DIR/.git" ]; then
   log "First-time setup: cloning ${PUBLIC_REPO_NAME} to ${STAGING_DIR}..."
   git clone --quiet "$AUTH_URL" "$STAGING_DIR"
@@ -79,7 +88,22 @@ git config user.name "RegGuard AI Builder"
 git config user.email "builder@regguard.ai"
 # Refresh remote URL in case token rotated
 git remote set-url origin "$AUTH_URL" 2>/dev/null || true
-ok "Staging dir ready at ${STAGING_DIR}"
+
+# Ensure we're on gh-pages branch. If it doesn't exist yet (first deploy),
+# create it as an orphan branch with just .nojekyll.
+git fetch --quiet origin
+if git show-ref --verify --quiet refs/heads/gh-pages; then
+  git checkout --quiet gh-pages
+  git reset --hard --quiet origin/gh-pages 2>/dev/null || true
+else
+  log "gh-pages branch does not exist — creating as orphan..."
+  git checkout --quiet --orphan gh-pages
+  git rm -rf --quiet . 2>/dev/null || true
+  touch .nojekyll
+  git add .nojekyll
+  git commit --quiet -m "Initialize gh-pages branch" --allow-empty
+fi
+ok "On gh-pages branch at ${STAGING_DIR}"
 
 # ─── Step 3: Build static export ────────────────────────────────────────────
 log "Building static export (BUILD_STATIC=true NEXT_PUBLIC_BASE_PATH=/${PUBLIC_REPO_NAME})..."
@@ -225,9 +249,13 @@ Source subject: ${DEPLOY_SUBJECT}
 Total files: $(find . -type f -not -path './.git/*' | wc -l)
 Total size: $(du -sh --exclude=.git . | cut -f1)"
 
-log "Pushing to ${PUBLIC_REPO_OWNER}/${PUBLIC_REPO_NAME} main..."
-git push --quiet origin main
+log "Pushing to ${PUBLIC_REPO_OWNER}/${PUBLIC_REPO_NAME} gh-pages..."
+git push --quiet origin gh-pages
 
-ok "Pushed to https://github.com/${PUBLIC_REPO_OWNER}/${PUBLIC_REPO_NAME}"
+ok "Pushed to https://github.com/${PUBLIC_REPO_OWNER}/${PUBLIC_REPO_NAME}/tree/gh-pages"
 echo ""
 ok "Live in ~30-60s at: ${PUBLIC_PAGES_URL}"
+echo ""
+echo "  ⚠  If the URL still 404s, ensure GitHub Pages is configured:"
+echo "     https://github.com/${PUBLIC_REPO_OWNER}/${PUBLIC_REPO_NAME}/settings/pages"
+echo "     Source: Deploy from a branch → Branch: gh-pages / (root)"
