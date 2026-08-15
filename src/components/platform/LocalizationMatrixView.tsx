@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Globe2, MapPin, ArrowRight, CheckCircle2, AlertTriangle, XCircle, Lock } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 
 type TransferRule = {
   destination: string
@@ -59,22 +59,19 @@ function fmtUsd(v: number) {
 }
 
 export function LocalizationMatrixView() {
-  const [data, setData] = useState<LocData | null>(null)
+  const { data, loading, error } = usePluginData<LocData>('localization')
   const [selected, setSelected] = useState<Regulation | null>(null)
-  const [loading, setLoading] = useState(true)
 
+  // Default-select the first residency-required regulation (most actionable
+  // for cross-border data flow discussions).
   useEffect(() => {
-    fetch(dataUrl('localization'))
-      .then(r => r.json())
-      .then(d => {
-        setData(d)
-        const firstResidency = d.regulations?.find((r: Regulation) => r.residencyRequired)
-        setSelected(firstResidency ?? d.regulations?.[0] ?? null)
-      })
-      .finally(() => setLoading(false))
-  }, [])
+    if (!data) return
+    const firstResidency = data.regulations?.find((r) => r.residencyRequired)
+    setSelected(firstResidency ?? data.regulations?.[0] ?? null)
+  }, [data])
 
   if (loading || !data) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load localization matrix: {error.message}</div>
 
   const s = data.summary
 

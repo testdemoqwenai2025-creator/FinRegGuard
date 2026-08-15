@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { ShieldCheck, Lock, Globe, AlertTriangle, FileLock, Database, Trash2 } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 
 type Tier = {
   tier: string
@@ -106,24 +106,20 @@ function relTime(iso: string): string {
 }
 
 export function DataSensitivityView() {
-  const [data, setData] = useState<SensData | null>(null)
+  const { data, loading, error } = usePluginData<SensData>('data-sensitivity')
   const [selected, setSelected] = useState<Asset | null>(null)
-  const [loading, setLoading] = useState(true)
 
+  // Default-select the restricted asset with cross-border transfer requested
+  // (has actionable AI rec). Falls back to first restricted, then first asset.
   useEffect(() => {
-    fetch(dataUrl('data-sensitivity'))
-      .then(r => r.json())
-      .then(d => {
-        setData(d)
-        // Default-select the restricted asset with cross-border transfer requested (has actionable AI rec)
-        const withAction = d.assets?.find((a: Asset) => a.classification === 'restricted' && a.crossBorderTransferRequested)
-        const firstRestricted = d.assets?.find((a: Asset) => a.classification === 'restricted')
-        setSelected(withAction ?? firstRestricted ?? d.assets?.[0] ?? null)
-      })
-      .finally(() => setLoading(false))
-  }, [])
+    if (!data) return
+    const withAction = data.assets?.find((a) => a.classification === 'restricted' && a.crossBorderTransferRequested)
+    const firstRestricted = data.assets?.find((a) => a.classification === 'restricted')
+    setSelected(withAction ?? firstRestricted ?? data.assets?.[0] ?? null)
+  }, [data])
 
   if (loading || !data) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load data sensitivity: {error.message}</div>
 
   const s = data.summary
 

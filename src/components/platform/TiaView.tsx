@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { FileCheck2, ArrowRight, CheckCircle2, AlertTriangle, XCircle, Clock, ShieldCheck } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 
 type SchremsFactors = {
   destinationSurveillance: 'low' | 'medium' | 'high'
@@ -72,23 +72,20 @@ function relTime(iso: string | null) {
 }
 
 export function TiaView() {
-  const [data, setData] = useState<TiaData | null>(null)
+  const { data, loading, error } = usePluginData<TiaData>('tia')
   const [selected, setSelected] = useState<Tia | null>(null)
-  const [loading, setLoading] = useState(true)
 
+  // Derive the default selection once data arrives — pick the most at-risk
+  // TIA (blocked > overdue > first) so the detail panel is actionable.
   useEffect(() => {
-    fetch(dataUrl('tia'))
-      .then(r => r.json())
-      .then(d => {
-        setData(d)
-        const firstBlocked = d.tias?.find((t: Tia) => t.status === 'blocked')
-        const firstOverdue = d.tias?.find((t: Tia) => t.status === 'overdue')
-        setSelected(firstBlocked ?? firstOverdue ?? d.tias?.[0] ?? null)
-      })
-      .finally(() => setLoading(false))
-  }, [])
+    if (!data) return
+    const firstBlocked = data.tias?.find((t) => t.status === 'blocked')
+    const firstOverdue = data.tias?.find((t) => t.status === 'overdue')
+    setSelected(firstBlocked ?? firstOverdue ?? data.tias?.[0] ?? null)
+  }, [data])
 
   if (loading || !data) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load TIAs: {error.message}</div>
 
   const s = data.summary
 

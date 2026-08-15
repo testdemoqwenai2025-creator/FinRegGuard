@@ -11,7 +11,7 @@ import {
 } from 'lucide-react'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 
 // ─── Types ──────────────────────────────────────────────────────────────
 type MicaCasp = {
@@ -185,28 +185,27 @@ function shortAddr(addr: string): string {
 
 // ─── Main component ─────────────────────────────────────────────────────
 export function CryptoRegulationView() {
-  const [data, setData] = useState<CryptoRegulationData | null>(null)
+  const { data, loading, error } = usePluginData<CryptoRegulationData>('crypto-regulation')
   const [selectedCasp, setSelectedCasp] = useState<MicaCasp | null>(null)
   const [selectedMsg, setSelectedMsg] = useState<TravelRuleMessage | null>(null)
   const [selectedPillar, setSelectedPillar] = useState<DefiPillar | null>(null)
-  const [loading, setLoading] = useState(true)
 
+  // Derive the default selections once data arrives — pick the most
+  // actionable item in each category (deficient CASP, blocked travel-rule
+  // message, sanctioned DeFi pillar) so the detail panels are immediately
+  // useful on first render.
   useEffect(() => {
-    fetch(dataUrl('crypto-regulation'))
-      .then(r => r.json())
-      .then(d => {
-        setData(d)
-        const deficient = d.micaCasps?.find((c: MicaCasp) => c.status === 'deficient')
-        setSelectedCasp(deficient ?? d.micaCasps?.[0] ?? null)
-        const blocked = d.travelRuleMessages?.find((m: TravelRuleMessage) => m.sanctionsScreeningStatus === 'hit')
-        setSelectedMsg(blocked ?? d.travelRuleMessages?.[0] ?? null)
-        const sanctioned = d.defiPillars?.find((p: DefiPillar) => p.sanctionedListStatus === 'sanctioned')
-        setSelectedPillar(sanctioned ?? d.defiPillars?.[0] ?? null)
-      })
-      .finally(() => setLoading(false))
-  }, [])
+    if (!data) return
+    const deficient = data.micaCasps?.find((c) => c.status === 'deficient')
+    setSelectedCasp(deficient ?? data.micaCasps?.[0] ?? null)
+    const blocked = data.travelRuleMessages?.find((m) => m.sanctionsScreeningStatus === 'hit')
+    setSelectedMsg(blocked ?? data.travelRuleMessages?.[0] ?? null)
+    const sanctioned = data.defiPillars?.find((p) => p.sanctionedListStatus === 'sanctioned')
+    setSelectedPillar(sanctioned ?? data.defiPillars?.[0] ?? null)
+  }, [data])
 
   if (loading || !data) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load crypto regulation data: {error.message}</div>
 
   const s = data.summary
 

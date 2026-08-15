@@ -19,7 +19,7 @@ import {
   Users,
 } from 'lucide-react'
 import type { RiskItem, RiskUnitSummary } from '@/lib/types'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 import { BackToDashboard } from '@/components/shared/BackToDashboard'
 
 // 5x5 risk matrix: likelihood (rows) x impact (cols)
@@ -38,23 +38,25 @@ const trendIcon = {
   worsening: <TrendingDown className="h-3 w-3 text-rose-600" />,
 }
 
-export function RiskView() {
-  const [risks, setRisks] = useState<RiskItem[]>([])
-  const [summary, setSummary] = useState<RiskUnitSummary[]>([])
-  const [loading, setLoading] = useState(true)
+type RiskPayload = { risks: RiskItem[]; unitSummary: RiskUnitSummary[] }
 
-  useEffect(() => {
-    fetch(dataUrl('risk'))
-      .then((r) => r.json())
-      .then((d) => {
-        setRisks(d.risks ?? [])
-        setSummary(d.unitSummary ?? [])
-      })
-      .finally(() => setLoading(false))
-  }, [])
+export function RiskView() {
+  // Single fetch; `select` splits the payload into the two arrays the
+  // component needs so we avoid two `useState` calls and a manual split.
+  const { data, loading, error } = usePluginData<{ risks: RiskItem[]; unitSummary: RiskUnitSummary[] }>('risk', {
+    select: (raw) => {
+      const r = raw as Partial<RiskPayload>
+      return { risks: r.risks ?? [], unitSummary: r.unitSummary ?? [] }
+    },
+  })
+  const risks = data?.risks ?? []
+  const summary = data?.unitSummary ?? []
 
   if (loading) {
     return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  }
+  if (error) {
+    return <div className="p-6 text-rose-700">Failed to load risk register: {error.message}</div>
   }
 
   // Build 5x5 matrix indexed [likelihood-1][impact-1]

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Code2, KeyRound, Webhook, BookOpen, Zap } from 'lucide-react'
-import { dataUrl } from '@/lib/data'
+import { usePluginData } from '@/hooks/use-plugin-data'
 import { BooleanActionCard, type AIRec } from '@/components/shared/BooleanAction'
 import { PageHeader, KpiTile } from '@/components/shared/PageHeader'
 
@@ -23,21 +23,29 @@ const methodColor: Record<string, string> = {
   DELETE: 'bg-rose-50 text-rose-700 border-rose-200',
 }
 
+type DevHubPayload = { keys: Key[]; endpoints: Endpoint[] }
+
 export function DeveloperHubView() {
-  const [keys, setKeys] = useState<Key[]>([])
-  const [endpoints, setEndpoints] = useState<Endpoint[]>([])
+  // Single fetch; `select` splits the payload into the two arrays the
+  // component needs so we avoid two `useState` calls and a manual split.
+  const { data, loading, error } = usePluginData<DevHubPayload>('developer', {
+    select: (raw) => {
+      const r = raw as Partial<DevHubPayload>
+      return { keys: r.keys ?? [], endpoints: r.endpoints ?? [] }
+    },
+  })
   const [selected, setSelected] = useState<Key | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(dataUrl('developer'))
-      .then(r => r.json())
-      .then(d => { setKeys(d.keys ?? []); setEndpoints(d.endpoints ?? []); setSelected(d.keys?.[0] ?? null) })
-      .finally(() => setLoading(false))
-  }, [])
+    if (data && data.keys.length > 0 && !selected) setSelected(data.keys[0])
+  }, [data, selected])
 
   if (loading) return <div className="p-6"><div className="h-96 animate-pulse rounded-xl bg-slate-100" /></div>
+  if (error) return <div className="p-6 text-rose-700">Failed to load developer hub: {error.message}</div>
+  if (!data) return null
 
+  const keys = data.keys
+  const endpoints = data.endpoints
   const active = keys.filter(k => k.status === 'active').length
   const totalCalls = keys.reduce((s, k) => s + k.calls30d, 0)
 
