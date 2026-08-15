@@ -8,7 +8,13 @@
 # the absence of /api routes during the static build is fine.
 set -euo pipefail
 
-PROJECT_ROOT="/home/z/my-project"
+# Resolve the project root from the script's location so the script works
+# both on local dev machines (/home/z/my-project) and in CI runners
+# (/home/runner/work/<repo>/<repo>). Previously this was hardcoded to
+# /home/z/my-project, which silently broke the live-audit CI job (the build
+# step failed with "cd: /home/z/my-project: No such file or directory").
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 APP_API_DIR="${PROJECT_ROOT}/src/app/api"
 APP_API_BACKUP="${PROJECT_ROOT}/src/app/__api_static_backup"
 OUT_DIR="${PROJECT_ROOT}/out"

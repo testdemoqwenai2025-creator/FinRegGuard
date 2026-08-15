@@ -6,7 +6,10 @@ set -euo pipefail
 
 REPO_URL="${DEPLOY_GIT_URL:?Set DEPLOY_GIT_URL env var with the git remote URL including credentials}"
 REPO_NAME="FinRegGuard"
-PROJECT_ROOT="/home/z/my-project"
+# Resolve project root from script location so this works on any machine,
+# not just /home/z/my-project (same fix as build-static.sh).
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 OUT_DIR="${PROJECT_ROOT}/out"
 DEPLOY_WORK="${PROJECT_ROOT}/.gh-pages-deploy"
 
