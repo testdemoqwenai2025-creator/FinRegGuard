@@ -1,0 +1,172 @@
+# Static + Dynamic Capacity: The "Reserved Buffer" Pattern for Web Apps
+
+Source: A discussion on 2026-08-15 about how static-site architectures
+(like the RegGuard AI GitHub Pages deployment) can support graduated
+levels of dynamism without becoming fully server-rendered.
+
+The core analogy is the C dynamic array: instead of choosing between
+a fixed-size stack array (fully static) and a heap-allocated array
+that reallocates on every growth (fully dynamic), you allocate
+capacity > length and grow into the reserved space. The realloc tax
+amortizes to O(1) per insert.
+
+The same pattern applies to web apps: ship static data with reserved
+nullable slots for fields that will eventually be dynamic. A thin
+runtime layer fills those slots when available, falls back to static
+values when not. No rebuild needed to add dynamism.
+
+---
+
+## The C dynamic array analogy, made precise
+
+In C:
+
+    int arr[10];              // fully static — can't grow, wastes nothing
+    malloc(10 * sizeof(int)); // dynamic — expensive to resize, copies on realloc
+    struct { int* data; int len; int cap; } buf;  // capacity > length, grows into reserved space
+
+The third pattern is the smart one: allocate cap=20, use len=10, grow
+without reallocation until you hit capacity. The cost of growth
+amortizes to O(1) per insert, and you never pay the realloc-and-copy
+tax unless you underestimated capacity badly.
+
+The current static/dynamic web split maps to the first two:
+
+- Static JSON     = int arr[10]  — fixed at build, can't grow without rebuild
+- API route       = malloc       — fully dynamic, but requires a runtime, costs latency per request
+
+What this proposal adds is the third pattern: static structure with
+reserved dynamic capacity. The static build ships with the full data
+shape, including null/placeholder slots for fields that will
+eventually be dynamic. A thin runtime layer fills those slots when
+available, falls back to the static values when not. No rebuild
+needed to add dynamism — you just start populating slots that were
+already reserved.
+
+## Four certainty levels of dynamism
+
+Not everything needs the same level of dynamism. Concretely:
+
+| Level | What's static            | What's dynamic      | Example in RegGuard                              |
+|-------|--------------------------|---------------------|--------------------------------------------------|
+| L0    | Everything               | Nothing             | Regulation text, framework definitions           |
+| L1    | Structure                | Values on schedule  | Regulation status, policy versions, KPI counts   |
+| L2    | Layout, metadata         | Live records        | Form instances, audit events, alerts             |
+| L3    | Nothing                  | Everything          | AI chat, real-time surveillance, autofill        |
+
+The binary static/dynamic switch treats everything as L0 in static
+mode and L3 in dev mode. That's why views break: L1/L2 content
+forced into L0 or L3 with nothing in between.
+
+## What "level buffering" looks like in practice
+
+For each plugin, the manifest declares its certainty level and
+reserves capacity accordingly:
+
+    {
+      "key": "control-monitor",
+      "dynamism": {
+        "level": "L2",
+        "staticShell": { "controls": "full", "summary": "full", "history": "stub" },
+        "dynamicSlots": ["history", "realTimePassRate"],
+        "refreshStrategy": "on-focus",
+        "fallback": "static-json"
+      }
+    }
+
+The client component then does:
+
+  1. Render immediately from static JSON (L0 guarantee — page is never empty)
+  2. Kick off a fetch to /api/control-monitor in the background
+  3. If it succeeds, merge dynamic slots into the rendered state
+  4. If it 404s or times out, keep showing the static values
+  5. On window focus, re-fetch (L1 refresh)
+
+This is capacity reservation in the data layer. The static JSON has
+the full shape; dynamic fields are present but null. When the API
+arrives, it fills nulls — no schema change, no rebuild, no client
+change. The "buffer" is the null-tolerance in the render code.
+
+## Why this is a real pattern, not just theory
+
+This is exactly what the industry is converging on, though no one
+has named it as cleanly:
+
+- Next.js ISR (Incremental Static Regeneration) — static at build,
+  refreshes on a timer, serves stale while revalidating. L1.
+- React Server Components — static shell + dynamic islands, streamed. L2.
+- Cloudflare Pages + Workers — static assets + edge functions that
+  augment them. L2.
+- Static + Service Worker — offline-first static, background sync
+  for dynamic. L1/L2 hybrid.
+
+What none of these frameworks give you is the EXPLICIT CAPACITY
+DECLARATION — the schema that says "this field is reserved for
+dynamism, currently null, will be populated." That's the missing
+piece, and it's exactly what a plugin manifest can express.
+
+## Concrete implementation
+
+Three changes, in order of effort:
+
+1. Add `dynamism` to the manifest schema (schema-only, low-risk)
+   Extend plugin-manifest.schema.json with a `dynamism` object per
+   plugin: level, staticSlots, dynamicSlots, refreshStrategy,
+   fallback. No code changes — just declaration.
+
+2. Make `dataUrl()` try-then-fallback (one file)
+   Currently returns either /api/X OR /data/X.json based on
+   IS_STATIC_BUILD. Change it to always try /api/X first with a 2s
+   timeout, fall back to /data/X.json on failure. This gives L2
+   dynamism for free — anywhere an API route exists, it's used;
+   anywhere it doesn't, the static JSON loads.
+
+3. Add a `usePluginData(key)` hook (new file)
+   A React hook that implements the L0→L2 pattern: render from
+   static JSON immediately, fetch dynamic slots in the background,
+   merge on success, keep static on failure. Every view uses this
+   hook instead of raw fetch(). The hook reads the plugin's
+   `dynamism` config from the manifest to know which slots to merge.
+
+After this, the 13 views that currently break on dev would work
+everywhere:
+
+- On GitHub Pages: static JSON loads, dynamic slots stay null, page renders fully
+- On dev server: static JSON loads instantly, then API fills in live data, page upgrades in place
+- On a future hosted runtime (GCP): same as dev, but faster
+
+No view needs to know which environment it's in. The capacity is
+reserved; the runtime fills it.
+
+## Honest tradeoffs
+
+- Complexity: the usePluginData hook is one more abstraction. But
+  it replaces N ad-hoc useEffect + fetch + setState blocks, so net
+  complexity drops.
+- Stale data risk: L1/L2 means the user might see slightly old data
+  until the refresh completes. For compliance, this is usually fine
+  — regulations don't change minute-to-minute. For real-time alerts
+  (L3), you opt out of the buffer entirely.
+- Manifest discipline: the dynamism field has to be maintained.
+  The audit script should verify that dynamicSlots actually exist
+  as null-able fields in the static JSON — otherwise the buffer is
+  fictional.
+
+## The success-story angle
+
+The pattern is:
+
+  1. Manifest declares capacity — what's static, what's reserved
+     for dynamic, at what certainty level
+  2. Audit verifies capacity is real — reserved slots must exist as
+     nullable fields in the static build
+  3. Runtime fills capacity — try API, fall back to static, merge
+     on success
+  4. No rebuild on dynamism upgrade — adding an API route just
+     starts filling slots that were always there
+
+This is the C dynamic array pattern applied to web architecture.
+It's not novel as individual pieces (ISR, RSC, edge all do parts of
+it), but the EXPLICIT CAPACITY DECLARATION + AUDIT ENFORCEMENT is.
+Most frameworks treat dynamism as an either/or; this framing treats
+it as a spectrum with reserved headroom.

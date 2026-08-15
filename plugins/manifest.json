@@ -32,6 +32,14 @@
         "apiRoute": "/api/regulations",
         "staticData": "public/data/regulations.json"
       },
+      "dynamism": {
+        "level": "L1",
+        "staticShell": { "regulations": "full" },
+        "dynamicSlots": [],
+        "refreshStrategy": "on-focus",
+        "fallback": "static-json",
+        "timeoutMs": 2000
+      },
       "audit": {
         "minContentLength": 300,
         "expectedHeading": "Regulation"
@@ -100,6 +108,14 @@
         "apiRoute": "/api/chat",
         "requiresLiveRuntime": true
       },
+      "dynamism": {
+        "level": "L3",
+        "staticShell": {},
+        "dynamicSlots": [],
+        "refreshStrategy": "manual",
+        "fallback": "empty-state",
+        "timeoutMs": 30000
+      },
       "audit": {
         "minContentLength": 200,
         "expectedHeading": "Assistant",
@@ -132,6 +148,14 @@
       "implementation": {
         "viewKey": "control-monitor",
         "staticData": "public/data/ccm.json"
+      },
+      "dynamism": {
+        "level": "L2",
+        "staticShell": { "controls": "full", "summary": "full", "total": "full" },
+        "dynamicSlots": ["summary.realTimePassRate"],
+        "refreshStrategy": "on-mount",
+        "fallback": "static-json",
+        "timeoutMs": 2000
       },
       "audit": {
         "minContentLength": 300,

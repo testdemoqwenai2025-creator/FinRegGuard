@@ -47,6 +47,15 @@ interface Plugin {
     staticData?: string
   }
   capabilities?: string[]
+  dynamism?: {
+    level: 'L0' | 'L1' | 'L2' | 'L3'
+    staticShell?: Record<string, 'full' | 'stub' | 'absent'>
+    dynamicSlots?: string[]
+    refreshStrategy?: 'on-mount' | 'on-focus' | 'interval' | 'manual' | 'never'
+    refreshIntervalMs?: number
+    fallback?: 'static-json' | 'empty-state' | 'error'
+    timeoutMs?: number
+  }
   audit?: {
     minContentLength?: number
     expectedHeading?: string
@@ -153,6 +162,66 @@ for (const p of manifest.plugins) {
     if (delivery < now) {
       issues.push(`SCHEDULE DRIFT: expectedDelivery ${p.expectedDelivery} is in the past`)
     }
+  }
+
+  // Check 5b: dynamism — verify declared dynamicSlots exist as nullable in static JSON
+  if (p.dynamism && p.dynamism.dynamicSlots && p.dynamism.dynamicSlots.length > 0) {
+    const staticDataPath = p.implementation?.staticData
+      ? join(REPO_ROOT, p.implementation.staticData)
+      : null
+
+    if (!staticDataPath || !existsSync(staticDataPath)) {
+      // Can't verify slots without the static file — note but don't fail
+      checks.push({ name: 'dynamism-slots', pass: false, detail: 'no static data file to verify against' })
+    } else {
+      try {
+        const staticJson = JSON.parse(readFileSync(staticDataPath, 'utf-8'))
+        let allSlotsPresent = true
+        const missingSlots: string[] = []
+
+        for (const slot of p.dynamism.dynamicSlots) {
+          // Walk dotted path: 'summary.realTimePassRate' → staticJson.summary.realTimePassRate
+          const parts = slot.split('.')
+          let cursor: any = staticJson
+          let found = true
+          for (const part of parts) {
+            if (cursor == null || typeof cursor !== 'object' || !(part in cursor)) {
+              found = false
+              break
+            }
+            cursor = cursor[part]
+          }
+          // Slot must exist AND be null (reserved for dynamic population)
+          if (!found) {
+            missingSlots.push(`${slot} (path not present)`)
+            allSlotsPresent = false
+          } else if (cursor !== null && cursor !== undefined) {
+            missingSlots.push(`${slot} (has value, not null — slot not reserved)`)
+            allSlotsPresent = false
+          }
+        }
+
+        checks.push({
+          name: 'dynamism-slots',
+          pass: allSlotsPresent,
+          detail: allSlotsPresent ? `${p.dynamism.dynamicSlots.length} slots reserved` : missingSlots.join('; '),
+        })
+        if (!allSlotsPresent) {
+          issues.push(`DYNAMISM DRIFT: dynamicSlots not properly reserved as null in ${p.implementation!.staticData}: ${missingSlots.join('; ')}`)
+        }
+      } catch (e: any) {
+        checks.push({ name: 'dynamism-slots', pass: false, detail: `parse error: ${e.message}` })
+        issues.push(`DYNAMISM DRIFT: could not parse static JSON at ${p.implementation!.staticData}: ${e.message}`)
+      }
+    }
+  }
+
+  // Check 5c: dynamism — L3 plugins must have an apiRoute (they're fully dynamic)
+  if (p.dynamism?.level === 'L3' && !p.implementation?.apiRoute) {
+    issues.push(`DYNAMISM DRIFT: level=L3 (fully dynamic) but no apiRoute declared — L3 plugins require a live API`)
+    checks.push({ name: 'dynamism-l3-api', pass: false })
+  } else if (p.dynamism?.level === 'L3') {
+    checks.push({ name: 'dynamism-l3-api', pass: true })
   }
 
   // Check 6: live URL (optional)

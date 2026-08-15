@@ -99,6 +99,49 @@
           "items": { "type": "string" },
           "description": "Granular capability list. Each entry is individually auditable. e.g. ['create-instance', 'run-autofill', 'view-provenance']"
         },
+        "dynamism": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Declares the static/dynamic capacity profile for this plugin. Implements the 'reserved buffer' pattern: the static build ships the full data shape with nullable slots for fields that will eventually be filled by a live API. The runtime tries the API, falls back to static, merges on success. See STATIC-DYNAMIC-CAPACITY-PATTERN.txt for the full rationale.",
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": ["L0", "L1", "L2", "L3"],
+              "description": "Certainty level of dynamism. L0 = pure static (regulation text, framework definitions). L1 = static + periodic refresh (regulation status, KPI counts). L2 = static shell + dynamic data (form instances, audit events). L3 = fully dynamic (AI chat, real-time surveillance)."
+            },
+            "staticShell": {
+              "type": "object",
+              "description": "Which top-level fields of the static JSON are 'full' (rendered immediately) vs 'stub' (placeholder, will be replaced by dynamic data). The audit verifies that stub fields actually exist as nullable in the static JSON.",
+              "additionalProperties": { "type": "string", "enum": ["full", "stub", "absent"] }
+            },
+            "dynamicSlots": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Field paths (dotted notation, e.g. 'summary.realTimePassRate') that are reserved for dynamic population. Must be present as null in the static JSON. The audit verifies this."
+            },
+            "refreshStrategy": {
+              "type": "string",
+              "enum": ["on-mount", "on-focus", "interval", "manual", "never"],
+              "description": "When the client should attempt to fetch dynamic data. on-mount = once on page load; on-focus = re-fetch on window focus; interval = poll on a timer; manual = user action only; never = static only."
+            },
+            "refreshIntervalMs": {
+              "type": "integer",
+              "minimum": 1000,
+              "description": "For refreshStrategy=interval only. Polling interval in milliseconds."
+            },
+            "fallback": {
+              "type": "string",
+              "enum": ["static-json", "empty-state", "error"],
+              "description": "What to render if the dynamic fetch fails. static-json = keep showing the static values; empty-state = show a 'data unavailable' message; error = throw."
+            },
+            "timeoutMs": {
+              "type": "integer",
+              "minimum": 100,
+              "description": "How long to wait for the dynamic fetch before falling back. Default 2000."
+            }
+          },
+          "required": ["level"]
+        },
         "audit": {
           "type": "object",
           "additionalProperties": false,
