@@ -381,3 +381,28 @@ Stage Summary:
 - Token scrubbed from file and history (security fix)
 - Branch separation: main=source, gh-pages=deployed build
 - USER ACTION REQUIRED: change GitHub Pages settings to serve from `gh-pages` branch (Settings → Pages → Source → gh-pages)
+
+---
+Task ID: use-plugin-data-hook-ci
+Agent: main
+Task: Push the usePluginData refactor to a feature branch, open a PR, and verify plugin-audit.yml CI runs green (steps 5 + 6 of the plan).
+
+Work Log:
+- Created feat/use-plugin-data-hook branch, committed the hook + 15 refactored views.
+- Pre-commit hook ran audit-plugins.ts automatically — passed, 0 drift.
+- Pushed branch, opened PR #1: https://github.com/testdemoqwenai2025-creator/FinRegGuard/pull/1
+- First CI run: static-audit PASSED, live-audit FAILED.
+- Root cause of live-audit failure: scripts/build-static.sh had PROJECT_ROOT="/home/z/my-project" hardcoded. On GitHub Actions runners the repo is at /home/runner/work/<repo>/<repo>, so the build step failed with "cd: /home/z/my-project: No such file or directory". This bug had been present since the live-audit job was added but was never caught because:
+  - The static-audit job doesn't call build-static.sh
+  - The deploy workflow uses peaceiris/actions-gh-pages (not this script)
+  - Local development always has /home/z/my-project so the bug was invisible locally
+- Fix: resolve PROJECT_ROOT from the script's own location via BASH_SOURCE. Same fix applied to deploy-gh-pages.sh (same bug, used for manual deploys).
+- Pushed the fix to the feature branch (via merge from main, since the fix accidentally landed on main first).
+- Second CI run: static-audit PASSED, live-audit PASSED. Both gates green.
+
+Stage Summary:
+- PR #1: https://github.com/testdemoqwenai2025-creator/FinRegGuard/pull/1
+- CI: both gates green (static-audit + live-audit)
+- Bonus: fixed a pre-existing CI bug (hardcoded path in build-static.sh) that had silently broken the live-audit job since it was added. The two-gate CI design caught it — exactly the enforcement it was built to provide.
+- The PR is ready to merge. After merge, the deploy workflow will auto-deploy to gh-pages.
+- Next: step 7 — add L1/L2 stub data files + stub API routes per GCP-MIGRATION-TODO.md.
