@@ -34,7 +34,9 @@
       },
       "dynamism": {
         "level": "L1",
-        "staticShell": { "regulations": "full" },
+        "staticShell": {
+          "regulations": "full"
+        },
         "dynamicSlots": [],
         "refreshStrategy": "on-focus",
         "fallback": "static-json",
@@ -147,12 +149,19 @@
       "owner": "core",
       "implementation": {
         "viewKey": "control-monitor",
-        "staticData": "public/data/ccm.json"
+        "staticData": "public/data/ccm.json",
+        "apiRoute": "/api/ccm"
       },
       "dynamism": {
         "level": "L2",
-        "staticShell": { "controls": "full", "summary": "full", "total": "full" },
-        "dynamicSlots": ["summary.realTimePassRate"],
+        "staticShell": {
+          "controls": "full",
+          "summary": "full",
+          "total": "full"
+        },
+        "dynamicSlots": [
+          "summary.realTimePassRate"
+        ],
         "refreshStrategy": "on-mount",
         "fallback": "static-json",
         "timeoutMs": 2000
@@ -191,7 +200,12 @@
         "staticData": "public/data/forms/instances.json",
         "component": "src/components/forms/FormInstanceView.tsx"
       },
-      "capabilities": ["create-instance", "run-autofill", "view-provenance", "review-queue-action"],
+      "capabilities": [
+        "create-instance",
+        "run-autofill",
+        "view-provenance",
+        "review-queue-action"
+      ],
       "audit": {
         "minContentLength": 400,
         "expectedHeading": "Form",
